@@ -127,20 +127,20 @@ class Alert404_Storage {
 
 		$table_name = self::get_table_name();
 
-		$query = $wpdb->prepare(
-			"DELETE FROM {$table_name}
-			 WHERE id NOT IN (
-				SELECT id FROM (
-					SELECT id FROM {$table_name}
-					ORDER BY created_at DESC, id DESC
-					LIMIT %d
-				) AS keep_ids
-			)",
-			self::MAX_RECORDS
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Cleanup query with prepared statement
+		$wpdb->query(
+			$wpdb->prepare(
+				"DELETE FROM {$table_name}
+				 WHERE id NOT IN (
+					SELECT id FROM (
+						SELECT id FROM {$table_name}
+						ORDER BY created_at DESC, id DESC
+						LIMIT %d
+					) AS keep_ids
+				)",
+				self::MAX_RECORDS
+			)
 		);
-
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Cleanup query, prepared statement used
-		$wpdb->query( $query );
 	}
 
 	public static function get_stats( int $limit = 100 ): array {
@@ -149,16 +149,17 @@ class Alert404_Storage {
 		$table_name = self::get_table_name();
 		$limit      = max( 1, $limit );
 
-		$query = $wpdb->prepare(
-			"SELECT id, url, ip, referrer, user_agent, user_agent_readable, created_at AS timestamp
-			 FROM {$table_name}
-			 ORDER BY created_at DESC, id DESC
-			 LIMIT %d",
-			$limit
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Read query with prepared statement
+		$results = $wpdb->get_results(
+			$wpdb->prepare(
+				"SELECT id, url, ip, referrer, user_agent, user_agent_readable, created_at AS timestamp
+				 FROM {$table_name}
+				 ORDER BY created_at DESC, id DESC
+				 LIMIT %d",
+				$limit
+			),
+			'ARRAY_A'
 		);
-
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Read query, prepared statement used
-		$results = $wpdb->get_results( $query, 'ARRAY_A' );
 
 		return is_array( $results ) ? $results : array();
 	}
@@ -169,16 +170,17 @@ class Alert404_Storage {
 		$table_name = self::get_table_name();
 		$like_date  = $wpdb->esc_like( $date ) . '%';
 
-		$query = $wpdb->prepare(
-			"SELECT id, url, ip, referrer, user_agent, user_agent_readable, created_at AS timestamp
-			 FROM {$table_name}
-			 WHERE created_at LIKE %s
-			 ORDER BY created_at DESC, id DESC",
-			$like_date
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Read query with prepared statement
+		$results = $wpdb->get_results(
+			$wpdb->prepare(
+				"SELECT id, url, ip, referrer, user_agent, user_agent_readable, created_at AS timestamp
+				 FROM {$table_name}
+				 WHERE created_at LIKE %s
+				 ORDER BY created_at DESC, id DESC",
+				$like_date
+			),
+			'ARRAY_A'
 		);
-
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Read query, prepared statement used
-		$results = $wpdb->get_results( $query, 'ARRAY_A' );
 
 		return is_array( $results ) ? $results : array();
 	}
@@ -188,7 +190,7 @@ class Alert404_Storage {
 
 		$table_name = self::get_table_name();
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Simple count query
-		$total = $wpdb->get_var( "SELECT COUNT(*) FROM {$table_name}" );
+		$total = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$table_name}" ) );
 
 		return (int) $total;
 	}
@@ -198,7 +200,7 @@ class Alert404_Storage {
 
 		$table_name = self::get_table_name();
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Simple count query
-		$total = $wpdb->get_var( "SELECT COUNT(DISTINCT url) FROM {$table_name}" );
+		$total = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(DISTINCT url) FROM {$table_name}" ) );
 
 		return (int) $total;
 	}
@@ -209,17 +211,18 @@ class Alert404_Storage {
 		$table_name = self::get_table_name();
 		$limit      = max( 1, $limit );
 
-		$query = $wpdb->prepare(
-			"SELECT url, COUNT(*) AS count
-			 FROM {$table_name}
-			 GROUP BY url
-			 ORDER BY count DESC
-			 LIMIT %d",
-			$limit
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Aggregation query with prepared statement
+		$rows = $wpdb->get_results(
+			$wpdb->prepare(
+				"SELECT url, COUNT(*) AS count
+				 FROM {$table_name}
+				 GROUP BY url
+				 ORDER BY count DESC
+				 LIMIT %d",
+				$limit
+			),
+			'ARRAY_A'
 		);
-
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Aggregation query, prepared statement used
-		$rows = $wpdb->get_results( $query, 'ARRAY_A' );
 
 		if ( ! is_array( $rows ) ) {
 			return array();
@@ -244,17 +247,18 @@ class Alert404_Storage {
 		$table_name = self::get_table_name();
 		$limit      = max( 1, $limit );
 
-		$query = $wpdb->prepare(
-			"SELECT ip, COUNT(*) AS count
-			 FROM {$table_name}
-			 GROUP BY ip
-			 ORDER BY count DESC
-			 LIMIT %d",
-			$limit
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Aggregation query with prepared statement
+		$rows = $wpdb->get_results(
+			$wpdb->prepare(
+				"SELECT ip, COUNT(*) AS count
+				 FROM {$table_name}
+				 GROUP BY ip
+				 ORDER BY count DESC
+				 LIMIT %d",
+				$limit
+			),
+			'ARRAY_A'
 		);
-
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Aggregation query, prepared statement used
-		$rows = $wpdb->get_results( $query, 'ARRAY_A' );
 
 		if ( ! is_array( $rows ) ) {
 			return array();
