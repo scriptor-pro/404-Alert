@@ -3,6 +3,8 @@
  * Template 404 personnalisé pour 404 Alert
  */
 
+defined( 'ABSPATH' ) || exit;
+
 get_header();
 ?>
 

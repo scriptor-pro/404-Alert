@@ -55,6 +55,7 @@ class Alert404_Storage {
 			KEY ip (ip)
 		) {$charset_collate};";
 
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Schema creation requires direct query
 		$wpdb->query( $sql );
 	}
 
@@ -138,6 +139,7 @@ class Alert404_Storage {
 			self::MAX_RECORDS
 		);
 
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Cleanup query, prepared statement used
 		$wpdb->query( $query );
 	}
 
@@ -155,6 +157,7 @@ class Alert404_Storage {
 			$limit
 		);
 
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Read query, prepared statement used
 		$results = $wpdb->get_results( $query, 'ARRAY_A' );
 
 		return is_array( $results ) ? $results : array();
@@ -174,6 +177,7 @@ class Alert404_Storage {
 			$like_date
 		);
 
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Read query, prepared statement used
 		$results = $wpdb->get_results( $query, 'ARRAY_A' );
 
 		return is_array( $results ) ? $results : array();
@@ -183,7 +187,8 @@ class Alert404_Storage {
 		global $wpdb;
 
 		$table_name = self::get_table_name();
-		$total      = $wpdb->get_var( "SELECT COUNT(*) FROM {$table_name}" );
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Simple count query
+		$total = $wpdb->get_var( "SELECT COUNT(*) FROM {$table_name}" );
 
 		return (int) $total;
 	}
@@ -192,7 +197,8 @@ class Alert404_Storage {
 		global $wpdb;
 
 		$table_name = self::get_table_name();
-		$total      = $wpdb->get_var( "SELECT COUNT(DISTINCT url) FROM {$table_name}" );
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Simple count query
+		$total = $wpdb->get_var( "SELECT COUNT(DISTINCT url) FROM {$table_name}" );
 
 		return (int) $total;
 	}
@@ -212,6 +218,7 @@ class Alert404_Storage {
 			$limit
 		);
 
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Aggregation query, prepared statement used
 		$rows = $wpdb->get_results( $query, 'ARRAY_A' );
 
 		if ( ! is_array( $rows ) ) {
@@ -246,6 +253,7 @@ class Alert404_Storage {
 			$limit
 		);
 
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Aggregation query, prepared statement used
 		$rows = $wpdb->get_results( $query, 'ARRAY_A' );
 
 		if ( ! is_array( $rows ) ) {
@@ -269,6 +277,7 @@ class Alert404_Storage {
 		global $wpdb;
 
 		$table_name = self::get_table_name();
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- TRUNCATE requires direct query
 		$wpdb->query( "TRUNCATE TABLE {$table_name}" );
 		delete_option( self::OPTION_KEY );
 	}
