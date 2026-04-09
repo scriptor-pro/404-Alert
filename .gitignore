@@ -1,0 +1,33 @@
+# IDE & Éditeurs
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-workspace
+*.sublime-project
+.DS_Store
+
+# Composer
+/vendor/
+composer.lock
+
+# Testing
+.phpunit.result.cache
+coverage/
+.phpcs-cache
+
+# WordPress Local
+wordpress-local/
+wp-config-local.php
+wp-config.php
+.env.local
+.env
+
+# OS
+Thumbs.db
+.directory
+
+# Logs
+debug.log
+error.log
+*.log

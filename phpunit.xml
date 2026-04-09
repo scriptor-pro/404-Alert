@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<phpunit
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.5/phpunit.xsd"
+	bootstrap="tests/bootstrap.php"
+	beStrictAboutOutputDuringTests="true"
+	beStrictAboutTestsThatDoNotTestAnything="true"
+	failOnRisky="true"
+	failOnWarning="true"
+	colors="true"
+	processIsolation="false"
+	stopOnFailure="false"
+	stopOnDefect="false"
+	stopOnError="false"
+	stopOnIncomplete="false"
+	stopOnSkipped="false"
+	stopOnRisky="false"
+	>
+
+	<testsuites>
+		<testsuite name="404 Alert Unit Tests">
+			<directory suffix=".php">tests/unit</directory>
+		</testsuite>
+		<testsuite name="404 Alert Integration Tests">
+			<directory suffix=".php">tests/integration</directory>
+		</testsuite>
+	</testsuites>
+
+	<php>
+		<!-- WordPress Test Framework Configuration -->
+		<ini name="error_reporting" value="-1" />
+		<!-- Base de données de test (optionnel, si vous utilisez SQLite) -->
+		<env name="WP_TESTS_DIR" value="/tmp/wordpress-test-lib" />
+		<env name="WORDPRESS_TESTS_DIR" value="/tmp/wordpress-test-lib" />
+		<!-- Base de données MySQL si disponible -->
+		<env name="WORDPRESS_DB_HOST" value="127.0.0.1:3307" />
+		<env name="WORDPRESS_DB_NAME" value="wordpress_test" />
+		<env name="WORDPRESS_DB_USER" value="wordpress" />
+		<env name="WORDPRESS_DB_PASSWORD" value="wordpress123" />
+		<env name="WORDPRESS_TABLE_PREFIX" value="wp_" />
+		<!-- Désactiver la vérification des mises à jour -->
+		<env name="WP_DISABLE_FATAL_ERROR_HANDLER" value="true" />
+	</php>
+
+</phpunit>

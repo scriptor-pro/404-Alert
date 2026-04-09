@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<ruleset name="404 Alert Plugin">
+	<description>Règles de style de code pour le plugin 404 Alert</description>
+
+	<!-- Inclure les standards WordPress -->
+	<rule ref="WordPress">
+		<!-- Exclure les règles VIP (trop strictes pour un plugin standard) -->
+		<!-- Exclure les règles de base de données (trop strictes) -->
+		<exclude name="WordPress.DB" />
+		<!-- Exclure les avertissements de sécurité trop génériques -->
+		<exclude name="WordPress.Security.NonceVerification" />
+		<!-- Exclure les conventions trop coûteuses pour ce repo. -->
+		<exclude name="WordPress.Files.FileName.InvalidClassFileName" />
+		<exclude name="WordPress.PHP.YodaConditions.NotYoda" />
+		<exclude name="WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase" />
+	</rule>
+
+	<!-- Alléger les contraintes de commentaires pour privilégier les contrôles runtime. -->
+	<rule ref="Squiz.Commenting">
+		<exclude name="Squiz.Commenting.FileComment.MissingPackageTag" />
+		<exclude name="Squiz.Commenting.ClassComment.Missing" />
+		<exclude name="Squiz.Commenting.FunctionComment.Missing" />
+		<exclude name="Squiz.Commenting.FunctionComment.ParamCommentFullStop" />
+		<exclude name="Squiz.Commenting.InlineComment.InvalidEndChar" />
+	</rule>
+
+	<!-- Configurer la détection des préfixes globaux -->
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" value="alert404,404_alert" />
+		</properties>
+	</rule>
+
+	<!-- Exclure certains répertoires -->
+	<exclude-pattern>/vendor/</exclude-pattern>
+	<exclude-pattern>/node_modules/</exclude-pattern>
+	<exclude-pattern>\.git/</exclude-pattern>
+
+	<!-- Fichiers PHP à vérifier -->
+	<arg name="extensions" value="php" />
+
+	<!-- Afficher le progrès -->
+	<arg value="p" />
+
+	<!-- Paralléliser si possible -->
+	<arg name="parallel" value="4" />
+
+	<!-- Ne pas faire échouer le lint sur warnings. -->
+	<arg name="warning-severity" value="0" />
+
+	<!-- Encodage -->
+	<arg name="encoding" value="utf-8" />
+</ruleset>

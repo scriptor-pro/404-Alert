@@ -1,0 +1,62 @@
+# Claude Code ignore file for 404-alert project
+# This file tells Claude which files/directories to skip during analysis
+
+## Dependencies
+vendor/
+node_modules/
+composer.lock
+
+## Build and Cache
+coverage/
+build/
+dist/
+.cache/
+
+## IDE and Editor
+.vscode/
+.idea/
+.editorconfig
+.DS_Store
+*.swp
+*.swo
+*~
+
+## Testing
+.phpunit.cache/
+.phpunit.result.cache
+
+## WordPress Test Library (downloaded during CI)
+/tmp/
+wordpress-develop-*/
+
+## Git
+.git/
+.gitignore
+.gitattributes
+
+## System files
+.ICEauthority
+.Xauthority
+.bash_history
+.bashrc
+.bash_aliases
+.bash_logout
+
+## Documentation (auto-generated, less critical)
+CHANGELOG.md
+ARCHITECTURE.md
+CONTRIBUTING.md
+
+## Less critical files
+*.log
+debug.log
+error.log
+
+## Workflows (CI/CD, reviewed separately)
+.github/workflows/
+
+## Configuration files (reviewed separately)
+phpunit.xml
+phpcs.xml
+phpstan.neon
+composer.json
