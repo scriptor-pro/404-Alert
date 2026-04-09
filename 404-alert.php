@@ -2,7 +2,7 @@
 /**
  * Plugin Name: 404 Alert
  * Description: Envoie un email à l'administrateur à chaque erreur 404.
- * Version: 1.1.0
+ * Version: 1.1.1
  * Requires PHP: 8.1
  * Author: Baudouin
  * License: ISC
