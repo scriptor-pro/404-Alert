@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Modern Minimalist - Blue/Cyan -->
+  <!-- Background circle -->
+  <circle cx="64" cy="64" r="60" fill="#E8F4FF" stroke="#0066CC" stroke-width="2"/>
+
+  <!-- 404 text - geometric style -->
+  <text x="64" y="55" font-family="Arial, sans-serif" font-size="32" font-weight="bold" text-anchor="middle" fill="#0066CC">404</text>
+
+  <!-- Alert indicator - minimalist warning triangle -->
+  <g transform="translate(64, 85)">
+    <path d="M 0 -8 L 8 8 L -8 8 Z" fill="#FF6B35" stroke="#0066CC" stroke-width="1"/>
+    <circle cx="0" cy="2" r="1.5" fill="#0066CC"/>
+  </g>
+
+  <!-- Email/notification indicator -->
+  <g transform="translate(100, 30)">
+    <rect x="-6" y="-5" width="12" height="10" rx="1" fill="#00D9FF" stroke="#0066CC" stroke-width="0.5"/>
+    <line x1="-6" y1="-5" x2="6" y2="5" stroke="#0066CC" stroke-width="0.5"/>
+  </g>
+</svg>

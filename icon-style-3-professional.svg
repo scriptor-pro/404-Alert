@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Professional & Classic - Black/Gray -->
+  <!-- Outer ring -->
+  <circle cx="64" cy="64" r="60" fill="#F5F5F5" stroke="#333333" stroke-width="2"/>
+
+  <!-- Inner circle -->
+  <circle cx="64" cy="64" r="50" fill="#FFFFFF" stroke="#999999" stroke-width="1"/>
+
+  <!-- 404 - Elegant serif -->
+  <text x="64" y="60" font-family="Georgia, serif" font-size="36" font-weight="bold" text-anchor="middle" fill="#333333">404</text>
+
+  <!-- Status indicator line -->
+  <line x1="30" y1="75" x2="98" y2="75" stroke="#999999" stroke-width="1"/>
+
+  <!-- Alert icon - simple and sophisticated -->
+  <g transform="translate(64, 95)">
+    <path d="M -8 -8 L 8 -8 L 10 10 L -10 10 Z" fill="#E8E8E8" stroke="#666666" stroke-width="1"/>
+    <circle cx="0" cy="-2" r="1.5" fill="#666666"/>
+  </g>
+
+  <!-- Corner detail marks -->
+  <rect x="20" y="20" width="4" height="4" fill="#CCCCCC"/>
+  <rect x="104" y="20" width="4" height="4" fill="#CCCCCC"/>
+  <rect x="20" y="104" width="4" height="4" fill="#CCCCCC"/>
+  <rect x="104" y="104" width="4" height="4" fill="#CCCCCC"/>
+</svg>

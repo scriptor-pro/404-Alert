@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Illustrated & Friendly - Green/Teal (solution-focused) -->
+  <defs>
+    <linearGradient id="friendlyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1AB394;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#16A085;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <circle cx="64" cy="64" r="60" fill="url(#friendlyGradient)"/>
+
+  <!-- Light background circle -->
+  <circle cx="64" cy="64" r="50" fill="#FFFFFF" opacity="0.15"/>
+
+  <!-- Robot/computer character head -->
+  <g transform="translate(64, 50)">
+    <!-- Head -->
+    <rect x="-12" y="-15" width="24" height="20" rx="3" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1"/>
+    <!-- Eyes -->
+    <circle cx="-5" cy="-8" r="2.5" fill="#1AB394"/>
+    <circle cx="5" cy="-8" r="2.5" fill="#1AB394"/>
+    <!-- Mouth (concerned) -->
+    <path d="M -5 -2 Q 0 0 5 -2" stroke="#1AB394" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- 404 text -->
+  <text x="64" y="90" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#FFFFFF">404</text>
+
+  <!-- Alert message bubble -->
+  <g transform="translate(85, 70)">
+    <rect x="-10" y="-8" width="20" height="16" rx="2" fill="#FFEB3B" stroke="#FFFFFF" stroke-width="1"/>
+    <polygon points="0,8 -5,0 5,0" fill="#FFEB3B"/>
+    <text x="0" y="3" font-family="Arial, sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#333333">!</text>
+  </g>
+</svg>
