@@ -46,6 +46,32 @@ wordpress-develop-*/
 CHANGELOG.md
 ARCHITECTURE.md
 CONTRIBUTING.md
+README.md
+RELEASE-NOTES.md
+VERSION.md
+PRODUCTION-READY-VERIFIED.md
+WORDPRESS-ORG-SUBMISSION.md
+DESIGN-ASSETS.md
+LOGS-ADDED.md
+REDIS-*.md
+SMTP-*.md
+RATE-LIMITER-SOLUTIONS.md
+ATOMICITE-EXPLIQUEE.md
+IMPROVEMENTS.md
+AUDIT*.md
+REMAINING-ISSUES.md
+QUICKSTART-*.md
+MAILTRAP-SETUP.md
+WORDPRESS-LOCAL.md
+DOCKER-QUICK-START.md
+CONFIGURATION-PRODUCTION.md
+COMPARAISON-INSTALLATION.md
+requirement.md
+
+## Design Assets (static, non-code)
+*.svg
+icon-*.svg
+banner-*.svg
 
 ## Less critical files
 *.log
@@ -60,3 +86,14 @@ phpunit.xml
 phpcs.xml
 phpstan.neon
 composer.json
+
+## Build and Distribution
+*.zip
+404-alert-wp-org.zip
+404-alert.zip
+
+## Test/Integration files
+tests/
+stubs/
+docker-compose.yml
+wp-tests-config.php
