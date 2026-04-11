@@ -39,13 +39,12 @@ class Alert404_Storage {
 	private static function create_or_update_table(): void {
 		global $wpdb;
 
-		$table_name      = self::get_table_name();
 		$charset_collate = $wpdb->get_charset_collate();
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Schema creation requires direct query
-		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name is sanitized via get_table_name()
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name via prefix constant is safe
 		$wpdb->query(
-			"CREATE TABLE IF NOT EXISTS {$table_name} (
+			"CREATE TABLE IF NOT EXISTS " . $wpdb->prefix . "404_alert_stats (
 				id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
 				url text NOT NULL,
 				ip varchar(45) NOT NULL,
@@ -69,15 +68,13 @@ class Alert404_Storage {
 			return;
 		}
 
-		$table_name = self::get_table_name();
-
 		foreach ( $legacy_stats as $record ) {
 			if ( ! is_array( $record ) ) {
 				continue;
 			}
 
 			$wpdb->insert(
-				$table_name,
+				$wpdb->prefix . '404_alert_stats',
 				array(
 					'url'                 => sanitize_text_field( (string) ( $record['url'] ?? '' ) ),
 					'ip'                  => sanitize_text_field( (string) ( $record['ip'] ?? '' ) ),
@@ -105,10 +102,8 @@ class Alert404_Storage {
 			return;
 		}
 
-		$table_name = self::get_table_name();
-
 		$wpdb->insert(
-			$table_name,
+			$wpdb->prefix . '404_alert_stats',
 			array(
 				'url'                 => sanitize_text_field( (string) ( $payload['url'] ?? $payload['full_url'] ?? 'unknown' ) ),
 				'ip'                  => sanitize_text_field( (string) ( $payload['ip'] ?? 'unknown' ) ),
@@ -129,16 +124,14 @@ class Alert404_Storage {
 	private static function enforce_max_records(): void {
 		global $wpdb;
 
-		$table_name = self::get_table_name();
-
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Cleanup query with prepared statement
-		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name is sanitized via get_table_name()
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name via prefix constant is safe
 		$wpdb->query(
 			$wpdb->prepare(
-				"DELETE FROM {$table_name}
+				"DELETE FROM " . $wpdb->prefix . "404_alert_stats
 				 WHERE id NOT IN (
 					SELECT id FROM (
-						SELECT id FROM {$table_name}
+						SELECT id FROM " . $wpdb->prefix . "404_alert_stats
 						ORDER BY created_at DESC, id DESC
 						LIMIT %d
 					) AS keep_ids
@@ -151,8 +144,7 @@ class Alert404_Storage {
 	public static function get_stats( int $limit = 100 ): array {
 		global $wpdb;
 
-		$table_name = self::get_table_name();
-		$limit      = max( 1, $limit );
+		$limit = max( 1, $limit );
 
 		// Vérifier le cache en premier
 		$cache_key = 'alert404_stats_' . $limit;
@@ -162,11 +154,11 @@ class Alert404_Storage {
 		}
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Read query with prepared statement
-		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name is sanitized via get_table_name()
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name via prefix constant is safe
 		$results = $wpdb->get_results(
 			$wpdb->prepare(
 				"SELECT id, url, ip, referrer, user_agent, user_agent_readable, created_at AS timestamp
-				 FROM {$table_name}
+				 FROM " . $wpdb->prefix . "404_alert_stats
 				 ORDER BY created_at DESC, id DESC
 				 LIMIT %d",
 				$limit
@@ -185,8 +177,7 @@ class Alert404_Storage {
 	public static function get_stats_by_date( string $date ): array {
 		global $wpdb;
 
-		$table_name = self::get_table_name();
-		$like_date  = $wpdb->esc_like( $date ) . '%';
+		$like_date = $wpdb->esc_like( $date ) . '%';
 
 		// Vérifier le cache en premier
 		$cache_key = 'alert404_stats_by_date_' . $date;
@@ -196,11 +187,11 @@ class Alert404_Storage {
 		}
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Read query with prepared statement
-		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name is sanitized via get_table_name()
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name via prefix constant is safe
 		$results = $wpdb->get_results(
 			$wpdb->prepare(
 				"SELECT id, url, ip, referrer, user_agent, user_agent_readable, created_at AS timestamp
-				 FROM {$table_name}
+				 FROM " . $wpdb->prefix . "404_alert_stats
 				 WHERE created_at LIKE %s
 				 ORDER BY created_at DESC, id DESC",
 				$like_date
@@ -226,10 +217,9 @@ class Alert404_Storage {
 			return $cached;
 		}
 
-		$table_name = self::get_table_name();
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Simple count query with prepared statement
-		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name is sanitized via get_table_name()
-		$total = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$table_name}" ) );
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name via prefix constant is safe
+		$total = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM " . $wpdb->prefix . "404_alert_stats" ) );
 
 		$total = (int) $total;
 
@@ -249,10 +239,9 @@ class Alert404_Storage {
 			return $cached;
 		}
 
-		$table_name = self::get_table_name();
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Simple count query with prepared statement
-		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name is sanitized via get_table_name()
-		$total = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(DISTINCT url) FROM {$table_name}" ) );
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name via prefix constant is safe
+		$total = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(DISTINCT url) FROM " . $wpdb->prefix . "404_alert_stats" ) );
 
 		$total = (int) $total;
 
@@ -274,14 +263,12 @@ class Alert404_Storage {
 			return $cached;
 		}
 
-		$table_name = self::get_table_name();
-
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Aggregation query with prepared statement
-		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name is sanitized via get_table_name()
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name via prefix constant is safe
 		$rows = $wpdb->get_results(
 			$wpdb->prepare(
 				"SELECT url, COUNT(*) AS count
-				 FROM {$table_name}
+				 FROM " . $wpdb->prefix . "404_alert_stats
 				 GROUP BY url
 				 ORDER BY count DESC
 				 LIMIT %d",
@@ -322,14 +309,12 @@ class Alert404_Storage {
 			return $cached;
 		}
 
-		$table_name = self::get_table_name();
-
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Aggregation query with prepared statement
-		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name is sanitized via get_table_name()
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name via prefix constant is safe
 		$rows = $wpdb->get_results(
 			$wpdb->prepare(
 				"SELECT ip, COUNT(*) AS count
-				 FROM {$table_name}
+				 FROM " . $wpdb->prefix . "404_alert_stats
 				 GROUP BY ip
 				 ORDER BY count DESC
 				 LIMIT %d",
@@ -361,10 +346,9 @@ class Alert404_Storage {
 	public static function clear_stats(): void {
 		global $wpdb;
 
-		$table_name = self::get_table_name();
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- TRUNCATE requires direct query
-		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name is sanitized via get_table_name()
-		$wpdb->query( "TRUNCATE TABLE {$table_name}" );
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name via prefix constant is safe
+		$wpdb->query( "TRUNCATE TABLE " . $wpdb->prefix . "404_alert_stats" );
 		delete_option( self::OPTION_KEY );
 
 		// Invalider tout le cache après suppression

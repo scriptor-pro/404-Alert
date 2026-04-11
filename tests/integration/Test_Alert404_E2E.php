@@ -23,8 +23,9 @@ class Test_Alert404_E2E extends Alert404_UnitTestCase {
 
 		// Nettoyer la table si elle existe
 		global $wpdb;
-		$table_name = $wpdb->prefix . '404_alert_stats';
-		$wpdb->query( "DROP TABLE IF EXISTS {$table_name}" );
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Cleanup of test table
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name via wpdb->prefix constant
+		$wpdb->query( "DROP TABLE IF EXISTS " . $wpdb->prefix . "404_alert_stats" );
 
 		// Réinitialiser Redis si disponible
 		if ( class_exists( 'Alert404_Redis_Handler' ) && Alert404_Redis_Handler::is_available() ) {
