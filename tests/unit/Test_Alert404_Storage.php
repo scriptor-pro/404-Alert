@@ -3,6 +3,8 @@
  * Tests unitaires pour Alert404_Storage
  */
 
+defined( 'ABSPATH' ) || exit;
+
 class Test_Alert404_Storage extends Alert404_UnitTestCase {
 
 	/**
@@ -19,6 +21,8 @@ class Test_Alert404_Storage extends Alert404_UnitTestCase {
 		// Nettoyer la table si elle existe
 		global $wpdb;
 		$table_name = $wpdb->prefix . '404_alert_stats';
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Cleanup of test table
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name is safe constant
 		$wpdb->query( "DROP TABLE IF EXISTS {$table_name}" );
 
 		// Initialiser le stockage

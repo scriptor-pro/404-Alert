@@ -4,6 +4,8 @@
  * Teste les workflows complets du plugin
  */
 
+defined( 'ABSPATH' ) || exit;
+
 class Test_Alert404_E2E extends Alert404_UnitTestCase {
 
 	/**

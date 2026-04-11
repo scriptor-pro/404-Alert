@@ -42,21 +42,22 @@ class Alert404_Storage {
 		$table_name      = self::get_table_name();
 		$charset_collate = $wpdb->get_charset_collate();
 
-		$sql = "CREATE TABLE IF NOT EXISTS {$table_name} (
-			id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-			url text NOT NULL,
-			ip varchar(45) NOT NULL,
-			referrer text NOT NULL,
-			user_agent text NOT NULL,
-			user_agent_readable text NOT NULL,
-			created_at datetime NOT NULL,
-			PRIMARY KEY  (id),
-			KEY created_at (created_at),
-			KEY ip (ip)
-		) {$charset_collate};";
-
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Schema creation requires direct query
-		$wpdb->query( $sql );
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name is sanitized via get_table_name()
+		$wpdb->query(
+			"CREATE TABLE IF NOT EXISTS {$table_name} (
+				id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+				url text NOT NULL,
+				ip varchar(45) NOT NULL,
+				referrer text NOT NULL,
+				user_agent text NOT NULL,
+				user_agent_readable text NOT NULL,
+				created_at datetime NOT NULL,
+				PRIMARY KEY  (id),
+				KEY created_at (created_at),
+				KEY ip (ip)
+			) {$charset_collate};"
+		);
 	}
 
 	private static function migrate_legacy_option_storage(): void {
@@ -120,6 +121,9 @@ class Alert404_Storage {
 		);
 
 		self::enforce_max_records();
+
+		// Invalider le cache après insertion
+		self::invalidate_cache();
 	}
 
 	private static function enforce_max_records(): void {
@@ -128,6 +132,7 @@ class Alert404_Storage {
 		$table_name = self::get_table_name();
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Cleanup query with prepared statement
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name is sanitized via get_table_name()
 		$wpdb->query(
 			$wpdb->prepare(
 				"DELETE FROM {$table_name}
@@ -149,7 +154,15 @@ class Alert404_Storage {
 		$table_name = self::get_table_name();
 		$limit      = max( 1, $limit );
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Read query with prepared statement
+		// Vérifier le cache en premier
+		$cache_key = 'alert404_stats_' . $limit;
+		$cached    = wp_cache_get( $cache_key, '404_alert' );
+		if ( false !== $cached ) {
+			return $cached;
+		}
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Read query with prepared statement
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name is sanitized via get_table_name()
 		$results = $wpdb->get_results(
 			$wpdb->prepare(
 				"SELECT id, url, ip, referrer, user_agent, user_agent_readable, created_at AS timestamp
@@ -161,7 +174,12 @@ class Alert404_Storage {
 			'ARRAY_A'
 		);
 
-		return is_array( $results ) ? $results : array();
+		$results = is_array( $results ) ? $results : array();
+
+		// Mettre en cache avec TTL de 5 minutes
+		wp_cache_set( $cache_key, $results, '404_alert', 300 );
+
+		return $results;
 	}
 
 	public static function get_stats_by_date( string $date ): array {
@@ -170,7 +188,15 @@ class Alert404_Storage {
 		$table_name = self::get_table_name();
 		$like_date  = $wpdb->esc_like( $date ) . '%';
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Read query with prepared statement
+		// Vérifier le cache en premier
+		$cache_key = 'alert404_stats_by_date_' . $date;
+		$cached    = wp_cache_get( $cache_key, '404_alert' );
+		if ( false !== $cached ) {
+			return $cached;
+		}
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Read query with prepared statement
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name is sanitized via get_table_name()
 		$results = $wpdb->get_results(
 			$wpdb->prepare(
 				"SELECT id, url, ip, referrer, user_agent, user_agent_readable, created_at AS timestamp
@@ -182,36 +208,76 @@ class Alert404_Storage {
 			'ARRAY_A'
 		);
 
-		return is_array( $results ) ? $results : array();
+		$results = is_array( $results ) ? $results : array();
+
+		// Mettre en cache avec TTL de 5 minutes
+		wp_cache_set( $cache_key, $results, '404_alert', 300 );
+
+		return $results;
 	}
 
 	public static function get_total_count(): int {
 		global $wpdb;
 
+		// Vérifier le cache en premier
+		$cache_key = 'alert404_total_count';
+		$cached    = wp_cache_get( $cache_key, '404_alert' );
+		if ( false !== $cached ) {
+			return $cached;
+		}
+
 		$table_name = self::get_table_name();
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Simple count query
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Simple count query with prepared statement
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name is sanitized via get_table_name()
 		$total = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$table_name}" ) );
 
-		return (int) $total;
+		$total = (int) $total;
+
+		// Mettre en cache avec TTL de 5 minutes
+		wp_cache_set( $cache_key, $total, '404_alert', 300 );
+
+		return $total;
 	}
 
 	public static function get_unique_urls_count(): int {
 		global $wpdb;
 
+		// Vérifier le cache en premier
+		$cache_key = 'alert404_unique_urls_count';
+		$cached    = wp_cache_get( $cache_key, '404_alert' );
+		if ( false !== $cached ) {
+			return $cached;
+		}
+
 		$table_name = self::get_table_name();
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Simple count query
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Simple count query with prepared statement
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name is sanitized via get_table_name()
 		$total = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(DISTINCT url) FROM {$table_name}" ) );
 
-		return (int) $total;
+		$total = (int) $total;
+
+		// Mettre en cache avec TTL de 5 minutes
+		wp_cache_set( $cache_key, $total, '404_alert', 300 );
+
+		return $total;
 	}
 
 	public static function get_top_urls( int $limit = 10 ): array {
 		global $wpdb;
 
-		$table_name = self::get_table_name();
-		$limit      = max( 1, $limit );
+		$limit = max( 1, $limit );
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Aggregation query with prepared statement
+		// Vérifier le cache en premier
+		$cache_key = 'alert404_top_urls_' . $limit;
+		$cached    = wp_cache_get( $cache_key, '404_alert' );
+		if ( false !== $cached ) {
+			return $cached;
+		}
+
+		$table_name = self::get_table_name();
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Aggregation query with prepared statement
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name is sanitized via get_table_name()
 		$rows = $wpdb->get_results(
 			$wpdb->prepare(
 				"SELECT url, COUNT(*) AS count
@@ -238,16 +304,28 @@ class Alert404_Storage {
 			$result[ (string) ( $row['url'] ?? '' ) ] = (int) ( $row['count'] ?? 0 );
 		}
 
+		// Mettre en cache avec TTL de 5 minutes
+		wp_cache_set( $cache_key, $result, '404_alert', 300 );
+
 		return $result;
 	}
 
 	public static function get_top_ips( int $limit = 10 ): array {
 		global $wpdb;
 
-		$table_name = self::get_table_name();
-		$limit      = max( 1, $limit );
+		$limit = max( 1, $limit );
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Aggregation query with prepared statement
+		// Vérifier le cache en premier
+		$cache_key = 'alert404_top_ips_' . $limit;
+		$cached    = wp_cache_get( $cache_key, '404_alert' );
+		if ( false !== $cached ) {
+			return $cached;
+		}
+
+		$table_name = self::get_table_name();
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Aggregation query with prepared statement
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name is sanitized via get_table_name()
 		$rows = $wpdb->get_results(
 			$wpdb->prepare(
 				"SELECT ip, COUNT(*) AS count
@@ -274,6 +352,9 @@ class Alert404_Storage {
 			$result[ (string) ( $row['ip'] ?? '' ) ] = (int) ( $row['count'] ?? 0 );
 		}
 
+		// Mettre en cache avec TTL de 5 minutes
+		wp_cache_set( $cache_key, $result, '404_alert', 300 );
+
 		return $result;
 	}
 
@@ -282,8 +363,36 @@ class Alert404_Storage {
 
 		$table_name = self::get_table_name();
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- TRUNCATE requires direct query
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name is sanitized via get_table_name()
 		$wpdb->query( "TRUNCATE TABLE {$table_name}" );
 		delete_option( self::OPTION_KEY );
+
+		// Invalider tout le cache après suppression
+		self::invalidate_cache();
+	}
+
+	/**
+	 * Invalide tous les caches liés aux statistiques
+	 *
+	 * @return void
+	 */
+	private static function invalidate_cache(): void {
+		// Supprimer les caches de statistiques
+		wp_cache_delete( 'alert404_total_count', '404_alert' );
+		wp_cache_delete( 'alert404_unique_urls_count', '404_alert' );
+
+		// Supprimer les caches des top URLs/IPs (nous ne savons pas la limite exacte, alors utiliser une approche large)
+		for ( $i = 1; $i <= 100; ++$i ) {
+			wp_cache_delete( 'alert404_stats_' . $i, '404_alert' );
+			wp_cache_delete( 'alert404_top_urls_' . $i, '404_alert' );
+			wp_cache_delete( 'alert404_top_ips_' . $i, '404_alert' );
+		}
+
+		// Supprimer les caches des stats par date (approche large aussi)
+		for ( $i = 1; $i <= 30; ++$i ) {
+			$date = gmdate( 'Y-m-d', strtotime( "-$i days" ) );
+			wp_cache_delete( 'alert404_stats_by_date_' . $date, '404_alert' );
+		}
 	}
 
 	public static function export_csv(): void {
@@ -292,14 +401,17 @@ class Alert404_Storage {
 		header( 'Content-Type: text/csv' );
 		header( 'Content-Disposition: attachment; filename="404-stats-' . gmdate( 'Y-m-d' ) . '.csv"' );
 
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fopen -- Using php://output stream for direct browser download
 		$output = fopen( 'php://output', 'w' );
 		if ( false === $output ) {
 			return;
 		}
 
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fputcsv -- Using fputcsv for CSV stream output
 		fputcsv( $output, array( 'ID', 'URL', 'IP', 'Referrer', 'User Agent', 'Timestamp' ) );
 
 		foreach ( $stats as $record ) {
+			// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fputcsv -- Using fputcsv for CSV stream output
 			fputcsv(
 				$output,
 				array(
@@ -313,6 +425,7 @@ class Alert404_Storage {
 			);
 		}
 
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose -- Closing php://output stream
 		fclose( $output );
 		exit;
 	}

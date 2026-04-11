@@ -4,6 +4,8 @@
  * Teste les opérations Redis atomiques avec fallback
  */
 
+defined( 'ABSPATH' ) || exit;
+
 class Test_Alert404_Redis_Handler extends Alert404_UnitTestCase {
 
 	/**

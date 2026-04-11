@@ -1,5 +1,7 @@
 <?php
 
+defined( 'ABSPATH' ) || exit;
+
 $_tests_dir = getenv( 'WP_TESTS_DIR' ) ?: '/tmp/wordpress-test-lib';
 
 define( 'DB_NAME', getenv( 'WORDPRESS_DB_NAME' ) ?: 'wordpress_test' );

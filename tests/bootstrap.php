@@ -4,6 +4,8 @@
  * Charge le framework de test WordPress et initialise l'environnement
  */
 
+defined( 'ABSPATH' ) || exit;
+
 // Détecter le répertoire WordPress (pour les environnements de test)
 if ( ! defined( 'WP_TESTS_DIR' ) ) {
 	$wp_tests_dir_env = getenv( 'WP_TESTS_DIR' );
@@ -112,10 +114,15 @@ if ( ! class_exists( 'Alert404_UnitTestCase' ) ) {
 		protected function clear_all_transients() {
 			global $wpdb;
 			// Supprimer tous les transients du plugin
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Cleanup of test transients
 			$wpdb->query(
-				"DELETE FROM $wpdb->options 
-				WHERE option_name LIKE '%404_alert%' 
-				AND option_name LIKE '%_transient_%'"
+				$wpdb->prepare(
+					"DELETE FROM $wpdb->options
+					WHERE option_name LIKE %s
+					AND option_name LIKE %s",
+					'%404_alert%',
+					'%_transient_%'
+				)
 			);
 		}
 

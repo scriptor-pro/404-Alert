@@ -3,6 +3,8 @@
  * Tests unitaires pour Alert404_Mailer
  */
 
+defined( 'ABSPATH' ) || exit;
+
 class Test_Alert404_Mailer extends Alert404_UnitTestCase {
 
 	public function setUp(): void {

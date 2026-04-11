@@ -3,6 +3,8 @@
  * Tests unitaires pour Alert404_Dashboard
  */
 
+defined( 'ABSPATH' ) || exit;
+
 class Test_Alert404_Dashboard extends Alert404_UnitTestCase {
 
 	/**
@@ -19,6 +21,8 @@ class Test_Alert404_Dashboard extends Alert404_UnitTestCase {
 		// Nettoyer la table si elle existe
 		global $wpdb;
 		$table_name = $wpdb->prefix . '404_alert_stats';
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Cleanup of test table
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name is safe constant
 		$wpdb->query( "DROP TABLE IF EXISTS {$table_name}" );
 
 		// Initialiser le stockage
@@ -45,14 +49,14 @@ class Test_Alert404_Dashboard extends Alert404_UnitTestCase {
 	 * Teste que add_menu est callable
 	 */
 	public function test_add_menu_is_callable() {
-		$this->assertTrue( is_callable( array( 'Alert404_Dashboard', 'add_menu' ) );
+		$this->assertTrue( is_callable( array( 'Alert404_Dashboard', 'add_menu' ) ) );
 	}
 
 	/**
 	 * Teste que render_page est callable
 	 */
 	public function test_render_page_is_callable() {
-		$this->assertTrue( is_callable( array( 'Alert404_Dashboard', 'render_page' ) );
+		$this->assertTrue( is_callable( array( 'Alert404_Dashboard', 'render_page' ) ) );
 	}
 
 	/**
