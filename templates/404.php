@@ -34,7 +34,7 @@ get_header();
 		</div>
 
 		<div style="margin-top: 40px;">
-			<a href="<?php echo esc_url(home_url('/')); ?>"
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>"
 			   style="display: inline-block; background: #0073aa; color: white; padding: 12px 30px; text-decoration: none; border-radius: 4px; font-weight: bold;">
 				← Retour à l'accueil
 			</a>
@@ -42,7 +42,12 @@ get_header();
 
 		<div style="margin-top: 60px; padding-top: 30px; border-top: 1px solid #ddd;">
 			<p style="color: #999; font-size: 14px;">
-				URL demandée : <code style="background: #f0f0f0; padding: 2px 6px; border-radius: 3px;"><?php echo esc_html($_SERVER['REQUEST_URI'] ?? '/'); ?></code>
+				URL demandée : <code style="background: #f0f0f0; padding: 2px 6px; border-radius: 3px;">
+				<?php
+					// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- REQUEST_URI is read-only from server and displayed with esc_html
+					echo esc_html( wp_unslash( $_SERVER['REQUEST_URI'] ?? '/' ) );
+				?>
+				</code>
 			</p>
 		</div>
 	</div>

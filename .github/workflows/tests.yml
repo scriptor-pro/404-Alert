@@ -14,7 +14,7 @@ jobs:
     strategy:
       matrix:
         php-version: ["8.1", "8.2", "8.3"]
-        wp-version: ["latest", "6.0"]
+        wp-version: ["latest", "6.9", "6.0"]
 
     steps:
       - name: Checkout code

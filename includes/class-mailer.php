@@ -115,15 +115,15 @@ class Alert404_Mailer {
 		// Déterminer la classe CSS pour le badge device
 		$device_class = strtolower( $device_type ) === 'mobile' ? 'mobile' : ( strtolower( $device_type ) === 'tablet' ? 'tablet' : 'desktop' );
 
-		return <<<HTML
-<!DOCTYPE html>
+		return sprintf(
+			'<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<style>
 		body {
-			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			font-family: \'Segoe UI\', Tahoma, Geneva, Verdana, sans-serif;
 			line-height: 1.6;
 			color: #333;
 			background-color: #f5f5f5;
@@ -139,7 +139,7 @@ class Alert404_Mailer {
 			overflow: hidden;
 		}
 		.header {
-			background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+			background: linear-gradient(135deg, #d32f2f 0%%, #b71c1c 100%%);
 			color: white;
 			padding: 30px 20px;
 			text-align: center;
@@ -175,11 +175,11 @@ class Alert404_Mailer {
 		}
 		.info-label {
 			font-weight: 600;
-			width: 35%;
+			width: 35%%;
 			color: #555;
 		}
 		.info-value {
-			width: 65%;
+			width: 65%%;
 			word-break: break-all;
 			color: #333;
 		}
@@ -202,7 +202,7 @@ class Alert404_Mailer {
 		.json-section pre {
 			margin: 0;
 			font-size: 12px;
-			font-family: 'Courier New', monospace;
+			font-family: \'Courier New\', monospace;
 			color: #333;
 		}
 		.footer {
@@ -232,7 +232,7 @@ class Alert404_Mailer {
 	<div class="container">
 		<div class="header">
 			<h1>🚨 Erreur 404 Détectée</h1>
-			<p>{$timestamp}</p>
+			<p>%s</p>
 		</div>
 
 		<div class="content">
@@ -241,15 +241,15 @@ class Alert404_Mailer {
 				<div class="section-title">📄 Page Demandée</div>
 				<div class="info-row">
 					<div class="info-label">URL complète:</div>
-					<div class="info-value">{$url}</div>
+					<div class="info-value">%s</div>
 				</div>
 				<div class="info-row">
 					<div class="info-label">Méthode HTTP:</div>
-					<div class="info-value">{$method}</div>
+					<div class="info-value">%s</div>
 				</div>
 				<div class="info-row">
 					<div class="info-label">Provenance:</div>
-					<div class="info-value">{$referrer}</div>
+					<div class="info-value">%s</div>
 				</div>
 			</div>
 
@@ -258,11 +258,11 @@ class Alert404_Mailer {
 				<div class="section-title">👤 Information Client</div>
 				<div class="info-row">
 					<div class="info-label">Adresse IP:</div>
-					<div class="info-value"><strong>{$ip}</strong></div>
+					<div class="info-value"><strong>%s</strong></div>
 				</div>
 				<div class="info-row">
 					<div class="info-label">Langue:</div>
-					<div class="info-value">{$language}</div>
+					<div class="info-value">%s</div>
 				</div>
 			</div>
 
@@ -270,25 +270,25 @@ class Alert404_Mailer {
 			<div class="section">
 				<div class="section-title">🖥️ Navigateur & Système</div>
 				<div class="alert-box">
-					<strong>Résumé:</strong> {$user_readable}
+					<strong>Résumé:</strong> %s
 				</div>
 				<div class="info-row">
 					<div class="info-label">Navigateur:</div>
 					<div class="info-value">
-						{$browser_name} {$browser_version}
+						%s %s
 					</div>
 				</div>
 				<div class="info-row">
-					<div class="info-label">Système d'exploitation:</div>
+					<div class="info-label">Système d\'exploitation:</div>
 					<div class="info-value">
-						{$os_name} {$os_version}
+						%s %s
 					</div>
 				</div>
 				<div class="info-row">
-					<div class="info-label">Type d'appareil:</div>
+					<div class="info-label">Type d\'appareil:</div>
 					<div class="info-value">
-						<span class="badge {$device_class}">
-							{$device_type}
+						<span class="badge %s">
+							%s
 						</span>
 					</div>
 				</div>
@@ -300,7 +300,7 @@ class Alert404_Mailer {
 				<div class="info-row">
 					<div class="info-label">Utilisateur connecté:</div>
 					<div class="info-value">
-						{$user_status}
+						%s
 					</div>
 				</div>
 			</div>
@@ -309,18 +309,34 @@ class Alert404_Mailer {
 			<div class="section">
 				<div class="section-title">📊 Données complètes (JSON)</div>
 				<div class="json-section">
-					<pre>{$json_body}</pre>
+					<pre>%s</pre>
 				</div>
 			</div>
 		</div>
 
 		<div class="footer">
 			<p>Cet email a été généré automatiquement par le plugin 404 Alert.</p>
-			<p>Site: {$site_url}</p>
+			<p>Site: %s</p>
 		</div>
 	</div>
 </body>
-</html>
-HTML;
+</html>',
+			$timestamp,
+			$url,
+			$method,
+			$referrer,
+			$ip,
+			$language,
+			$user_readable,
+			$browser_name,
+			$browser_version,
+			$os_name,
+			$os_version,
+			$device_class,
+			$device_type,
+			$user_status,
+			$json_body,
+			$site_url
+		);
 	}
 }

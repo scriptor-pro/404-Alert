@@ -1,4 +1,10 @@
 <?php
+/**
+ * WordPress Runtime Stubs for PHPStan Static Analysis
+ * This file provides type hints for WordPress functions used in the plugin
+ */
+
+defined( 'ABSPATH' ) || exit;
 
 class WP_User {
 	/** @var int */

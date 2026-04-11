@@ -304,7 +304,8 @@ class Alert404_Redis_Handler {
 			try {
 				@self::$redis->close();
 			} catch ( \Throwable $e ) {
-				// Silently ignore close errors. //phpcs:ignore Generic.CodeAnalysis.EmptyStatement
+				// Silently ignore close errors (Redis may already be closed).
+				unset( $e );
 			}
 
 			self::$redis     = null;

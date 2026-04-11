@@ -68,6 +68,19 @@ CONFIGURATION-PRODUCTION.md
 COMPARAISON-INSTALLATION.md
 requirement.md
 
+## Security & Compliance Documentation (April 2026)
+WORDPRESS-LICENSES-GUIDE.md
+WORDPRESS-69-COMPATIBILITY.md
+DB-SECURITY-FIXES.md
+HEREDOC-SYNTAX-FIX.md
+DIRECT-FILE-ACCESS-FIX.md
+FILE-OPERATIONS-FIX.md
+ISC-LICENSE-EXPLAINED.md
+ISC-vs-MIT-vs-GPL.md
+VERSION-RELEASE-1.2.0.md
+PROJECT-COMPLETION-SUMMARY.md
+404-alert-wp-org-404-alert-php-*.md
+
 ## Design Assets (static, non-code)
 *.svg
 icon-*.svg
@@ -91,6 +104,7 @@ composer.json
 *.zip
 404-alert-wp-org.zip
 404-alert.zip
+404-alert-v*.zip
 
 ## Test/Integration files
 tests/

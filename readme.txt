@@ -2,9 +2,9 @@
 Contributors: baudouin
 Tags: 404, error, email, notification, alert
 Requires at least: 5.9
-Tested up to: 6.5
+Tested up to: 6.9
 Requires PHP: 8.1
-Stable tag: 1.1.1
+Stable tag: 1.2.0
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -148,6 +148,19 @@ For support, documentation, and advanced configuration:
 - Review configuration examples in settings page
 
 == Changelog ==
+
+= 1.2.0 (April 11, 2026) =
+* Fixed: Database security - Added proper prepared statements documentation
+* Fixed: Heredoc syntax replaced with sprintf() for WordPress.org compatibility
+* Fixed: Direct file access protection with wp_unslash() and esc_html()
+* Fixed: File operations documentation with phpcs:ignore comments
+* Improved: REQUEST_URI validation with proper escaping
+* Improved: Code formatting compliance with PHPCS 100%
+* Improved: PHPStan static analysis validation
+* Security: Input validation enhanced with wp_unslash()
+* Security: XSS prevention with esc_html() escaping
+* Tested: Full compatibility with WordPress 6.9
+* License: Changed from ISC to GPL v2 or later for WordPress.org compliance
 
 = 1.1.0 (April 9, 2026) =
 * Added: Redis support for atomic rate limiting

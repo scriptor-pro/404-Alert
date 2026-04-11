@@ -1,0 +1,28 @@
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <!-- Clean white background -->
+  <rect width="128" height="128" fill="#ffffff"/>
+
+  <!-- Post box (mailbox) - geometric Bauhaus form -->
+  <g>
+    <!-- Mailbox body - rounded rectangle -->
+    <rect x="28" y="50" width="72" height="48" rx="8" fill="none" stroke="#1a1f3a" stroke-width="2.5"/>
+
+    <!-- Mailbox door - left side -->
+    <path d="M 36 70 Q 36 54 44 54 L 72 54 Q 80 54 80 70" fill="none" stroke="#1a1f3a" stroke-width="2.5" stroke-linecap="round"/>
+
+    <!-- Door handle - yellow accent -->
+    <circle cx="76" cy="62" r="3" fill="#FFD700"/>
+
+    <!-- Flag post -->
+    <rect x="82" y="62" width="3" height="16" fill="#1a1f3a"/>
+
+    <!-- Flag -->
+    <rect x="85" y="62" width="14" height="9" fill="#FFD700" stroke="#1a1f3a" stroke-width="1.5"/>
+  </g>
+
+  <!-- Main text: 4@4 - positioned above mailbox -->
+  <text x="64" y="36" font-family="'Futura', 'Verdana', sans-serif" font-size="28" font-weight="900" text-anchor="middle" fill="#1a1f3a" letter-spacing="-1">4@4</text>
+
+  <!-- Dividing line under text -->
+  <line x1="32" y1="42" x2="96" y2="42" stroke="#FFD700" stroke-width="1.5"/>
+</svg>

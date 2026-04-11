@@ -2,10 +2,11 @@
 /**
  * Plugin Name: 404 Alert
  * Description: Envoie un email à l'administrateur à chaque erreur 404.
- * Version: 1.1.1
+ * Version: 1.2.0
  * Requires PHP: 8.1
  * Author: Baudouin
- * License: ISC
+ * License: GPL v2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  */
 
 defined( 'ABSPATH' ) || exit;
