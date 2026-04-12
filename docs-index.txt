@@ -1,0 +1,116 @@
+📚 DOCUMENTATION INDEX — 404 Alert
+
+====================
+FICHIERS ESSENTIELS
+====================
+
+README.md
+  → Point d'entrée principal
+  → Vue d'ensemble, installation rapide
+  → Liens vers docs détaillées
+
+INSTALL.md
+  → Installation et configuration de base
+  → Dépannage utilisateur
+  → Support des configurations simples
+
+ARCHITECTURE.md
+  → Description technique complète
+  → Flux d'exécution
+  → Extensibilité (hooks/filters)
+  → Pour les développeurs
+
+====================
+CONFIGURATION AVANCÉE
+====================
+
+REDIS.md
+  → Redis optionnel pour optimiser rate limiting
+  → Installation (Docker/local/cloud)
+  → Configuration détaillée
+  → Dépannage Redis
+  → Testing et benchmarks
+
+SMTP.md
+  → Configuration SMTP optionnelle
+  → Serveurs populaires (Gmail, SendGrid, AWS, etc.)
+  → Configurations cloud
+  → Dépannage et sécurité
+
+====================
+PRODUCTION & CONTRIBUTION
+====================
+
+CONFIGURATION-PRODUCTION.md
+  → Checklist production
+  → Déploiement
+  → Monitoring
+  → Best practices
+
+WORDPRESS-ORG.md
+  → Conformité WordPress.org
+  → Process de publication
+  → Directives de conformité
+
+CONTRIBUTING.md
+  → Guide de contribution au code
+  → Style de code (WordPress standards)
+  → Tests et documentation
+  → Process de review
+
+CHANGELOG.md
+  → Historique des versions
+  → Changements notables
+  → Notes de migration
+
+====================
+FICHIERS DE PROJET
+====================
+
+.git/
+  → Historique Git (ne pas inclure en ZIP pour WordPress.org)
+
+composer.json / composer.lock
+  → Dépendances dev (PHPUnit, PHPCS, PHPStan)
+  → Ne pas inclure en ZIP pour WordPress.org
+
+tests/
+  → Tests unitaires et intégration
+  → Optionnel pour WordPress.org
+  → Essentiels pour développement
+
+includes/
+  → Code source du plugin
+  → Classes principales
+
+templates/
+  → Templates HTML du plugin
+  → Email templates, etc.
+
+====================
+À EXCLURE DE WORDPRESS.ORG ZIP
+====================
+
+.git/
+.github/
+.claude/
+tests/
+vendor/
+docker-compose.yml
+.editorconfig
+phpunit.xml
+phpstan.neon
+composer.*
+*.log
+*.cache
+
+====================
+RATIO DOCUMENTATION / CODE
+====================
+
+Avant : 48 MD = 4.5:1 (chaotique ❌)
+Après : 9 MD = 0.25:1 (concis ✅)
+
+Réduction de 81% des fichiers docs
+Consolidation de 23 fichiers obsolètes
+Conservation uniquement des essentiels
