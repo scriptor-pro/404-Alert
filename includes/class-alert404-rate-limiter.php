@@ -16,8 +16,8 @@ class Alert404_RateLimiter {
 	 * Vérifie et incrémente les rate limits (IP + global)
 	 * Utilise Redis pour garantir l'atomicité, fallback à transients simples si indisponible
 	 *
-	 * @param string $ip Adresse IP source
-	 * @return bool true si OK, false si limité
+	 * @param string $ip Adresse IP source.
+	 * @return bool true si OK, false si limité.
 	 */
 	public static function check_and_increment( string $ip ): bool {
 		$options     = get_option( '404_alert_options', array() );
@@ -41,9 +41,9 @@ class Alert404_RateLimiter {
 	 * Vérifie le cooldown par IP de manière atomique
 	 * Préfère Redis mais fallback à transients simples
 	 *
-	 * @param string $ip Adresse IP source
-	 * @param int    $cooldown Cooldown en secondes
-	 * @return bool true si la requête est autorisée, false si elle est bloquée
+	 * @param string $ip Adresse IP source.
+	 * @param int    $cooldown Cooldown en secondes.
+	 * @return bool true si la requête est autorisée, false si elle est bloquée.
 	 */
 	private static function check_ip_limit( string $ip, int $cooldown ): bool {
 		// Utiliser Redis si disponible
@@ -58,9 +58,9 @@ class Alert404_RateLimiter {
 	/**
 	 * Vérifie le cooldown par IP avec Redis (ATOMIQUE)
 	 *
-	 * @param string $ip Adresse IP source
-	 * @param int    $cooldown Cooldown en secondes
-	 * @return bool true si la requête est autorisée, false si elle est bloquée
+	 * @param string $ip Adresse IP source.
+	 * @param int    $cooldown Cooldown en secondes.
+	 * @return bool true si la requête est autorisée, false si elle est bloquée.
 	 */
 	private static function check_ip_limit_redis( string $ip, int $cooldown ): bool {
 		$key = '404_alert_ip_' . wp_hash( $ip );
@@ -84,9 +84,9 @@ class Alert404_RateLimiter {
 	 * Vérifie le cooldown par IP avec transients (best-effort, peut avoir dépassement)
 	 * Utilisé comme fallback si Redis indisponible
 	 *
-	 * @param string $ip Adresse IP source
-	 * @param int    $cooldown Cooldown en secondes
-	 * @return bool true si la requête est autorisée, false si elle est bloquée
+	 * @param string $ip Adresse IP source.
+	 * @param int    $cooldown Cooldown en secondes.
+	 * @return bool true si la requête est autorisée, false si elle est bloquée.
 	 */
 	private static function check_ip_limit_transient( string $ip, int $cooldown ): bool {
 		$key  = '404_alert_ip_' . wp_hash( $ip );
@@ -107,8 +107,8 @@ class Alert404_RateLimiter {
 	/**
 	 * Vérifie la limite quotidienne de manière atomique
 	 *
-	 * @param int $daily_limit Nombre max d'emails par jour
-	 * @return bool true si la limite n'est pas atteinte, false si elle est dépassée
+	 * @param int $daily_limit Nombre max d'emails par jour.
+	 * @return bool true si la limite n'est pas atteinte, false si elle est dépassée.
 	 */
 	private static function check_daily_limit( int $daily_limit ): bool {
 		// Utiliser Redis si disponible
@@ -123,8 +123,8 @@ class Alert404_RateLimiter {
 	/**
 	 * Vérifie la limite quotidienne avec Redis (ATOMIQUE)
 	 *
-	 * @param int $daily_limit Nombre max d'emails par jour
-	 * @return bool true si la limite n'est pas atteinte, false si elle est dépassée
+	 * @param int $daily_limit Nombre max d'emails par jour.
+	 * @return bool true si la limite n'est pas atteinte, false si elle est dépassée.
 	 */
 	private static function check_daily_limit_redis( int $daily_limit ): bool {
 		$day_key = '404_alert_global_' . gmdate( 'Y-m-d' );
@@ -155,8 +155,8 @@ class Alert404_RateLimiter {
 	/**
 	 * Vérifie la limite quotidienne avec transients (best-effort)
 	 *
-	 * @param int $daily_limit Nombre max d'emails par jour
-	 * @return bool true si la limite n'est pas atteinte, false si elle est dépassée
+	 * @param int $daily_limit Nombre max d'emails par jour.
+	 * @return bool true si la limite n'est pas atteinte, false si elle est dépassée.
 	 */
 	private static function check_daily_limit_transient( int $daily_limit ): bool {
 		$day_key   = '404_alert_global_' . gmdate( 'Y-m-d' );

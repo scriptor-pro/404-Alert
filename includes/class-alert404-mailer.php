@@ -15,8 +15,8 @@ class Alert404_Mailer {
 	 * Envoie une notification par email de l'erreur 404
 	 * Vérifie le succès de l'envoi et enregistre l'événement
 	 *
-	 * @param array $payload Données de la requête 404 (url, ip, referrer, userAgent, occurredAt)
-	 * @return void
+	 * @param array $payload Données de la requête 404 (url, ip, referrer, userAgent, occurredAt).
+	 * @return void.
 	 */
 	public static function send( array $payload ): void {
 		$options = get_option( '404_alert_options', array() );
@@ -78,8 +78,8 @@ class Alert404_Mailer {
 	/**
 	 * Génère le contenu HTML de l'email
 	 *
-	 * @param array $payload Données de la requête 404
-	 * @return string HTML formaté
+	 * @param array $payload Données de la requête 404.
+	 * @return string HTML formaté.
 	 */
 	private static function render_email_html( array $payload ): string {
 		$url           = esc_html( $payload['full_url'] ?? $payload['url'] ?? 'Unknown' );

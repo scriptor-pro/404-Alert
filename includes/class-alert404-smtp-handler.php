@@ -20,8 +20,8 @@ class Alert404_SMTP_Handler {
 	/**
 	 * Envoie un email via SMTP
 	 *
-	 * @param array $args Arguments d'envoi (to, subject, message, headers)
-	 * @return bool True si succès, False sinon
+	 * @param array $args Arguments d'envoi (to, subject, message, headers).
+	 * @return bool True si succès, False sinon.
 	 */
 	public static function send( array $args ): bool {
 		// Récupérer la configuration SMTP
@@ -126,8 +126,8 @@ class Alert404_SMTP_Handler {
 	/**
 	 * Chiffre un mot de passe SMTP pour stockage en base.
 	 *
-	 * @param string $password Mot de passe SMTP en clair
-	 * @return string Secret chiffré (versionné) ou chaîne vide si échec
+	 * @param string $password Mot de passe SMTP en clair.
+	 * @return string Secret chiffré (versionné) ou chaîne vide si échec.
 	 */
 	public static function encrypt_password_for_storage( string $password ): string {
 		if ( '' === $password ) {
@@ -156,8 +156,8 @@ class Alert404_SMTP_Handler {
 	/**
 	 * Déchiffre un secret stocké (format chiffré v1 + fallback legacy base64).
 	 *
-	 * @param string $stored_password Secret stocké
-	 * @return string Mot de passe SMTP en clair
+	 * @param string $stored_password Secret stocké.
+	 * @return string Mot de passe SMTP en clair.
 	 */
 	private static function decrypt_password_from_storage( string $stored_password ): string {
 		if ( '' === $stored_password ) {

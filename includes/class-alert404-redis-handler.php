@@ -30,7 +30,7 @@ class Alert404_Redis_Handler {
 	 * Initialise la connexion Redis
 	 * Essaie de se connecter, gère les erreurs gracieusement
 	 *
-	 * @return bool true si Redis est disponible, false sinon
+	 * @return bool true si Redis est disponible, false sinon.
 	 */
 	public static function init(): bool {
 		if ( null !== self::$available ) {
@@ -95,7 +95,7 @@ class Alert404_Redis_Handler {
 	/**
 	 * Retourne l'instance Redis ou null si indisponible
 	 *
-	 * @return \Redis|null
+	 * @return \Redis|null Instance Redis ou null.
 	 */
 	public static function get_instance(): ?\Redis {
 		if ( null === self::$available ) {
@@ -108,7 +108,7 @@ class Alert404_Redis_Handler {
 	/**
 	 * Vérifie si Redis est disponible
 	 *
-	 * @return bool
+	 * @return bool true si Redis est disponible.
 	 */
 	public static function is_available(): bool {
 		if ( null === self::$available ) {
@@ -122,9 +122,9 @@ class Alert404_Redis_Handler {
 	 * Acquiert un verrou de manière atomique (SET ... NX)
 	 * Retour immédiat, pas de spin-wait
 	 *
-	 * @param string $key Clé du verrou
-	 * @param int    $timeout Durée du verrou en secondes
-	 * @return bool true si le verrou a été acquis, false sinon
+	 * @param string $key Clé du verrou.
+	 * @param int    $timeout Durée du verrou en secondes.
+	 * @return bool true si le verrou a été acquis, false sinon.
 	 */
 	public static function acquire_lock( string $key, int $timeout = 5 ): bool {
 		$redis = self::get_instance();
@@ -158,8 +158,8 @@ class Alert404_Redis_Handler {
 	/**
 	 * Libère un verrou
 	 *
-	 * @param string $key Clé du verrou
-	 * @return bool
+	 * @param string $key Clé du verrou.
+	 * @return bool true si le verrou a été libéré.
 	 */
 	public static function release_lock( string $key ): bool {
 		$redis = self::get_instance();
@@ -181,9 +181,9 @@ class Alert404_Redis_Handler {
 	 * Incrémente un compteur de manière atomique
 	 * Retourne la nouvelle valeur
 	 *
-	 * @param string $key Clé du compteur
-	 * @param int    $ttl Durée de vie en secondes (0 = sans expiration)
-	 * @return int|false La nouvelle valeur, ou false si erreur
+	 * @param string $key Clé du compteur.
+	 * @param int    $ttl Durée de vie en secondes (0 = sans expiration).
+	 * @return int|false La nouvelle valeur, ou false si erreur.
 	 */
 	public static function increment( string $key, int $ttl = 0 ) {
 		$redis = self::get_instance();
@@ -211,8 +211,8 @@ class Alert404_Redis_Handler {
 	/**
 	 * Obtient une valeur
 	 *
-	 * @param string $key Clé
-	 * @return string|false La valeur, ou false si n'existe pas
+	 * @param string $key Clé.
+	 * @return string|false La valeur, ou false si n'existe pas.
 	 */
 	public static function get( string $key ) {
 		$redis = self::get_instance();
@@ -232,10 +232,10 @@ class Alert404_Redis_Handler {
 	/**
 	 * Définit une valeur
 	 *
-	 * @param string $key Clé
-	 * @param mixed  $value Valeur
-	 * @param int    $ttl Durée de vie en secondes (0 = pas d'expiration)
-	 * @return bool
+	 * @param string $key Clé.
+	 * @param mixed  $value Valeur.
+	 * @param int    $ttl Durée de vie en secondes (0 = pas d'expiration).
+	 * @return bool true si succès, false sinon.
 	 */
 	public static function set( string $key, $value, int $ttl = 0 ): bool {
 		$redis = self::get_instance();
@@ -261,8 +261,8 @@ class Alert404_Redis_Handler {
 	/**
 	 * Supprime une ou plusieurs clés
 	 *
-	 * @param string|array $keys Clé(s) à supprimer
-	 * @return int Nombre de clés supprimées
+	 * @param string|array $keys Clé(s) à supprimer.
+	 * @return int Nombre de clés supprimées.
 	 */
 	public static function delete( $keys ): int {
 		$redis = self::get_instance();
@@ -286,7 +286,7 @@ class Alert404_Redis_Handler {
 	/**
 	 * Force une reconnexion à Redis (utile après une perte de connexion)
 	 *
-	 * @return bool true si reconnexion réussie, false sinon
+	 * @return bool true si reconnexion réussie, false sinon.
 	 */
 	public static function reconnect(): bool {
 		self::close();
@@ -321,7 +321,7 @@ class Alert404_Redis_Handler {
 	/**
 	 * Obtient les statistiques Redis (info)
 	 *
-	 * @return array|false
+	 * @return array|false Informations Redis ou false si erreur.
 	 */
 	public static function get_info() {
 		$redis = self::get_instance();

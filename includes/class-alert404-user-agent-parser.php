@@ -15,8 +15,8 @@ class Alert404_UserAgent_Parser {
 	/**
 	 * Parse le User-Agent et retourne les informations
 	 *
-	 * @param string $user_agent String User-Agent HTTP
-	 * @return array Informations parsées (browser, os, device_type)
+	 * @param string $user_agent String User-Agent HTTP.
+	 * @return array Informations parsées (browser, os, device_type).
 	 */
 	public static function parse( string $user_agent ): array {
 		return array(
@@ -29,8 +29,8 @@ class Alert404_UserAgent_Parser {
 	/**
 	 * Détecte le navigateur à partir du User-Agent
 	 *
-	 * @param string $user_agent User-Agent string
-	 * @return array ['name' => string, 'version' => string]
+	 * @param string $user_agent User-Agent string.
+	 * @return array ['name' => string, 'version' => string].
 	 */
 	private static function detect_browser( string $user_agent ): array {
 		$name    = 'Unknown';
@@ -78,8 +78,8 @@ class Alert404_UserAgent_Parser {
 	/**
 	 * Détecte le système d'exploitation à partir du User-Agent
 	 *
-	 * @param string $user_agent User-Agent string
-	 * @return array ['name' => string, 'version' => string]
+	 * @param string $user_agent User-Agent string.
+	 * @return array ['name' => string, 'version' => string].
 	 */
 	private static function detect_os( string $user_agent ): array {
 		$name    = 'Unknown';
@@ -118,8 +118,8 @@ class Alert404_UserAgent_Parser {
 	/**
 	 * Détecte le type d'appareil (Desktop, Mobile, Tablet)
 	 *
-	 * @param string $user_agent User-Agent string
-	 * @return string Type d'appareil
+	 * @param string $user_agent User-Agent string.
+	 * @return string Type d'appareil.
 	 */
 	private static function detect_device_type( string $user_agent ): string {
 		// Mobile phones
@@ -138,8 +138,8 @@ class Alert404_UserAgent_Parser {
 	/**
 	 * Convertit le numéro de version Windows en nom lisible
 	 *
-	 * @param string $version Version NT
-	 * @return string Nom Windows
+	 * @param string $version Version NT.
+	 * @return string Nom Windows.
 	 */
 	private static function get_windows_name( string $version ): string {
 		$versions = array(
@@ -164,8 +164,8 @@ class Alert404_UserAgent_Parser {
 	/**
 	 * Formate les informations parsées en texte lisible
 	 *
-	 * @param array $parsed_info Résultat de parse()
-	 * @return string Texte formaté
+	 * @param array $parsed_info Résultat de parse().
+	 * @return string Texte formaté.
 	 */
 	public static function format_human_readable( array $parsed_info ): string {
 		$browser = $parsed_info['browser'];
@@ -193,8 +193,8 @@ class Alert404_UserAgent_Parser {
 	/**
 	 * Retourne les informations parsées dans un format structuré
 	 *
-	 * @param string $user_agent User-Agent string
-	 * @return array Informations structurées
+	 * @param string $user_agent User-Agent string.
+	 * @return array Informations structurées.
 	 */
 	public static function get_structured_info( string $user_agent ): array {
 		$parsed = self::parse( $user_agent );

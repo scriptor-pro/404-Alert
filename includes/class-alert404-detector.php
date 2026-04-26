@@ -71,8 +71,8 @@ class Alert404_Detector {
 	 * Collecte les informations sur la requête 404
 	 * Compile les données utiles pour les notifications
 	 *
-	 * @param string $ip Adresse IP source validée (non utilisée, Alert404_Request_Info la récupère)
-	 * @return array Tableau contenant toutes les informations enrichies
+	 * @param string $ip Adresse IP source validée (non utilisée, Alert404_Request_Info la récupère).
+	 * @return array Tableau contenant toutes les informations enrichies.
 	 */
 	private static function collect_payload( string $ip ): array {
 		require_once ALERT404_DIR . 'includes/class-request-info.php';
