@@ -222,9 +222,8 @@ class Alert404_Storage {
 			return $cached;
 		}
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Simple count query with prepared statement.
-		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name via prefix constant is safe.
-		$total = $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(*) FROM ' . $wpdb->prefix . '404_alert_stats' ) );
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Simple count query.
+		$total = $wpdb->get_var( 'SELECT COUNT(*) FROM ' . $wpdb->prefix . '404_alert_stats' );
 
 		$total = (int) $total;
 
@@ -244,9 +243,8 @@ class Alert404_Storage {
 			return $cached;
 		}
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Simple count query with prepared statement.
-		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name via prefix constant is safe.
-		$total = $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(DISTINCT url) FROM ' . $wpdb->prefix . '404_alert_stats' ) );
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Simple count query.
+		$total = $wpdb->get_var( 'SELECT COUNT(DISTINCT url) FROM ' . $wpdb->prefix . '404_alert_stats' );
 
 		$total = (int) $total;
 

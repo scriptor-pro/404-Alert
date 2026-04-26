@@ -55,19 +55,28 @@ class Alert404_SMTP_Handler {
 		try {
 			// Configure SMTP server.
 			$phpmailer->isSMTP();
+			// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- PHPMailer external dependency uses camelCase
 			$phpmailer->Host       = $config['host'];
+			// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- PHPMailer external dependency uses camelCase
 			$phpmailer->Port       = (int) $config['port'];
+			// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- PHPMailer external dependency uses camelCase
 			$phpmailer->SMTPAuth   = true;
+			// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- PHPMailer external dependency uses camelCase
 			$phpmailer->Username   = $config['username'];
+			// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- PHPMailer external dependency uses camelCase
 			$phpmailer->Password   = $config['password'];
+			// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- PHPMailer external dependency uses camelCase
 			$phpmailer->SMTPSecure = $config['encryption'];
+			// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- PHPMailer external dependency uses camelCase
 			$phpmailer->Timeout    = 30;
 
 			// Configure email.
 			$phpmailer->setFrom( $config['from_email'], $config['from_name'] );
 			$phpmailer->addAddress( $args['to'] );
+			// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- PHPMailer external dependency uses camelCase
 			$phpmailer->Subject = $args['subject'] ?? '';
 			$phpmailer->isHTML( true );
+			// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- PHPMailer external dependency uses camelCase
 			$phpmailer->Body = $args['message'] ?? '';
 
 			// Add custom headers if provided.
@@ -238,11 +247,17 @@ class Alert404_SMTP_Handler {
 
 		try {
 			$phpmailer->isSMTP();
+			// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- PHPMailer external dependency uses camelCase
 			$phpmailer->Host       = $config['host'];
+			// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- PHPMailer external dependency uses camelCase
 			$phpmailer->Port       = (int) $config['port'];
+			// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- PHPMailer external dependency uses camelCase
 			$phpmailer->SMTPAuth   = true;
+			// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- PHPMailer external dependency uses camelCase
 			$phpmailer->Username   = $config['username'];
+			// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- PHPMailer external dependency uses camelCase
 			$phpmailer->Password   = $config['password'];
+			// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- PHPMailer external dependency uses camelCase
 			$phpmailer->SMTPSecure = $config['encryption'];
 
 			// Essayer de se connecter sans envoyer d'email.
