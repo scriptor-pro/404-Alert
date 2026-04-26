@@ -138,7 +138,7 @@ class Alert404_RateLimiter {
 		$count = Alert404_Redis_Handler::increment( $day_key, $ttl );
 
 		if ( false === $count ) {
-			// Redis erreur, laisser passer (fail open)
+			// Redis erreur, laisser passer (fail open).
 			return true;
 		}
 

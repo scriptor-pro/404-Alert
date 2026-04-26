@@ -24,7 +24,7 @@ class Alert404_SMTP_Handler {
 	 * @return bool True si succès, False sinon.
 	 */
 	public static function send( array $args ): bool {
-		// Récupérer la configuration SMTP
+		// Récupérer la configuration SMTP.
 		$config = self::get_smtp_config();
 
 		if ( empty( $config['host'] ) || empty( $config['username'] ) || empty( $config['password'] ) ) {
@@ -245,7 +245,7 @@ class Alert404_SMTP_Handler {
 			$phpmailer->Password   = $config['password'];
 			$phpmailer->SMTPSecure = $config['encryption'];
 
-			// Essayer de se connecter sans envoyer d'email
+			// Essayer de se connecter sans envoyer d'email.
 			$phpmailer->smtpConnect();
 			$phpmailer->smtpClose();
 

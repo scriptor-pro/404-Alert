@@ -91,7 +91,7 @@ class Alert404_Mailer {
 		$user_readable = esc_html( $payload['user_readable'] ?? 'Unknown browser' );
 		$device_type   = esc_html( $payload['device'] ?? 'Unknown' );
 
-		// Informations navigateur/OS
+		// Informations navigateur/OS.
 		$browser_name    = esc_html( $payload['browser']['name'] ?? 'Unknown' );
 		$browser_version = esc_html( $payload['browser']['version'] ?? 'Unknown' );
 		$os_name         = esc_html( $payload['os']['name'] ?? 'Unknown' );

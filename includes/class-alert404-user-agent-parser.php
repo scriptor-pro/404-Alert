@@ -122,12 +122,12 @@ class Alert404_UserAgent_Parser {
 	 * @return string Type d'appareil.
 	 */
 	private static function detect_device_type( string $user_agent ): string {
-		// Mobile phones
+		// Mobile phones.
 		if ( preg_match( '/(iPhone|Android|Mobile|Windows Phone|IEMobile|Opera Mini)/', $user_agent ) ) {
 			return 'Mobile';
 		}
 
-		// Tablets
+		// Tablets.
 		if ( preg_match( '/(iPad|Android|Tablet)/', $user_agent ) ) {
 			return 'Tablet';
 		}
