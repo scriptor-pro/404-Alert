@@ -29,12 +29,12 @@ class Alert404_Activator {
 	 * @return void
 	 */
 	public static function activate(): void {
-		// S'assurer que la table de statistiques existe
+		// Ensure statistics table exists.
 		if ( class_exists( 'Alert404_Storage' ) ) {
 			Alert404_Storage::init();
 		}
 
-		// Initialiser les options par défaut si elles n'existent pas
+		// Initialize default options if they don't exist.
 		if ( ! get_option( '404_alert_options' ) ) {
 			update_option(
 				'404_alert_options',
@@ -63,7 +63,7 @@ class Alert404_Activator {
 			);
 		}
 
-		// Créer un message d'activation en cache pour afficher dans l'admin
+		// Create cached activation message for admin display.
 		set_transient( 'alert404_activated', true, HOUR_IN_SECONDS );
 	}
 
@@ -73,8 +73,8 @@ class Alert404_Activator {
 	 * @return void
 	 */
 	public static function deactivate(): void {
-		// Aucune action requise à la désactivation
-		// Le plugin garde ses données en cas de réactivation ultérieure
-		// Les données sont supprimées seulement à la désinstallation (uninstall.php)
+		// No action required on deactivation.
+		// Plugin retains data for potential reactivation.
+		// Data is deleted only on uninstall (uninstall.php).
 	}
 }

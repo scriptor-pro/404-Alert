@@ -34,22 +34,22 @@ class Alert404_Detector {
 
 		$ip = self::get_ip();
 
-		// Valider l'IP avant de continuer
+		// Validate IP before proceeding.
 		if ( empty( $ip ) || ! filter_var( $ip, FILTER_VALIDATE_IP ) ) {
 			Alert404_Logger::log_invalid_ip( $ip );
 			return;
 		}
 
-		// Collecte des données
+		// Collect request data.
 		$payload = self::collect_payload( $ip );
 
-		// Rate limiting
+		// Apply rate limiting.
 		if ( ! Alert404_RateLimiter::check_and_increment( $ip ) ) {
-			// Log du dépassement de limite (voir le rate limiter pour plus de détails)
+			// Rate limit exceeded (see rate limiter for details).
 			return;
 		}
 
-		// Envoyer l'email
+		// Send email notification.
 		Alert404_Mailer::send( $payload );
 	}
 
