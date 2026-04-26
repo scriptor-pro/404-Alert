@@ -45,7 +45,7 @@ class Alert404_SMTP_Handler {
 
 		$phpmailer = new PHPMailer( true );
 
-		// Log: Tentative de connexion SMTP
+		// Log SMTP connection attempt.
 		Alert404_Logger::log_smtp_connection_attempt(
 			$config['host'],
 			$config['port'],
@@ -53,7 +53,7 @@ class Alert404_SMTP_Handler {
 		);
 
 		try {
-			// Configuration serveur SMTP
+			// Configure SMTP server.
 			$phpmailer->isSMTP();
 			$phpmailer->Host       = $config['host'];
 			$phpmailer->Port       = (int) $config['port'];
@@ -63,24 +63,24 @@ class Alert404_SMTP_Handler {
 			$phpmailer->SMTPSecure = $config['encryption'];
 			$phpmailer->Timeout    = 30;
 
-			// Configuration de l'email
+			// Configure email.
 			$phpmailer->setFrom( $config['from_email'], $config['from_name'] );
 			$phpmailer->addAddress( $args['to'] );
 			$phpmailer->Subject = $args['subject'] ?? '';
 			$phpmailer->isHTML( true );
 			$phpmailer->Body = $args['message'] ?? '';
 
-			// Ajouter les headers additionnels si fournis
+			// Add custom headers if provided.
 			if ( ! empty( $args['headers'] ) && is_array( $args['headers'] ) ) {
 				foreach ( $args['headers'] as $header ) {
 					$phpmailer->addCustomHeader( $header );
 				}
 			}
 
-			// Envoyer l'email
+			// Send email.
 			$phpmailer->send();
 
-			// Log: Email envoyé via SMTP
+			// Log email sent via SMTP.
 			Alert404_Logger::log_email_sent_via_smtp(
 				$args['to'],
 				$config['from_email']
@@ -88,7 +88,7 @@ class Alert404_SMTP_Handler {
 
 			return true;
 		} catch ( Exception $e ) {
-			// Log: Erreur SMTP
+			// Log SMTP error.
 			Alert404_Logger::log_smtp_auth_failure(
 				$config['host'],
 				$config['username'],

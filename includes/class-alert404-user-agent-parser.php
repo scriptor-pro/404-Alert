@@ -36,7 +36,7 @@ class Alert404_UserAgent_Parser {
 		$name    = 'Unknown';
 		$version = 'Unknown';
 
-		// Chrome (inclut Chromium, Edge basé sur Chromium)
+		// Chrome (includes Chromium, Chromium-based Edge).
 		if ( preg_match( '/Chrome\/(\d+(?:\.\d+)*)/', $user_agent, $matches ) ) {
 			$name    = 'Chrome';
 			$version = $matches[1];
@@ -85,7 +85,7 @@ class Alert404_UserAgent_Parser {
 		$name    = 'Unknown';
 		$version = 'Unknown';
 
-		// Windows
+		// Windows.
 		if ( preg_match( '/Windows NT (\d+\.\d+)/', $user_agent, $matches ) ) {
 			$name    = self::get_windows_name( $matches[1] );
 			$version = $matches[1];

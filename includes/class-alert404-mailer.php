@@ -33,15 +33,15 @@ class Alert404_Mailer {
 		}
 		$headers = array( 'Content-Type: text/html; charset=UTF-8' );
 
-		// Appliquer les filtres pour permettre aux extensions de modifier le comportement
+		// Apply filters to allow extensions to customize behavior.
 		$to      = apply_filters( '404_alert_email_to', $to, $payload );
 		$subject = apply_filters( '404_alert_email_subject', $subject, $payload );
 		$headers = apply_filters( '404_alert_email_headers', $headers, $payload );
 
-		// Générer le corps HTML avec les informations enrichies
+		// Generate HTML body with enriched information.
 		$html = self::render_email_html( $payload );
 
-		// Appliquer le filtre pour le contenu HTML
+		// Apply filter for HTML content.
 		$html = apply_filters( '404_alert_email_body', $html, $payload );
 
 		$smtp_config = Alert404_SMTP_Handler::get_smtp_config();
@@ -97,18 +97,18 @@ class Alert404_Mailer {
 		$os_name         = esc_html( $payload['os']['name'] ?? 'Unknown' );
 		$os_version      = esc_html( $payload['os']['version'] ?? 'Unknown' );
 
-		// Informations WordPress
+		// WordPress information.
 		$wp_info      = $payload['wordpress'] ?? array();
 		$is_logged_in = $wp_info['logged_in'] ?? false;
 		$user_login   = $wp_info['user_name'] ?? '';
 		$user_email   = $wp_info['user_email'] ?? '';
 
-		// Formater l'état utilisateur
+		// Format user login status.
 		$user_status = $is_logged_in
 			? sprintf( '<strong>Oui</strong> - %s (%s)', esc_html( $user_login ), esc_html( $user_email ) )
 			: '<strong>Non</strong> - Visiteur anonyme';
 
-		// JSON complet pour référence - utiliser ENT_QUOTES | ENT_HTML5 pour meilleure protection XSS
+		// Full JSON for reference - use ENT_QUOTES | ENT_HTML5 for better XSS protection.
 		$json_body = esc_html(
 			wp_json_encode(
 				$payload,
@@ -117,7 +117,7 @@ class Alert404_Mailer {
 		);
 		$site_url  = esc_html( home_url() );
 
-		// Déterminer la classe CSS pour le badge device
+		// Determine CSS class for device badge.
 		$device_class = strtolower( $device_type ) === 'mobile' ? 'mobile' : ( strtolower( $device_type ) === 'tablet' ? 'tablet' : 'desktop' );
 
 		return sprintf(

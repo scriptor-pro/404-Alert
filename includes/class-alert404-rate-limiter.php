@@ -24,7 +24,7 @@ class Alert404_RateLimiter {
 		$cooldown    = $options['ip_cooldown'] ?? 300;
 		$daily_limit = $options['daily_limit'] ?? 500;
 
-		// Rate limit par IP
+		// Rate limit by IP.
 		if ( ! self::check_ip_limit( $ip, $cooldown ) ) {
 			return false;
 		}
@@ -51,7 +51,7 @@ class Alert404_RateLimiter {
 			return self::check_ip_limit_redis( $ip, $cooldown );
 		}
 
-		// Fallback à transients simples (best-effort)
+		// Fallback to simple transients (best-effort).
 		return self::check_ip_limit_transient( $ip, $cooldown );
 	}
 
@@ -74,7 +74,7 @@ class Alert404_RateLimiter {
 			// Bloquée.
 		}
 
-		// SET le nouveau timestamp (atomique)
+		// Set new timestamp (atomic).
 		Alert404_Redis_Handler::set( $key, time(), $cooldown );
 		return true;
 		// Autorisée.
@@ -98,7 +98,7 @@ class Alert404_RateLimiter {
 			// Bloquée.
 		}
 
-		// Race condition possible ici, mais acceptable en fallback.
+		// Race condition possible here, but acceptable for fallback..
 		set_transient( $key, time(), $cooldown );
 		return true;
 		// Autorisée.
@@ -116,7 +116,7 @@ class Alert404_RateLimiter {
 			return self::check_daily_limit_redis( $daily_limit );
 		}
 
-		// Fallback à transients simples.
+		// Fallback to simple transients..
 		return self::check_daily_limit_transient( $daily_limit );
 	}
 
@@ -129,7 +129,7 @@ class Alert404_RateLimiter {
 	private static function check_daily_limit_redis( int $daily_limit ): bool {
 		$day_key = '404_alert_global_' . gmdate( 'Y-m-d' );
 
-		// Calcul du TTL jusqu'à minuit UTC
+		// Calculate TTL until UTC midnight.
 		$next_midnight = strtotime( 'tomorrow 00:00:00', current_time( 'timestamp' ) )
 						- current_time( 'timestamp' );
 		$ttl           = (int) max( 60, (int) $next_midnight );
@@ -169,12 +169,12 @@ class Alert404_RateLimiter {
 			// Bloquée.
 		}
 
-		// Calcul du TTL jusqu'à minuit UTC
+		// Calculate TTL until UTC midnight.
 		$next_midnight = strtotime( 'tomorrow 00:00:00', current_time( 'timestamp' ) )
 						- current_time( 'timestamp' );
 		$expiration    = (int) max( 60, (int) $next_midnight );
 
-		// Race condition possible ici, mais acceptable en fallback.
+		// Race condition possible here, but acceptable for fallback..
 		set_transient( $day_key, $count + 1, $expiration );
 		return true;
 		// Autorisée.

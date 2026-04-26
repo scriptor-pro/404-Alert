@@ -75,7 +75,7 @@ class Alert404_Redis_Handler {
 			// Sélectionner la base de données.
 			@$redis->select( $db );
 
-			// Tester la connexion avec PING
+			// Test connection with PING.
 			$ping = @$redis->ping();
 			if ( true !== $ping && '+PONG' !== $ping ) {
 				Alert404_Logger::log_redis_unavailable( 'Redis PING échoué' );
