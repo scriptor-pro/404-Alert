@@ -29,7 +29,7 @@ class Alert404_RateLimiter {
 			return false;
 		}
 
-		// Rate limit global journalier
+		// Rate limit global journalier.
 		if ( ! self::check_daily_limit( $daily_limit ) ) {
 			return false;
 		}
@@ -46,7 +46,7 @@ class Alert404_RateLimiter {
 	 * @return bool true si la requête est autorisée, false si elle est bloquée.
 	 */
 	private static function check_ip_limit( string $ip, int $cooldown ): bool {
-		// Utiliser Redis si disponible
+		// Utiliser Redis si disponible.
 		if ( Alert404_Redis_Handler::is_available() ) {
 			return self::check_ip_limit_redis( $ip, $cooldown );
 		}
@@ -65,19 +65,19 @@ class Alert404_RateLimiter {
 	private static function check_ip_limit_redis( string $ip, int $cooldown ): bool {
 		$key = '404_alert_ip_' . wp_hash( $ip );
 
-		// GET la dernière fois que cette IP a visité
+		// GET la dernière fois que cette IP a visité.
 		$last = Alert404_Redis_Handler::get( $key );
 
 		if ( false !== $last && ( time() - (int) $last ) < $cooldown ) {
 			Alert404_Logger::log_rate_limit_ip( $ip, $cooldown );
 			return false;
-			// Bloquée
+			// Bloquée.
 		}
 
 		// SET le nouveau timestamp (atomique)
 		Alert404_Redis_Handler::set( $key, time(), $cooldown );
 		return true;
-		// Autorisée
+		// Autorisée.
 	}
 
 	/**
@@ -95,13 +95,13 @@ class Alert404_RateLimiter {
 		if ( false !== $last && ( time() - (int) $last ) < $cooldown ) {
 			Alert404_Logger::log_rate_limit_ip( $ip, $cooldown );
 			return false;
-			// Bloquée
+			// Bloquée.
 		}
 
-		// Race condition possible ici, mais acceptable en fallback
+		// Race condition possible ici, mais acceptable en fallback.
 		set_transient( $key, time(), $cooldown );
 		return true;
-		// Autorisée
+		// Autorisée.
 	}
 
 	/**
@@ -111,12 +111,12 @@ class Alert404_RateLimiter {
 	 * @return bool true si la limite n'est pas atteinte, false si elle est dépassée.
 	 */
 	private static function check_daily_limit( int $daily_limit ): bool {
-		// Utiliser Redis si disponible
+		// Utiliser Redis si disponible.
 		if ( Alert404_Redis_Handler::is_available() ) {
 			return self::check_daily_limit_redis( $daily_limit );
 		}
 
-		// Fallback à transients simples
+		// Fallback à transients simples.
 		return self::check_daily_limit_transient( $daily_limit );
 	}
 
@@ -134,7 +134,7 @@ class Alert404_RateLimiter {
 						- current_time( 'timestamp' );
 		$ttl           = (int) max( 60, (int) $next_midnight );
 
-		// INCR est atomique dans Redis
+		// INCR est atomique dans Redis.
 		$count = Alert404_Redis_Handler::increment( $day_key, $ttl );
 
 		if ( false === $count ) {
@@ -145,11 +145,11 @@ class Alert404_RateLimiter {
 		if ( $count > $daily_limit ) {
 			Alert404_Logger::log_rate_limit_daily( $daily_limit );
 			return false;
-			// Bloquée
+			// Bloquée.
 		}
 
 		return true;
-		// Autorisée
+		// Autorisée.
 	}
 
 	/**
@@ -166,7 +166,7 @@ class Alert404_RateLimiter {
 		if ( $count >= $daily_limit ) {
 			Alert404_Logger::log_rate_limit_daily( $daily_limit );
 			return false;
-			// Bloquée
+			// Bloquée.
 		}
 
 		// Calcul du TTL jusqu'à minuit UTC
@@ -174,9 +174,9 @@ class Alert404_RateLimiter {
 						- current_time( 'timestamp' );
 		$expiration    = (int) max( 60, (int) $next_midnight );
 
-		// Race condition possible ici, mais acceptable en fallback
+		// Race condition possible ici, mais acceptable en fallback.
 		set_transient( $day_key, $count + 1, $expiration );
 		return true;
-		// Autorisée
+		// Autorisée.
 	}
 }

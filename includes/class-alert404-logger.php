@@ -293,7 +293,7 @@ class Alert404_Logger {
 			return;
 		}
 
-		// Formater le message
+		// Formater le message.
 		$timestamp    = current_time( 'mysql' );
 		$context_json = ! empty( $context ) ? wp_json_encode( $context, JSON_UNESCAPED_SLASHES ) : '{}';
 		$message      = sprintf(
@@ -303,7 +303,7 @@ class Alert404_Logger {
 			$context_json
 		);
 
-		// Enregistrer dans les logs WordPress
+		// Enregistrer dans les logs WordPress.
 		error_log( $message );
 	}
 }

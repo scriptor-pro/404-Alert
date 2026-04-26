@@ -122,15 +122,15 @@ class Alert404_Storage {
 
 		self::enforce_max_records();
 
-		// Invalider le cache après insertion
+		// Invalider le cache après insertion.
 		self::invalidate_cache();
 	}
 
 	private static function enforce_max_records(): void {
 		global $wpdb;
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Cleanup query with prepared statement
-		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name via prefix constant is safe
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Cleanup query with prepared statement.
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name via prefix constant is safe.
 		$wpdb->query(
 			$wpdb->prepare(
 				'DELETE FROM ' . $wpdb->prefix . '404_alert_stats
@@ -151,15 +151,15 @@ class Alert404_Storage {
 
 		$limit = max( 1, $limit );
 
-		// Vérifier le cache en premier
+		// Vérifier le cache en premier.
 		$cache_key = 'alert404_stats_' . $limit;
 		$cached    = wp_cache_get( $cache_key, '404_alert' );
 		if ( false !== $cached ) {
 			return $cached;
 		}
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Read query with prepared statement
-		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name via prefix constant is safe
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Read query with prepared statement.
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name via prefix constant is safe.
 		$results = $wpdb->get_results(
 			$wpdb->prepare(
 				'SELECT id, url, ip, referrer, user_agent, user_agent_readable, created_at AS timestamp
@@ -173,7 +173,7 @@ class Alert404_Storage {
 
 		$results = is_array( $results ) ? $results : array();
 
-		// Mettre en cache avec TTL de 5 minutes
+		// Mettre en cache avec TTL de 5 minutes.
 		wp_cache_set( $cache_key, $results, '404_alert', 300 );
 
 		return $results;
@@ -184,15 +184,15 @@ class Alert404_Storage {
 
 		$like_date = $wpdb->esc_like( $date ) . '%';
 
-		// Vérifier le cache en premier
+		// Vérifier le cache en premier.
 		$cache_key = 'alert404_stats_by_date_' . $date;
 		$cached    = wp_cache_get( $cache_key, '404_alert' );
 		if ( false !== $cached ) {
 			return $cached;
 		}
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Read query with prepared statement
-		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name via prefix constant is safe
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Read query with prepared statement.
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name via prefix constant is safe.
 		$results = $wpdb->get_results(
 			$wpdb->prepare(
 				'SELECT id, url, ip, referrer, user_agent, user_agent_readable, created_at AS timestamp
@@ -206,7 +206,7 @@ class Alert404_Storage {
 
 		$results = is_array( $results ) ? $results : array();
 
-		// Mettre en cache avec TTL de 5 minutes
+		// Mettre en cache avec TTL de 5 minutes.
 		wp_cache_set( $cache_key, $results, '404_alert', 300 );
 
 		return $results;
@@ -215,20 +215,20 @@ class Alert404_Storage {
 	public static function get_total_count(): int {
 		global $wpdb;
 
-		// Vérifier le cache en premier
+		// Vérifier le cache en premier.
 		$cache_key = 'alert404_total_count';
 		$cached    = wp_cache_get( $cache_key, '404_alert' );
 		if ( false !== $cached ) {
 			return $cached;
 		}
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Simple count query with prepared statement
-		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name via prefix constant is safe
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Simple count query with prepared statement.
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name via prefix constant is safe.
 		$total = $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(*) FROM ' . $wpdb->prefix . '404_alert_stats' ) );
 
 		$total = (int) $total;
 
-		// Mettre en cache avec TTL de 5 minutes
+		// Mettre en cache avec TTL de 5 minutes.
 		wp_cache_set( $cache_key, $total, '404_alert', 300 );
 
 		return $total;
@@ -237,20 +237,20 @@ class Alert404_Storage {
 	public static function get_unique_urls_count(): int {
 		global $wpdb;
 
-		// Vérifier le cache en premier
+		// Vérifier le cache en premier.
 		$cache_key = 'alert404_unique_urls_count';
 		$cached    = wp_cache_get( $cache_key, '404_alert' );
 		if ( false !== $cached ) {
 			return $cached;
 		}
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Simple count query with prepared statement
-		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name via prefix constant is safe
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Simple count query with prepared statement.
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name via prefix constant is safe.
 		$total = $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(DISTINCT url) FROM ' . $wpdb->prefix . '404_alert_stats' ) );
 
 		$total = (int) $total;
 
-		// Mettre en cache avec TTL de 5 minutes
+		// Mettre en cache avec TTL de 5 minutes.
 		wp_cache_set( $cache_key, $total, '404_alert', 300 );
 
 		return $total;
@@ -261,15 +261,15 @@ class Alert404_Storage {
 
 		$limit = max( 1, $limit );
 
-		// Vérifier le cache en premier
+		// Vérifier le cache en premier.
 		$cache_key = 'alert404_top_urls_' . $limit;
 		$cached    = wp_cache_get( $cache_key, '404_alert' );
 		if ( false !== $cached ) {
 			return $cached;
 		}
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Aggregation query with prepared statement
-		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name via prefix constant is safe
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Aggregation query with prepared statement.
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name via prefix constant is safe.
 		$rows = $wpdb->get_results(
 			$wpdb->prepare(
 				'SELECT url, COUNT(*) AS count
@@ -296,7 +296,7 @@ class Alert404_Storage {
 			$result[ (string) ( $row['url'] ?? '' ) ] = (int) ( $row['count'] ?? 0 );
 		}
 
-		// Mettre en cache avec TTL de 5 minutes
+		// Mettre en cache avec TTL de 5 minutes.
 		wp_cache_set( $cache_key, $result, '404_alert', 300 );
 
 		return $result;
@@ -307,15 +307,15 @@ class Alert404_Storage {
 
 		$limit = max( 1, $limit );
 
-		// Vérifier le cache en premier
+		// Vérifier le cache en premier.
 		$cache_key = 'alert404_top_ips_' . $limit;
 		$cached    = wp_cache_get( $cache_key, '404_alert' );
 		if ( false !== $cached ) {
 			return $cached;
 		}
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Aggregation query with prepared statement
-		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name via prefix constant is safe
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Aggregation query with prepared statement.
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name via prefix constant is safe.
 		$rows = $wpdb->get_results(
 			$wpdb->prepare(
 				'SELECT ip, COUNT(*) AS count
@@ -342,7 +342,7 @@ class Alert404_Storage {
 			$result[ (string) ( $row['ip'] ?? '' ) ] = (int) ( $row['count'] ?? 0 );
 		}
 
-		// Mettre en cache avec TTL de 5 minutes
+		// Mettre en cache avec TTL de 5 minutes.
 		wp_cache_set( $cache_key, $result, '404_alert', 300 );
 
 		return $result;
@@ -369,15 +369,15 @@ class Alert404_Storage {
 
 		$like_date = $wpdb->esc_like( $date ) . '%';
 
-		// Vérifier le cache en premier
+		// Vérifier le cache en premier.
 		$cache_key = 'alert404_count_for_date_' . $date;
 		$cached    = wp_cache_get( $cache_key, '404_alert' );
 		if ( false !== $cached ) {
 			return $cached;
 		}
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Count query with prepared statement
-		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name via prefix constant is safe
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Count query with prepared statement.
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name via prefix constant is safe.
 		$count = $wpdb->get_var(
 			$wpdb->prepare(
 				'SELECT COUNT(*) FROM ' . $wpdb->prefix . '404_alert_stats
@@ -388,7 +388,7 @@ class Alert404_Storage {
 
 		$count = (int) $count;
 
-		// Mettre en cache avec TTL de 5 minutes
+		// Mettre en cache avec TTL de 5 minutes.
 		wp_cache_set( $cache_key, $count, '404_alert', 300 );
 
 		return $count;
@@ -405,15 +405,15 @@ class Alert404_Storage {
 
 		$limit = max( 1, $limit );
 
-		// Vérifier le cache en premier
+		// Vérifier le cache en premier.
 		$cache_key = 'alert404_count_by_referrer_' . $limit;
 		$cached    = wp_cache_get( $cache_key, '404_alert' );
 		if ( false !== $cached ) {
 			return $cached;
 		}
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Aggregation query with prepared statement
-		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name via prefix constant is safe
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Aggregation query with prepared statement.
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name via prefix constant is safe.
 		$rows = $wpdb->get_results(
 			$wpdb->prepare(
 				'SELECT referrer, COUNT(*) AS count
@@ -440,7 +440,7 @@ class Alert404_Storage {
 			$result[ (string) ( $row['referrer'] ?? '' ) ] = (int) ( $row['count'] ?? 0 );
 		}
 
-		// Mettre en cache avec TTL de 5 minutes
+		// Mettre en cache avec TTL de 5 minutes.
 		wp_cache_set( $cache_key, $result, '404_alert', 300 );
 
 		return $result;
@@ -458,12 +458,12 @@ class Alert404_Storage {
 	public static function clear_stats(): void {
 		global $wpdb;
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- TRUNCATE requires direct query
-		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name via prefix constant is safe
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- TRUNCATE requires direct query.
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Table name via prefix constant is safe.
 		$wpdb->query( 'TRUNCATE TABLE ' . $wpdb->prefix . '404_alert_stats' );
 		delete_option( self::OPTION_KEY );
 
-		// Invalider tout le cache après suppression
+		// Invalider tout le cache après suppression.
 		self::invalidate_cache();
 	}
 
@@ -498,17 +498,17 @@ class Alert404_Storage {
 		header( 'Content-Type: text/csv' );
 		header( 'Content-Disposition: attachment; filename="404-stats-' . gmdate( 'Y-m-d' ) . '.csv"' );
 
-		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fopen -- Using php://output stream for direct browser download
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fopen -- Using php://output stream for direct browser download.
 		$output = fopen( 'php://output', 'w' );
 		if ( false === $output ) {
 			return;
 		}
 
-		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fputcsv -- Using fputcsv for CSV stream output
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fputcsv -- Using fputcsv for CSV stream output.
 		fputcsv( $output, array( 'ID', 'URL', 'IP', 'Referrer', 'User Agent', 'Timestamp' ) );
 
 		foreach ( $stats as $record ) {
-			// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fputcsv -- Using fputcsv for CSV stream output
+			// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fputcsv -- Using fputcsv for CSV stream output.
 			fputcsv(
 				$output,
 				array(
@@ -522,7 +522,7 @@ class Alert404_Storage {
 			);
 		}
 
-		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose -- Closing php://output stream
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose -- Closing php://output stream.
 		fclose( $output );
 		exit;
 	}

@@ -39,7 +39,7 @@ class Alert404_Redis_Handler {
 
 		self::$available = false;
 
-		// Vérifier que l'extension Redis est installée
+		// Vérifier que l'extension Redis est installée.
 		if ( ! extension_loaded( 'redis' ) ) {
 			Alert404_Logger::log_redis_unavailable( 'Extension Redis non installée' );
 			return false;
@@ -48,14 +48,14 @@ class Alert404_Redis_Handler {
 		try {
 			$redis = new \Redis();
 
-			// Configuration depuis les constantes WordPress
+			// Configuration depuis les constantes WordPress.
 			$host     = defined( 'ALERT404_REDIS_HOST' ) ? ALERT404_REDIS_HOST : 'localhost';
 			$port     = defined( 'ALERT404_REDIS_PORT' ) ? ALERT404_REDIS_PORT : 6379;
 			$password = defined( 'ALERT404_REDIS_PASSWORD' ) ? ALERT404_REDIS_PASSWORD : null;
 			$db       = defined( 'ALERT404_REDIS_DB' ) ? ALERT404_REDIS_DB : 0;
 			$timeout  = defined( 'ALERT404_REDIS_TIMEOUT' ) ? ALERT404_REDIS_TIMEOUT : 2;
 
-			// Tentative de connexion
+			// Tentative de connexion.
 			$connected = @$redis->connect( $host, $port, $timeout );
 
 			if ( ! $connected ) {
@@ -63,7 +63,7 @@ class Alert404_Redis_Handler {
 				return false;
 			}
 
-			// Authentification si password
+			// Authentification si password.
 			if ( ! empty( $password ) ) {
 				$authenticated = @$redis->auth( $password );
 				if ( ! $authenticated ) {
@@ -72,7 +72,7 @@ class Alert404_Redis_Handler {
 				}
 			}
 
-			// Sélectionner la base de données
+			// Sélectionner la base de données.
 			@$redis->select( $db );
 
 			// Tester la connexion avec PING
@@ -134,17 +134,17 @@ class Alert404_Redis_Handler {
 		}
 
 		try {
-			// SET key value NX EX timeout
-			// Atomique: SET si n'existe pas, avec expiration
+			// SET key value NX EX timeout.
+			// Atomique: SET si n'existe pas, avec expiration.
 			$result = @$redis->set(
 				$key,
 				wp_hash( uniqid( '', true ) ),
-				// Valeur unique
+				// Valeur unique.
 				array(
 					'EX' => $timeout,
-					// Expiration en secondes
+					// Expiration en secondes.
 														'NX' => true,
-				// Only if Not eXists
+				// Only if Not eXists.
 				)
 			);
 
@@ -193,10 +193,10 @@ class Alert404_Redis_Handler {
 		}
 
 		try {
-			// INCR est atomique dans Redis
+			// INCR est atomique dans Redis.
 			$value = @$redis->incr( $key );
 
-			// Définir l'expiration si demandée
+			// Définir l'expiration si demandée.
 			if ( $ttl > 0 ) {
 				@$redis->expire( $key, $ttl );
 			}
