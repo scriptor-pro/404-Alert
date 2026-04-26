@@ -66,7 +66,7 @@ function esc_url_raw( string $url ): string { return $url; }
 function esc_js( string $text ): string { return $text; }
 function wp_unslash( $value ) { return $value; }
 function check_admin_referer( string $action = '-1', string $query_arg = '_wpnonce' ): bool { return true; }
-function check_ajax_referer( string $action = '-1', string $query_arg = false, bool $die = true ): int { return 1; }
+function check_ajax_referer( string $action = '-1', string $query_arg = '_wpnonce', bool $die = true ): int { return 1; }
 function wp_verify_nonce( $nonce, string $action = '-1' ): bool { return true; }
 function wp_create_nonce( string $action = '-1' ): string { return 'nonce'; }
 function wp_nonce_url( string $actionurl, string $action = '-1', string $name = '_wpnonce' ): string { return $actionurl; }
@@ -95,3 +95,9 @@ function checked( $checked, $current = true, bool $echo = true ): string { retur
 function selected( $selected, $current = true, bool $echo = true ): string { return ''; }
 function wp_send_json_error( $data = null, ?int $status_code = null ): void {}
 function wp_send_json( $response, ?int $status_code = null, int $flags = 0 ): void {}
+
+// WordPress Cache Functions
+function wp_cache_get( string $key, string $group = '', bool $force = false, ?bool &$found = null ) { return false; }
+function wp_cache_set( string $key, $data, string $group = '', int $expire = 0 ): bool { return true; }
+function wp_cache_delete( string $key, string $group = '' ): bool { return true; }
+function wp_cache_flush(): bool { return true; }
