@@ -32,7 +32,7 @@ require_once ALERT404_DIR . 'includes/class-alert404-rate-limiter.php';
 require_once ALERT404_DIR . 'includes/class-alert404-storage.php';
 require_once ALERT404_DIR . 'includes/class-alert404-mailer.php';
 require_once ALERT404_DIR . 'includes/class-alert404-detector.php';
-require_once ALERT404_DIR . 'includes/class-alert404-404-template.php';
+require_once ALERT404_DIR . 'includes/class-alert404-template.php';
 require_once ALERT404_DIR . 'includes/class-alert404-dashboard.php';
 require_once ALERT404_DIR . 'includes/class-alert404-activator.php';
 

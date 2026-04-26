@@ -73,7 +73,7 @@ function _manually_load_plugin() {
 	require_once dirname( dirname( __FILE__ ) ) . '/includes/class-alert404-storage.php';
 	require_once dirname( dirname( __FILE__ ) ) . '/includes/class-alert404-mailer.php';
 	require_once dirname( dirname( __FILE__ ) ) . '/includes/class-alert404-detector.php';
-	require_once dirname( dirname( __FILE__ ) ) . '/includes/class-alert404-404-template.php';
+	require_once dirname( dirname( __FILE__ ) ) . '/includes/class-alert404-template.php';
 	require_once dirname( dirname( __FILE__ ) ) . '/includes/class-alert404-dashboard.php';
 
 	// Initialiser les classes
