@@ -352,7 +352,7 @@ class Alert404_Storage {
 	 * Récupère les IPs récentes ayant généré des erreurs 404
 	 *
 	 * @param int $limit Nombre d'IPs à retourner.
-	 * @return array Tableau associatif IP => nombre de 404.
+	 * @return array<string, int> Tableau associatif IP => nombre de 404.
 	 */
 	public static function get_recent_ips( int $limit = 10 ): array {
 		return self::get_top_ips( $limit );
@@ -398,7 +398,7 @@ class Alert404_Storage {
 	 * Récupère le nombre d'erreurs 404 par referrer
 	 *
 	 * @param int $limit Nombre de referrers à retourner.
-	 * @return array Tableau associatif referrer => nombre de 404.
+	 * @return array<string, int> Tableau associatif referrer => nombre de 404.
 	 */
 	public static function get_count_by_referrer( int $limit = 10 ): array {
 		global $wpdb;

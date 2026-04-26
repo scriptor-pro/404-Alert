@@ -21,7 +21,7 @@ class Alert404_Request_Info {
 	/**
 	 * Collecte toutes les informations disponibles sur la requête 404
 	 *
-	 * @return array Informations complètes sur la requête
+	 * @return array<string, mixed> Informations complètes sur la requête
 	 */
 	public static function gather(): array {
 		$server      = $_SERVER;
@@ -151,7 +151,7 @@ class Alert404_Request_Info {
 	 *
 	 * @param string $raw Valeur brute du header.
 	 * @param string $header Nom du header.
-	 * @return array
+	 * @return array<int, string>
 	 */
 	private static function extract_ips_from_header( string $raw, string $header ): array {
 		if ( 'HTTP_FORWARDED' === $header ) {

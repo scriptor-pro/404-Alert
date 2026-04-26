@@ -543,7 +543,7 @@ class Alert404_Settings {
 	 * Applique les contraintes de valeurs (min/max) et les valeurs par défaut
 	 *
 	 * @param array $input Tableau des paramètres fournis par l'utilisateur.
-	 * @return array Tableau des paramètres validés et nettoyés
+	 * @return array<string, mixed> Tableau des paramètres validés et nettoyés
 	 */
 	public static function sanitize_options( array $input ): array {
 		$old_options = get_option( '404_alert_options', array() );
@@ -580,7 +580,7 @@ class Alert404_Settings {
 	 * Valide et nettoie la configuration SMTP avant sauvegarde
 	 *
 	 * @param array $input Configuration SMTP fournie par l'utilisateur.
-	 * @return array Configuration SMTP validée et nettoyée
+	 * @return array<string, mixed> Configuration SMTP validée et nettoyée
 	 */
 	public static function sanitize_smtp_options( array $input ): array {
 		$existing_options = get_option( '404_alert_smtp_options', array() );

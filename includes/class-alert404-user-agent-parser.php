@@ -16,7 +16,7 @@ class Alert404_UserAgent_Parser {
 	 * Parse le User-Agent et retourne les informations
 	 *
 	 * @param string $user_agent String User-Agent HTTP.
-	 * @return array Informations parsées (browser, os, device_type).
+	 * @return array<string, mixed> Informations parsées (browser, os, device_type).
 	 */
 	public static function parse( string $user_agent ): array {
 		return array(
@@ -30,7 +30,7 @@ class Alert404_UserAgent_Parser {
 	 * Détecte le navigateur à partir du User-Agent
 	 *
 	 * @param string $user_agent User-Agent string.
-	 * @return array ['name' => string, 'version' => string].
+	 * @return array<string, string> ['name' => string, 'version' => string].
 	 */
 	private static function detect_browser( string $user_agent ): array {
 		$name    = 'Unknown';
@@ -79,7 +79,7 @@ class Alert404_UserAgent_Parser {
 	 * Détecte le système d'exploitation à partir du User-Agent
 	 *
 	 * @param string $user_agent User-Agent string.
-	 * @return array ['name' => string, 'version' => string].
+	 * @return array<string, string> ['name' => string, 'version' => string].
 	 */
 	private static function detect_os( string $user_agent ): array {
 		$name    = 'Unknown';
@@ -194,7 +194,7 @@ class Alert404_UserAgent_Parser {
 	 * Retourne les informations parsées dans un format structuré
 	 *
 	 * @param string $user_agent User-Agent string.
-	 * @return array Informations structurées.
+	 * @return array<string, mixed> Informations structurées.
 	 */
 	public static function get_structured_info( string $user_agent ): array {
 		$parsed = self::parse( $user_agent );

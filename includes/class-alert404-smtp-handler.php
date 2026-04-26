@@ -106,7 +106,7 @@ class Alert404_SMTP_Handler {
 	/**
 	 * Récupère la configuration SMTP depuis les options WordPress
 	 *
-	 * @return array Configuration SMTP (host, port, username, password, encryption, from_email, from_name)
+	 * @return array<string, string|int> Configuration SMTP (host, port, username, password, encryption, from_email, from_name)
 	 */
 	public static function get_smtp_config(): array {
 		$options  = get_option( '404_alert_smtp_options', array() );
@@ -214,7 +214,7 @@ class Alert404_SMTP_Handler {
 	/**
 	 * Vérifie la connexion SMTP
 	 *
-	 * @return array ['success' => bool, 'message' => string]
+	 * @return array<string, bool|string> ['success' => bool, 'message' => string]
 	 */
 	public static function test_connection(): array {
 		$config = self::get_smtp_config();
