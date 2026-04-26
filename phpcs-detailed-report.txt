@@ -1,0 +1,541 @@
+
+FILE: /home/Baudouin/Documents/Projets/404-alert/404-alert.php
+--------------------------------------------------------------------------------
+FOUND 3 ERRORS AFFECTING 3 LINES
+--------------------------------------------------------------------------------
+ 45 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+    |       | question marks
+ 55 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+    |       | question marks
+ 58 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+    |       | question marks
+--------------------------------------------------------------------------------
+
+
+FILE: ...douin/Documents/Projets/404-alert/includes/class-alert404-request-info.php
+--------------------------------------------------------------------------------
+FOUND 13 ERRORS AFFECTING 13 LINES
+--------------------------------------------------------------------------------
+  10 | ERROR | Missing doc comment for class Alert404_Request_Info
+  30 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+  34 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+  38 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+  76 | ERROR | Parameter comment must end with a full stop
+  77 | ERROR | Parameter comment must end with a full stop
+ 149 | ERROR | Parameter comment must end with a full stop
+ 150 | ERROR | Parameter comment must end with a full stop
+ 165 | ERROR | Parameter comment must end with a full stop
+ 189 | ERROR | Parameter comment must end with a full stop
+ 190 | ERROR | Parameter comment must end with a full stop
+ 255 | ERROR | Parameter comment must end with a full stop
+ 263 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+--------------------------------------------------------------------------------
+
+
+FILE: .../Baudouin/Documents/Projets/404-alert/includes/class-alert404-settings.php
+--------------------------------------------------------------------------------
+FOUND 9 ERRORS AFFECTING 9 LINES
+--------------------------------------------------------------------------------
+  10 | ERROR | Missing doc comment for class Alert404_Settings
+ 161 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+ 542 | ERROR | Parameter comment must end with a full stop
+ 556 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+ 579 | ERROR | Parameter comment must end with a full stop
+ 606 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+ 610 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+ 642 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+ 654 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+--------------------------------------------------------------------------------
+
+
+FILE: ...me/Baudouin/Documents/Projets/404-alert/includes/class-alert404-logger.php
+--------------------------------------------------------------------------------
+FOUND 32 ERRORS AND 1 WARNING AFFECTING 33 LINES
+--------------------------------------------------------------------------------
+  11 | ERROR   | Missing doc comment for class Alert404_Logger
+  15 | ERROR   | Parameter comment must end with a full stop
+  16 | ERROR   | Parameter comment must end with a full stop
+  17 | ERROR   | Parameter comment must end with a full stop
+  34 | ERROR   | Parameter comment must end with a full stop
+  35 | ERROR   | Parameter comment must end with a full stop
+  51 | ERROR   | Parameter comment must end with a full stop
+  66 | ERROR   | Parameter comment must end with a full stop
+  67 | ERROR   | Parameter comment must end with a full stop
+  83 | ERROR   | Parameter comment must end with a full stop
+  84 | ERROR   | Parameter comment must end with a full stop
+ 100 | ERROR   | Parameter comment must end with a full stop
+ 115 | ERROR   | Parameter comment must end with a full stop
+ 116 | ERROR   | Parameter comment must end with a full stop
+ 132 | ERROR   | Parameter comment must end with a full stop
+ 147 | ERROR   | Parameter comment must end with a full stop
+ 163 | ERROR   | Parameter comment must end with a full stop
+ 164 | ERROR   | Parameter comment must end with a full stop
+ 165 | ERROR   | Parameter comment must end with a full stop
+ 182 | ERROR   | Parameter comment must end with a full stop
+ 183 | ERROR   | Parameter comment must end with a full stop
+ 184 | ERROR   | Parameter comment must end with a full stop
+ 201 | ERROR   | Parameter comment must end with a full stop
+ 202 | ERROR   | Parameter comment must end with a full stop
+ 219 | ERROR   | Parameter comment must end with a full stop
+ 235 | ERROR   | Parameter comment must end with a full stop
+ 250 | ERROR   | Parameter comment must end with a full stop
+ 265 | ERROR   | Parameter comment must end with a full stop
+ 281 | ERROR   | Parameter comment must end with a full stop
+ 282 | ERROR   | Parameter comment must end with a full stop
+ 293 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 303 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 304 | WARNING | error_log() found. Debug code should not normally be used in
+     |         | production.
+--------------------------------------------------------------------------------
+
+
+FILE: ...Baudouin/Documents/Projets/404-alert/includes/class-alert404-dashboard.php
+--------------------------------------------------------------------------------
+FOUND 4 ERRORS AFFECTING 4 LINES
+--------------------------------------------------------------------------------
+ 10 | ERROR | Missing doc comment for class Alert404_Dashboard
+ 11 | ERROR | Missing doc comment for function init()
+ 19 | ERROR | Missing doc comment for function add_menu()
+ 30 | ERROR | Missing doc comment for function render_page()
+--------------------------------------------------------------------------------
+
+
+FILE: ...Baudouin/Documents/Projets/404-alert/includes/class-alert404-activator.php
+--------------------------------------------------------------------------------
+FOUND 4 ERRORS AFFECTING 4 LINES
+--------------------------------------------------------------------------------
+ 32 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+    |       | question marks
+ 37 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+    |       | question marks
+ 66 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+    |       | question marks
+ 78 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+    |       | question marks
+--------------------------------------------------------------------------------
+
+
+FILE: ...ouin/Documents/Projets/404-alert/includes/class-alert404-redis-handler.php
+--------------------------------------------------------------------------------
+FOUND 39 ERRORS AND 15 WARNINGS AFFECTING 53 LINES
+--------------------------------------------------------------------------------
+  11 | ERROR   | Missing doc comment for class Alert404_Redis_Handler
+  33 | ERROR   | Use Yoda Condition checks, you must.
+  39 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+  48 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+  55 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+  56 | WARNING | Silencing errors is strongly discouraged. Use proper error
+     |         | checking instead. Found: @$redis->connect( ...
+  63 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+  65 | WARNING | Silencing errors is strongly discouraged. Use proper error
+     |         | checking instead. Found: @$redis->auth( ...
+  72 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+  73 | WARNING | Silencing errors is strongly discouraged. Use proper error
+     |         | checking instead. Found: @$redis->select( ...
+  75 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+  76 | WARNING | Silencing errors is strongly discouraged. Use proper error
+     |         | checking instead. Found: @$redis->ping()...
+  77 | ERROR   | Use Yoda Condition checks, you must.
+  77 | ERROR   | Use Yoda Condition checks, you must.
+  98 | ERROR   | Use Yoda Condition checks, you must.
+ 111 | ERROR   | Use Yoda Condition checks, you must.
+ 115 | ERROR   | Use Yoda Condition checks, you must.
+ 122 | ERROR   | Parameter comment must end with a full stop
+ 123 | ERROR   | Parameter comment must end with a full stop
+ 129 | ERROR   | Use Yoda Condition checks, you must.
+ 135 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 136 | WARNING | Silencing errors is strongly discouraged. Use proper error
+     |         | checking instead. Found: @$redis->set( ...
+ 139 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 142 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 144 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 148 | ERROR   | Use Yoda Condition checks, you must.
+ 158 | ERROR   | Parameter comment must end with a full stop
+ 164 | ERROR   | Use Yoda Condition checks, you must.
+ 169 | WARNING | Silencing errors is strongly discouraged. Use proper error
+     |         | checking instead. Found: @$redis->del( ...
+ 181 | ERROR   | Parameter comment must end with a full stop
+ 182 | ERROR   | Parameter comment must end with a full stop
+ 188 | ERROR   | Use Yoda Condition checks, you must.
+ 193 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 194 | WARNING | Silencing errors is strongly discouraged. Use proper error
+     |         | checking instead. Found: @$redis->incr( ...
+ 196 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 198 | WARNING | Silencing errors is strongly discouraged. Use proper error
+     |         | checking instead. Found: @$redis->expire( ...
+ 211 | ERROR   | Parameter comment must end with a full stop
+ 217 | ERROR   | Use Yoda Condition checks, you must.
+ 222 | WARNING | Silencing errors is strongly discouraged. Use proper error
+     |         | checking instead. Found: @$redis->get( ...
+ 232 | ERROR   | Parameter comment must end with a full stop
+ 233 | ERROR   | Parameter comment must end with a full stop
+ 234 | ERROR   | Parameter comment must end with a full stop
+ 240 | ERROR   | Use Yoda Condition checks, you must.
+ 246 | WARNING | Silencing errors is strongly discouraged. Use proper error
+     |         | checking instead. Found: @$redis->setex( ...
+ 248 | WARNING | Silencing errors is strongly discouraged. Use proper error
+     |         | checking instead. Found: @$redis->set( ...
+ 251 | ERROR   | Use Yoda Condition checks, you must.
+ 261 | ERROR   | Parameter comment must end with a full stop
+ 267 | ERROR   | Use Yoda Condition checks, you must.
+ 273 | WARNING | Silencing errors is strongly discouraged. Use proper error
+     |         | checking instead. Found: @$redis->del( ...
+ 276 | WARNING | Silencing errors is strongly discouraged. Use proper error
+     |         | checking instead. Found: @$redis->del( ...
+ 305 | ERROR   | Use Yoda Condition checks, you must.
+ 307 | WARNING | Silencing errors is strongly discouraged. Use proper error
+     |         | checking instead. Found: @self::$redis->close...
+ 326 | ERROR   | Use Yoda Condition checks, you must.
+ 331 | WARNING | Silencing errors is strongly discouraged. Use proper error
+     |         | checking instead. Found: @$redis->info()...
+--------------------------------------------------------------------------------
+
+
+FILE: .../Documents/Projets/404-alert/includes/class-alert404-user-agent-parser.php
+--------------------------------------------------------------------------------
+FOUND 15 ERRORS AFFECTING 15 LINES
+--------------------------------------------------------------------------------
+   1 | ERROR | Class file names should be based on the class name with "class-"
+     |       | prepended. Expected class-alert404-useragent-parser.php, but
+     |       | found class-alert404-user-agent-parser.php.
+  11 | ERROR | Missing doc comment for class Alert404_UserAgent_Parser
+  15 | ERROR | Parameter comment must end with a full stop
+  29 | ERROR | Parameter comment must end with a full stop
+  36 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+  78 | ERROR | Parameter comment must end with a full stop
+  85 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+ 118 | ERROR | Parameter comment must end with a full stop
+ 122 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+ 127 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+ 138 | ERROR | Parameter comment must end with a full stop
+ 164 | ERROR | Parameter comment must end with a full stop
+ 173 | ERROR | Use Yoda Condition checks, you must.
+ 178 | ERROR | Use Yoda Condition checks, you must.
+ 193 | ERROR | Parameter comment must end with a full stop
+--------------------------------------------------------------------------------
+
+
+FILE: ...douin/Documents/Projets/404-alert/includes/class-alert404-rate-limiter.php
+--------------------------------------------------------------------------------
+FOUND 37 ERRORS AND 4 WARNINGS AFFECTING 41 LINES
+--------------------------------------------------------------------------------
+   1 | ERROR   | Class file names should be based on the class name with
+     |         | "class-" prepended. Expected class-alert404-ratelimiter.php,
+     |         | but found class-alert404-rate-limiter.php.
+  11 | ERROR   | Missing doc comment for class Alert404_RateLimiter
+  16 | ERROR   | Parameter comment must end with a full stop
+  24 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+  29 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+  41 | ERROR   | Parameter comment must end with a full stop
+  42 | ERROR   | Parameter comment must end with a full stop
+  46 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+  51 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+  58 | ERROR   | Parameter comment must end with a full stop
+  59 | ERROR   | Parameter comment must end with a full stop
+  65 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+  68 | ERROR   | Use Yoda Condition checks, you must.
+  71 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+  74 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+  77 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+  84 | ERROR   | Parameter comment must end with a full stop
+  85 | ERROR   | Parameter comment must end with a full stop
+  92 | ERROR   | Use Yoda Condition checks, you must.
+  95 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+  98 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 101 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 107 | ERROR   | Parameter comment must end with a full stop
+ 111 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 116 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 123 | ERROR   | Parameter comment must end with a full stop
+ 129 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 130 | WARNING | Calling current_time() with a $type of "timestamp" or "U" is
+     |         | strongly discouraged as it will not return a Unix (UTC)
+     |         | timestamp. Please consider using a non-timestamp format or
+     |         | otherwise refactoring this code.
+ 131 | WARNING | Calling current_time() with a $type of "timestamp" or "U" is
+     |         | strongly discouraged as it will not return a Unix (UTC)
+     |         | timestamp. Please consider using a non-timestamp format or
+     |         | otherwise refactoring this code.
+ 134 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 137 | ERROR   | Use Yoda Condition checks, you must.
+ 138 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 145 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 149 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 155 | ERROR   | Parameter comment must end with a full stop
+ 166 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 169 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 170 | WARNING | Calling current_time() with a $type of "timestamp" or "U" is
+     |         | strongly discouraged as it will not return a Unix (UTC)
+     |         | timestamp. Please consider using a non-timestamp format or
+     |         | otherwise refactoring this code.
+ 171 | WARNING | Calling current_time() with a $type of "timestamp" or "U" is
+     |         | strongly discouraged as it will not return a Unix (UTC)
+     |         | timestamp. Please consider using a non-timestamp format or
+     |         | otherwise refactoring this code.
+ 174 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 177 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+--------------------------------------------------------------------------------
+
+
+FILE: ...douin/Documents/Projets/404-alert/includes/class-alert404-smtp-handler.php
+--------------------------------------------------------------------------------
+FOUND 28 ERRORS AND 3 WARNINGS AFFECTING 31 LINES
+--------------------------------------------------------------------------------
+  11 | ERROR   | Missing doc comment for class Alert404_SMTP_Handler
+  20 | ERROR   | Parameter comment must end with a full stop
+  24 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+  45 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+  53 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+  55 | ERROR   | Object property "$Host" is not in valid snake_case format, try
+     |         | "$host"
+  56 | ERROR   | Object property "$Port" is not in valid snake_case format, try
+     |         | "$port"
+  57 | ERROR   | Object property "$SMTPAuth" is not in valid snake_case format,
+     |         | try "$s_m_t_p_auth"
+  58 | ERROR   | Object property "$Username" is not in valid snake_case format,
+     |         | try "$username"
+  59 | ERROR   | Object property "$Password" is not in valid snake_case format,
+     |         | try "$password"
+  60 | ERROR   | Object property "$SMTPSecure" is not in valid snake_case
+     |         | format, try "$s_m_t_p_secure"
+  61 | ERROR   | Object property "$Timeout" is not in valid snake_case format,
+     |         | try "$timeout"
+  63 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+  66 | ERROR   | Object property "$Subject" is not in valid snake_case format,
+     |         | try "$subject"
+  68 | ERROR   | Object property "$Body" is not in valid snake_case format, try
+     |         | "$body"
+  70 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+  77 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+  80 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+  88 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 126 | ERROR   | Parameter comment must end with a full stop
+ 148 | WARNING | base64_encode() can be used to obfuscate code which is
+     |         | strongly discouraged. Please verify that the function is used
+     |         | for benign reasons.
+ 156 | ERROR   | Parameter comment must end with a full stop
+ 165 | WARNING | base64_decode() can be used to obfuscate code which is
+     |         | strongly discouraged. Please verify that the function is used
+     |         | for benign reasons.
+ 175 | WARNING | base64_decode() can be used to obfuscate code which is
+     |         | strongly discouraged. Please verify that the function is used
+     |         | for benign reasons.
+ 238 | ERROR   | Object property "$Host" is not in valid snake_case format, try
+     |         | "$host"
+ 239 | ERROR   | Object property "$Port" is not in valid snake_case format, try
+     |         | "$port"
+ 240 | ERROR   | Object property "$SMTPAuth" is not in valid snake_case format,
+     |         | try "$s_m_t_p_auth"
+ 241 | ERROR   | Object property "$Username" is not in valid snake_case format,
+     |         | try "$username"
+ 242 | ERROR   | Object property "$Password" is not in valid snake_case format,
+     |         | try "$password"
+ 243 | ERROR   | Object property "$SMTPSecure" is not in valid snake_case
+     |         | format, try "$s_m_t_p_secure"
+ 245 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+--------------------------------------------------------------------------------
+
+
+FILE: ...douin/Documents/Projets/404-alert/includes/class-alert404-404-template.php
+--------------------------------------------------------------------------------
+FOUND 2 ERRORS AFFECTING 2 LINES
+--------------------------------------------------------------------------------
+  1 | ERROR | Class file names should be based on the class name with "class-"
+    |       | prepended. Expected class-alert404-template.php, but found
+    |       | class-alert404-404-template.php.
+ 10 | ERROR | Missing doc comment for class Alert404_Template
+--------------------------------------------------------------------------------
+
+
+FILE: ...me/Baudouin/Documents/Projets/404-alert/includes/class-alert404-mailer.php
+--------------------------------------------------------------------------------
+FOUND 11 ERRORS AFFECTING 11 LINES
+--------------------------------------------------------------------------------
+  10 | ERROR | Missing doc comment for class Alert404_Mailer
+  15 | ERROR | Parameter comment must end with a full stop
+  33 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+  38 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+  41 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+  78 | ERROR | Parameter comment must end with a full stop
+  91 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+  97 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+ 103 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+ 108 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+ 117 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+--------------------------------------------------------------------------------
+
+
+FILE: .../Baudouin/Documents/Projets/404-alert/includes/class-alert404-detector.php
+--------------------------------------------------------------------------------
+FOUND 7 ERRORS AFFECTING 7 LINES
+--------------------------------------------------------------------------------
+ 10 | ERROR | Missing doc comment for class Alert404_Detector
+ 34 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+    |       | question marks
+ 40 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+    |       | question marks
+ 43 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+    |       | question marks
+ 45 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+    |       | question marks
+ 49 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+    |       | question marks
+ 71 | ERROR | Parameter comment must end with a full stop
+--------------------------------------------------------------------------------
+
+
+FILE: ...e/Baudouin/Documents/Projets/404-alert/includes/class-alert404-storage.php
+--------------------------------------------------------------------------------
+FOUND 34 ERRORS AND 14 WARNINGS AFFECTING 45 LINES
+--------------------------------------------------------------------------------
+  10 | ERROR   | Missing doc comment for class Alert404_Storage
+  17 | ERROR   | Missing doc comment for function init()
+  22 | ERROR   | Missing doc comment for function ensure_storage_ready()
+  36 | ERROR   | Missing doc comment for function get_table_name()
+  41 | ERROR   | Missing doc comment for function create_or_update_table()
+  64 | ERROR   | Missing doc comment for function
+     |         | migrate_legacy_option_storage()
+  78 | WARNING | Use of a direct database call is discouraged.
+  96 | ERROR   | Missing doc comment for function record_404()
+ 107 | WARNING | Use of a direct database call is discouraged.
+ 122 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 126 | ERROR   | Missing doc comment for function enforce_max_records()
+ 131 | WARNING | Use of a direct database call is discouraged.
+ 131 | WARNING | Direct database call without caching detected. Consider using
+     |         | wp_cache_get() / wp_cache_set() or wp_cache_delete().
+ 146 | ERROR   | Missing doc comment for function get_stats()
+ 151 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 160 | WARNING | Use of a direct database call is discouraged.
+ 173 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 179 | ERROR   | Missing doc comment for function get_stats_by_date()
+ 184 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 193 | WARNING | Use of a direct database call is discouraged.
+ 206 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 212 | ERROR   | Missing doc comment for function get_total_count()
+ 215 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 224 | WARNING | Use of a direct database call is discouraged.
+ 224 | WARNING | It is not necessary to prepare a query which doesn't use
+     |         | variable replacement.
+ 228 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 234 | ERROR   | Missing doc comment for function get_unique_urls_count()
+ 237 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 246 | WARNING | Use of a direct database call is discouraged.
+ 246 | WARNING | It is not necessary to prepare a query which doesn't use
+     |         | variable replacement.
+ 250 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 256 | ERROR   | Missing doc comment for function get_top_urls()
+ 261 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 270 | WARNING | Use of a direct database call is discouraged.
+ 296 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 302 | ERROR   | Missing doc comment for function get_top_ips()
+ 307 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 316 | WARNING | Use of a direct database call is discouraged.
+ 342 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 369 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 378 | WARNING | Use of a direct database call is discouraged.
+ 388 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 405 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 414 | WARNING | Use of a direct database call is discouraged.
+ 440 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 455 | ERROR   | Missing doc comment for function clear_stats()
+ 463 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 492 | ERROR   | Missing doc comment for function export_csv()
+--------------------------------------------------------------------------------
+
+
+FILE: /home/Baudouin/Documents/Projets/404-alert/templates/404.php
+--------------------------------------------------------------------------------
+FOUND 2 ERRORS AFFECTING 2 LINES
+--------------------------------------------------------------------------------
+   4 | ERROR | Missing @package tag in file comment
+ 124 | ERROR | Detected usage of a non-sanitized input variable:
+     |       | $_SERVER['REQUEST_URI']
+--------------------------------------------------------------------------------
+
+Time: 3.45 secs; Memory: 20MB
+

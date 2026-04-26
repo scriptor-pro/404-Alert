@@ -14,7 +14,7 @@ class Test_Alert404_RateLimiter_Redis extends Alert404_UnitTestCase {
 
 		// Charger les classes
 		if ( ! class_exists( 'Alert404_Redis_Handler' ) ) {
-			require_once dirname( dirname( dirname( __FILE__ ) ) ) . '/includes/class-redis-handler.php';
+			require_once dirname( dirname( dirname( __FILE__ ) ) ) . '/includes/class-alert404-redis-handler.php';
 		}
 
 		// Configuration par défaut pour les tests

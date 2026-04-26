@@ -1,0 +1,12 @@
+--- a/includes/class-alert404-smtp-handler.php
++++ b/includes/class-alert404-smtp-handler.php
+@@ -198,6 +198,10 @@ class Alert404_SMTP_Handler {
+ 	private static function get_encryption_key(): string {
+ 		$auth_key        = defined( 'AUTH_KEY' ) ? (string) constant( 'AUTH_KEY' ) : '';
+ 		$secure_auth_key = defined( 'SECURE_AUTH_KEY' ) ? (string) constant( 'SECURE_AUTH_KEY' ) : '';
++
++		if ( '' === $auth_key && '' === $secure_auth_key ) {
++			return '';
++		}
+ 
+ 		$material = $auth_key . '|' . $secure_auth_key;

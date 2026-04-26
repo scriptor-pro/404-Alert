@@ -63,18 +63,18 @@ function _manually_load_plugin() {
 	}
 
 	// Charger les classes du plugin
-	require_once dirname( dirname( __FILE__ ) ) . '/includes/class-logger.php';
-	require_once dirname( dirname( __FILE__ ) ) . '/includes/class-redis-handler.php';
-	require_once dirname( dirname( __FILE__ ) ) . '/includes/class-user-agent-parser.php';
-	require_once dirname( dirname( __FILE__ ) ) . '/includes/class-request-info.php';
-	require_once dirname( dirname( __FILE__ ) ) . '/includes/class-smtp-handler.php';
-	require_once dirname( dirname( __FILE__ ) ) . '/includes/class-settings.php';
-	require_once dirname( dirname( __FILE__ ) ) . '/includes/class-rate-limiter.php';
-	require_once dirname( dirname( __FILE__ ) ) . '/includes/class-storage.php';
-	require_once dirname( dirname( __FILE__ ) ) . '/includes/class-mailer.php';
-	require_once dirname( dirname( __FILE__ ) ) . '/includes/class-detector.php';
-	require_once dirname( dirname( __FILE__ ) ) . '/includes/class-404-template.php';
-	require_once dirname( dirname( __FILE__ ) ) . '/includes/class-dashboard.php';
+	require_once dirname( dirname( __FILE__ ) ) . '/includes/class-alert404-logger.php';
+	require_once dirname( dirname( __FILE__ ) ) . '/includes/class-alert404-redis-handler.php';
+	require_once dirname( dirname( __FILE__ ) ) . '/includes/class-alert404-user-agent-parser.php';
+	require_once dirname( dirname( __FILE__ ) ) . '/includes/class-alert404-request-info.php';
+	require_once dirname( dirname( __FILE__ ) ) . '/includes/class-alert404-smtp-handler.php';
+	require_once dirname( dirname( __FILE__ ) ) . '/includes/class-alert404-settings.php';
+	require_once dirname( dirname( __FILE__ ) ) . '/includes/class-alert404-rate-limiter.php';
+	require_once dirname( dirname( __FILE__ ) ) . '/includes/class-alert404-storage.php';
+	require_once dirname( dirname( __FILE__ ) ) . '/includes/class-alert404-mailer.php';
+	require_once dirname( dirname( __FILE__ ) ) . '/includes/class-alert404-detector.php';
+	require_once dirname( dirname( __FILE__ ) ) . '/includes/class-alert404-404-template.php';
+	require_once dirname( dirname( __FILE__ ) ) . '/includes/class-alert404-dashboard.php';
 
 	// Initialiser les classes
 	Alert404_Settings::init();

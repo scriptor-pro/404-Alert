@@ -15,7 +15,7 @@ class Test_Alert404_Redis_Handler extends Alert404_UnitTestCase {
 		parent::setUp();
 		// Charger la classe Redis Handler
 		if ( ! class_exists( 'Alert404_Redis_Handler' ) ) {
-			require_once dirname( dirname( dirname( __FILE__ ) ) ) . '/includes/class-redis-handler.php';
+			require_once dirname( dirname( dirname( __FILE__ ) ) ) . '/includes/class-alert404-redis-handler.php';
 		}
 		// Fermer toute connexion existante
 		Alert404_Redis_Handler::close();

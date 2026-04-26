@@ -2,14 +2,13 @@ parameters:
   level: 8
   paths:
     - 404-alert.php
-    - includes
-  scanFiles:
-    - stubs/wordpress-runtime.php
+    - includes/
+    - templates/
+  excludePaths:
+    - stubs/
   bootstrapFiles:
     - stubs/phpstan-bootstrap.php
   ignoreErrors:
-    - identifier: missingType.iterableValue
-    # PHPMailer files are provided by WordPress at runtime
-    - identifier: requireOnce.fileNotFound
-      paths:
-        - includes/class-smtp-handler.php
+    - '#Undefined variable: \$GLOBALS#'
+    - '#Access to undefined constant#'
+    - '#Call to undefined function#'

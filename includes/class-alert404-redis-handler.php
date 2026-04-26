@@ -56,7 +56,7 @@ class Alert404_Redis_Handler {
 			$timeout  = defined( 'ALERT404_REDIS_TIMEOUT' ) ? ALERT404_REDIS_TIMEOUT : 2;
 
 			// Tentative de connexion.
-			$connected = @$redis->connect( $host, $port, $timeout );
+			$connected = $redis->connect( $host, $port, $timeout );
 
 			if ( ! $connected ) {
 				Alert404_Logger::log_redis_unavailable( "Impossible de se connecter à $host:$port" );
@@ -65,7 +65,7 @@ class Alert404_Redis_Handler {
 
 			// Authentification si password.
 			if ( ! empty( $password ) ) {
-				$authenticated = @$redis->auth( $password );
+				$authenticated = $redis->auth( $password );
 				if ( ! $authenticated ) {
 					Alert404_Logger::log_redis_unavailable( 'Authentification Redis échouée' );
 					return false;
@@ -73,10 +73,10 @@ class Alert404_Redis_Handler {
 			}
 
 			// Sélectionner la base de données.
-			@$redis->select( $db );
+			$redis->select( $db );
 
 			// Test connection with PING.
-			$ping = @$redis->ping();
+			$ping = $redis->ping();
 			if ( true !== $ping && '+PONG' !== $ping ) {
 				Alert404_Logger::log_redis_unavailable( 'Redis PING échoué' );
 				return false;
@@ -136,7 +136,7 @@ class Alert404_Redis_Handler {
 		try {
 			// SET key value NX EX timeout.
 			// Atomique: SET si n'existe pas, avec expiration.
-			$result = @$redis->set(
+			$result = $redis->set(
 				$key,
 				wp_hash( uniqid( '', true ) ),
 				// Valeur unique.
@@ -169,7 +169,7 @@ class Alert404_Redis_Handler {
 		}
 
 		try {
-			@$redis->del( $key );
+			$redis->del( $key );
 			return true;
 		} catch ( \Throwable $e ) {
 			Alert404_Logger::log_redis_error( 'release_lock failed: ' . $e->getMessage() );
@@ -194,11 +194,11 @@ class Alert404_Redis_Handler {
 
 		try {
 			// INCR est atomique dans Redis.
-			$value = @$redis->incr( $key );
+			$value = $redis->incr( $key );
 
 			// Définir l'expiration si demandée.
 			if ( $ttl > 0 ) {
-				@$redis->expire( $key, $ttl );
+				$redis->expire( $key, $ttl );
 			}
 
 			return $value;
@@ -222,7 +222,7 @@ class Alert404_Redis_Handler {
 		}
 
 		try {
-			return @$redis->get( $key );
+			return $redis->get( $key );
 		} catch ( \Throwable $e ) {
 			Alert404_Logger::log_redis_error( 'get failed: ' . $e->getMessage() );
 			return false;
@@ -246,9 +246,9 @@ class Alert404_Redis_Handler {
 
 		try {
 			if ( $ttl > 0 ) {
-				$result = @$redis->setex( $key, $ttl, $value );
+				$result = $redis->setex( $key, $ttl, $value );
 			} else {
-				$result = @$redis->set( $key, $value );
+				$result = $redis->set( $key, $value );
 			}
 
 			return true === $result;
@@ -273,10 +273,10 @@ class Alert404_Redis_Handler {
 
 		try {
 			if ( is_array( $keys ) ) {
-				return @$redis->del( ...$keys );
+				return $redis->del( ...$keys );
 			}
 
-			return @$redis->del( $keys );
+			return $redis->del( $keys );
 		} catch ( \Throwable $e ) {
 			Alert404_Logger::log_redis_error( 'delete failed: ' . $e->getMessage() );
 			return 0;
@@ -307,7 +307,7 @@ class Alert404_Redis_Handler {
 	public static function close(): void {
 		if ( null !== self::$redis ) {
 			try {
-				@self::$redis->close();
+				self::$redis->close();
 			} catch ( \Throwable $e ) {
 				// Silently ignore close errors (Redis may already be closed).
 				unset( $e );
@@ -331,7 +331,7 @@ class Alert404_Redis_Handler {
 		}
 
 		try {
-			return @$redis->info();
+			return $redis->info();
 		} catch ( \Throwable $e ) {
 			return false;
 		}
