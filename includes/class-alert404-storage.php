@@ -16,12 +16,13 @@ class Alert404_Storage {
 	private const SCHEMA_VERSION       = '1';
 	private const SCHEMA_OPTION_KEY    = '404_alert_stats_schema_version';
 	private const MIGRATION_OPTION_KEY = '404_alert_stats_migrated';
+	private static bool $initialized   = false;
 
 	public static function init(): void {
 		self::ensure_storage_ready();
 
-		// Ensure table exists on every request where statistics are accessed.
-		add_action( 'plugins_loaded', array( self::class, 'ensure_storage_ready' ), 100 );
+		// Ensure table exists on init hook and before 404 detection.
+		add_action( 'init', array( self::class, 'ensure_storage_ready' ), 100 );
 	}
 
 	private static function ensure_storage_ready(): void {
@@ -36,6 +37,8 @@ class Alert404_Storage {
 			self::migrate_legacy_option_storage();
 			update_option( self::MIGRATION_OPTION_KEY, 1, false );
 		}
+
+		self::$initialized = true;
 	}
 
 	private static function get_table_name(): string {
