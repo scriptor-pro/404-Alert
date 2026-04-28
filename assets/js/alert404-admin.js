@@ -1,13 +1,26 @@
 /* global alert404AdminVars, jQuery */
 jQuery( document ).ready( function ( $ ) {
+	let pollingInterval = null;
+	let testInProgress = false;
+
 	$( '#404-alert-smtp-test' ).on( 'click', function ( e ) {
 		e.preventDefault();
+
+		if ( testInProgress ) {
+			return;
+		}
+
+		testInProgress = true;
 		var $btn = $( this );
-		var $result = $( '#404-alert-smtp-test-result' );
+		var $progressContainer = $( '#404-alert-test-progress' );
 
 		$btn.prop( 'disabled', true ).text( 'Test en cours...' );
-		$result.show().html( '<p style="color: #999;">Vérification de la connexion...</p>' );
+		$progressContainer.show();
 
+		// Initialize progress display
+		initProgressDisplay();
+
+		// Start the SMTP test
 		$.ajax( {
 			type: 'POST',
 			url: alert404AdminVars.ajaxurl,
@@ -15,19 +28,130 @@ jQuery( document ).ready( function ( $ ) {
 				action: '404_alert_test_smtp',
 				nonce: alert404AdminVars.nonce
 			},
-			success: function ( response ) {
-				if ( response.success ) {
-					$result.html( '<p style="color: #090; font-weight: bold;">✓ ' + response.data.message + '</p>' );
-				} else {
-					$result.html( '<p style="color: #c33; font-weight: bold;">✗ ' + response.data.message + '</p>' );
-				}
+			success: function () {
+				// Test started, begin polling
+				startPolling();
 			},
 			error: function () {
-				$result.html( '<p style="color: #c33;">Erreur lors du test de connexion.</p>' );
-			},
-			complete: function () {
+				$progressContainer.html( '<p style="color: #c33;">Erreur lors du test de connexion.</p>' );
 				$btn.prop( 'disabled', false ).text( 'Tester la connexion' );
+				testInProgress = false;
 			}
 		} );
 	} );
+
+	function initProgressDisplay() {
+		var $container = $( '#404-alert-test-progress' );
+		var progressHtml = '<div class="alert404-progress-bar-container"><div class="alert404-progress-bar" style="width: 0%"></div></div><ul class="alert404-steps-list"></ul>';
+		$container.html( progressHtml );
+	}
+
+	function startPolling() {
+		var pollAttempts = 0;
+		var maxAttempts = 120; // 60 seconds with 500ms interval
+
+		pollingInterval = setInterval( function () {
+			pollAttempts++;
+
+			$.ajax( {
+				type: 'POST',
+				url: alert404AdminVars.ajaxurl,
+				data: {
+					action: '404_alert_get_test_progress',
+					nonce: alert404AdminVars.nonce
+				},
+				success: function ( response ) {
+					if ( response.success ) {
+						updateProgressDisplay( response.data );
+
+						// Check if test is complete
+						if ( ! response.data.is_running ) {
+							completeTest();
+						}
+					}
+				},
+				error: function () {
+					// Retry on error
+					if ( pollAttempts >= maxAttempts ) {
+						completeTest();
+					}
+				}
+			} );
+
+			// Stop polling after timeout
+			if ( pollAttempts >= maxAttempts ) {
+				completeTest();
+			}
+		}, 500 );
+	}
+
+	function updateProgressDisplay( progress ) {
+		var $container = $( '#404-alert-test-progress' );
+		var $progressBar = $container.find( '.alert404-progress-bar' );
+		var $stepsList = $container.find( '.alert404-steps-list' );
+
+		// Update progress bar
+		$progressBar.css( 'width', progress.progress + '%' );
+
+		// Update steps list
+		if ( progress.steps && progress.steps.length > 0 ) {
+			var stepsHtml = '';
+			$.each( progress.steps, function ( index, step ) {
+				var icon = getIconForStatus( step.status );
+				var stepClass = 'alert404-step ' + step.status;
+
+				stepsHtml += '<li class="' + stepClass + '">';
+				stepsHtml += '<div class="alert404-step-icon">' + icon + '</div>';
+				stepsHtml += '<div class="alert404-step-text">';
+				stepsHtml += '<span class="alert404-step-label">' + step.step + '</span>';
+				if ( step.message ) {
+					stepsHtml += '<span class="alert404-step-message">' + escapeHtml( step.message ) + '</span>';
+				}
+				stepsHtml += '</div>';
+				stepsHtml += '</li>';
+			} );
+
+			$stepsList.html( stepsHtml );
+		}
+	}
+
+	function getIconForStatus( status ) {
+		switch ( status ) {
+			case 'pending':
+				return '⏳';
+			case 'running':
+				return '⌛';
+			case 'success':
+				return '✓';
+			case 'error':
+				return '✗';
+			default:
+				return '○';
+		}
+	}
+
+	function escapeHtml( text ) {
+		var map = {
+			'&': '&amp;',
+			'<': '&lt;',
+			'>': '&gt;',
+			'"': '&quot;',
+			"'": '&#039;'
+		};
+		return text.replace( /[&<>"']/g, function ( m ) {
+			return map[ m ];
+		} );
+	}
+
+	function completeTest() {
+		if ( pollingInterval ) {
+			clearInterval( pollingInterval );
+			pollingInterval = null;
+		}
+
+		var $btn = $( '#404-alert-smtp-test' );
+		$btn.prop( 'disabled', false ).text( 'Tester la connexion' );
+
+		testInProgress = false;
+	}
 } );
