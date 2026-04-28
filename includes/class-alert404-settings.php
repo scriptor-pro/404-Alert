@@ -22,6 +22,9 @@ class Alert404_Settings {
 		add_action( 'admin_init', array( self::class, 'register_settings' ) );
 		add_action( 'wp_ajax_404_alert_test_smtp', array( self::class, 'handle_test_smtp' ) );
 		add_action( 'wp_ajax_404_alert_get_test_progress', array( self::class, 'handle_get_progress' ) );
+		add_action( 'wp_ajax_404_alert_save_custom_preset', array( self::class, 'handle_save_custom_preset' ) );
+		add_action( 'wp_ajax_404_alert_delete_custom_preset', array( self::class, 'handle_delete_custom_preset' ) );
+		add_action( 'wp_ajax_404_alert_get_all_presets', array( self::class, 'handle_get_all_presets' ) );
 		add_action( 'admin_enqueue_scripts', array( self::class, 'enqueue_admin_scripts' ) );
 	}
 
@@ -52,9 +55,17 @@ class Alert404_Settings {
 			'404-alert-admin',
 			'alert404AdminVars',
 			array(
-				'ajaxurl' => admin_url( 'admin-ajax.php' ),
-				'nonce'   => wp_create_nonce( '404_alert_test_smtp' ),
+				'ajaxurl'     => admin_url( 'admin-ajax.php' ),
+				'nonce'       => wp_create_nonce( '404_alert_test_smtp' ),
+				'presetNonce' => wp_create_nonce( '404_alert_preset_nonce' ),
 			)
+		);
+		wp_enqueue_script(
+			'404-alert-smtp-presets',
+			plugin_dir_url( ALERT404_MAIN_FILE ) . 'assets/js/alert404-smtp-presets.js',
+			array( 'jquery' ),
+			ALERT404_VERSION,
+			true
 		);
 	}
 
@@ -821,5 +832,71 @@ class Alert404_Settings {
 			</form>
 		</div>
 		<?php
+	}
+
+	/**
+	 * Handle AJAX request to save a custom SMTP preset
+	 *
+	 * @return void
+	 */
+	public static function handle_save_custom_preset(): void {
+		check_ajax_referer( '404_alert_preset_nonce', 'nonce' );
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array( 'message' => 'Access denied' ) );
+		}
+
+		$name       = isset( $_POST['name'] ) ? sanitize_text_field( wp_unslash( $_POST['name'] ) ) : '';
+		$host       = isset( $_POST['host'] ) ? sanitize_text_field( wp_unslash( $_POST['host'] ) ) : '';
+		$port       = isset( $_POST['port'] ) ? absint( wp_unslash( $_POST['port'] ) ) : 0;
+		$encryption = isset( $_POST['encryption'] ) ? sanitize_text_field( wp_unslash( $_POST['encryption'] ) ) : '';
+
+		if ( empty( $name ) || empty( $host ) || empty( $port ) || empty( $encryption ) ) {
+			wp_send_json_error( array( 'message' => 'Missing required fields' ) );
+		}
+
+		$id = Alert404_SMTP_Presets::save_custom_preset( $name, $host, $port, $encryption );
+		wp_send_json_success( array( 'id' => $id, 'message' => 'Preset saved successfully' ) );
+	}
+
+	/**
+	 * Handle AJAX request to delete a custom SMTP preset
+	 *
+	 * @return void
+	 */
+	public static function handle_delete_custom_preset(): void {
+		check_ajax_referer( '404_alert_preset_nonce', 'nonce' );
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array( 'message' => 'Access denied' ) );
+		}
+
+		$id = isset( $_POST['id'] ) ? sanitize_text_field( wp_unslash( $_POST['id'] ) ) : '';
+
+		if ( empty( $id ) ) {
+			wp_send_json_error( array( 'message' => 'Missing preset ID' ) );
+		}
+
+		if ( Alert404_SMTP_Presets::delete_custom_preset( $id ) ) {
+			wp_send_json_success( array( 'message' => 'Preset deleted successfully' ) );
+		} else {
+			wp_send_json_error( array( 'message' => 'Preset not found' ) );
+		}
+	}
+
+	/**
+	 * Handle AJAX request to get all presets (native + custom)
+	 *
+	 * @return void
+	 */
+	public static function handle_get_all_presets(): void {
+		check_ajax_referer( '404_alert_preset_nonce', 'nonce' );
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array( 'message' => 'Access denied' ) );
+		}
+
+		$presets = Alert404_SMTP_Presets::get_all_presets();
+		wp_send_json_success( array( 'presets' => $presets ) );
 	}
 }
