@@ -278,6 +278,23 @@ class Alert404_Logger {
 	}
 
 	/**
+	 * Logue une erreur d'enregistrement de statistiques
+	 *
+	 * @param string $reason Raison de l'erreur.
+	 * @param string $context Contexte additionnel.
+	 * @return void
+	 */
+	public static function log_stats_error( string $reason, string $context = '' ): void {
+		self::log(
+			'stats_error',
+			array(
+				'reason'  => $reason,
+				'context' => $context,
+			)
+		);
+	}
+
+	/**
 	 * Enregistre un événement générique dans les logs
 	 * N'écrit que si WP_DEBUG_LOG est activé
 	 *

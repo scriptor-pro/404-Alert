@@ -19,6 +19,9 @@ class Alert404_Storage {
 
 	public static function init(): void {
 		self::ensure_storage_ready();
+
+		// Ensure table exists on every request where statistics are accessed.
+		add_action( 'plugins_loaded', array( self::class, 'ensure_storage_ready' ), 100 );
 	}
 
 	private static function ensure_storage_ready(): void {
@@ -60,7 +63,15 @@ class Alert404_Storage {
 		) {$charset_collate};";
 
 		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
-		dbDelta( $sql );
+		$result = dbDelta( $sql );
+
+		// Log table creation/update result.
+		if ( ! empty( $wpdb->last_error ) ) {
+			Alert404_Logger::log_stats_error(
+				'Table creation/update failed',
+				'Table: ' . $table_name . ' | Error: ' . $wpdb->last_error
+			);
+		}
 	}
 
 	private static function migrate_legacy_option_storage(): void {
@@ -106,8 +117,13 @@ class Alert404_Storage {
 			return;
 		}
 
-		$wpdb->insert(
-			$wpdb->prefix . '404_alert_stats',
+		// Ensure table exists before attempting insertion.
+		self::ensure_storage_ready();
+
+		$table_name = $wpdb->prefix . '404_alert_stats';
+
+		$insert_result = $wpdb->insert(
+			$table_name,
 			array(
 				'url'                 => sanitize_text_field( (string) ( $payload['url'] ?? $payload['full_url'] ?? 'unknown' ) ),
 				'ip'                  => sanitize_text_field( (string) ( $payload['ip'] ?? 'unknown' ) ),
@@ -118,6 +134,14 @@ class Alert404_Storage {
 			),
 			array( '%s', '%s', '%s', '%s', '%s', '%s' )
 		);
+
+		if ( false === $insert_result ) {
+			Alert404_Logger::log_stats_error(
+				'Database insertion failed',
+				'Table: ' . $table_name . ' | Error: ' . $wpdb->last_error
+			);
+			return;
+		}
 
 		self::enforce_max_records();
 

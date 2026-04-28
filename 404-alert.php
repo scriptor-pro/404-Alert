@@ -48,8 +48,10 @@ function alert404_init(): void {
 	// Initialiser Redis (optionnel, fallback à transients).
 	Alert404_Redis_Handler::init();
 
-	Alert404_Settings::init();
+	// Initialize storage (ensures table exists, initializes on every request).
 	Alert404_Storage::init();
+
+	Alert404_Settings::init();
 	Alert404_Template::init();
 	Alert404_Detector::init();
 	Alert404_Dashboard::init();
