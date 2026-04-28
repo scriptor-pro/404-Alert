@@ -289,7 +289,7 @@ class Alert404_Settings {
 		<div style="margin-top: 15px; padding: 15px; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 4px;">
 			<h3 style="margin-top: 0;">⚡ Quick Setup</h3>
 			<p style="margin-bottom: 10px;">Select a provider to auto-fill SMTP settings:</p>
-			<?php self::render_preset_buttons(); ?>
+			<?php self::render_smtp_presets_combobox(); ?>
 		</div>
 
 		<details style="margin-top: 15px;">
@@ -459,40 +459,28 @@ class Alert404_Settings {
 	 *
 	 * @return void
 	 */
-	public static function render_preset_buttons(): void {
-		$presets = Alert404_SMTP_Presets::get_presets();
+	public static function render_smtp_presets_combobox(): void {
 		?>
-		<div style="display: flex; flex-wrap: wrap; gap: 8px;">
-			<?php foreach ( $presets as $key => $preset ) : ?>
-				<button type="button"
-						class="button button-secondary alert404-preset-btn"
-						data-preset="<?php echo esc_attr( $key ); ?>"
-						style="cursor: pointer; padding: 8px 12px; font-size: 13px;">
-					<?php echo esc_html( $preset['name'] ); ?>
-				</button>
-			<?php endforeach; ?>
+		<div style="margin-bottom: 20px;">
+			<label for="404-alert-smtp-preset-search" style="display: block; margin-bottom: 8px; font-weight: bold;">
+				Choisir une solution d'envoi ou créer une personnalisée:
+			</label>
+			<div style="position: relative;">
+				<input
+					type="text"
+					id="404-alert-smtp-preset-search"
+					placeholder="Rechercher ou sélectionner... (Gmail, Yahoo, etc.)"
+					style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 3px; font-size: 14px;"
+				/>
+				<ul
+					id="404-alert-preset-suggestions"
+					style="position: absolute; top: 100%; left: 0; right: 0; background: white; border: 1px solid #ccc; border-top: none; margin: 0; padding: 0; list-style: none; display: none; z-index: 1000; max-height: 300px; overflow-y: auto; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+				</ul>
+			</div>
+			<p style="margin-top: 10px; font-size: 12px; color: #666;">
+				💡 Conseil: Sélectionnez un service ou créez une solution personnalisée. Vous pouvez réutiliser vos solutions sauvegardées.
+			</p>
 		</div>
-		<script>
-			document.querySelectorAll('.alert404-preset-btn').forEach(btn => {
-				btn.addEventListener('click', function(e) {
-					e.preventDefault();
-					const preset = this.dataset.preset;
-					const presets = <?php echo wp_json_encode( $presets ); ?>;
-					const config = presets[preset];
-					if (config) {
-						document.querySelector('input[name="404_alert_options[smtp_host]"]').value = config.host;
-						document.querySelector('input[name="404_alert_options[smtp_port]"]').value = config.port;
-						document.querySelector('select[name="404_alert_options[smtp_encryption]"]').value = config.encryption;
-						this.style.backgroundColor = '#5a8d6b';
-						this.style.color = 'white';
-						setTimeout(() => {
-							this.style.backgroundColor = '';
-							this.style.color = '';
-						}, 1500);
-					}
-				});
-			});
-		</script>
 		<?php
 	}
 
