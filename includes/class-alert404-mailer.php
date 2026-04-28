@@ -31,6 +31,7 @@ class Alert404_Mailer {
 		if ( strlen( $subject ) > 200 ) {
 			$subject = '404 Alert - Erreur détectée';
 		}
+		$subject = '=?UTF-8?B?' . base64_encode( $subject ) . '?=';
 		$headers = array( 'Content-Type: text/html; charset=UTF-8' );
 
 		// Apply filters to allow extensions to customize behavior.
