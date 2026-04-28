@@ -4,7 +4,7 @@
 set -e
 
 # Extract version from 404-alert.php
-VERSION=$(grep "define( 'ALERT404_VERSION'" 404-alert.php | grep -oP "'\K[^']*")
+VERSION=$(grep "define( 'ALERT404_VERSION'" 404-alert.php | sed -n "s/.*'\([^']*\)'.*/\1/p")
 DATE=$(date +%Y%m%d)
 FILENAME="404-alert-v${VERSION}-${DATE}.zip"
 
@@ -24,8 +24,8 @@ zip -r "$FILENAME" \
   CONTRIBUTING.md \
   REDIS.md \
   SMTP.md \
+  SMTP-CONNECTION-TEST.md \
   CONFIGURATION-PRODUCTION.md \
-  WORDPRESS-ORG.md \
   readme.txt \
   -x "*.git*" "vendor/*" "tests/*" "node_modules/*" ".vscode/*" \
   ".phpunit*" "phpcs.xml" "phpstan.neon" "wordpress-local/*" \
