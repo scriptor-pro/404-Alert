@@ -36,7 +36,7 @@ class Alert404_Settings {
 		}
 		wp_enqueue_script(
 			'404-alert-admin',
-			plugin_dir_url( __DIR__ ) . '../assets/js/alert404-admin.js',
+			plugin_dir_url( ALERT404_MAIN_FILE ) . 'assets/js/alert404-admin.js',
 			array( 'jquery' ),
 			ALERT404_VERSION,
 			true
