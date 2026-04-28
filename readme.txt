@@ -4,7 +4,7 @@ Tags: 404, error, email, notification, alert
 Requires at least: 5.0
 Tested up to: 6.9
 Requires PHP: 8.1
-Stable tag: 1.2.7
+Stable tag: 1.2.8
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -148,6 +148,13 @@ For support, documentation, and advanced configuration:
 - Review configuration examples in settings page
 
 == Changelog ==
+
+= 1.2.8 (April 28, 2026) =
+* Fixed: Statistics table creation verification on every request
+* Fixed: Database insertion error handling and logging
+* Improved: Robust statistics storage with automatic table recreation
+* Improved: Better error diagnostics with log_stats_error() method
+* Security: Prevent silent failures in statistics recording
 
 = 1.2.0 (April 11, 2026) =
 * Fixed: Database security - Added proper prepared statements documentation
