@@ -34,3 +34,12 @@ error.log
 
 # Git Worktrees
 .worktrees/
+
+# Development & Documentation
+.claude/
+.github/
+.claudeignore
+.editorconfig
+.codex
+*.md
+*.sh
