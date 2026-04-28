@@ -46,6 +46,39 @@ define( 'ALERT404_SMTP_ENABLED', true );
 - Générer un [App Password](https://myaccount.google.com/apppasswords) (16 chars)
 - Ne **pas** utiliser le password Gmail principal
 
+#### Yahoo Mail
+
+```php
+define( 'ALERT404_SMTP_HOST', 'smtp.mail.yahoo.com' );
+define( 'ALERT404_SMTP_PORT', 587 );
+define( 'ALERT404_SMTP_USERNAME', 'your-email@yahoo.com' );
+define( 'ALERT404_SMTP_PASSWORD', 'your-app-password' ); // App password from Yahoo
+define( 'ALERT404_SMTP_ENCRYPTION', 'tls' );
+define( 'ALERT404_SMTP_FROM_EMAIL', 'your-email@yahoo.com' );
+define( 'ALERT404_SMTP_ENABLED', true );
+```
+
+**Notes :**
+- Générer un [App Password](https://login.yahoo.com/account/security) depuis les paramètres de sécurité Yahoo
+- Limite : 450 emails/jour
+
+#### ProtonMail
+
+```php
+define( 'ALERT404_SMTP_HOST', 'smtp.protonmail.com' );
+define( 'ALERT404_SMTP_PORT', 1025 );
+define( 'ALERT404_SMTP_USERNAME', 'your-email@protonmail.com' );
+define( 'ALERT404_SMTP_PASSWORD', 'your-app-password' ); // App password from ProtonMail
+define( 'ALERT404_SMTP_ENCRYPTION', 'tls' );
+define( 'ALERT404_SMTP_FROM_EMAIL', 'your-email@protonmail.com' );
+define( 'ALERT404_SMTP_ENABLED', true );
+```
+
+**Notes :**
+- Générer un [App Password](https://account.protonmail.com/mail/settings/passwords) depuis les paramètres de sécurité ProtonMail
+- Utilisez votre adresse email ProtonMail comme identifiant
+- Limite : illimité pour les comptes payants, 150/jour pour les freemium
+
 #### Outlook / Office 365
 
 ```php

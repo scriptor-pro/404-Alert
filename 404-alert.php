@@ -19,6 +19,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
+define( 'ALERT404_VERSION', '1.2.0' );
 define( 'ALERT404_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ALERT404_MAIN_FILE', __FILE__ );
 
@@ -26,6 +27,7 @@ require_once ALERT404_DIR . 'includes/class-alert404-logger.php';
 require_once ALERT404_DIR . 'includes/class-alert404-redis-handler.php';
 require_once ALERT404_DIR . 'includes/class-alert404-user-agent-parser.php';
 require_once ALERT404_DIR . 'includes/class-alert404-request-info.php';
+require_once ALERT404_DIR . 'includes/class-alert404-smtp-presets.php';
 require_once ALERT404_DIR . 'includes/class-alert404-smtp-handler.php';
 require_once ALERT404_DIR . 'includes/class-alert404-settings.php';
 require_once ALERT404_DIR . 'includes/class-alert404-rate-limiter.php';
