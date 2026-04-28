@@ -112,12 +112,14 @@ class Alert404_Settings {
 	 * @return void
 	 */
 	public static function add_menu(): void {
-		add_options_page(
+		add_menu_page(
 			'404 Alert',
 			'404 Alert',
 			'manage_options',
 			'404_alert',
-			array( self::class, 'render_page' )
+			array( self::class, 'render_page' ),
+			'dashicons-warning',
+			25
 		);
 	}
 

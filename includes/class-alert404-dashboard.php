@@ -21,7 +21,7 @@ class Alert404_Dashboard {
 
 	public static function add_menu(): void {
 		add_submenu_page(
-			'options-general.php',
+			'404_alert',
 			'Statistiques 404',
 			'Statistiques',
 			'manage_options',
