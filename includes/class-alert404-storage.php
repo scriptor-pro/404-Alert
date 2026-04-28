@@ -19,7 +19,6 @@ class Alert404_Storage {
 
 	public static function init(): void {
 		self::ensure_storage_ready();
-		add_action( '404_alert_email_sent', array( self::class, 'record_404' ), 10, 3 );
 	}
 
 	private static function ensure_storage_ready(): void {
