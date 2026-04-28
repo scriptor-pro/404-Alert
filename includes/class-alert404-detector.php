@@ -60,7 +60,7 @@ class Alert404_Detector {
 	 * @return string Valid IP or empty string if invalid
 	 */
 	private static function get_ip(): string {
-		require_once ALERT404_DIR . 'includes/class-request-info.php';
+		require_once ALERT404_DIR . 'includes/class-alert404-request-info.php';
 
 		$ip = Alert404_Request_Info::get_client_ip();
 
@@ -75,7 +75,7 @@ class Alert404_Detector {
 	 * @return array<string, mixed> Array containing all enriched information.
 	 */
 	private static function collect_payload( string $ip ): array {
-		require_once ALERT404_DIR . 'includes/class-request-info.php';
+		require_once ALERT404_DIR . 'includes/class-alert404-request-info.php';
 
 		try {
 			$request_info = Alert404_Request_Info::gather();
