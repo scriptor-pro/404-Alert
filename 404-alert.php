@@ -2,7 +2,7 @@
 /**
  * Plugin Name: 404 Alert
  * Plugin URI: https://github.com/baudouin/404-alert
- * Description: Envoie un email à l'administrateur à chaque erreur 404.
+ * Description: Envoie un email à l'administrateur à chaque erreur 404. <a href="options-general.php?page=404_alert">Paramètres</a>
  * Version: 1.2.0
  * Author: Baudouin
  * Author URI: https://etik.com
