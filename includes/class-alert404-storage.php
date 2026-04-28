@@ -22,7 +22,7 @@ class Alert404_Storage {
 		self::ensure_storage_ready();
 	}
 
-	private static function ensure_storage_ready(): void {
+	public static function ensure_storage_ready(): void {
 		$current_version = (string) get_option( self::SCHEMA_OPTION_KEY, '' );
 
 		if ( self::SCHEMA_VERSION !== $current_version ) {
