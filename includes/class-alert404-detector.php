@@ -49,7 +49,7 @@ class Alert404_Detector {
 			return;
 		}
 
-		// Send email notification.
+		// Send email notification and record statistics.
 		Alert404_Mailer::send( $payload );
 	}
 

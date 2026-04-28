@@ -64,7 +64,11 @@ class Alert404_Mailer {
 		} catch ( Throwable $e ) {
 			Alert404_Logger::log_email_failed( $to, 'Exception: ' . $e->getMessage() );
 			do_action( '404_alert_email_failed', $to, $subject, $payload );
-			return;
+		}
+
+		// Record statistics regardless of email success.
+		if ( class_exists( 'Alert404_Storage' ) ) {
+			Alert404_Storage::record_404( $to, $subject, $payload );
 		}
 
 		if ( $sent ) {
