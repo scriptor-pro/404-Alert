@@ -69,6 +69,4 @@ function alert404_init(): void {
 }
 
 // Initialiser le plugin au hook plugins_loaded.
-if ( function_exists( 'add_action' ) ) {
-	add_action( 'plugins_loaded', 'alert404_init' );
-}
+add_action( 'plugins_loaded', 'alert404_init' );
