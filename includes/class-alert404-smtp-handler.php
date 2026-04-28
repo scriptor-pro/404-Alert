@@ -226,14 +226,34 @@ class Alert404_SMTP_Handler {
 	 * @return array<string, bool|string> ['success' => bool, 'message' => string]
 	 */
 	public static function test_connection(): array {
+		Alert404_Test_Progress::init_test();
+
 		$config = self::get_smtp_config();
 
+		// Step 1: Vérification de la configuration
+		Alert404_Test_Progress::update_step(
+			'Vérification de la configuration',
+			'running',
+			'Validation des paramètres SMTP...'
+		);
+
 		if ( empty( $config['host'] ) || empty( $config['username'] ) || empty( $config['password'] ) ) {
+			Alert404_Test_Progress::update_step(
+				'Vérification de la configuration',
+				'error',
+				'Configuration SMTP incomplète'
+			);
 			return array(
 				'success' => false,
 				'message' => 'Configuration SMTP incomplète. Veuillez remplir tous les champs.',
 			);
 		}
+
+		Alert404_Test_Progress::update_step(
+			'Vérification de la configuration',
+			'success',
+			'Configuration SMTP valide'
+		);
 
 		require_once ABSPATH . WPINC . '/PHPMailer/Exception.php';
 		require_once ABSPATH . WPINC . '/PHPMailer/PHPMailer.php';
@@ -246,6 +266,13 @@ class Alert404_SMTP_Handler {
 		$phpmailer = new PHPMailer( true );
 
 		try {
+			// Step 2: Connexion au serveur
+			Alert404_Test_Progress::update_step(
+				'Connexion au serveur',
+				'running',
+				'Établissement de la connexion TCP avec ' . $config['host'] . ':' . $config['port'] . '...'
+			);
+
 			$phpmailer->isSMTP();
 			// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- PHPMailer external dependency uses camelCase
 			$phpmailer->Host       = $config['host'];
@@ -260,18 +287,109 @@ class Alert404_SMTP_Handler {
 			// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- PHPMailer external dependency uses camelCase
 			$phpmailer->SMTPSecure = $config['encryption'];
 
-			// Essayer de se connecter sans envoyer d'email.
+			Alert404_Test_Progress::update_step(
+				'Connexion au serveur',
+				'success',
+				'Connecté au serveur SMTP'
+			);
+
+			// Step 3: Authentification
+			Alert404_Test_Progress::update_step(
+				'Authentification',
+				'running',
+				'Authentification avec ' . $config['username'] . '...'
+			);
+
 			$phpmailer->smtpConnect();
+
+			Alert404_Test_Progress::update_step(
+				'Authentification',
+				'success',
+				'Authentification réussie'
+			);
+
+			// Step 4: Configuration de l'email
+			Alert404_Test_Progress::update_step(
+				'Configuration de l\'email',
+				'running',
+				'Préparation du message de test...'
+			);
+
+			$phpmailer->setFrom( $config['from_email'], $config['from_name'] );
+			$phpmailer->addAddress( $config['from_email'] );
+			// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- PHPMailer external dependency uses camelCase
+			$phpmailer->Subject = '[404 Alert Test] Test de connexion SMTP';
+			$phpmailer->isHTML( true );
+			// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- PHPMailer external dependency uses camelCase
+			$phpmailer->Body = '<p>Ceci est un email de test du plugin 404 Alert.</p><p>Si vous recevez ce message, votre configuration SMTP est correcte.</p>';
+
+			Alert404_Test_Progress::update_step(
+				'Configuration de l\'email',
+				'success',
+				'Email configuré'
+			);
+
+			// Step 5: Envoi de l'email de test
+			Alert404_Test_Progress::update_step(
+				'Envoi de l\'email de test',
+				'running',
+				'Envoi de l\'email...'
+			);
+
+			$phpmailer->send();
+
+			Alert404_Test_Progress::update_step(
+				'Envoi de l\'email de test',
+				'success',
+				'Email de test envoyé'
+			);
+
+			// Step 6: Fermeture de la connexion
+			Alert404_Test_Progress::update_step(
+				'Fermeture de la connexion',
+				'running',
+				'Fermeture de la connexion...'
+			);
+
 			$phpmailer->smtpClose();
+
+			Alert404_Test_Progress::update_step(
+				'Fermeture de la connexion',
+				'success',
+				'Connexion fermée'
+			);
 
 			return array(
 				'success' => true,
 				'message' => 'Connexion SMTP réussie! ✓',
 			);
 		} catch ( Exception $e ) {
+			$error_message = $e->getMessage();
+
+			// Déterminer à quelle étape l'erreur s'est produite
+			if ( strpos( $error_message, 'SMTP connect' ) !== false ) {
+				Alert404_Test_Progress::update_step(
+					'Connexion au serveur',
+					'error',
+					'Impossible de se connecter: ' . $error_message
+				);
+			} elseif ( strpos( $error_message, 'authenticate' ) !== false ) {
+				Alert404_Test_Progress::update_step(
+					'Authentification',
+					'error',
+					'Authentification échouée: ' . $error_message
+				);
+			} else {
+				Alert404_Test_Progress::update_step(
+					'Envoi de l\'email de test',
+					'error',
+					'Erreur d\'envoi: ' . $error_message
+				);
+			}
+
 			return array(
 				'success' => false,
-				'message' => 'Erreur de connexion SMTP: ' . $e->getMessage(),
+				'message' => 'Erreur de connexion SMTP: ' . $error_message,
 			);
 		}//end try
 	}

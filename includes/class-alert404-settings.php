@@ -21,6 +21,7 @@ class Alert404_Settings {
 		add_action( 'admin_menu', array( self::class, 'add_menu' ) );
 		add_action( 'admin_init', array( self::class, 'register_settings' ) );
 		add_action( 'wp_ajax_404_alert_test_smtp', array( self::class, 'handle_test_smtp' ) );
+		add_action( 'wp_ajax_404_alert_get_test_progress', array( self::class, 'handle_get_progress' ) );
 		add_action( 'admin_enqueue_scripts', array( self::class, 'enqueue_admin_scripts' ) );
 	}
 
@@ -34,6 +35,12 @@ class Alert404_Settings {
 		if ( 'settings_page_404_alert' !== $hook ) {
 			return;
 		}
+		wp_enqueue_style(
+			'404-alert-progress',
+			plugin_dir_url( ALERT404_MAIN_FILE ) . 'assets/css/alert404-progress.css',
+			array(),
+			ALERT404_VERSION
+		);
 		wp_enqueue_script(
 			'404-alert-admin',
 			plugin_dir_url( ALERT404_MAIN_FILE ) . 'assets/js/alert404-admin.js',
@@ -69,6 +76,22 @@ class Alert404_Settings {
 		} else {
 			wp_send_json_error( array( 'message' => $result['message'] ) );
 		}
+	}
+
+	/**
+	 * Handle AJAX request to get current test progress
+	 *
+	 * @return void
+	 */
+	public static function handle_get_progress(): void {
+		check_ajax_referer( '404_alert_test_smtp', 'nonce' );
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array( 'message' => 'Access denied' ) );
+		}
+
+		$progress = Alert404_Test_Progress::get_progress();
+		wp_send_json_success( $progress );
 	}
 
 	/**
@@ -660,7 +683,12 @@ class Alert404_Settings {
 	public static function render_field_smtp_test(): void {
 		?>
 		<button type="button" class="button" id="404-alert-smtp-test">Tester la connexion</button>
-		<div id="404-alert-smtp-test-result" style="margin-top: 10px; display: none;"></div>
+		<div id="404-alert-test-progress" style="margin-top: 20px; display: none;">
+			<div class="alert404-progress-bar-container">
+				<div class="alert404-progress-bar" style="width: 0%"></div>
+			</div>
+			<ul class="alert404-steps-list"></ul>
+		</div>
 		<?php
 	}
 

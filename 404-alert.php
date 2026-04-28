@@ -28,6 +28,7 @@ require_once ALERT404_DIR . 'includes/class-alert404-redis-handler.php';
 require_once ALERT404_DIR . 'includes/class-alert404-user-agent-parser.php';
 require_once ALERT404_DIR . 'includes/class-alert404-request-info.php';
 require_once ALERT404_DIR . 'includes/class-alert404-smtp-presets.php';
+require_once ALERT404_DIR . 'includes/class-alert404-test-progress.php';
 require_once ALERT404_DIR . 'includes/class-alert404-smtp-handler.php';
 require_once ALERT404_DIR . 'includes/class-alert404-settings.php';
 require_once ALERT404_DIR . 'includes/class-alert404-rate-limiter.php';
