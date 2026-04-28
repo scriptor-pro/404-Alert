@@ -20,9 +20,6 @@ class Alert404_Storage {
 
 	public static function init(): void {
 		self::ensure_storage_ready();
-
-		// Ensure table exists on init hook and before 404 detection.
-		add_action( 'init', array( self::class, 'ensure_storage_ready' ), 100 );
 	}
 
 	private static function ensure_storage_ready(): void {

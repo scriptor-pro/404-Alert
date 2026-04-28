@@ -39,6 +39,9 @@ require_once ALERT404_DIR . 'includes/class-alert404-template.php';
 require_once ALERT404_DIR . 'includes/class-alert404-dashboard.php';
 require_once ALERT404_DIR . 'includes/class-alert404-activator.php';
 
+// Initialiser les hooks d'activation/désactivation immédiatement (ne doit être appelé qu'une fois).
+Alert404_Activator::init();
+
 /**
  * Initialise le plugin au démarrage de WordPress
  *
@@ -59,6 +62,3 @@ function alert404_init(): void {
 
 // Initialiser le plugin au hook plugins_loaded.
 add_action( 'plugins_loaded', 'alert404_init' );
-
-// Initialiser les hooks d'activation/désactivation au même moment.
-add_action( 'plugins_loaded', array( 'Alert404_Activator', 'init' ) );
