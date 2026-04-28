@@ -1,146 +1,146 @@
-# 404 Alert — Plugin WordPress
+# 404 Alert — WordPress Plugin
 
-Un plugin léger et autonome qui envoie un email à l'administrateur chaque fois qu'un visiteur accède à une page introuvable (erreur 404).
+A lightweight, self-contained plugin that sends an email to the administrator each time a visitor accesses a non-existent page (404 error).
 
-## Caractéristiques
+## Features
 
-- 📧 **Email instantané** : notifications HTML à chaque 404 détecté
-- 🛡️ **Rate limiting** : protection contre les abus (par IP + limite quotidienne)
-- ⚙️ **Configuration simple** : page de réglages WordPress native
-- 🚀 **Léger** : zéro dépendance externe, WordPress core uniquement
-- 🔒 **Sécurisé** : sanitization, protection XSS, validation stricte
+- 📧 **Instant Email**: HTML notifications for each detected 404
+- 🛡️ **Rate Limiting**: protection against abuse (by IP + daily limit)
+- ⚙️ **Simple Configuration**: native WordPress settings page
+- 🚀 **Lightweight**: zero external dependencies, WordPress core only
+- 🔒 **Secure**: sanitization, XSS protection, strict validation
 
-## Installation rapide
+## Quick Installation
 
-**Voir [INSTALL.md](./INSTALL.md) pour les instructions détaillées.**
+**See [INSTALL.md](./INSTALL.md) for detailed instructions.**
 
 Tl;dr :
-1. Télécharger le ZIP ou cloner le repo
-2. Placer dans `wp-content/plugins/`
-3. Activer dans **Extensions**
-4. Configurer dans **Réglages > 404 Alert**
+1. Download the ZIP or clone the repo
+2. Place in `wp-content/plugins/`
+3. Activate in **Plugins**
+4. Configure in **Settings > 404 Alert**
 
-## Prérequis
+## Requirements
 
-- **WordPress** : 5.9+
-- **PHP** : 8.1+ (8.2+ recommandé)
-- **Dépendances externes** : Aucune
+- **WordPress**: 5.9+
+- **PHP**: 8.1+ (8.2+ recommended)
+- **External Dependencies**: None
 
 ## Documentation
 
-- **[INSTALL.md](./INSTALL.md)** — Installation et configuration de base
-- **[ARCHITECTURE.md](./ARCHITECTURE.md)** — Architecture technique et flux d'exécution
-- **[CONTRIBUTING.md](./CONTRIBUTING.md)** — Contribution au développement
+- **[INSTALL.md](./INSTALL.md)** — Installation and basic configuration
+- **[ARCHITECTURE.md](./ARCHITECTURE.md)** — Technical architecture and execution flow
+- **[CONTRIBUTING.md](./CONTRIBUTING.md)** — Contributing to development
 
-### Configuration avancée
+### Advanced Configuration
 
-- **[REDIS.md](./REDIS.md)** — Optimisation du rate limiting avec Redis (optionnel)
-- **[SMTP.md](./SMTP.md)** — Configuration SMTP pour meilleure délivrabilité (optionnel)
+- **[REDIS.md](./REDIS.md)** — Optimize rate limiting with Redis (optional)
+- **[SMTP.md](./SMTP.md)** — SMTP configuration for better deliverability (optional)
 
-### Déploiement
+### Deployment
 
-- **[CONFIGURATION-PRODUCTION.md](./CONFIGURATION-PRODUCTION.md)** — Checklist production
-- **[WORDPRESS-ORG.md](./WORDPRESS-ORG.md)** — Conformité WordPress.org et publication
+- **[CONFIGURATION-PRODUCTION.md](./CONFIGURATION-PRODUCTION.md)** — Production checklist
+- **[WORDPRESS-ORG.md](./WORDPRESS-ORG.md)** — WordPress.org compliance and publication
 
-## Utilisation
+## Usage
 
-Une fois activé, le plugin détecte automatiquement les 404 et envoie un email pour chaque occurrence (dans les limites configurées).
+Once activated, the plugin automatically detects 404 errors and sends an email for each occurrence (within configured limits).
 
-### Email exemple
+### Example Email
 
 ```
-Sujet: 404 sur Example Site — /page-inexistante
+Subject: 404 on Example Site — /non-existent-page
 
-Corps HTML:
-  404 détectée sur Example Site
+HTML Body:
+  404 Detected on Example Site
   
-  URL: https://example.com/page-inexistante
+  URL: https://example.com/non-existent-page
   Referer: https://google.com
   IP: 192.168.1.100
   User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64)...
   
-  [Données complètes en JSON pour débogage]
+  [Complete data in JSON for debugging]
 ```
 
-### Configuration de base
+### Basic Configuration
 
-Réglages disponibles dans **Réglages > 404 Alert** :
+Settings available in **Settings > 404 Alert** :
 
-| Paramètre | Défaut | Description |
-|-----------|--------|-------------|
-| Email | Admin email | Destinataire des notifications |
-| Limite quotidienne | 500 | Max emails/jour |
-| Délai par IP | 300s | Cooldown entre 2 emails même IP |
+| Parameter | Default | Description |
+|-----------|---------|-------------|
+| Email | Admin email | Notification recipient |
+| Daily Limit | 500 | Max emails/day |
+| Delay per IP | 300s | Cooldown between 2 emails from same IP |
 
 ## Architecture
 
-Structure minimale :
+Minimal structure:
 
 ```
 404-alert/
 ├── 404-alert.php           # Bootstrap & hooks
-├── includes/               # Classes principales
-│   ├── class-detector.php       # Détection 404
+├── includes/               # Main classes
+│   ├── class-detector.php       # 404 detection
 │   ├── class-rate-limiter.php   # Rate limiting
-│   ├── class-mailer.php         # Envoi email
-│   ├── class-settings.php       # Page réglages
+│   ├── class-mailer.php         # Email sending
+│   ├── class-settings.php       # Settings page
 │   ├── class-logger.php         # Logging
-│   └── ... (autres classes)
-└── templates/              # Templates (optionnel)
+│   └── ... (other classes)
+└── templates/              # Templates (optional)
 ```
 
-**Voir [ARCHITECTURE.md](./ARCHITECTURE.md) pour les détails.**
+**See [ARCHITECTURE.md](./ARCHITECTURE.md) for details.**
 
-## Sécurité
+## Security
 
-✅ **SQL Injection** : Préparé avec `$wpdb->prepare()`  
-✅ **XSS** : Échappé avec `esc_html()`, `esc_attr()`  
-✅ **CSRF** : Nonces WordPress  
-✅ **Authorization** : `current_user_can('manage_options')`  
+✅ **SQL Injection**: Prepared with `$wpdb->prepare()`  
+✅ **XSS**: Escaped with `esc_html()`, `esc_attr()`  
+✅ **CSRF**: WordPress nonces  
+✅ **Authorization**: `current_user_can('manage_options')`  
 
-Voir [WORDPRESS-ORG.md](./WORDPRESS-ORG.md) pour la conformité complète.
+See [WORDPRESS-ORG.md](./WORDPRESS-ORG.md) for full compliance.
 
-## Dépannage
+## Troubleshooting
 
-**Les emails ne sont pas reçus ?**
-1. Vérifier l'email destination dans **Réglages > 404 Alert**
-2. Vérifier que la limite quotidienne n'est pas atteinte
-3. Vérifier la configuration SMTP de votre site (WP Mail SMTP, etc.)
+**Emails not being received?**
+1. Check the destination email in **Settings > 404 Alert**
+2. Verify that the daily limit has not been reached
+3. Check your site's SMTP configuration (WP Mail SMTP, etc.)
 
-**Rate limit pas fonctionnel ?**
-- Sans Redis : basé sur WordPress transients (peut perdre data en redémarrage)
-- Solution : Installer Redis (voir [REDIS.md](./REDIS.md))
+**Rate limiting not working?**
+- Without Redis: based on WordPress transients (may lose data on restart)
+- Solution: Install Redis (see [REDIS.md](./REDIS.md))
 
-**Plus de questions ?**
-Consulter [INSTALL.md](./INSTALL.md) section Dépannage ou ouvrir une issue.
+**More questions?**
+Check [INSTALL.md](./INSTALL.md) troubleshooting section or open an issue.
 
-## Développement
+## Development
 
-Voir [CONTRIBUTING.md](./CONTRIBUTING.md) pour contribuer au code.
+See [CONTRIBUTING.md](./CONTRIBUTING.md) to contribute code.
 
-**Tests :**
+**Tests:**
 ```bash
-composer install  # Installer dev dependencies
+composer install  # Install dev dependencies
 vendor/bin/phpcs includes/ 404-alert.php  # Lint
 vendor/bin/phpstan analyse  # Static analysis
-vendor/bin/phpunit  # Tests unitaires
+vendor/bin/phpunit  # Unit tests
 ```
 
-## Licence
+## License
 
-**GPL v2 ou ultérieur**
+**GPL v2 or later**
 
-Voir [LICENSE](./LICENSE) ou https://www.gnu.org/licenses/gpl-2.0.html
+See [LICENSE](./LICENSE) or https://www.gnu.org/licenses/gpl-2.0.html
 
 ## Roadmap
 
-- ✅ Détection 404 + Email
+- ✅ 404 detection + Email
 - ✅ Rate limiting (IP + global)
-- ✅ Redis support (optionnel)
-- ✅ SMTP support (optionnel)
-- ✅ Tests unitaires
-- ⏳ Dashboard statistiques (futur)
-- ⏳ Webhook support (futur)
+- ✅ Redis support (optional)
+- ✅ SMTP support (optional)
+- ✅ Unit tests
+- ⏳ Statistics dashboard (future)
+- ⏳ Webhook support (future)
 
 ---
 

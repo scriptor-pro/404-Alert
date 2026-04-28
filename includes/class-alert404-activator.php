@@ -13,7 +13,7 @@ defined( 'ABSPATH' ) || exit;
 class Alert404_Activator {
 
 	/**
-	 * Initialise les hooks d'activation et de désactivation
+	 * Initialize activation and deactivation hooks
 	 *
 	 * @return void
 	 */
@@ -23,8 +23,8 @@ class Alert404_Activator {
 	}
 
 	/**
-	 * Exécuté lors de l'activation du plugin
-	 * Crée la table de statistiques et initialise les options
+	 * Executed when the plugin is activated
+	 * Creates the statistics table and initializes options
 	 *
 	 * @return void
 	 */
@@ -68,7 +68,7 @@ class Alert404_Activator {
 	}
 
 	/**
-	 * Exécuté lors de la désactivation du plugin
+	 * Executed when the plugin is deactivated
 	 *
 	 * @return void
 	 */

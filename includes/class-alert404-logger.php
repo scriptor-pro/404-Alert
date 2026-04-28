@@ -13,11 +13,11 @@ defined( 'ABSPATH' ) || exit;
  */
 class Alert404_Logger {
 	/**
-	 * Logue un événement 404 détecté
+	 * Log a detected 404 event
 	 *
 	 * @param string $ip Adresse IP source.
-	 * @param string $url URL demandée.
-	 * @param array  $context Données additionnelles (referrer, user_agent, etc.).
+	 * @param string $url Requested URL.
+	 * @param array  $context Additional data (referrer, user_agent, etc.).
 	 * @return void
 	 */
 	public static function log_404_detected( string $ip, string $url, array $context = array() ): void {
@@ -35,7 +35,7 @@ class Alert404_Logger {
 	 * Logue un refus de rate limit par IP
 	 *
 	 * @param string $ip Adresse IP source.
-	 * @param int    $cooldown Délai de cooldown en secondes.
+	 * @param int    $cooldown Cooldown delay in seconds.
 	 * @return void
 	 */
 	public static function log_rate_limit_ip( string $ip, int $cooldown ): void {
@@ -51,7 +51,7 @@ class Alert404_Logger {
 	/**
 	 * Logue un refus de la limite quotidienne
 	 *
-	 * @param int $daily_limit Limite quotidienne configurée.
+	 * @param int $daily_limit Configured daily limit.
 	 * @return void
 	 */
 	public static function log_rate_limit_daily( int $daily_limit ): void {
@@ -64,7 +64,7 @@ class Alert404_Logger {
 	}
 
 	/**
-	 * Logue un succès d'envoi d'email
+	 * Log successful email sending
 	 *
 	 * @param string $to Destinataire de l'email.
 	 * @param string $url URL qui a déclenché la notification.

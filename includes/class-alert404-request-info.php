@@ -12,16 +12,16 @@ defined( 'ABSPATH' ) || exit;
  */
 class Alert404_Request_Info {
 	/**
-	 * Limites de taille pour les champs
+	 * Size limits for fields
 	 */
 	private const MAX_URL_LENGTH     = 2000;
 	private const MAX_REFERER_LENGTH = 2000;
 	private const MAX_USER_AGENT     = 500;
 
 	/**
-	 * Collecte toutes les informations disponibles sur la requête 404
+	 * Collect all available information about the 404 request
 	 *
-	 * @return array<string, mixed> Informations complètes sur la requête
+	 * @return array<string, mixed> Complete request information
 	 */
 	public static function gather(): array {
 		$server      = $_SERVER;
@@ -30,15 +30,15 @@ class Alert404_Request_Info {
 		$ip          = self::get_client_ip();
 		$accept_lang = sanitize_text_field( wp_unslash( $server['HTTP_ACCEPT_LANGUAGE'] ?? '' ) );
 
-		// Appliquer les limites de taille.
+		// Apply size limits.
 		$user_agent = self::truncate( $user_agent, self::MAX_USER_AGENT );
 		$referrer   = self::truncate( $referrer, self::MAX_REFERER_LENGTH );
 
-		// Parser le User-Agent.
+		// Parse the User-Agent.
 		require_once ALERT404_DIR . 'includes/class-user-agent-parser.php';
 		$user_info = Alert404_UserAgent_Parser::get_structured_info( $user_agent );
 
-		// Informations WordPress.
+		// WordPress information.
 		$wp_user      = wp_get_current_user();
 		$is_logged_in = is_user_logged_in();
 
@@ -74,11 +74,11 @@ class Alert404_Request_Info {
 	}
 
 	/**
-	 * Tronque une chaîne à une longueur maximale
+	 * Truncate a string to a maximum length
 	 *
-	 * @param string $value Chaîne à tronquer.
-	 * @param int    $max_length Longueur maximale.
-	 * @return string Chaîne tronquée
+	 * @param string $value String to truncate.
+	 * @param int    $max_length Maximum length.
+	 * @return string Truncated string
 	 */
 	private static function truncate( string $value, int $max_length ): string {
 		if ( strlen( $value ) > $max_length ) {
@@ -88,10 +88,10 @@ class Alert404_Request_Info {
 	}
 
 	/**
-	 * Récupère l'adresse IP du client en ne faisant confiance
-	 * aux headers proxy que si REMOTE_ADDR est un proxy de confiance.
+	 * Get the client IP address while only trusting
+	 * proxy headers if REMOTE_ADDR is a trusted proxy.
 	 *
-	 * @return string Adresse IP valide ou "Invalid"
+	 * @return string Valid IP address or "Invalid"
 	 */
 	public static function get_client_ip(): string {
 		$remote_ip = sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ?? '' ) );
@@ -114,7 +114,7 @@ class Alert404_Request_Info {
 	}
 
 	/**
-	 * Retourne la première IP valide issue des headers proxy.
+	 * Returns the first valid IP from proxy headers.
 	 *
 	 * @return string
 	 */
@@ -147,10 +147,10 @@ class Alert404_Request_Info {
 	}
 
 	/**
-	 * Extrait les IP candidates depuis un header proxy.
+	 * Extract candidate IPs from a proxy header.
 	 *
-	 * @param string $raw Valeur brute du header.
-	 * @param string $header Nom du header.
+	 * @param string $raw Raw header value.
+	 * @param string $header Header name.
 	 * @return array<int, string>
 	 */
 	private static function extract_ips_from_header( string $raw, string $header ): array {
@@ -163,9 +163,9 @@ class Alert404_Request_Info {
 	}
 
 	/**
-	 * Vérifie si une IP source est dans la liste des proxies de confiance.
+	 * Check if a source IP is in the list of trusted proxies.
 	 *
-	 * @param string $ip IP source (REMOTE_ADDR).
+	 * @param string $ip Source IP (REMOTE_ADDR).
 	 * @return bool
 	 */
 	private static function is_trusted_proxy( string $ip ): bool {
@@ -187,10 +187,10 @@ class Alert404_Request_Info {
 	}
 
 	/**
-	 * Vérifie si une IP correspond à une IP/CIDR.
+	 * Check if an IP matches an IP/CIDR range.
 	 *
-	 * @param string $ip IP à valider.
-	 * @param string $range IP exacte ou réseau CIDR.
+	 * @param string $ip IP to validate.
+	 * @param string $range Exact IP or CIDR network.
 	 * @return bool
 	 */
 	private static function ip_matches_range( string $ip, string $range ): bool {
@@ -235,9 +235,9 @@ class Alert404_Request_Info {
 	}
 
 	/**
-	 * Construit l'URL complète de la requête
+	 * Build the complete URL of the request
 	 *
-	 * @return string URL complète.
+	 * @return string Complete URL.
 	 */
 	private static function get_full_url(): string {
 		$https       = isset( $_SERVER['HTTPS'] ) ? sanitize_text_field( wp_unslash( $_SERVER['HTTPS'] ) ) : '';
@@ -253,17 +253,17 @@ class Alert404_Request_Info {
 	}
 
 	/**
-	 * Parse le header Accept-Language
+	 * Parse the Accept-Language header
 	 *
-	 * @param string $accept_lang Header Accept-Language.
-	 * @return string Première langue préférée.
+	 * @param string $accept_lang Accept-Language header.
+	 * @return string First preferred language.
 	 */
 	private static function parse_accept_language( string $accept_lang ): string {
 		if ( empty( $accept_lang ) ) {
 			return 'Not specified';
 		}
 
-		// Extraire la première langue (avant le tiret et le point-virgule).
+		// Extract the first language (before hyphen and semicolon).
 		preg_match( '/^([a-z]{2}(?:-[a-z]{2})?)/', strtolower( $accept_lang ), $matches );
 
 		return $matches[1] ?? 'Not specified';

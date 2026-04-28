@@ -12,10 +12,10 @@ defined( 'ABSPATH' ) || exit;
  */
 class Alert404_Mailer {
 	/**
-	 * Envoie une notification par email de l'erreur 404
-	 * Vérifie le succès de l'envoi et enregistre l'événement
+	 * Send an email notification for the 404 error
+	 * Verifies sending success and logs the event
 	 *
-	 * @param array $payload Données de la requête 404 (url, ip, referrer, userAgent, occurredAt).
+	 * @param array $payload Data from the 404 request (url, ip, referrer, userAgent, occurredAt).
 	 * @return void.
 	 */
 	public static function send( array $payload ): void {
@@ -76,10 +76,10 @@ class Alert404_Mailer {
 	}
 
 	/**
-	 * Génère le contenu HTML de l'email
+	 * Generate the HTML content of the email
 	 *
-	 * @param array $payload Données de la requête 404.
-	 * @return string HTML formaté.
+	 * @param array $payload Data from the 404 request.
+	 * @return string Formatted HTML.
 	 */
 	private static function render_email_html( array $payload ): string {
 		$url           = esc_html( $payload['full_url'] ?? $payload['url'] ?? 'Unknown' );
@@ -91,7 +91,7 @@ class Alert404_Mailer {
 		$user_readable = esc_html( $payload['user_readable'] ?? 'Unknown browser' );
 		$device_type   = esc_html( $payload['device'] ?? 'Unknown' );
 
-		// Informations navigateur/OS.
+		// Browser/OS information.
 		$browser_name    = esc_html( $payload['browser']['name'] ?? 'Unknown' );
 		$browser_version = esc_html( $payload['browser']['version'] ?? 'Unknown' );
 		$os_name         = esc_html( $payload['os']['name'] ?? 'Unknown' );
@@ -105,8 +105,8 @@ class Alert404_Mailer {
 
 		// Format user login status.
 		$user_status = $is_logged_in
-			? sprintf( '<strong>Oui</strong> - %s (%s)', esc_html( $user_login ), esc_html( $user_email ) )
-			: '<strong>Non</strong> - Visiteur anonyme';
+			? sprintf( '<strong>Yes</strong> - %s (%s)', esc_html( $user_login ), esc_html( $user_email ) )
+			: '<strong>No</strong> - Anonymous visitor';
 
 		// Full JSON for reference - use ENT_QUOTES | ENT_HTML5 for better XSS protection.
 		$json_body = esc_html(

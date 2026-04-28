@@ -24,13 +24,13 @@ class Alert404_SMTP_Handler {
 	 * @return bool True si succès, False sinon.
 	 */
 	public static function send( array $args ): bool {
-		// Récupérer la configuration SMTP.
+		// Get SMTP configuration.
 		$config = self::get_smtp_config();
 
 		if ( empty( $config['host'] ) || empty( $config['username'] ) || empty( $config['password'] ) ) {
 			Alert404_Logger::log_email_failed(
 				$args['to'] ?? 'unknown',
-				'Configuration SMTP incomplète'
+				'Incomplete SMTP configuration'
 			);
 			return false;
 		}

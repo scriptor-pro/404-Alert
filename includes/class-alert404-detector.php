@@ -12,8 +12,8 @@ defined( 'ABSPATH' ) || exit;
  */
 class Alert404_Detector {
 	/**
-	 * Initialise le détecteur d'erreurs 404
-	 * Enregistre le hook WordPress pour intercepter les erreurs 404
+	 * Initialize the 404 error detector
+	 * Registers the WordPress hook to intercept 404 errors
 	 *
 	 * @return void
 	 */
@@ -22,8 +22,8 @@ class Alert404_Detector {
 	}
 
 	/**
-	 * Callback du hook template_redirect
-	 * Détecte les erreurs 404, valide l'IP et envoie les notifications
+	 * Callback for the template_redirect hook
+	 * Detects 404 errors, validates the IP, and sends notifications
 	 *
 	 * @return void
 	 */
@@ -54,10 +54,10 @@ class Alert404_Detector {
 	}
 
 	/**
-	 * Extrait et valide l'IP source
-	 * Supporte les proxies avec HTTP_X_FORWARDED_FOR
+	 * Extract and validate the source IP
+	 * Supports proxies with HTTP_X_FORWARDED_FOR
 	 *
-	 * @return string IP valide ou chaîne vide si invalide
+	 * @return string Valid IP or empty string if invalid
 	 */
 	private static function get_ip(): string {
 		require_once ALERT404_DIR . 'includes/class-request-info.php';
@@ -68,11 +68,11 @@ class Alert404_Detector {
 	}
 
 	/**
-	 * Collecte les informations sur la requête 404
-	 * Compile les données utiles pour les notifications
+	 * Collect information about the 404 request
+	 * Compile useful data for notifications
 	 *
-	 * @param string $ip Adresse IP source validée (non utilisée, Alert404_Request_Info la récupère).
-	 * @return array<string, mixed> Tableau contenant toutes les informations enrichies.
+	 * @param string $ip Validated source IP address (unused, Alert404_Request_Info retrieves it).
+	 * @return array<string, mixed> Array containing all enriched information.
 	 */
 	private static function collect_payload( string $ip ): array {
 		require_once ALERT404_DIR . 'includes/class-request-info.php';

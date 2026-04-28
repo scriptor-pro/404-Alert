@@ -122,7 +122,7 @@ class Alert404_Storage {
 
 		self::enforce_max_records();
 
-		// Invalider le cache après insertion.
+		// Invalidate cache after insertion.
 		self::invalidate_cache();
 	}
 
@@ -151,7 +151,7 @@ class Alert404_Storage {
 
 		$limit = max( 1, $limit );
 
-		// Vérifier le cache en premier.
+		// Check cache first.
 		$cache_key = 'alert404_stats_' . $limit;
 		$cached    = wp_cache_get( $cache_key, '404_alert' );
 		if ( false !== $cached ) {
@@ -184,7 +184,7 @@ class Alert404_Storage {
 
 		$like_date = $wpdb->esc_like( $date ) . '%';
 
-		// Vérifier le cache en premier.
+		// Check cache first.
 		$cache_key = 'alert404_stats_by_date_' . $date;
 		$cached    = wp_cache_get( $cache_key, '404_alert' );
 		if ( false !== $cached ) {
@@ -215,7 +215,7 @@ class Alert404_Storage {
 	public static function get_total_count(): int {
 		global $wpdb;
 
-		// Vérifier le cache en premier.
+		// Check cache first.
 		$cache_key = 'alert404_total_count';
 		$cached    = wp_cache_get( $cache_key, '404_alert' );
 		if ( false !== $cached ) {
@@ -236,7 +236,7 @@ class Alert404_Storage {
 	public static function get_unique_urls_count(): int {
 		global $wpdb;
 
-		// Vérifier le cache en premier.
+		// Check cache first.
 		$cache_key = 'alert404_unique_urls_count';
 		$cached    = wp_cache_get( $cache_key, '404_alert' );
 		if ( false !== $cached ) {
@@ -259,7 +259,7 @@ class Alert404_Storage {
 
 		$limit = max( 1, $limit );
 
-		// Vérifier le cache en premier.
+		// Check cache first.
 		$cache_key = 'alert404_top_urls_' . $limit;
 		$cached    = wp_cache_get( $cache_key, '404_alert' );
 		if ( false !== $cached ) {
@@ -305,7 +305,7 @@ class Alert404_Storage {
 
 		$limit = max( 1, $limit );
 
-		// Vérifier le cache en premier.
+		// Check cache first.
 		$cache_key = 'alert404_top_ips_' . $limit;
 		$cached    = wp_cache_get( $cache_key, '404_alert' );
 		if ( false !== $cached ) {
@@ -367,7 +367,7 @@ class Alert404_Storage {
 
 		$like_date = $wpdb->esc_like( $date ) . '%';
 
-		// Vérifier le cache en premier.
+		// Check cache first.
 		$cache_key = 'alert404_count_for_date_' . $date;
 		$cached    = wp_cache_get( $cache_key, '404_alert' );
 		if ( false !== $cached ) {
@@ -403,7 +403,7 @@ class Alert404_Storage {
 
 		$limit = max( 1, $limit );
 
-		// Vérifier le cache en premier.
+		// Check cache first.
 		$cache_key = 'alert404_count_by_referrer_' . $limit;
 		$cached    = wp_cache_get( $cache_key, '404_alert' );
 		if ( false !== $cached ) {
@@ -461,7 +461,7 @@ class Alert404_Storage {
 		$wpdb->query( 'TRUNCATE TABLE ' . $wpdb->prefix . '404_alert_stats' );
 		delete_option( self::OPTION_KEY );
 
-		// Invalider tout le cache après suppression.
+		// Invalidate all cache after deletion.
 		self::invalidate_cache();
 	}
 

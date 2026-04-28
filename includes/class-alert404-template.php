@@ -12,8 +12,8 @@ defined( 'ABSPATH' ) || exit;
  */
 class Alert404_Template {
 	/**
-	 * Initialise le gestionnaire de templates personnalisés
-	 * Enregistre l'action WordPress pour charger le template 404 personnalisé
+	 * Initialize the custom template manager
+	 * Registers the WordPress action to load the custom 404 template
 	 *
 	 * @return void
 	 */
@@ -22,7 +22,7 @@ class Alert404_Template {
 	}
 
 	/**
-	 * Affiche le template 404 personnalisé lors d'une erreur 404
+	 * Display the custom 404 template when a 404 error occurs
 	 *
 	 * @return void
 	 */
@@ -38,9 +38,9 @@ class Alert404_Template {
 	}
 
 	/**
-	 * Retourne le chemin vers le template 404 personnalisé du plugin
+	 * Return the path to the plugin's custom 404 template
 	 *
-	 * @return string Chemin absolu du template 404.php
+	 * @return string Absolute path to 404.php template
 	 */
 	private static function get_template_path(): string {
 		return plugin_dir_path( __FILE__ ) . '../templates/404.php';

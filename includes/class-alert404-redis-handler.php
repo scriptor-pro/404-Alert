@@ -13,24 +13,24 @@ defined( 'ABSPATH' ) || exit;
  */
 class Alert404_Redis_Handler {
 	/**
-	 * Instance unique de la connexion Redis
+	 * Unique Redis connection instance
 	 *
 	 * @var \Redis|null
 	 */
 	private static $redis = null;
 
 	/**
-	 * Indique si Redis est disponible et connecté
+	 * Indicates if Redis is available and connected
 	 *
 	 * @var bool|null
 	 */
 	private static $available = null;
 
 	/**
-	 * Initialise la connexion Redis
-	 * Essaie de se connecter, gère les erreurs gracieusement
+	 * Initialize the Redis connection
+	 * Attempts to connect, handles errors gracefully
 	 *
-	 * @return bool true si Redis est disponible, false sinon.
+	 * @return bool true if Redis is available, false otherwise.
 	 */
 	public static function init(): bool {
 		if ( null !== self::$available ) {
@@ -39,46 +39,46 @@ class Alert404_Redis_Handler {
 
 		self::$available = false;
 
-		// Vérifier que l'extension Redis est installée.
+		// Check that the Redis extension is installed.
 		if ( ! extension_loaded( 'redis' ) ) {
-			Alert404_Logger::log_redis_unavailable( 'Extension Redis non installée' );
+			Alert404_Logger::log_redis_unavailable( 'Redis extension not installed' );
 			return false;
 		}
 
 		try {
 			$redis = new \Redis();
 
-			// Configuration depuis les constantes WordPress.
+			// Configuration from WordPress constants.
 			$host     = defined( 'ALERT404_REDIS_HOST' ) ? ALERT404_REDIS_HOST : 'localhost';
 			$port     = defined( 'ALERT404_REDIS_PORT' ) ? ALERT404_REDIS_PORT : 6379;
 			$password = defined( 'ALERT404_REDIS_PASSWORD' ) ? ALERT404_REDIS_PASSWORD : null;
 			$db       = defined( 'ALERT404_REDIS_DB' ) ? ALERT404_REDIS_DB : 0;
 			$timeout  = defined( 'ALERT404_REDIS_TIMEOUT' ) ? ALERT404_REDIS_TIMEOUT : 2;
 
-			// Tentative de connexion.
+			// Connection attempt.
 			$connected = $redis->connect( $host, $port, $timeout );
 
 			if ( ! $connected ) {
-				Alert404_Logger::log_redis_unavailable( "Impossible de se connecter à $host:$port" );
+				Alert404_Logger::log_redis_unavailable( "Cannot connect to $host:$port" );
 				return false;
 			}
 
-			// Authentification si password.
+			// Authentication if password.
 			if ( ! empty( $password ) ) {
 				$authenticated = $redis->auth( $password );
 				if ( ! $authenticated ) {
-					Alert404_Logger::log_redis_unavailable( 'Authentification Redis échouée' );
+					Alert404_Logger::log_redis_unavailable( 'Redis authentication failed' );
 					return false;
 				}
 			}
 
-			// Sélectionner la base de données.
+			// Select the database.
 			$redis->select( $db );
 
 			// Test connection with PING.
 			$ping = $redis->ping();
 			if ( true !== $ping && '+PONG' !== $ping ) {
-				Alert404_Logger::log_redis_unavailable( 'Redis PING échoué' );
+				Alert404_Logger::log_redis_unavailable( 'Redis PING failed' );
 				return false;
 			}
 
@@ -93,9 +93,9 @@ class Alert404_Redis_Handler {
 	}
 
 	/**
-	 * Retourne l'instance Redis ou null si indisponible
+	 * Returns the Redis instance or null if unavailable
 	 *
-	 * @return \Redis|null Instance Redis ou null.
+	 * @return \Redis|null Redis instance or null.
 	 */
 	public static function get_instance(): ?\Redis {
 		if ( null === self::$available ) {
@@ -106,9 +106,9 @@ class Alert404_Redis_Handler {
 	}
 
 	/**
-	 * Vérifie si Redis est disponible
+	 * Check if Redis is available
 	 *
-	 * @return bool true si Redis est disponible.
+	 * @return bool true if Redis is available.
 	 */
 	public static function is_available(): bool {
 		if ( null === self::$available ) {
@@ -119,12 +119,12 @@ class Alert404_Redis_Handler {
 	}
 
 	/**
-	 * Acquiert un verrou de manière atomique (SET ... NX)
-	 * Retour immédiat, pas de spin-wait
+	 * Acquire a lock atomically (SET ... NX)
+	 * Immediate return, no spin-wait
 	 *
-	 * @param string $key Clé du verrou.
-	 * @param int    $timeout Durée du verrou en secondes.
-	 * @return bool true si le verrou a été acquis, false sinon.
+	 * @param string $key Lock key.
+	 * @param int    $timeout Lock duration in seconds.
+	 * @return bool true if lock acquired, false otherwise.
 	 */
 	public static function acquire_lock( string $key, int $timeout = 5 ): bool {
 		$redis = self::get_instance();
@@ -135,15 +135,15 @@ class Alert404_Redis_Handler {
 
 		try {
 			// SET key value NX EX timeout.
-			// Atomique: SET si n'existe pas, avec expiration.
+			// Atomic: SET if not exists, with expiration.
 			$result = $redis->set(
 				$key,
 				wp_hash( uniqid( '', true ) ),
-				// Valeur unique.
+				// Unique value.
 				array(
 					'EX' => $timeout,
-					// Expiration en secondes.
-														'NX' => true,
+					// Expiration in seconds.
+					'NX' => true,
 				// Only if Not eXists.
 				)
 			);
@@ -156,10 +156,10 @@ class Alert404_Redis_Handler {
 	}
 
 	/**
-	 * Libère un verrou
+	 * Release a lock
 	 *
-	 * @param string $key Clé du verrou.
-	 * @return bool true si le verrou a été libéré.
+	 * @param string $key Lock key.
+	 * @return bool true if lock released.
 	 */
 	public static function release_lock( string $key ): bool {
 		$redis = self::get_instance();
@@ -178,12 +178,12 @@ class Alert404_Redis_Handler {
 	}
 
 	/**
-	 * Incrémente un compteur de manière atomique
-	 * Retourne la nouvelle valeur
+	 * Increment a counter atomically
+	 * Returns the new value
 	 *
-	 * @param string $key Clé du compteur.
-	 * @param int    $ttl Durée de vie en secondes (0 = sans expiration).
-	 * @return int|false La nouvelle valeur, ou false si erreur.
+	 * @param string $key Counter key.
+	 * @param int    $ttl Time to live in seconds (0 = no expiration).
+	 * @return int|false The new value, or false if error.
 	 */
 	public static function increment( string $key, int $ttl = 0 ) {
 		$redis = self::get_instance();
@@ -193,10 +193,10 @@ class Alert404_Redis_Handler {
 		}
 
 		try {
-			// INCR est atomique dans Redis.
+			// INCR is atomic in Redis.
 			$value = $redis->incr( $key );
 
-			// Définir l'expiration si demandée.
+			// Set expiration if requested.
 			if ( $ttl > 0 ) {
 				$redis->expire( $key, $ttl );
 			}
@@ -209,10 +209,10 @@ class Alert404_Redis_Handler {
 	}
 
 	/**
-	 * Obtient une valeur
+	 * Get a value
 	 *
-	 * @param string $key Clé.
-	 * @return string|false La valeur, ou false si n'existe pas.
+	 * @param string $key Key.
+	 * @return string|false The value, or false if doesn't exist.
 	 */
 	public static function get( string $key ) {
 		$redis = self::get_instance();
@@ -230,12 +230,12 @@ class Alert404_Redis_Handler {
 	}
 
 	/**
-	 * Définit une valeur
+	 * Set a value
 	 *
-	 * @param string $key Clé.
-	 * @param mixed  $value Valeur.
-	 * @param int    $ttl Durée de vie en secondes (0 = pas d'expiration).
-	 * @return bool true si succès, false sinon.
+	 * @param string $key Key.
+	 * @param mixed  $value Value.
+	 * @param int    $ttl Time to live in seconds (0 = no expiration).
+	 * @return bool true if successful, false otherwise.
 	 */
 	public static function set( string $key, $value, int $ttl = 0 ): bool {
 		$redis = self::get_instance();
@@ -259,10 +259,10 @@ class Alert404_Redis_Handler {
 	}
 
 	/**
-	 * Supprime une ou plusieurs clés
+	 * Delete one or more keys
 	 *
-	 * @param string|array $keys Clé(s) à supprimer.
-	 * @return int Nombre de clés supprimées.
+	 * @param string|array $keys Key(s) to delete.
+	 * @return int Number of keys deleted.
 	 */
 	public static function delete( $keys ): int {
 		$redis = self::get_instance();
@@ -284,23 +284,23 @@ class Alert404_Redis_Handler {
 	}
 
 	/**
-	 * Force une reconnexion à Redis (utile après une perte de connexion)
+	 * Force a reconnection to Redis (useful after connection loss)
 	 *
-	 * @return bool true si reconnexion réussie, false sinon.
+	 * @return bool true if reconnection successful, false otherwise.
 	 */
 	public static function reconnect(): bool {
 		self::close();
 		$success = self::init();
 
 		if ( $success ) {
-			Alert404_Logger::log_redis_reconnected( 'Connexion rétablie après une perte' );
+			Alert404_Logger::log_redis_reconnected( 'Connection restored after loss' );
 		}
 
 		return $success;
 	}
 
 	/**
-	 * Ferme la connexion Redis
+	 * Close the Redis connection
 	 *
 	 * @return void
 	 */
@@ -319,9 +319,9 @@ class Alert404_Redis_Handler {
 	}
 
 	/**
-	 * Obtient les statistiques Redis (info)
+	 * Get Redis statistics (info)
 	 *
-	 * @return array|false Informations Redis ou false si erreur.
+	 * @return array|false Redis information or false if error.
 	 */
 	public static function get_info() {
 		$redis = self::get_instance();
