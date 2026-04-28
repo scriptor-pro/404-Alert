@@ -60,5 +60,5 @@ function alert404_init(): void {
 // Initialiser le plugin au hook plugins_loaded.
 add_action( 'plugins_loaded', 'alert404_init' );
 
-// Initialiser les hooks d'activation/désactivation.
-Alert404_Activator::init();
+// Initialiser les hooks d'activation/désactivation au même moment.
+add_action( 'plugins_loaded', array( 'Alert404_Activator', 'init' ) );
