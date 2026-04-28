@@ -16,8 +16,9 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 global $wpdb;
 
 // Supprimer la table de statistiques
-$table_name = $wpdb->prefix . '404_alert_stats';
-$wpdb->query( "DROP TABLE IF EXISTS $table_name" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+$alert404_table_name = $wpdb->prefix . '404_alert_stats';
+// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.SchemaChange
+$wpdb->query( $wpdb->prepare( 'DROP TABLE IF EXISTS %i', $alert404_table_name ) );
 
 // Supprimer toutes les options du plugin
 delete_option( '404_alert_options' );

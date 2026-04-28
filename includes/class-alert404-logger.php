@@ -303,7 +303,9 @@ class Alert404_Logger {
 			$context_json
 		);
 
-		// Enregistrer dans les logs WordPress.
-		error_log( $message );
+		// Enregistrer dans les logs WordPress (si debug est activé).
+		if ( defined( 'WP_DEBUG_LOG' ) && WP_DEBUG_LOG ) {
+			error_log( $message );
+		}
 	}
 }
