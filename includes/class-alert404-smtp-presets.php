@@ -106,4 +106,65 @@ class Alert404_SMTP_Presets {
 
 		return $options;
 	}
+
+	/**
+	 * Get all saved custom SMTP presets
+	 *
+	 * @return array
+	 */
+	public static function get_custom_presets(): array {
+		return get_option( '404_alert_smtp_custom_presets', array() );
+	}
+
+	/**
+	 * Save a custom SMTP preset
+	 *
+	 * @param string $name Preset name.
+	 * @param string $host SMTP host.
+	 * @param int $port SMTP port.
+	 * @param string $encryption Encryption type (tls, ssl, none).
+	 * @return string Preset ID.
+	 */
+	public static function save_custom_preset( string $name, string $host, int $port, string $encryption ): string {
+		$custom = self::get_custom_presets();
+		$id     = 'custom_' . time() . '_' . wp_rand( 1000, 9999 );
+
+		$custom[ $id ] = array(
+			'name'       => sanitize_text_field( $name ),
+			'host'       => sanitize_text_field( $host ),
+			'port'       => absint( $port ),
+			'encryption' => sanitize_text_field( $encryption ),
+			'created_at' => current_time( 'mysql' ),
+		);
+
+		update_option( '404_alert_smtp_custom_presets', $custom );
+		return $id;
+	}
+
+	/**
+	 * Delete a custom SMTP preset
+	 *
+	 * @param string $id Preset ID.
+	 * @return bool
+	 */
+	public static function delete_custom_preset( string $id ): bool {
+		$custom = self::get_custom_presets();
+		if ( isset( $custom[ $id ] ) ) {
+			unset( $custom[ $id ] );
+			update_option( '404_alert_smtp_custom_presets', $custom );
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Get all presets (native + custom)
+	 *
+	 * @return array
+	 */
+	public static function get_all_presets(): array {
+		$presets = self::get_presets();
+		$custom  = self::get_custom_presets();
+		return array_merge( $presets, $custom );
+	}
 }
