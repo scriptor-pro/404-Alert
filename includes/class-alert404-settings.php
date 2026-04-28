@@ -592,10 +592,16 @@ class Alert404_Settings {
 	public static function render_field_smtp_port(): void {
 		$options = get_option( '404_alert_smtp_options', array() );
 		$port    = $options['port'] ?? 587;
-		printf(
-			'<input type="number" name="404_alert_smtp_options[port]" value="%d" min="1" max="65535" />',
-			esc_attr( $port )
-		);
+		$ports   = array( 25, 465, 587, 2525 );
+		?>
+		<select name="404_alert_smtp_options[port]">
+			<?php foreach ( $ports as $p ) : ?>
+				<option value="<?php echo esc_attr( $p ); ?>" <?php selected( $port, $p ); ?>>
+					<?php echo esc_html( $p ); ?>
+				</option>
+			<?php endforeach; ?>
+		</select>
+		<?php
 	}
 
 	/**
