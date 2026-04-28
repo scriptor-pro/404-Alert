@@ -19,6 +19,14 @@
 
 defined( 'ABSPATH' ) || exit;
 
+// Disable plugin on fatal error.
+register_shutdown_function( function() {
+	$error = error_get_last();
+	if ( $error && in_array( $error['type'], array( E_ERROR, E_PARSE, E_COMPILE_ERROR ), true ) ) {
+		deactivate_plugins( __FILE__ );
+	}
+} );
+
 define( 'ALERT404_VERSION', '1.2.8' );
 define( 'ALERT404_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ALERT404_MAIN_FILE', __FILE__ );
@@ -61,4 +69,6 @@ function alert404_init(): void {
 }
 
 // Initialiser le plugin au hook plugins_loaded.
-add_action( 'plugins_loaded', 'alert404_init' );
+if ( function_exists( 'add_action' ) ) {
+	add_action( 'plugins_loaded', 'alert404_init' );
+}
