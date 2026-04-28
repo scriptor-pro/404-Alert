@@ -25,7 +25,7 @@ class Test_Alert404_Logger extends Alert404_UnitTestCase {
 		parent::tearDown();
 		// Nettoyer le fichier temporaire
 		if ( file_exists( $this->temp_log_file ) ) {
-			unlink( $this->temp_log_file );
+			wp_delete_file( $this->temp_log_file );
 		}
 	}
 

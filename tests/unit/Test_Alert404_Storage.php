@@ -283,7 +283,7 @@ class Test_Alert404_Storage extends Alert404_UnitTestCase {
 		);
 
 		// Insérer pour hier
-		$yesterday = date( 'Y-m-d H:i:s', time() - DAY_IN_SECONDS );
+		$yesterday = gmdate( 'Y-m-d H:i:s', time() - DAY_IN_SECONDS );
 		$wpdb->insert(
 			$table_name,
 			array(
