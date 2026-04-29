@@ -84,11 +84,11 @@ class Alert404_SMTP_Presets {
 			),
 			'protonmail' => array(
 				'name'       => '🔐 ProtonMail',
-				'host'       => 'smtp.protonmail.com',
-				'port'       => 1025,
+				'host'       => 'smtp.protonmail.ch',
+				'port'       => 587,
 				'encryption' => 'tls',
-				'info'       => '<strong>💡 Conseil :</strong> Générez un <a href="https://account.protonmail.com/mail/settings/passwords" target="_blank">mot de passe d\'application</a> depuis vos paramètres de sécurité ProtonMail. Utilisez votre adresse email ProtonMail comme identifiant.',
-				'limit'      => 'Illimité (freemium: 150/jour)',
+				'info'       => '<strong>💡 Conseil :</strong> Nécessite un domaine personnalisé. Générez un <a href="https://proton.me/support/smtp-submission" target="_blank">token SMTP</a> depuis vos paramètres de sécurité ProtonMail. Utilisez votre adresse email custom comme identifiant.',
+				'limit'      => 'Illimité avec domaine personnalisé',
 			),
 			'brevo'     => array(
 				'name'       => '📬 Brevo',
