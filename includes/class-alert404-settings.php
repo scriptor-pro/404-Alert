@@ -768,8 +768,19 @@ class Alert404_Settings {
 			$input = $input['404_alert_smtp_options'];
 		}
 
-		$password_input   = isset( $input['password'] ) ? wp_unslash( (string) $input['password'] ) : '';
+		$preset_id        = isset( $input['preset_id'] ) ? sanitize_text_field( $input['preset_id'] ) : '';
+		$custom_host      = isset( $input['custom_host'] ) ? sanitize_text_field( $input['custom_host'] ) : '';
+		$custom_port      = isset( $input['custom_port'] ) ? absint( $input['custom_port'] ) : 0;
+		$custom_encryption = isset( $input['custom_encryption'] ) ? sanitize_text_field( $input['custom_encryption'] ) : 'tls';
+		$custom_username  = isset( $input['custom_username'] ) ? sanitize_text_field( $input['custom_username'] ) : '';
+		$password_input   = isset( $input['preset_password'] ) ? wp_unslash( (string) $input['preset_password'] ) : '';
 
+		// If no preset password, try custom password
+		if ( '' === $password_input ) {
+			$password_input = isset( $input['custom_password'] ) ? wp_unslash( (string) $input['custom_password'] ) : '';
+		}
+
+		// Handle password encryption
 		if ( '' === $password_input ) {
 			$stored_password = (string) ( $existing_options['password'] ?? '' );
 		} else {
@@ -780,15 +791,49 @@ class Alert404_Settings {
 			}
 		}
 
-		$new_options = array(
-			'host'       => isset( $input['host'] ) ? sanitize_text_field( $input['host'] ) : '',
-			'port'       => isset( $input['port'] ) ? max( 1, min( 65535, (int) $input['port'] ) ) : 587,
-			'username'   => isset( $input['username'] ) ? sanitize_text_field( $input['username'] ) : '',
-			'password'   => $stored_password,
-			'encryption' => isset( $input['encryption'] ) && in_array( $input['encryption'], array( 'tls', 'ssl', 'none' ), true ) ? $input['encryption'] : 'tls',
-			'from_email' => isset( $input['from_email'] ) ? sanitize_email( $input['from_email'] ) : get_option( 'admin_email' ),
-			'from_name'  => isset( $input['from_name'] ) ? sanitize_text_field( $input['from_name'] ) : get_bloginfo( 'name' ),
-		);
+		// Determine which mode is being used
+		$using_preset = ! empty( $preset_id );
+
+		if ( $using_preset ) {
+			// MODE: PRESET
+			$preset = Alert404_SMTP_Presets::get_preset( $preset_id );
+
+			if ( ! $preset ) {
+				// Invalid preset, return error
+				return $existing_options;
+			}
+
+			$preset_username = isset( $input['preset_username'] ) ? sanitize_text_field( $input['preset_username'] ) : '';
+
+			$new_options = array(
+				'provider_id' => $preset_id,
+				'host'        => $preset['host'],
+				'port'        => $preset['port'],
+				'encryption'  => $preset['encryption'],
+				'username'    => $preset_username,
+				'password'    => $stored_password,
+				'from_email'  => isset( $input['from_email'] ) ? sanitize_email( $input['from_email'] ) : get_option( 'admin_email' ),
+				'from_name'   => isset( $input['from_name'] ) ? sanitize_text_field( $input['from_name'] ) : get_bloginfo( 'name' ),
+			);
+		} else {
+			// MODE: CUSTOM
+			// Validate that all custom fields are provided
+			if ( empty( $custom_host ) || empty( $custom_port ) || empty( $custom_username ) ) {
+				// If custom mode is incomplete, return existing options without changes
+				return $existing_options;
+			}
+
+			$new_options = array(
+				'provider_id' => 'custom',
+				'host'        => $custom_host,
+				'port'        => max( 1, min( 65535, $custom_port ) ),
+				'encryption'  => in_array( $custom_encryption, array( 'tls', 'ssl', 'none' ), true ) ? $custom_encryption : 'tls',
+				'username'    => $custom_username,
+				'password'    => $stored_password,
+				'from_email'  => isset( $input['from_email'] ) ? sanitize_email( $input['from_email'] ) : get_option( 'admin_email' ),
+				'from_name'   => isset( $input['from_name'] ) ? sanitize_text_field( $input['from_name'] ) : get_bloginfo( 'name' ),
+			);
+		}
 
 		// Log SMTP changes if options have changed.
 		if ( $existing_options !== $new_options ) {
