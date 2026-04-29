@@ -102,11 +102,6 @@ class Test_Alert404_Settings extends Alert404_UnitTestCase {
 		$input = array( 'force_logging' => '' );
 		$result = Alert404_Settings::sanitize_options( $input );
 		$this->assertEquals( 0, $result['force_logging'] );
-
-		// Test enable_stats
-		$input = array( 'enable_stats' => '1' );
-		$result = Alert404_Settings::sanitize_options( $input );
-		$this->assertEquals( 1, $result['enable_stats'] );
 	}
 
 	/**
@@ -228,7 +223,6 @@ class Test_Alert404_Settings extends Alert404_UnitTestCase {
 			'daily_limit'   => 1000,
 			'ip_cooldown'   => 600,
 			'force_logging' => '1',
-			'enable_stats'  => '0',
 		);
 
 		$result = Alert404_Settings::sanitize_options( $input );
@@ -237,7 +231,6 @@ class Test_Alert404_Settings extends Alert404_UnitTestCase {
 		$this->assertEquals( 1000, $result['daily_limit'] );
 		$this->assertEquals( 600, $result['ip_cooldown'] );
 		$this->assertEquals( 1, $result['force_logging'] );
-		$this->assertEquals( 0, $result['enable_stats'] );
 	}
 
 	/**

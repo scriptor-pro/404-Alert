@@ -40,7 +40,6 @@ class Alert404_Activator {
 					'daily_limit'   => 500,
 					'ip_cooldown'   => 300,
 					'force_logging' => 0,
-					'enable_stats'  => 0,
 				)
 			);
 		}

@@ -27,11 +27,7 @@ class Alert404_Storage {
 	public static function record_404( string $to, string $subject, array $payload ): void {
 		unset( $to, $subject );
 
-		$options = get_option( '404_alert_options', array() );
-		if ( empty( $options['enable_stats'] ) ) {
-			return;
-		}
-
+		// Statistics are now mandatory - always record
 		Alert404_Stats::record( $payload );
 	}
 

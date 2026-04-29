@@ -58,7 +58,7 @@ class Test_Alert404_Template extends Alert404_UnitTestCase {
 	 * Teste que load_404_template est un callable
 	 */
 	public function test_load_404_template_is_callable() {
-		$this->assertTrue( is_callable( array( 'Alert404_Template', 'load_404_template' ) );
+		$this->assertTrue( is_callable( array( 'Alert404_Template', 'load_404_template' ) ) );
 	}
 
 	/**
