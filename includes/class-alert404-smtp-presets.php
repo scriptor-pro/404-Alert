@@ -82,14 +82,6 @@ class Alert404_SMTP_Presets {
 				'info'       => '<strong>💡 Conseil :</strong> Utilisez "default" ou votre email comme identifiant. Utilisez votre clé API Resend comme mot de passe.',
 				'limit'      => '100 emails/jour (free)',
 			),
-			'protonmail' => array(
-				'name'       => '🔐 ProtonMail',
-				'host'       => 'smtp.protonmail.ch',
-				'port'       => 587,
-				'encryption' => 'tls',
-				'info'       => '<strong>💡 Conseil :</strong> Nécessite un domaine personnalisé. Générez un <a href="https://proton.me/support/smtp-submission" target="_blank">token SMTP</a> depuis vos paramètres de sécurité ProtonMail. Utilisez votre adresse email custom comme identifiant.',
-				'limit'      => 'Illimité avec domaine personnalisé',
-			),
 			'brevo'     => array(
 				'name'       => '📬 Brevo',
 				'host'       => 'smtp-relay.brevo.com',
