@@ -63,10 +63,16 @@ jQuery( document ).ready( function ( $ ) {
 				from_name: $( '#404-from-name' ).val()
 			};
 		} else {
-			// Mode custom
+			// Mode custom - gérer le port personnalisé
+			var portValue = $( '#404-right-port' ).val();
+			if ( portValue === '0' ) {
+				// Port personnalisé
+				portValue = $( '#404-right-port-custom' ).val();
+			}
+
 			return {
 				host: $( '#404-right-host' ).val(),
-				port: $( '#404-right-port' ).val(),
+				port: portValue,
 				encryption: $( '#404-right-encryption' ).val(),
 				username: $( '#404-right-username' ).val(),
 				password: $( '#404-right-password' ).val(),
