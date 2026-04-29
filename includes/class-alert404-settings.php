@@ -44,6 +44,12 @@ class Alert404_Settings {
 			array(),
 			ALERT404_VERSION
 		);
+		wp_enqueue_style(
+			'404-alert-smtp-config',
+			plugin_dir_url( ALERT404_MAIN_FILE ) . 'assets/css/alert404-smtp-config.css',
+			array(),
+			ALERT404_VERSION
+		);
 		wp_enqueue_script(
 			'404-alert-admin',
 			plugin_dir_url( ALERT404_MAIN_FILE ) . 'assets/js/alert404-admin.js',
