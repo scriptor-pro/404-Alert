@@ -353,7 +353,7 @@ class Alert404_Settings {
 		</div>
 
 		<!-- Test Connection Button -->
-		<div style="margin-top: 20px;">
+		<div style="margin-top: 20px; display: none;" id="404-alert-test-section">
 			<button type="button" class="button" id="404-alert-smtp-test">Tester la connexion</button>
 			<div id="404-alert-test-progress" style="margin-top: 20px; display: none;">
 				<div class="alert404-progress-bar-container">

@@ -4,6 +4,19 @@ jQuery(document).ready(function($) {
   const colRight = $('#404-smtp-col-right');
   const presetSelect = $('#404-preset-select');
   const presetInfo = $('#404-preset-info');
+  const testSection = $('#404-alert-test-section');
+
+  function updateTestButtonVisibility() {
+    const hasPreset = presetSelect.val() !== '';
+    const hasHost = $('#404-right-host').val().trim() !== '';
+    const hasUsername = $('input[name="404_alert_smtp_options[username]"]').val().trim() !== '';
+
+    if (hasPreset || hasHost || hasUsername) {
+      testSection.show();
+    } else {
+      testSection.hide();
+    }
+  }
 
   // Gestion du changement de preset
   presetSelect.on('change', function() {
@@ -13,6 +26,7 @@ jQuery(document).ready(function($) {
     } else {
       activateRight();
     }
+    updateTestButtonVisibility();
   });
 
   // Clic sur la colonne droite pour l'activer
@@ -35,6 +49,12 @@ jQuery(document).ready(function($) {
       custom.prop('disabled', true);
     }
   });
+
+  // Surveiller les changements dans les champs SMTP
+  $('#404-left-username, #404-left-password, #404-right-host, #404-right-username, #404-right-password')
+    .on('input', function() {
+      updateTestButtonVisibility();
+    });
 
   function activateLeft(key) {
     const preset = a404Presets[key];
@@ -81,4 +101,7 @@ jQuery(document).ready(function($) {
   if (presetSelect.val()) {
     activateLeft(presetSelect.val());
   }
+
+  // Vérifier la visibilité initiale du bouton test
+  updateTestButtonVisibility();
 });
