@@ -141,13 +141,14 @@ class Alert404_SMTP_Wizard {
 	 * Add wizard menu page.
 	 */
 	public static function add_menu_page(): void {
-		add_submenu_page(
-			'404_alert',
+		add_menu_page(
 			'Configuration SMTP',
 			'Configuration SMTP',
 			'manage_options',
 			'404_alert_smtp_wizard',
-			array( self::class, 'render_page' )
+			array( self::class, 'render_page' ),
+			'dashicons-email',
+			25
 		);
 	}
 
