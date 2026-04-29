@@ -29,6 +29,7 @@ jQuery(document).ready(function($) {
       activateRight();
     }
     updateTestButtonVisibility();
+    updateConfigSummary();
   });
 
   // Clic sur la colonne droite pour l'activer
@@ -119,11 +120,13 @@ jQuery(document).ready(function($) {
 
     let host, port, encryption, username;
     if (isLeftActive) {
+      // Mode preset : lire depuis les champs cachés
       host = $('#404-left-host').val() || '—';
       port = $('#404-left-port').val() || '—';
       encryption = $('#404-left-encryption').val() || '—';
       username = $('#404-left-username').val() || '—';
     } else {
+      // Mode custom : lire depuis les champs visibles
       host = $('#404-right-host').val() || '—';
       let portVal = $('#404-right-port').val();
       if (portVal === '0') {
@@ -137,7 +140,7 @@ jQuery(document).ready(function($) {
     const fromEmail = $('#404-from-email').val() || '—';
     const fromName = $('#404-from-name').val() || '—';
 
-    // Mettre à jour le résumé
+    // Mettre à jour le résumé avec les valeurs réelles
     $('#summary-host').text(host);
     $('#summary-port').text(port);
     $('#summary-encryption').text(encryption);
