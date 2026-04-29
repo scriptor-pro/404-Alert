@@ -8,10 +8,12 @@ jQuery(document).ready(function($) {
 
   function updateTestButtonVisibility() {
     const hasPreset = presetSelect.val() !== '';
-    const hasHost = $('#404-right-host').val().trim() !== '';
-    const hasUsername = $('input[name="404_alert_smtp_options[username]"]').val().trim() !== '';
+    const hasLeftUsername = $('#404-left-username').val().trim() !== '';
+    const hasRightHost = $('#404-right-host').val().trim() !== '';
+    const hasRightUsername = $('#404-right-username').val().trim() !== '';
+    const hasUsername = hasLeftUsername || hasRightUsername;
 
-    if (hasPreset || hasHost || hasUsername) {
+    if (hasPreset || hasRightHost || hasUsername) {
       testSection.show();
     } else {
       testSection.hide();
@@ -34,6 +36,7 @@ jQuery(document).ready(function($) {
     if (colRight.hasClass('inactive')) {
       presetSelect.val('');
       activateRight();
+      updateTestButtonVisibility();
     }
   });
 
