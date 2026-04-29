@@ -67,6 +67,13 @@ class Alert404_Settings {
 			ALERT404_VERSION,
 			true
 		);
+		wp_enqueue_script(
+			'404-alert-smtp-config',
+			plugin_dir_url( ALERT404_MAIN_FILE ) . 'assets/js/alert404-smtp-config.js',
+			array( 'jquery' ),
+			ALERT404_VERSION,
+			true
+		);
 	}
 
 	/**
@@ -204,70 +211,6 @@ class Alert404_Settings {
 			array( self::class, 'render_smtp_section' ),
 			'404_alert'
 		);
-
-		add_settings_field(
-			'404_alert_smtp_host',
-			'SMTP Server',
-			array( self::class, 'render_field_smtp_host' ),
-			'404_alert',
-			'404_alert_smtp_section'
-		);
-
-		add_settings_field(
-			'404_alert_smtp_port',
-			'SMTP Port',
-			array( self::class, 'render_field_smtp_port' ),
-			'404_alert',
-			'404_alert_smtp_section'
-		);
-
-		add_settings_field(
-			'404_alert_smtp_username',
-			'Username',
-			array( self::class, 'render_field_smtp_username' ),
-			'404_alert',
-			'404_alert_smtp_section'
-		);
-
-		add_settings_field(
-			'404_alert_smtp_password',
-			'Password',
-			array( self::class, 'render_field_smtp_password' ),
-			'404_alert',
-			'404_alert_smtp_section'
-		);
-
-		add_settings_field(
-			'404_alert_smtp_encryption',
-			'Encryption',
-			array( self::class, 'render_field_smtp_encryption' ),
-			'404_alert',
-			'404_alert_smtp_section'
-		);
-
-		add_settings_field(
-			'404_alert_smtp_from_email',
-			'From Email',
-			array( self::class, 'render_field_smtp_from_email' ),
-			'404_alert',
-			'404_alert_smtp_section'
-		);
-
-		add_settings_field(
-			'404_alert_smtp_from_name',
-			'From Name',
-			array( self::class, 'render_field_smtp_from_name' ),
-			'404_alert',
-			'404_alert_smtp_section'
-		);
-
-		add_settings_field(
-			'404_alert_smtp_test',
-			'Test Connection',
-			array( self::class, 'render_field_smtp_test' ),
-			'404_alert',
-			'404_alert_smtp_section'
-		);
 	}
 
 	/**
@@ -285,14 +228,144 @@ class Alert404_Settings {
 	 * @return void
 	 */
 	public static function render_smtp_section(): void {
-		?>
-		<p>Configure your SMTP server for sending emails.</p>
+		self::render_smtp_two_column_form();
+	}
 
-		<div style="margin-top: 15px; padding: 15px; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 4px;">
-			<h3 style="margin-top: 0;">⚡ Quick Setup</h3>
-			<p style="margin-bottom: 10px;">Select a provider to auto-fill SMTP settings:</p>
-			<?php self::render_smtp_presets_combobox(); ?>
+	/**
+	 * Render the two-column SMTP configuration form
+	 *
+	 * @return void
+	 */
+	public static function render_smtp_two_column_form(): void {
+		$smtp_options = get_option( '404_alert_smtp_options', array() );
+		$presets      = Alert404_SMTP_Presets::get_presets();
+		$current_host = $smtp_options['host'] ?? '';
+		$current_port = $smtp_options['port'] ?? 587;
+		$current_enc  = $smtp_options['encryption'] ?? 'tls';
+		$username     = $smtp_options['username'] ?? '';
+		$from_email   = $smtp_options['from_email'] ?? get_option( 'admin_email' );
+		$from_name    = $smtp_options['from_name'] ?? get_bloginfo( 'name' );
+		?>
+		<p>Configure your SMTP server for sending emails. Choose a preset on the left or enter custom settings on the right.</p>
+
+		<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid #c3c4c7; border-radius: 4px; overflow: hidden; margin-top: 20px;">
+
+			<!-- LEFT COLUMN: Preset -->
+			<div id="404-smtp-col-left" style="padding: 20px 24px; background: #f6f7f7; border-right: 1px solid #c3c4c7;">
+				<div style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #646970; margin-bottom: 14px;">
+					<span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #2271b1; vertical-align: middle; margin-right: 8px;"></span>
+					Fournisseur connu
+				</div>
+
+				<div style="margin-bottom: 14px;">
+					<label for="404-preset-select" style="display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: #1d2327;">Fournisseur</label>
+					<select id="404-preset-select" style="width: 100%; padding: 7px 10px; border: 1px solid #8c8f94; border-radius: 3px; font-size: 13px;">
+						<option value="">— Choisir un fournisseur —</option>
+						<?php foreach ( $presets as $key => $preset ) : ?>
+							<option value="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $preset['name'] ); ?></option>
+						<?php endforeach; ?>
+					</select>
+				</div>
+
+				<div style="margin-bottom: 14px;">
+					<label for="404-left-username" style="display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: #1d2327;">Adresse email</label>
+					<input type="email" id="404-left-username" name="404_alert_smtp_options[username]" style="width: 100%; padding: 7px 10px; border: 1px solid #8c8f94; border-radius: 3px; font-size: 13px;" placeholder="votre@email.com" value="<?php echo esc_attr( $username ); ?>" />
+				</div>
+
+				<div style="margin-bottom: 14px;">
+					<label for="404-left-password" style="display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: #1d2327;">Mot de passe / Clé API</label>
+					<input type="password" id="404-left-password" name="404_alert_smtp_options[password]" style="width: 100%; padding: 7px 10px; border: 1px solid #8c8f94; border-radius: 3px; font-size: 13px;" placeholder="••••••••" autocomplete="new-password" />
+				</div>
+
+				<div id="404-preset-info" style="display: none; background: #f0f6fc; border: 1px solid #72aee6; border-radius: 3px; padding: 10px 12px; font-size: 12px; color: #2271b1; line-height: 1.5; margin-bottom: 14px;"></div>
+
+				<!-- Hidden fields for preset data -->
+				<input type="hidden" id="404-left-host" value="<?php echo esc_attr( $current_host ); ?>" />
+				<input type="hidden" id="404-left-port" value="<?php echo esc_attr( $current_port ); ?>" />
+				<input type="hidden" id="404-left-encryption" value="<?php echo esc_attr( $current_enc ); ?>" />
+			</div>
+
+			<!-- RIGHT COLUMN: Custom -->
+			<div id="404-smtp-col-right" style="padding: 20px 24px; background: #fff;">
+				<div style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #646970; margin-bottom: 14px;">
+					<span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #c3c4c7; vertical-align: middle; margin-right: 8px;"></span>
+					Fournisseur non listé
+				</div>
+
+				<div style="margin-bottom: 14px;">
+					<label for="404-right-host" style="display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: #1d2327;">Serveur SMTP</label>
+					<input type="text" id="404-right-host" name="404_alert_smtp_options[host]" style="width: 100%; padding: 7px 10px; border: 1px solid #8c8f94; border-radius: 3px; font-size: 13px;" placeholder="smtp.exemple.com" value="<?php echo esc_attr( $current_host ); ?>" disabled />
+				</div>
+
+				<div style="margin-bottom: 14px;">
+					<label style="display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: #1d2327;">Port SMTP</label>
+					<div style="display: flex; gap: 8px;">
+						<div style="flex: 1;">
+							<select id="404-right-port" name="404_alert_smtp_options[port]" style="width: 100%; padding: 7px 10px; border: 1px solid #8c8f94; border-radius: 3px; font-size: 13px;" disabled>
+								<option value="587" <?php selected( $current_port, 587 ); ?>>587 — TLS (recommandé)</option>
+								<option value="465" <?php selected( $current_port, 465 ); ?>>465 — SSL</option>
+								<option value="25" <?php selected( $current_port, 25 ); ?>>25 — SMTP classique</option>
+								<option value="1025" <?php selected( $current_port, 1025 ); ?>>1025 — ProtonMail Bridge</option>
+								<option value="2525" <?php selected( $current_port, 2525 ); ?>>2525 — Alternatif</option>
+								<option value="0">Autre…</option>
+							</select>
+						</div>
+						<div id="404-port-custom-wrap" style="display: none; flex: 1;">
+							<input type="number" id="404-right-port-custom" style="width: 100%; padding: 7px 10px; border: 1px solid #8c8f94; border-radius: 3px; font-size: 13px;" placeholder="Port" min="1" max="65535" disabled />
+						</div>
+					</div>
+				</div>
+
+				<div style="margin-bottom: 14px;">
+					<label for="404-right-encryption" style="display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: #1d2327;">Chiffrement</label>
+					<select id="404-right-encryption" name="404_alert_smtp_options[encryption]" style="width: 100%; padding: 7px 10px; border: 1px solid #8c8f94; border-radius: 3px; font-size: 13px;" disabled>
+						<option value="tls" <?php selected( $current_enc, 'tls' ); ?>>TLS</option>
+						<option value="ssl" <?php selected( $current_enc, 'ssl' ); ?>>SSL</option>
+						<option value="none" <?php selected( $current_enc, 'none' ); ?>>Aucun</option>
+					</select>
+				</div>
+
+				<div style="margin-bottom: 14px;">
+					<label for="404-right-username" style="display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: #1d2327;">Identifiant SMTP</label>
+					<input type="text" id="404-right-username" name="404_alert_smtp_options[username]" style="width: 100%; padding: 7px 10px; border: 1px solid #8c8f94; border-radius: 3px; font-size: 13px;" placeholder="utilisateur ou email" value="<?php echo esc_attr( $username ); ?>" disabled />
+				</div>
+
+				<div style="margin-bottom: 14px;">
+					<label for="404-right-password" style="display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: #1d2327;">Mot de passe</label>
+					<input type="password" id="404-right-password" name="404_alert_smtp_options[password]" style="width: 100%; padding: 7px 10px; border: 1px solid #8c8f94; border-radius: 3px; font-size: 13px;" placeholder="••••••••" autocomplete="new-password" disabled />
+				</div>
+			</div>
 		</div>
+
+		<!-- Common fields below grid -->
+		<div style="border: 1px solid #c3c4c7; border-top: none; padding: 20px 24px; background: #fcfcfc; border-bottom-left-radius: 4px; border-bottom-right-radius: 4px;">
+			<div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #8c8f94; margin-bottom: 14px;">Expéditeur — commun aux deux modes</div>
+			<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px 24px;">
+				<div style="margin: 0;">
+					<label for="404-from-email" style="display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: #1d2327;">Adresse expéditeur</label>
+					<input type="email" id="404-from-email" name="404_alert_smtp_options[from_email]" style="width: 100%; padding: 7px 10px; border: 1px solid #8c8f94; border-radius: 3px; font-size: 13px;" placeholder="noreply@monsite.com" value="<?php echo esc_attr( $from_email ); ?>" />
+				</div>
+				<div style="margin: 0;">
+					<label for="404-from-name" style="display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: #1d2327;">Nom expéditeur</label>
+					<input type="text" id="404-from-name" name="404_alert_smtp_options[from_name]" style="width: 100%; padding: 7px 10px; border: 1px solid #8c8f94; border-radius: 3px; font-size: 13px;" placeholder="Mon Site WordPress" value="<?php echo esc_attr( $from_name ); ?>" />
+				</div>
+			</div>
+		</div>
+
+		<!-- Test Connection Button -->
+		<div style="margin-top: 20px;">
+			<button type="button" class="button" id="404-alert-smtp-test">Tester la connexion</button>
+			<div id="404-alert-test-progress" style="margin-top: 20px; display: none;">
+				<div class="alert404-progress-bar-container">
+					<div class="alert404-progress-bar" style="width: 0%"></div>
+				</div>
+				<ul class="alert404-steps-list"></ul>
+			</div>
+		</div>
+
+		<script>
+			const a404Presets = <?php echo wp_json_encode( $presets ); ?>;
+		</script>
 
 		<details style="margin-top: 15px;">
 			<summary style="cursor: pointer; font-weight: bold; padding: 10px; background-color: #f5f5f5; border: 1px solid #ddd; border-radius: 4px;">📧 Gmail (recommended)</summary>
