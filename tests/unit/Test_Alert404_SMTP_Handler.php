@@ -323,4 +323,115 @@ class Test_Alert404_SMTP_Handler extends Alert404_UnitTestCase {
 			$this->assertEquals( $options[ $key ], $config[ $key ], "Valeur $key ne correspond pas" );
 		}
 	}
+
+	/**
+	 * CRITICAL SECURITY TEST: Passwords saved via sanitize_smtp_options must ALWAYS be encrypted
+	 * This prevents plaintext password storage even if encryption is somehow disabled
+	 */
+	public function test_sanitize_smtp_options_always_encrypts_passwords() {
+		// Simulate form submission with plaintext password
+		$form_data = array(
+			'preset_id'        => 'gmail',
+			'preset_username'  => 'user@gmail.com',
+			'preset_password'  => 'MySecretPassword123!@#',
+			'from_email'       => 'user@gmail.com',
+			'from_name'        => 'My Site',
+		);
+
+		// Get Alert404_Settings class method (PHP reflection)
+		$reflection = new ReflectionClass( 'Alert404_Settings' );
+		$method = $reflection->getMethod( 'sanitize_smtp_options' );
+		$method->setAccessible( true );
+
+		// Call sanitize_smtp_options with form data
+		$sanitized = $method->invoke( null, $form_data );
+
+		// Extract sanitized password from result
+		$stored_password = $sanitized['password'] ?? '';
+
+		// CRITICAL ASSERTIONS
+		// 1. Password must not be empty
+		$this->assertNotEmpty( $stored_password, 'Password should be stored' );
+
+		// 2. Password must NOT contain plaintext password
+		$this->assertStringNotContainsString(
+			'MySecretPassword123!@#',
+			$stored_password,
+			'SECURITY FAILURE: Password stored in plaintext!'
+		);
+
+		// 3. Password must have encryption prefix
+		$this->assertStringStartsWith(
+			'enc:v1:',
+			$stored_password,
+			'SECURITY FAILURE: Password not encrypted (missing enc:v1: prefix)!'
+		);
+
+		// 4. Can we decrypt it?
+		$config = Alert404_SMTP_Handler::get_smtp_config();
+		$this->assertEquals(
+			'MySecretPassword123!@#',
+			$config['password'],
+			'Encrypted password cannot be decrypted properly'
+		);
+	}
+
+	/**
+	 * CRITICAL SECURITY TEST: Plaintext passwords in database are bad
+	 * Verify that if someone tries to store plaintext, it gets encrypted
+	 */
+	public function test_plaintext_password_detection() {
+		$plaintext_password = 'SuperSecretPassword123';
+		$encrypted_password = Alert404_SMTP_Handler::encrypt_password_for_storage( $plaintext_password );
+
+		// Verify encryption occurred
+		$this->assertNotEqual(
+			$plaintext_password,
+			$encrypted_password,
+			'Encryption did not occur'
+		);
+
+		// Verify plaintext is not in encrypted value
+		$this->assertStringNotContainsString(
+			$plaintext_password,
+			$encrypted_password,
+			'CRITICAL: Plaintext password found in encrypted value!'
+		);
+
+		// Verify roundtrip works
+		update_option( '404_alert_smtp_options', array( 'password' => $encrypted_password ) );
+		$config = Alert404_SMTP_Handler::get_smtp_config();
+		$this->assertEquals( $plaintext_password, $config['password'] );
+	}
+
+	/**
+	 * AUDIT SECURITY TEST: Verify encryption uses strong parameters
+	 */
+	public function test_encryption_uses_strong_algorithm() {
+		// This test verifies the encryption implementation details
+		$password = 'TestPassword123';
+		$encrypted = Alert404_SMTP_Handler::encrypt_password_for_storage( $password );
+
+		// Should have prefix
+		$this->assertStringStartsWith( 'enc:v1:', $encrypted );
+
+		// Should be different each time (due to random IV)
+		$encrypted_again = Alert404_SMTP_Handler::encrypt_password_for_storage( $password );
+		$this->assertNotEqual(
+			$encrypted,
+			$encrypted_again,
+			'Each encryption should produce different ciphertext (random IV)'
+		);
+
+		// Both should decrypt to same value
+		$config1 = array( 'password' => $encrypted );
+		$config2 = array( 'password' => $encrypted_again );
+		update_option( '404_alert_smtp_options', $config1 );
+		$result1 = Alert404_SMTP_Handler::get_smtp_config()['password'];
+		update_option( '404_alert_smtp_options', $config2 );
+		$result2 = Alert404_SMTP_Handler::get_smtp_config()['password'];
+
+		$this->assertEquals( $result1, $result2, 'Both ciphertexts should decrypt to same password' );
+		$this->assertEquals( $password, $result1, 'Decrypted password should match original' );
+	}
 }
