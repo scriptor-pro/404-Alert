@@ -68,6 +68,8 @@ function _manually_load_plugin() {
 	require_once dirname( dirname( __FILE__ ) ) . '/includes/class-alert404-user-agent-parser.php';
 	require_once dirname( dirname( __FILE__ ) ) . '/includes/class-alert404-request-info.php';
 	require_once dirname( dirname( __FILE__ ) ) . '/includes/class-alert404-smtp-handler.php';
+	require_once dirname( dirname( __FILE__ ) ) . '/includes/class-alert404-smtp-presets.php';
+	require_once dirname( dirname( __FILE__ ) ) . '/includes/class-alert404-smtp-wizard.php';
 	require_once dirname( dirname( __FILE__ ) ) . '/includes/class-alert404-settings.php';
 	require_once dirname( dirname( __FILE__ ) ) . '/includes/class-alert404-rate-limiter.php';
 	require_once dirname( dirname( __FILE__ ) ) . '/includes/class-alert404-storage.php';
