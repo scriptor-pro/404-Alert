@@ -3,7 +3,7 @@
  * Plugin Name: 404 Alert
  * Plugin URI: https://github.com/baudouin/404-alert
  * Description: Envoie un email à l'administrateur à chaque erreur 404. <a href="options-general.php?page=404_alert">Paramètres</a>
- * Version: 1.2.9
+ * Version: 1.3.1
  * Author: Baudouin
  * Author URI: https://etik.com
  * License: GPL v2 or later
@@ -27,7 +27,7 @@ register_shutdown_function( function() {
 	}
 } );
 
-define( 'ALERT404_VERSION', '1.2.9' );
+define( 'ALERT404_VERSION', '1.3.1' );
 define( 'ALERT404_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ALERT404_MAIN_FILE', __FILE__ );
 
@@ -48,6 +48,7 @@ require_once ALERT404_DIR . 'includes/class-alert404-detector.php';
 require_once ALERT404_DIR . 'includes/class-alert404-template.php';
 require_once ALERT404_DIR . 'includes/class-alert404-dashboard.php';
 require_once ALERT404_DIR . 'includes/class-alert404-activator.php';
+require_once ALERT404_DIR . 'includes/class-alert404-smtp-wizard.php';
 
 // Initialiser les hooks d'activation/désactivation immédiatement (ne doit être appelé qu'une fois).
 Alert404_Activator::init();

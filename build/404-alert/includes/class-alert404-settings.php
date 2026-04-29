@@ -86,6 +86,24 @@ class Alert404_Settings {
 			ALERT404_VERSION,
 			true
 		);
+
+		// Enqueue wizard assets if on wizard page.
+		if ( isset( $_GET['page'] ) && 'alert404_smtp_wizard' === $_GET['page'] ) {
+			wp_enqueue_script(
+				'alert404-smtp-wizard',
+				ALERT404_DIR . 'assets/js/alert404-smtp-wizard.js',
+				array( 'wp-util' ),
+				ALERT404_VERSION,
+				true
+			);
+
+			wp_enqueue_style(
+				'alert404-smtp-wizard',
+				ALERT404_DIR . 'assets/css/alert404-smtp-wizard.css',
+				array(),
+				ALERT404_VERSION
+			);
+		}
 	}
 
 	/**
@@ -263,7 +281,6 @@ class Alert404_Settings {
 		$current_enc  = $smtp_options['encryption'] ?? 'tls';
 		$from_email   = $smtp_options['from_email'] ?? get_option( 'admin_email' );
 		$from_name    = $smtp_options['from_name'] ?? get_bloginfo( 'name' );
-		$has_password = ! empty( $smtp_options['password'] );
 
 		// Déterminer le mode actuel
 		$current_mode = ( 'custom' === $provider_id || empty( $provider_id ) ) ? 'custom' : 'preset';
@@ -281,7 +298,7 @@ class Alert404_Settings {
 				</span>
 			</label>
 
-			<div class="404-tab-content" style="padding: 20px 24px; background: #fff; border: 1px solid #c3c4c7; border-top: none; grid-column: 1 / -1;">
+			<div class="404-tab-content" style="display: none; padding: 20px 24px; background: #fff; border: 1px solid #c3c4c7; border-top: none; grid-column: 1 / -1;">
 				<div style="margin-bottom: 14px;">
 					<label for="404-preset-id" style="display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: #1d2327;">Fournisseur</label>
 					<select id="404-preset-id" name="404_alert_smtp_options[preset_id]" style="width: 100%; padding: 7px 10px; border: 1px solid #8c8f94; border-radius: 3px; font-size: 13px;">
@@ -300,12 +317,6 @@ class Alert404_Settings {
 				<div style="margin-bottom: 14px;">
 					<label for="404-preset-password" style="display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: #1d2327;">Mot de passe / Clé API</label>
 					<input type="password" id="404-preset-password" name="404_alert_smtp_options[preset_password]" style="width: 100%; padding: 7px 10px; border: 1px solid #8c8f94; border-radius: 3px; font-size: 13px;" autocomplete="new-password" />
-					<?php if ( $has_password ) : ?>
-						<p style="margin: 6px 0 0 0; font-size: 11px; color: #0073aa; font-weight: 500;">
-							<span style="display: inline-block; width: 14px; height: 14px; background: #0073aa; color: white; border-radius: 50%; text-align: center; line-height: 14px; font-size: 10px; font-weight: bold;">✓</span>
-							Mot de passe stocké. Laissez vide pour conserver.
-						</p>
-					<?php endif; ?>
 				</div>
 
 				<div id="404-preset-info" style="display: none; background: #f0f6fc; border: 1px solid #72aee6; border-radius: 3px; padding: 10px 12px; font-size: 12px; color: #2271b1; line-height: 1.5; margin-bottom: 14px;"></div>
@@ -327,6 +338,11 @@ class Alert404_Settings {
 						</tr>
 					</table>
 				</div>
+
+				<!-- Hidden inputs for preset data -->
+				<input type="hidden" id="404-preset-host" name="404_alert_smtp_options[preset_host]" value="" />
+				<input type="hidden" id="404-preset-port" name="404_alert_smtp_options[preset_port]" value="" />
+				<input type="hidden" id="404-preset-encryption" name="404_alert_smtp_options[preset_encryption]" value="" />
 			</div>
 
 			<!-- TAB 2: CUSTOM -->
@@ -338,7 +354,7 @@ class Alert404_Settings {
 				</span>
 			</label>
 
-			<div class="404-tab-content" style="padding: 20px 24px; background: #fff; border: 1px solid #c3c4c7; border-top: none; grid-column: 1 / -1;">
+			<div class="404-tab-content" style="display: none; padding: 20px 24px; background: #fff; border: 1px solid #c3c4c7; border-top: none; grid-column: 1 / -1;">
 
 				<div style="margin-bottom: 14px;">
 					<label for="404-custom-host" style="display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: #1d2327;">Serveur SMTP</label>
@@ -367,12 +383,6 @@ class Alert404_Settings {
 				<div style="margin-bottom: 14px;">
 					<label for="404-custom-password" style="display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: #1d2327;">Mot de passe</label>
 					<input type="password" id="404-custom-password" name="404_alert_smtp_options[custom_password]" style="width: 100%; padding: 7px 10px; border: 1px solid #8c8f94; border-radius: 3px; font-size: 13px;" autocomplete="new-password" />
-					<?php if ( $has_password ) : ?>
-						<p style="margin: 6px 0 0 0; font-size: 11px; color: #0073aa; font-weight: 500;">
-							<span style="display: inline-block; width: 14px; height: 14px; background: #0073aa; color: white; border-radius: 50%; text-align: center; line-height: 14px; font-size: 10px; font-weight: bold;">✓</span>
-							Mot de passe stocké. Laissez vide pour conserver.
-						</p>
-					<?php endif; ?>
 				</div>
 
 				<div style="background: #f6f7f7; border: 1px solid #c3c4c7; border-radius: 3px; padding: 12px; margin-bottom: 0;">
@@ -889,26 +899,23 @@ class Alert404_Settings {
 			const form = $('form[action="options.php"]');
 
 			form.on('submit', function(e) {
-				const mode = $('input[name="404_smtp_mode"]:checked').val();
 				const presetId = $('#404-preset-id').val();
 				const presetUsername = $('#404-preset-username').val();
+				const presetPassword = $('#404-preset-password').val();
 
 				const customHost = $('#404-custom-host').val();
 				const customPort = $('#404-custom-port').val();
+				const customEncryption = $('#404-custom-encryption').val();
 				const customUsername = $('#404-custom-username').val();
+				const customPassword = $('#404-custom-password').val();
 
-				if (mode === 'preset') {
-					if (!presetId || !presetUsername) {
-						e.preventDefault();
-						alert('Mode Fournisseur : Sélectionnez un fournisseur et entrez votre identifiant. Le mot de passe est optionnel.');
-						return false;
-					}
-				} else {
-					if (!customHost || !customPort || !customUsername) {
-						e.preventDefault();
-						alert('Mode Personnalisé : Remplissez serveur, port et identifiant. Le mot de passe est optionnel.');
-						return false;
-					}
+				const presetValid = presetId && presetUsername && presetPassword;
+				const customValid = customHost && customPort && customEncryption && customUsername && customPassword;
+
+				if (!presetValid && !customValid) {
+					e.preventDefault();
+					alert('Veuillez compléter soit un fournisseur connu (email + mot de passe), soit une configuration personnalisée (tous les champs).');
+					return false;
 				}
 			});
 		});
