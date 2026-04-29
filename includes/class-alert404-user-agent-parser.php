@@ -36,29 +36,49 @@ class Alert404_UserAgent_Parser {
 		$name    = 'Unknown';
 		$version = 'Unknown';
 
-		// Chrome (includes Chromium, Chromium-based Edge).
-		if ( preg_match( '/Chrome\/(\d+(?:\.\d+)*)/', $user_agent, $matches ) ) {
-			$name    = 'Chrome';
-			$version = $matches[1];
-		} elseif ( preg_match( '/Firefox\/(\d+(?:\.\d+)*)/', $user_agent, $matches ) ) {
-			// Firefox.
-			$name    = 'Firefox';
-			$version = $matches[1];
-		} elseif ( preg_match( '/Safari\//', $user_agent ) && preg_match( '/Version\/(\d+(?:\.\d+)*)/', $user_agent, $matches ) ) {
-			// Safari (avant Chrome).
-			$name    = 'Safari';
+		// Edge Chromium (must be before Chrome).
+		if ( preg_match( '/Edg\/(\d+(?:\.\d+)*)/', $user_agent, $matches ) ) {
+			$name    = 'Edge';
 			$version = $matches[1];
 		} elseif ( preg_match( '/Edge\/(\d+(?:\.\d+)*)/', $user_agent, $matches ) ) {
 			// Edge legacy.
 			$name    = 'Edge (Legacy)';
 			$version = $matches[1];
-		} elseif ( preg_match( '/Edg\/(\d+(?:\.\d+)*)/', $user_agent, $matches ) ) {
-			// Edge Chromium.
-			$name    = 'Edge';
+		} elseif ( preg_match( '/Chrome\/(\d+(?:\.\d+)*)/', $user_agent, $matches ) ) {
+			// Chrome (includes Chromium-based browsers).
+			$name    = 'Chrome';
 			$version = $matches[1];
+		} elseif ( preg_match( '/CriOS\/(\d+(?:\.\d+)*)/', $user_agent, $matches ) ) {
+			// Chrome on iOS.
+			$name    = 'Chrome (iOS)';
+			$version = $matches[1];
+		} elseif ( preg_match( '/Firefox\/(\d+(?:\.\d+)*)/', $user_agent, $matches ) ) {
+			// Firefox.
+			$name    = 'Firefox';
+			$version = $matches[1];
+		} elseif ( preg_match( '/FxiOS\/(\d+(?:\.\d+)*)/', $user_agent, $matches ) ) {
+			// Firefox on iOS.
+			$name    = 'Firefox (iOS)';
+			$version = $matches[1];
+		} elseif ( preg_match( '/Safari\//', $user_agent ) && ! preg_match( '/Chrome/', $user_agent ) ) {
+			// Safari (exclude Chrome which also contains Safari).
+			if ( preg_match( '/Version\/(\d+(?:\.\d+)*)/', $user_agent, $matches ) ) {
+				$name    = 'Safari';
+				$version = $matches[1];
+			} else {
+				$name = 'Safari';
+			}
 		} elseif ( preg_match( '/Opera\/(\d+(?:\.\d+)*)/', $user_agent, $matches ) ) {
 			// Opera.
 			$name    = 'Opera';
+			$version = $matches[1];
+		} elseif ( preg_match( '/OPR\/(\d+(?:\.\d+)*)/', $user_agent, $matches ) ) {
+			// Opera (newer versions).
+			$name    = 'Opera';
+			$version = $matches[1];
+		} elseif ( preg_match( '/Brave\/(\d+(?:\.\d+)*)/', $user_agent, $matches ) ) {
+			// Brave.
+			$name    = 'Brave';
 			$version = $matches[1];
 		} elseif ( preg_match( '/MSIE (\d+(?:\.\d+)*)/', $user_agent, $matches ) ) {
 			// Internet Explorer.
@@ -67,7 +87,7 @@ class Alert404_UserAgent_Parser {
 		} elseif ( preg_match( '/Trident\//', $user_agent ) ) {
 			// Trident (IE 11).
 			$name = 'Internet Explorer 11';
-		}//end if
+		}
 
 		return array(
 			'name'    => $name,
@@ -85,29 +105,36 @@ class Alert404_UserAgent_Parser {
 		$name    = 'Unknown';
 		$version = 'Unknown';
 
-		// Windows.
-		if ( preg_match( '/Windows NT (\d+\.\d+)/', $user_agent, $matches ) ) {
+		// iOS (check before macOS as iOS contains OS X).
+		if ( preg_match( '/OS (\d+_\d+(?:_\d+)?)/', $user_agent, $matches ) && preg_match( '/(iPhone|iPad|iPod)/', $user_agent ) ) {
+			$name    = 'iOS';
+			$version = str_replace( '_', '.', $matches[1] );
+		} elseif ( preg_match( '/Windows NT (\d+\.\d+)/', $user_agent, $matches ) ) {
+			// Windows.
 			$name    = self::get_windows_name( $matches[1] );
 			$version = $matches[1];
 		} elseif ( preg_match( '/Mac OS X ([0-9._]+)/', $user_agent, $matches ) ) {
 			// macOS.
 			$name    = 'macOS';
 			$version = str_replace( '_', '.', $matches[1] );
-		} elseif ( preg_match( '/OS (\d+_\d+(?:_\d+)?)/', $user_agent, $matches ) ) {
-			// iOS.
-			$name    = 'iOS';
-			$version = str_replace( '_', '.', $matches[1] );
 		} elseif ( preg_match( '/Android ([0-9.]+)/', $user_agent, $matches ) ) {
 			// Android.
 			$name    = 'Android';
 			$version = $matches[1];
+		} elseif ( preg_match( '/Linux ([0-9.]+)/', $user_agent, $matches ) ) {
+			// Linux with version.
+			$name    = 'Linux';
+			$version = $matches[1];
 		} elseif ( false !== strpos( $user_agent, 'Linux' ) ) {
-			// Linux.
+			// Linux without version.
 			$name = 'Linux';
 		} elseif ( false !== strpos( $user_agent, 'Ubuntu' ) ) {
 			// Ubuntu.
 			$name = 'Ubuntu';
-		}//end if
+		} elseif ( false !== strpos( $user_agent, 'CrOS' ) ) {
+			// Chrome OS.
+			$name = 'Chrome OS';
+		}
 
 		return array(
 			'name'    => $name,

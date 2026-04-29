@@ -12,7 +12,7 @@ defined( 'ABSPATH' ) || exit;
  */
 class Alert404_Dashboard {
 	public static function init(): void {
-		if ( ! class_exists( 'Alert404_Storage' ) ) {
+		if ( ! class_exists( 'Alert404_Stats' ) ) {
 			return;
 		}
 
@@ -38,19 +38,19 @@ class Alert404_Dashboard {
 		$action = isset( $_GET['action'] ) ? sanitize_text_field( wp_unslash( $_GET['action'] ) ) : 'list';
 
 		if ( 'export' === $action && check_admin_referer( '404_alert_export' ) ) {
-			Alert404_Storage::export_csv();
+			Alert404_Stats::export_csv();
 		}
 
 		if ( 'clear' === $action && check_admin_referer( '404_alert_clear' ) ) {
-			Alert404_Storage::clear_stats();
+			Alert404_Stats::clear();
 			echo '<div class="notice notice-success"><p>Statistiques effacées.</p></div>';
 		}
 
-		$stats       = Alert404_Storage::get_stats( 100 );
-		$total       = Alert404_Storage::get_total_count();
-		$unique_urls = Alert404_Storage::get_unique_urls_count();
-		$top_urls    = Alert404_Storage::get_top_urls( 5 );
-		$top_ips     = Alert404_Storage::get_top_ips( 5 );
+		$stats       = Alert404_Stats::get_recent( 100 );
+		$total       = Alert404_Stats::get_total_count();
+		$unique_urls = Alert404_Stats::get_unique_urls_count();
+		$top_urls    = Alert404_Stats::get_top_urls( 5 );
+		$top_ips     = Alert404_Stats::get_top_ips( 5 );
 
 		if ( 0 === $total ) {
 			?>
@@ -145,11 +145,11 @@ class Alert404_Dashboard {
 					<tbody>
 						<?php foreach ( $stats as $record ) : ?>
 							<tr>
-								<td><?php echo esc_html( $record['timestamp'] ); ?></td>
+								<td><?php echo esc_html( $record['created_at'] ); ?></td>
 								<td><?php echo esc_html( mb_strimwidth( $record['url'], 0, 50, '...' ) ); ?></td>
 								<td><?php echo esc_html( $record['ip'] ); ?></td>
-								<td><?php echo esc_html( mb_strimwidth( $record['referrer'] ?? '-', 0, 30, '...' ) ); ?></td>
-								<td><?php echo esc_html( $record['user_agent_readable'] ?? '-' ); ?></td>
+								<td><?php echo esc_html( mb_strimwidth( $record['referrer'] ?: '-', 0, 30, '...' ) ); ?></td>
+								<td><?php echo esc_html( $record['user_agent_readable'] ?: '-' ); ?></td>
 							</tr>
 						<?php endforeach; ?>
 					</tbody>

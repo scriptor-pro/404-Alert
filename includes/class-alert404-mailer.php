@@ -67,8 +67,11 @@ class Alert404_Mailer {
 		}
 
 		// Record statistics regardless of email success.
-		if ( class_exists( 'Alert404_Storage' ) ) {
-			Alert404_Storage::record_404( $to, $subject, $payload );
+		if ( class_exists( 'Alert404_Stats' ) ) {
+			$options = get_option( '404_alert_options', array() );
+			if ( ! empty( $options['enable_stats'] ) ) {
+				Alert404_Stats::record( $payload );
+			}
 		}
 
 		if ( $sent ) {

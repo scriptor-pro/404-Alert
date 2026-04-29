@@ -29,10 +29,7 @@ class Alert404_Activator {
 	 * @return void
 	 */
 	public static function activate(): void {
-		// Ensure statistics table exists.
-		if ( class_exists( 'Alert404_Storage' ) ) {
-			Alert404_Storage::init();
-		}
+		// Statistics table is created on demand in Alert404_Stats
 
 		// Initialize default options if they don't exist.
 		if ( ! get_option( '404_alert_options' ) ) {
