@@ -50,12 +50,6 @@ class Alert404_Settings {
 			array(),
 			ALERT404_VERSION
 		);
-		wp_enqueue_style(
-			'404-alert-tabs',
-			plugin_dir_url( ALERT404_MAIN_FILE ) . 'assets/css/alert404-tabs.css',
-			array(),
-			ALERT404_VERSION
-		);
 		wp_enqueue_script(
 			'404-alert-admin',
 			plugin_dir_url( ALERT404_MAIN_FILE ) . 'assets/js/alert404-admin.js',
@@ -80,8 +74,8 @@ class Alert404_Settings {
 			true
 		);
 		wp_enqueue_script(
-			'404-alert-smtp-tabs',
-			plugin_dir_url( ALERT404_MAIN_FILE ) . 'assets/js/alert404-smtp-tabs.js',
+			'404-alert-smtp-config',
+			plugin_dir_url( ALERT404_MAIN_FILE ) . 'assets/js/alert404-smtp-config.js',
 			array( 'jquery' ),
 			ALERT404_VERSION,
 			true
@@ -271,138 +265,139 @@ class Alert404_Settings {
 		$current_enc  = $smtp_options['encryption'] ?? 'tls';
 		$from_email   = $smtp_options['from_email'] ?? get_option( 'admin_email' );
 		$from_name    = $smtp_options['from_name'] ?? get_bloginfo( 'name' );
-
-		// Déterminer le mode actuel
-		$current_mode = ( 'custom' === $provider_id || empty( $provider_id ) ) ? 'custom' : 'preset';
 		?>
 		<p>Configurez votre serveur SMTP en choisissant un fournisseur connu ou en entrant une configuration personnalisée.</p>
 
-		<fieldset class="404-smtp-tabs" style="margin-top: 20px; border: none; padding: 0;">
+		<div style="margin-top: 20px;">
 
-			<!-- TAB 1: PRESET -->
-			<input type="radio" id="404-tab-preset" name="404_smtp_mode" value="preset" class="404-tab-input" <?php checked( $current_mode, 'preset' ); ?> />
-			<label for="404-tab-preset" class="404-tab-label" style="display: inline-block; padding: 12px 20px; background: #f6f7f7; border: 1px solid #c3c4c7; border-bottom: 3px solid #c3c4c7; cursor: pointer; font-weight: 600; font-size: 14px; flex: 1; text-align: center; transition: all 0.2s ease; margin: 0;">
-				<span style="display: flex; align-items: center; justify-content: center; gap: 8px;">
-					<span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #2271b1; vertical-align: middle;"></span>
-					📌 Fournisseur connu
-				</span>
-			</label>
+			<!-- ACCORDION 1: PRESET -->
+			<div style="border: 1px solid #c3c4c7; border-radius: 4px; overflow: hidden; margin-bottom: 0;">
+				<button type="button" class="404-accordion-toggle" data-accordion="preset" style="width: 100%; padding: 15px 20px; background: #f6f7f7; border: none; text-align: left; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #c3c4c7;">
+					<span style="display: flex; align-items: center; gap: 10px;">
+						<span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #2271b1; vertical-align: middle;"></span>
+						📌 Fournisseur connu
+					</span>
+					<span class="404-accordion-icon" style="font-size: 16px;">➕</span>
+				</button>
 
-			<div class="404-tab-content" style="display: none; padding: 20px 24px; background: #fff; border: 1px solid #c3c4c7; border-top: none; grid-column: 1 / -1;">
-				<div style="margin-bottom: 14px;">
-					<label for="404-preset-id" style="display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: #1d2327;">Fournisseur</label>
-					<select id="404-preset-id" name="404_alert_smtp_options[preset_id]" style="width: 100%; padding: 7px 10px; border: 1px solid #8c8f94; border-radius: 3px; font-size: 13px;">
-						<option value="">— Choisir un fournisseur —</option>
-						<?php foreach ( $presets as $key => $preset ) : ?>
-							<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $provider_id, $key ); ?>><?php echo esc_html( $preset['name'] ); ?></option>
-						<?php endforeach; ?>
-					</select>
-				</div>
+				<div id="404-accordion-preset" class="404-accordion-content" style="display: none; padding: 20px 24px; background: #fff;">
+					<div style="margin-bottom: 14px;">
+						<label for="404-preset-id" style="display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: #1d2327;">Fournisseur</label>
+						<select id="404-preset-id" name="404_alert_smtp_options[preset_id]" style="width: 100%; padding: 7px 10px; border: 1px solid #8c8f94; border-radius: 3px; font-size: 13px;">
+							<option value="">— Choisir un fournisseur —</option>
+							<?php foreach ( $presets as $key => $preset ) : ?>
+								<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $provider_id, $key ); ?>><?php echo esc_html( $preset['name'] ); ?></option>
+							<?php endforeach; ?>
+						</select>
+					</div>
 
-				<div style="margin-bottom: 14px;">
-					<label for="404-preset-username" style="display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: #1d2327;">Email / Identifiant</label>
-					<input type="text" id="404-preset-username" name="404_alert_smtp_options[preset_username]" style="width: 100%; padding: 7px 10px; border: 1px solid #8c8f94; border-radius: 3px; font-size: 13px;" placeholder="votre@email.com" value="<?php echo esc_attr( $username ); ?>" />
-				</div>
+					<div style="margin-bottom: 14px;">
+						<label for="404-preset-username" style="display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: #1d2327;">Email / Identifiant</label>
+						<input type="text" id="404-preset-username" name="404_alert_smtp_options[preset_username]" style="width: 100%; padding: 7px 10px; border: 1px solid #8c8f94; border-radius: 3px; font-size: 13px;" placeholder="votre@email.com" value="<?php echo esc_attr( $username ); ?>" />
+					</div>
 
-				<div style="margin-bottom: 14px;">
-					<label for="404-preset-password" style="display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: #1d2327;">Mot de passe / Clé API</label>
-					<input type="password" id="404-preset-password" name="404_alert_smtp_options[preset_password]" style="width: 100%; padding: 7px 10px; border: 1px solid #8c8f94; border-radius: 3px; font-size: 13px;" autocomplete="new-password" />
-				</div>
+					<div style="margin-bottom: 14px;">
+						<label for="404-preset-password" style="display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: #1d2327;">Mot de passe / Clé API</label>
+						<input type="password" id="404-preset-password" name="404_alert_smtp_options[preset_password]" style="width: 100%; padding: 7px 10px; border: 1px solid #8c8f94; border-radius: 3px; font-size: 13px;" autocomplete="new-password" />
+					</div>
 
-				<div id="404-preset-info" style="display: none; background: #f0f6fc; border: 1px solid #72aee6; border-radius: 3px; padding: 10px 12px; font-size: 12px; color: #2271b1; line-height: 1.5; margin-bottom: 14px;"></div>
+					<div id="404-preset-info" style="display: none; background: #f0f6fc; border: 1px solid #72aee6; border-radius: 3px; padding: 10px 12px; font-size: 12px; color: #2271b1; line-height: 1.5; margin-bottom: 14px;"></div>
 
-				<div style="background: #f6f7f7; border: 1px solid #c3c4c7; border-radius: 3px; padding: 12px; margin-bottom: 0;">
-					<div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #646970; margin-bottom: 8px;">Paramètres (lecture seule)</div>
-					<table style="width: 100%; font-size: 12px; border-collapse: collapse;">
-						<tr style="border-bottom: 1px solid #ddd;">
-							<td style="padding: 6px 0; font-weight: 600; width: 30%; color: #1d2327;">Serveur</td>
-							<td style="padding: 6px 0; color: #2271b1;"><strong id="preset-summary-host">—</strong></td>
-						</tr>
-						<tr style="border-bottom: 1px solid #ddd;">
-							<td style="padding: 6px 0; font-weight: 600; color: #1d2327;">Port</td>
-							<td style="padding: 6px 0; color: #2271b1;"><strong id="preset-summary-port">—</strong></td>
-						</tr>
-						<tr>
-							<td style="padding: 6px 0; font-weight: 600; color: #1d2327;">Chiffrement</td>
-							<td style="padding: 6px 0; color: #2271b1;"><strong id="preset-summary-encryption">—</strong></td>
-						</tr>
-					</table>
-				</div>
+					<div style="background: #f6f7f7; border: 1px solid #c3c4c7; border-radius: 3px; padding: 12px; margin-bottom: 0;">
+						<div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #646970; margin-bottom: 8px;">Paramètres (lecture seule)</div>
+						<table style="width: 100%; font-size: 12px; border-collapse: collapse;">
+							<tr style="border-bottom: 1px solid #ddd;">
+								<td style="padding: 6px 0; font-weight: 600; width: 30%; color: #1d2327;">Serveur</td>
+								<td style="padding: 6px 0; color: #2271b1;"><strong id="preset-summary-host">—</strong></td>
+							</tr>
+							<tr style="border-bottom: 1px solid #ddd;">
+								<td style="padding: 6px 0; font-weight: 600; color: #1d2327;">Port</td>
+								<td style="padding: 6px 0; color: #2271b1;"><strong id="preset-summary-port">—</strong></td>
+							</tr>
+							<tr>
+								<td style="padding: 6px 0; font-weight: 600; color: #1d2327;">Chiffrement</td>
+								<td style="padding: 6px 0; color: #2271b1;"><strong id="preset-summary-encryption">—</strong></td>
+							</tr>
+						</table>
+					</div>
 
-				<!-- Hidden inputs for preset data -->
-				<input type="hidden" id="404-preset-host" name="404_alert_smtp_options[preset_host]" value="" />
-				<input type="hidden" id="404-preset-port" name="404_alert_smtp_options[preset_port]" value="" />
-				<input type="hidden" id="404-preset-encryption" name="404_alert_smtp_options[preset_encryption]" value="" />
-			</div>
-
-			<!-- TAB 2: CUSTOM -->
-			<input type="radio" id="404-tab-custom" name="404_smtp_mode" value="custom" class="404-tab-input" <?php checked( $current_mode, 'custom' ); ?> />
-			<label for="404-tab-custom" class="404-tab-label" style="display: inline-block; padding: 12px 20px; background: #f6f7f7; border: 1px solid #c3c4c7; border-bottom: 3px solid #c3c4c7; cursor: pointer; font-weight: 600; font-size: 14px; flex: 1; text-align: center; transition: all 0.2s ease; margin: 0;">
-				<span style="display: flex; align-items: center; justify-content: center; gap: 8px;">
-					<span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #c3c4c7; vertical-align: middle;"></span>
-					⚙️ Configuration personnalisée
-				</span>
-			</label>
-
-			<div class="404-tab-content" style="display: none; padding: 20px 24px; background: #fff; border: 1px solid #c3c4c7; border-top: none; grid-column: 1 / -1;">
-
-				<div style="margin-bottom: 14px;">
-					<label for="404-custom-host" style="display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: #1d2327;">Serveur SMTP</label>
-					<input type="text" id="404-custom-host" name="404_alert_smtp_options[custom_host]" style="width: 100%; padding: 7px 10px; border: 1px solid #8c8f94; border-radius: 3px; font-size: 13px;" placeholder="smtp.exemple.com" value="<?php echo esc_attr( $current_host ); ?>" />
-				</div>
-
-				<div style="margin-bottom: 14px;">
-					<label for="404-custom-port" style="display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: #1d2327;">Port SMTP</label>
-					<input type="number" id="404-custom-port" name="404_alert_smtp_options[custom_port]" style="width: 100%; padding: 7px 10px; border: 1px solid #8c8f94; border-radius: 3px; font-size: 13px;" placeholder="587" value="<?php echo esc_attr( $current_port ); ?>" min="1" max="65535" />
-				</div>
-
-				<div style="margin-bottom: 14px;">
-					<label for="404-custom-encryption" style="display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: #1d2327;">Chiffrement</label>
-					<select id="404-custom-encryption" name="404_alert_smtp_options[custom_encryption]" style="width: 100%; padding: 7px 10px; border: 1px solid #8c8f94; border-radius: 3px; font-size: 13px;">
-						<option value="tls" <?php selected( $current_enc, 'tls' ); ?>>TLS</option>
-						<option value="ssl" <?php selected( $current_enc, 'ssl' ); ?>>SSL</option>
-						<option value="none" <?php selected( $current_enc, 'none' ); ?>>Aucun</option>
-					</select>
-				</div>
-
-				<div style="margin-bottom: 14px;">
-					<label for="404-custom-username" style="display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: #1d2327;">Email / Identifiant</label>
-					<input type="text" id="404-custom-username" name="404_alert_smtp_options[custom_username]" style="width: 100%; padding: 7px 10px; border: 1px solid #8c8f94; border-radius: 3px; font-size: 13px;" placeholder="utilisateur ou email" value="<?php echo esc_attr( $username ); ?>" />
-				</div>
-
-				<div style="margin-bottom: 14px;">
-					<label for="404-custom-password" style="display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: #1d2327;">Mot de passe</label>
-					<input type="password" id="404-custom-password" name="404_alert_smtp_options[custom_password]" style="width: 100%; padding: 7px 10px; border: 1px solid #8c8f94; border-radius: 3px; font-size: 13px;" autocomplete="new-password" />
-				</div>
-
-				<div style="background: #f6f7f7; border: 1px solid #c3c4c7; border-radius: 3px; padding: 12px; margin-bottom: 0;">
-					<div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #646970; margin-bottom: 8px;">Aperçu des paramètres</div>
-					<table style="width: 100%; font-size: 12px; border-collapse: collapse;">
-						<tr style="border-bottom: 1px solid #ddd;">
-							<td style="padding: 6px 0; font-weight: 600; width: 30%; color: #1d2327;">Serveur</td>
-							<td style="padding: 6px 0; color: #2271b1;"><strong id="custom-summary-host">—</strong></td>
-						</tr>
-						<tr style="border-bottom: 1px solid #ddd;">
-							<td style="padding: 6px 0; font-weight: 600; color: #1d2327;">Port</td>
-							<td style="padding: 6px 0; color: #2271b1;"><strong id="custom-summary-port">—</strong></td>
-						</tr>
-						<tr style="border-bottom: 1px solid #ddd;">
-							<td style="padding: 6px 0; font-weight: 600; color: #1d2327;">Chiffrement</td>
-							<td style="padding: 6px 0; color: #2271b1;"><strong id="custom-summary-encryption">—</strong></td>
-						</tr>
-						<tr style="border-bottom: 1px solid #ddd;">
-							<td style="padding: 6px 0; font-weight: 600; color: #1d2327;">Identifiant</td>
-							<td style="padding: 6px 0; color: #2271b1;"><strong id="custom-summary-username">—</strong></td>
-						</tr>
-						<tr>
-							<td style="padding: 6px 0; font-weight: 600; color: #1d2327;">Mot de passe</td>
-							<td style="padding: 6px 0; color: #2271b1;"><strong id="custom-summary-password">***</strong></td>
-						</tr>
-					</table>
+					<!-- Hidden inputs for preset data -->
+					<input type="hidden" id="404-preset-host" name="404_alert_smtp_options[preset_host]" value="" />
+					<input type="hidden" id="404-preset-port" name="404_alert_smtp_options[preset_port]" value="" />
+					<input type="hidden" id="404-preset-encryption" name="404_alert_smtp_options[preset_encryption]" value="" />
 				</div>
 			</div>
 
-		</fieldset><!-- End tabs wrapper -->
+			<!-- ACCORDION 2: CUSTOM -->
+			<div style="border: 1px solid #c3c4c7; border-radius: 4px; overflow: hidden; margin-bottom: 0; border-top: none;">
+				<button type="button" class="404-accordion-toggle" data-accordion="custom" style="width: 100%; padding: 15px 20px; background: #f6f7f7; border: none; text-align: left; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #c3c4c7;">
+					<span style="display: flex; align-items: center; gap: 10px;">
+						<span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #c3c4c7; vertical-align: middle;"></span>
+						⚙️ Configuration personnalisée
+					</span>
+					<span class="404-accordion-icon" style="font-size: 16px;">➕</span>
+				</button>
+
+				<div id="404-accordion-custom" class="404-accordion-content" style="display: none; padding: 20px 24px; background: #fff;">
+
+					<div style="margin-bottom: 14px;">
+						<label for="404-custom-host" style="display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: #1d2327;">Serveur SMTP</label>
+						<input type="text" id="404-custom-host" name="404_alert_smtp_options[custom_host]" style="width: 100%; padding: 7px 10px; border: 1px solid #8c8f94; border-radius: 3px; font-size: 13px;" placeholder="smtp.exemple.com" value="<?php echo esc_attr( $current_host ); ?>" />
+					</div>
+
+					<div style="margin-bottom: 14px;">
+						<label for="404-custom-port" style="display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: #1d2327;">Port SMTP</label>
+						<input type="number" id="404-custom-port" name="404_alert_smtp_options[custom_port]" style="width: 100%; padding: 7px 10px; border: 1px solid #8c8f94; border-radius: 3px; font-size: 13px;" placeholder="587" value="<?php echo esc_attr( $current_port ); ?>" min="1" max="65535" />
+					</div>
+
+					<div style="margin-bottom: 14px;">
+						<label for="404-custom-encryption" style="display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: #1d2327;">Chiffrement</label>
+						<select id="404-custom-encryption" name="404_alert_smtp_options[custom_encryption]" style="width: 100%; padding: 7px 10px; border: 1px solid #8c8f94; border-radius: 3px; font-size: 13px;">
+							<option value="tls" <?php selected( $current_enc, 'tls' ); ?>>TLS</option>
+							<option value="ssl" <?php selected( $current_enc, 'ssl' ); ?>>SSL</option>
+							<option value="none" <?php selected( $current_enc, 'none' ); ?>>Aucun</option>
+						</select>
+					</div>
+
+					<div style="margin-bottom: 14px;">
+						<label for="404-custom-username" style="display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: #1d2327;">Email / Identifiant</label>
+						<input type="text" id="404-custom-username" name="404_alert_smtp_options[custom_username]" style="width: 100%; padding: 7px 10px; border: 1px solid #8c8f94; border-radius: 3px; font-size: 13px;" placeholder="utilisateur ou email" value="<?php echo esc_attr( $username ); ?>" />
+					</div>
+
+					<div style="margin-bottom: 14px;">
+						<label for="404-custom-password" style="display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: #1d2327;">Mot de passe</label>
+						<input type="password" id="404-custom-password" name="404_alert_smtp_options[custom_password]" style="width: 100%; padding: 7px 10px; border: 1px solid #8c8f94; border-radius: 3px; font-size: 13px;" autocomplete="new-password" />
+					</div>
+
+					<div style="background: #f6f7f7; border: 1px solid #c3c4c7; border-radius: 3px; padding: 12px; margin-bottom: 0;">
+						<div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #646970; margin-bottom: 8px;">Aperçu des paramètres</div>
+						<table style="width: 100%; font-size: 12px; border-collapse: collapse;">
+							<tr style="border-bottom: 1px solid #ddd;">
+								<td style="padding: 6px 0; font-weight: 600; width: 30%; color: #1d2327;">Serveur</td>
+								<td style="padding: 6px 0; color: #2271b1;"><strong id="custom-summary-host">—</strong></td>
+							</tr>
+							<tr style="border-bottom: 1px solid #ddd;">
+								<td style="padding: 6px 0; font-weight: 600; color: #1d2327;">Port</td>
+								<td style="padding: 6px 0; color: #2271b1;"><strong id="custom-summary-port">—</strong></td>
+							</tr>
+							<tr style="border-bottom: 1px solid #ddd;">
+								<td style="padding: 6px 0; font-weight: 600; color: #1d2327;">Chiffrement</td>
+								<td style="padding: 6px 0; color: #2271b1;"><strong id="custom-summary-encryption">—</strong></td>
+							</tr>
+							<tr style="border-bottom: 1px solid #ddd;">
+								<td style="padding: 6px 0; font-weight: 600; color: #1d2327;">Identifiant</td>
+								<td style="padding: 6px 0; color: #2271b1;"><strong id="custom-summary-username">—</strong></td>
+							</tr>
+							<tr>
+								<td style="padding: 6px 0; font-weight: 600; color: #1d2327;">Mot de passe</td>
+								<td style="padding: 6px 0; color: #2271b1;"><strong id="custom-summary-password">***</strong></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+
+		</div><!-- End accordions wrapper -->
 
 		<!-- COMMON FIELDS: From Email and From Name -->
 		<div style="border: 1px solid #c3c4c7; border-top: none; padding: 20px 24px; background: #fcfcfc; border-bottom-left-radius: 4px; border-bottom-right-radius: 4px;">

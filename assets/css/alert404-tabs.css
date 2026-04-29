@@ -1,0 +1,53 @@
+/* Tabs System - Pure CSS */
+
+.404-tab-input {
+  display: none;
+}
+
+.404-smtp-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  border: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+.404-tab-label {
+  grid-column: auto;
+  display: block;
+  padding: 12px 20px !important;
+  background: #f6f7f7 !important;
+  border: 1px solid #c3c4c7 !important;
+  border-bottom: 3px solid #c3c4c7 !important;
+  cursor: pointer !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  text-align: center !important;
+  transition: all 0.2s ease !important;
+  margin: 0 !important;
+  user-select: none;
+}
+
+.404-tab-label:hover {
+  background: #e8e9ea !important;
+}
+
+.404-tab-content {
+  display: none;
+  padding: 20px 24px;
+  background: #fff;
+  border: 1px solid #c3c4c7;
+  border-top: none;
+  grid-column: 1 / -1;
+}
+
+.404-tab-input:checked + .404-tab-label {
+  background: #fff !important;
+  border-bottom-color: #2271b1 !important;
+  color: #2271b1 !important;
+}
+
+.404-tab-input:checked ~ .404-tab-content {
+  display: block;
+}

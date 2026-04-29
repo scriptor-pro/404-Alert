@@ -1,0 +1,38 @@
+/* Accordion animations */
+.404-accordion-toggle {
+  transition: background-color 0.2s ease;
+}
+
+.404-accordion-toggle:hover {
+  background-color: #ececec;
+}
+
+.404-accordion-content {
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+  }
+  to {
+    opacity: 1;
+    max-height: 1000px;
+  }
+}
+
+/* Smooth transitions */
+.404-accordion-toggle .404-accordion-icon {
+  transition: transform 0.3s ease;
+}
+
+/* Summary styling */
+#404-alert-config-summary table {
+  word-break: break-word;
+}
+
+#404-alert-config-summary strong {
+  color: #0073aa;
+}
