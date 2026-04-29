@@ -473,8 +473,8 @@ class Alert404_Settings {
 		</div>
 
 		<script>
-			const a404Presets = <?php echo wp_json_encode( $presets ); ?>;
-			const a404CurrentMode = <?php echo wp_json_encode( $provider_id ? 'preset' : 'custom' ); ?>;
+			window.a404Presets = <?php echo wp_json_encode( $presets ); ?>;
+			window.a404CurrentMode = <?php echo wp_json_encode( $provider_id ? 'preset' : 'custom' ); ?>;
 		</script>
 		<?php
 	}
@@ -898,52 +898,6 @@ class Alert404_Settings {
 				settings_fields( '404_alert' );
 				do_settings_sections( '404_alert' );
 				?>
-				<!-- Aperçu des paramètres SMTP prêts à être enregistrés -->
-				<div id="404-alert-config-summary" style="margin-top: 30px; padding: 20px; background: linear-gradient(135deg, #f0f7ff 0%, #f9f9f9 100%); border: 2px solid #0073aa; border-radius: 4px;">
-					<h3 style="margin-top: 0; color: #0073aa; display: flex; align-items: center; gap: 10px;">
-						<span style="font-size: 20px;">📋</span>
-						Paramètres SMTP prêts à être enregistrés
-					</h3>
-					<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-						<div>
-							<h4 style="color: #0073aa; margin: 0 0 12px 0; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; padding-bottom: 10px; border-bottom: 2px solid #0073aa;">⚙️ Configuration SMTP</h4>
-							<table style="width: 100%; font-size: 13px; border-collapse: collapse;">
-								<tr style="border-bottom: 1px solid #ddd;">
-									<td style="padding: 10px 0; font-weight: 600; width: 40%; color: #333;">Serveur</td>
-									<td style="padding: 10px 0; color: #0073aa;"><strong id="summary-host">—</strong></td>
-								</tr>
-								<tr style="border-bottom: 1px solid #ddd;">
-									<td style="padding: 10px 0; font-weight: 600; color: #333;">Port</td>
-									<td style="padding: 10px 0; color: #0073aa;"><strong id="summary-port">—</strong></td>
-								</tr>
-								<tr style="border-bottom: 1px solid #ddd;">
-									<td style="padding: 10px 0; font-weight: 600; color: #333;">Chiffrement</td>
-									<td style="padding: 10px 0; color: #0073aa;"><strong id="summary-encryption">—</strong></td>
-								</tr>
-								<tr>
-									<td style="padding: 10px 0; font-weight: 600; color: #333;">Identifiant</td>
-									<td style="padding: 10px 0; color: #0073aa;"><strong id="summary-username">—</strong></td>
-								</tr>
-							</table>
-						</div>
-						<div>
-							<h4 style="color: #0073aa; margin: 0 0 12px 0; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; padding-bottom: 10px; border-bottom: 2px solid #0073aa;">✉️ Expéditeur</h4>
-							<table style="width: 100%; font-size: 13px; border-collapse: collapse;">
-								<tr style="border-bottom: 1px solid #ddd;">
-									<td style="padding: 10px 0; font-weight: 600; width: 40%; color: #333;">Adresse</td>
-									<td style="padding: 10px 0; color: #0073aa;"><strong id="summary-from-email">—</strong></td>
-								</tr>
-								<tr>
-									<td style="padding: 10px 0; font-weight: 600; color: #333;">Nom</td>
-									<td style="padding: 10px 0; color: #0073aa;"><strong id="summary-from-name">—</strong></td>
-								</tr>
-							</table>
-						</div>
-					</div>
-					<p style="margin: 15px 0 0 0; padding-top: 15px; border-top: 1px solid #ddd; font-size: 12px; color: #0073aa; font-weight: 500;">
-						✓ Mise à jour en temps réel • Cliquez sur "Save Settings" pour enregistrer
-					</p>
-				</div>
 				<?php submit_button( 'Save Settings' ); ?>
 			</form>
 		</div>
