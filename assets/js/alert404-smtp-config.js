@@ -144,10 +144,6 @@ jQuery(document).ready(function($) {
     $('#summary-username').text(username);
     $('#summary-from-email').text(fromEmail);
     $('#summary-from-name').text(fromName);
-
-    // Afficher le résumé si au moins un paramètre est rempli
-    const hasData = host !== '—' || port !== '—' || username !== '—' || fromEmail !== '—';
-    $('#404-alert-config-summary').toggle(hasData);
   }
 
   // Surveiller tous les champs SMTP pour mettre à jour le résumé
