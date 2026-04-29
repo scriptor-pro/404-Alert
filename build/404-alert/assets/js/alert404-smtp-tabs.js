@@ -26,9 +26,6 @@ jQuery(document).ready(function($) {
     const key = $(this).val();
     if (key && presets[key]) {
       const p = presets[key];
-      $('#404-preset-host').val(p.host);
-      $('#404-preset-port').val(p.port);
-      $('#404-preset-encryption').val(p.encryption);
       $('#preset-summary-host').text(p.host);
       $('#preset-summary-port').text(p.port);
       $('#preset-summary-encryption').text(p.encryption);
@@ -38,9 +35,6 @@ jQuery(document).ready(function($) {
         $('#404-preset-info').hide();
       }
     } else {
-      $('#404-preset-host').val('');
-      $('#404-preset-port').val('');
-      $('#404-preset-encryption').val('');
       $('#preset-summary-host').text('—');
       $('#preset-summary-port').text('—');
       $('#preset-summary-encryption').text('—');

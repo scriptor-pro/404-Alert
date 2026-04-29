@@ -335,11 +335,6 @@ class Alert404_Settings {
 						</tr>
 					</table>
 				</div>
-
-				<!-- Hidden inputs for preset data -->
-				<input type="hidden" id="404-preset-host" name="404_alert_smtp_options[preset_host]" value="" />
-				<input type="hidden" id="404-preset-port" name="404_alert_smtp_options[preset_port]" value="" />
-				<input type="hidden" id="404-preset-encryption" name="404_alert_smtp_options[preset_encryption]" value="" />
 			</div>
 
 			<!-- TAB 2: CUSTOM -->
