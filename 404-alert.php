@@ -48,6 +48,7 @@ require_once ALERT404_DIR . 'includes/class-alert404-detector.php';
 require_once ALERT404_DIR . 'includes/class-alert404-template.php';
 require_once ALERT404_DIR . 'includes/class-alert404-dashboard.php';
 require_once ALERT404_DIR . 'includes/class-alert404-activator.php';
+require_once ALERT404_DIR . 'includes/class-alert404-smtp-wizard.php';
 
 // Initialiser les hooks d'activation/désactivation immédiatement (ne doit être appelé qu'une fois).
 Alert404_Activator::init();

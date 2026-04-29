@@ -86,6 +86,24 @@ class Alert404_Settings {
 			ALERT404_VERSION,
 			true
 		);
+
+		// Enqueue wizard assets if on wizard page.
+		if ( isset( $_GET['page'] ) && 'alert404_smtp_wizard' === $_GET['page'] ) {
+			wp_enqueue_script(
+				'alert404-smtp-wizard',
+				ALERT404_DIR . 'assets/js/alert404-smtp-wizard.js',
+				array( 'wp-util' ),
+				ALERT404_VERSION,
+				true
+			);
+
+			wp_enqueue_style(
+				'alert404-smtp-wizard',
+				ALERT404_DIR . 'assets/css/alert404-smtp-wizard.css',
+				array(),
+				ALERT404_VERSION
+			);
+		}
 	}
 
 	/**
