@@ -221,14 +221,6 @@ class Alert404_Settings {
 			'404_alert_section'
 		);
 
-		add_settings_field(
-			'404_alert_enable_stats',
-			'Statistics',
-			array( self::class, 'render_field_enable_stats' ),
-			'404_alert',
-			'404_alert_section'
-		);
-
 		// SMTP section.
 		add_settings_section(
 			'404_alert_smtp_section',
@@ -588,27 +580,6 @@ class Alert404_Settings {
 	}
 
 	/**
-	 * Affiche le champ d'activation des statistiques
-	 *
-	 * @return void
-	 */
-	public static function render_field_enable_stats(): void {
-		$options      = get_option( '404_alert_options', array() );
-		$enable_stats = ! empty( $options['enable_stats'] );
-		?>
-		<input type="checkbox" 
-				name="404_alert_options[enable_stats]" 
-				value="1" 
-				id="404_alert_enable_stats"
-				<?php checked( $enable_stats, true ); ?> />
-		<label for="404_alert_enable_stats">Activer les statistiques</label>
-		<p class="description" style="color: #666;">
-			Enregistre les 404 pour afficher des statistiques dans le dashboard. Maximum 1000 enregistrements.
-		</p>
-		<?php
-	}
-
-	/**
 	 * Affiche le champ serveur SMTP
 	 *
 	 * @return void
@@ -750,7 +721,6 @@ class Alert404_Settings {
 			'daily_limit'   => isset( $input['daily_limit'] ) ? max( 1, min( 10000, (int) $input['daily_limit'] ) ) : 500,
 			'ip_cooldown'   => isset( $input['ip_cooldown'] ) ? max( 60, min( 3600, (int) $input['ip_cooldown'] ) ) : 300,
 			'force_logging' => ! empty( $input['force_logging'] ) ? 1 : 0,
-			'enable_stats'  => ! empty( $input['enable_stats'] ) ? 1 : 0,
 		);
 
 		// Log changes if options have changed.
