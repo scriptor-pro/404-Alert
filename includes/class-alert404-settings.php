@@ -287,7 +287,7 @@ class Alert404_Settings {
 
 				<div style="margin-bottom: 14px;">
 					<label for="404-left-password" style="display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: #1d2327;">Mot de passe / Clé API</label>
-					<input type="password" id="404-left-password" name="404_alert_smtp_options[password]" style="width: 100%; padding: 7px 10px; border: 1px solid #8c8f94; border-radius: 3px; font-size: 13px;" placeholder="••••••••" autocomplete="new-password" />
+					<input type="password" id="404-left-password" name="404_alert_smtp_options[password]" style="width: 100%; padding: 7px 10px; border: 1px solid #8c8f94; border-radius: 3px; font-size: 13px;" autocomplete="new-password" />
 				</div>
 
 				<div id="404-preset-info" style="display: none; background: #f0f6fc; border: 1px solid #72aee6; border-radius: 3px; padding: 10px 12px; font-size: 12px; color: #2271b1; line-height: 1.5; margin-bottom: 14px;"></div>
@@ -345,7 +345,7 @@ class Alert404_Settings {
 
 				<div style="margin-bottom: 14px;">
 					<label for="404-right-password" style="display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: #1d2327;">Mot de passe</label>
-					<input type="password" id="404-right-password" name="404_alert_smtp_options[password]" style="width: 100%; padding: 7px 10px; border: 1px solid #8c8f94; border-radius: 3px; font-size: 13px;" placeholder="••••••••" autocomplete="new-password" disabled />
+					<input type="password" id="404-right-password" name="404_alert_smtp_options[password]" style="width: 100%; padding: 7px 10px; border: 1px solid #8c8f94; border-radius: 3px; font-size: 13px;" autocomplete="new-password" disabled />
 				</div>
 			</div>
 		</div>
