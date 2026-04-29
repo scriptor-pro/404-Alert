@@ -57,7 +57,7 @@ class Alert404_Dashboard {
 			<div class="wrap">
 				<h1>404 Alert — Statistiques</h1>
 				<div class="notice notice-info">
-					<p>Aucune donnée statistique. Activez les statistiques dans les paramètres.</p>
+					<p>Aucune donnée statistique pour le moment. Les statistiques seront collectées automatiquement à partir du prochain 404.</p>
 				</div>
 			</div>
 			<?php
