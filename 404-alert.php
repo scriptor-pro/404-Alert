@@ -39,7 +39,9 @@ require_once ALERT404_DIR . 'includes/class-alert404-smtp-presets.php';
 require_once ALERT404_DIR . 'includes/class-alert404-test-progress.php';
 require_once ALERT404_DIR . 'includes/class-alert404-smtp-handler.php';
 require_once ALERT404_DIR . 'includes/class-alert404-settings.php';
+require_once ALERT404_DIR . 'includes/class-alert404-smtp-diagnostics.php';
 require_once ALERT404_DIR . 'includes/class-alert404-rate-limiter.php';
+require_once ALERT404_DIR . 'includes/class-alert404-stats.php';
 require_once ALERT404_DIR . 'includes/class-alert404-storage.php';
 require_once ALERT404_DIR . 'includes/class-alert404-mailer.php';
 require_once ALERT404_DIR . 'includes/class-alert404-detector.php';
@@ -59,10 +61,9 @@ function alert404_init(): void {
 	// Initialiser Redis (optionnel, fallback à transients).
 	Alert404_Redis_Handler::init();
 
-	// Initialize storage (ensures table exists, initializes on every request).
-	Alert404_Storage::init();
 
 	Alert404_Settings::init();
+	Alert404_SMTP_Diagnostics::init();
 	Alert404_Template::init();
 	Alert404_Detector::init();
 	Alert404_Dashboard::init();
