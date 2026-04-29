@@ -38,7 +38,7 @@ class Alert404_Test_Progress {
 				'timestamp' => microtime( true ),
 			),
 			array(
-				'step'      => 'Connexion au serveur',
+				'step'      => 'Connexion TCP',
 				'status'    => 'pending',
 				'message'   => '',
 				'timestamp' => microtime( true ),
@@ -50,19 +50,19 @@ class Alert404_Test_Progress {
 				'timestamp' => microtime( true ),
 			),
 			array(
-				'step'      => 'Configuration de l\'email',
+				'step'      => 'Configuration du test',
 				'status'    => 'pending',
 				'message'   => '',
 				'timestamp' => microtime( true ),
 			),
 			array(
-				'step'      => 'Envoi de l\'email de test',
+				'step'      => 'Envoi de l\'email',
 				'status'    => 'pending',
 				'message'   => '',
 				'timestamp' => microtime( true ),
 			),
 			array(
-				'step'      => 'Fermeture de la connexion',
+				'step'      => 'Fermeture',
 				'status'    => 'pending',
 				'message'   => '',
 				'timestamp' => microtime( true ),

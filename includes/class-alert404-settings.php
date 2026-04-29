@@ -88,7 +88,10 @@ class Alert404_Settings {
 			wp_send_json_error( array( 'message' => 'Access denied' ) );
 		}
 
-		$result = Alert404_SMTP_Handler::test_connection();
+		// Récupère les données du formulaire si disponibles
+		$formData = isset( $_POST['formData'] ) ? json_decode( wp_unslash( $_POST['formData'] ), true ) : array();
+
+		$result = Alert404_SMTP_Handler::test_connection( $formData );
 		if ( $result['success'] ) {
 			wp_send_json_success( array( 'message' => $result['message'] ) );
 		} else {

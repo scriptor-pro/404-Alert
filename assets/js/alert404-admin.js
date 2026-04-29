@@ -20,25 +20,61 @@ jQuery( document ).ready( function ( $ ) {
 		// Initialize progress display
 		initProgressDisplay();
 
+		// Collect form data from visible fields
+		var smtpFormData = collectSmtpFormData();
+
 		// Start the SMTP test
 		$.ajax( {
 			type: 'POST',
 			url: alert404AdminVars.ajaxurl,
 			data: {
 				action: '404_alert_test_smtp',
-				nonce: alert404AdminVars.nonce
+				_wpnonce: alert404AdminVars.nonce,
+				formData: JSON.stringify( smtpFormData )
 			},
 			success: function () {
 				// Test started, begin polling
 				startPolling();
 			},
 			error: function () {
-				$progressContainer.html( '<p style="color: #c33;">Erreur lors du test de connexion.</p>' );
+				$progressContainer.html( '<p style="color: #c33;">❌ Erreur lors du test de connexion.</p>' );
 				$btn.prop( 'disabled', false ).text( 'Tester la connexion' );
 				testInProgress = false;
 			}
 		} );
 	} );
+
+	function collectSmtpFormData() {
+		// Déterminer si la colonne gauche (preset) ou droite (custom) est active
+		var colLeft = $( '#404-smtp-col-left' );
+		var colRight = $( '#404-smtp-col-right' );
+
+		var isLeftActive = colLeft.hasClass( 'active' );
+
+		if ( isLeftActive ) {
+			// Mode preset
+			return {
+				host: $( '#404-left-host' ).val(),
+				port: $( '#404-left-port' ).val(),
+				encryption: $( '#404-left-encryption' ).val(),
+				username: $( '#404-left-username' ).val(),
+				password: $( '#404-left-password' ).val(),
+				from_email: $( '#404-from-email' ).val(),
+				from_name: $( '#404-from-name' ).val()
+			};
+		} else {
+			// Mode custom
+			return {
+				host: $( '#404-right-host' ).val(),
+				port: $( '#404-right-port' ).val(),
+				encryption: $( '#404-right-encryption' ).val(),
+				username: $( '#404-right-username' ).val(),
+				password: $( '#404-right-password' ).val(),
+				from_email: $( '#404-from-email' ).val(),
+				from_name: $( '#404-from-name' ).val()
+			};
+		}
+	}
 
 	function initProgressDisplay() {
 		var $container = $( '#404-alert-test-progress' );
@@ -58,7 +94,7 @@ jQuery( document ).ready( function ( $ ) {
 				url: alert404AdminVars.ajaxurl,
 				data: {
 					action: '404_alert_get_test_progress',
-					nonce: alert404AdminVars.nonce
+					_wpnonce: alert404AdminVars.nonce
 				},
 				success: function ( response ) {
 					if ( response.success ) {
