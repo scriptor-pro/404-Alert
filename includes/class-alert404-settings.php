@@ -671,6 +671,12 @@ class Alert404_Settings {
 	 */
 	public static function sanitize_smtp_options( array $input ): array {
 		$existing_options = get_option( '404_alert_smtp_options', array() );
+
+		// Traiter les données imbriquées du formulaire (404_alert_smtp_options[key])
+		if ( isset( $input['404_alert_smtp_options'] ) && is_array( $input['404_alert_smtp_options'] ) ) {
+			$input = $input['404_alert_smtp_options'];
+		}
+
 		$password_input   = isset( $input['password'] ) ? wp_unslash( (string) $input['password'] ) : '';
 
 		if ( '' === $password_input ) {
