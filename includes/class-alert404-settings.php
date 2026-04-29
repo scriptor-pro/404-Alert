@@ -131,6 +131,16 @@ class Alert404_Settings {
 			'dashicons-warning',
 			25
 		);
+
+		// Ajouter un sous-menu "Paramètres" qui pointe vers la page principale
+		add_submenu_page(
+			'404_alert',
+			'Paramètres 404 Alert',
+			'Paramètres',
+			'manage_options',
+			'404_alert',
+			array( self::class, 'render_page' )
+		);
 	}
 
 	/**
