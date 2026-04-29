@@ -1,0 +1,1911 @@
+> phpcs --standard=phpcs.xml includes/ 404-alert.php
+EEEE 4 / 4 (100%)
+
+
+
+FILE: /home/Baudouin/Documents/Projets/404-alert/includes/class-dashboard.php
+--------------------------------------------------------------------------------
+FOUND 103 ERRORS AND 4 WARNINGS AFFECTING 36 LINES
+--------------------------------------------------------------------------------
+   1 | ERROR   | [ ] Class file names should be based on the class name with
+     |         |     "class-" prepended. Expected class-alert404-dashboard.php,
+     |         |     but found class-dashboard.php.
+   4 | ERROR   | [ ] Missing @package tag in file comment
+   6 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+   6 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+   8 | ERROR   | [ ] Missing doc comment for class Alert404_Dashboard
+   9 | ERROR   | [ ] Missing doc comment for function init()
+  10 | ERROR   | [x] No space after opening parenthesis is prohibited
+  10 | ERROR   | [x] Expected 1 space before "!"; 0 found
+  10 | ERROR   | [x] Expected 1 space after "!"; 0 found
+  10 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  10 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  10 | ERROR   | [x] No space before closing parenthesis is prohibited
+  14 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  14 | ERROR   | [x] Expected 1 space after the array opener in a single line
+     |         |     array. Found: no spaces
+  14 | ERROR   | [x] Short array syntax is not allowed
+  14 | ERROR   | [x] Expected 1 space before the array closer in a single line
+     |         |     array. Found: no spaces
+  14 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  17 | ERROR   | [ ] Missing doc comment for function add_menu()
+  24 | ERROR   | [x] Expected 1 space after the array opener in a single line
+     |         |     array. Found: no spaces
+  24 | ERROR   | [x] Short array syntax is not allowed
+  24 | ERROR   | [x] Expected 1 space before the array closer in a single line
+     |         |     array. Found: no spaces
+  28 | ERROR   | [ ] Missing doc comment for function render_page()
+  29 | ERROR   | [x] No space after opening parenthesis is prohibited
+  29 | ERROR   | [x] Expected 1 space before "!"; 0 found
+  29 | ERROR   | [x] Expected 1 space after "!"; 0 found
+  29 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  29 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  29 | ERROR   | [x] No space before closing parenthesis is prohibited
+  30 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  30 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  33 | ERROR   | [ ] $_GET['action'] not unslashed before sanitization. Use
+     |         |     wp_unslash() or similar
+  33 | ERROR   | [ ] Detected usage of a non-sanitized input variable:
+     |         |     $_GET['action']
+  35 | ERROR   | [x] No space after opening parenthesis is prohibited
+  35 | ERROR   | [ ] Use Yoda Condition checks, you must.
+  35 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  35 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  35 | ERROR   | [x] No space before closing parenthesis is prohibited
+  39 | ERROR   | [x] No space after opening parenthesis is prohibited
+  39 | ERROR   | [ ] Use Yoda Condition checks, you must.
+  39 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  39 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  39 | ERROR   | [x] No space before closing parenthesis is prohibited
+  44 | WARNING | [x] Equals sign not aligned with surrounding assignments;
+     |         |     expected 7 spaces but found 1 space
+  44 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  44 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  45 | WARNING | [x] Equals sign not aligned with surrounding assignments;
+     |         |     expected 7 spaces but found 1 space
+  47 | WARNING | [x] Equals sign not aligned with surrounding assignments;
+     |         |     expected 4 spaces but found 1 space
+  47 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  47 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  48 | WARNING | [x] Equals sign not aligned with surrounding assignments;
+     |         |     expected 5 spaces but found 1 space
+  48 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  48 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  54 | ERROR   | [x] No space after opening parenthesis is prohibited
+  54 | ERROR   | [ ] Use Yoda Condition checks, you must.
+  54 | ERROR   | [x] No space before closing parenthesis is prohibited
+  54 | ERROR   | [x] Expected 1 space after closing parenthesis; found 0
+  54 | ERROR   | [x] Space between opening control structure and T_COLON is
+     |         |     required
+  65 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  65 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  69 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  69 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  85 | ERROR   | [x] No space after opening parenthesis is prohibited
+  85 | ERROR   | [x] No space before closing parenthesis is prohibited
+  85 | ERROR   | [x] Expected 1 space after closing parenthesis; found 0
+  85 | ERROR   | [x] Space between opening control structure and T_COLON is
+     |         |     required
+  87 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  87 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  87 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  87 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  88 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  88 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 105 | ERROR   | [x] No space after opening parenthesis is prohibited
+ 105 | ERROR   | [x] No space before closing parenthesis is prohibited
+ 105 | ERROR   | [x] Expected 1 space after closing parenthesis; found 0
+ 105 | ERROR   | [x] Space between opening control structure and T_COLON is
+     |         |     required
+ 107 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 107 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 108 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 108 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 121 | ERROR   | [ ] All output should be run through an escaping function (see
+     |         |     the Security sections in the WordPress Developer
+     |         |     Handbooks), found 'wp_nonce_url'.
+ 121 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 121 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 121 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 121 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 122 | ERROR   | [ ] All output should be run through an escaping function (see
+     |         |     the Security sections in the WordPress Developer
+     |         |     Handbooks), found 'wp_nonce_url'.
+ 122 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 122 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 122 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 122 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 136 | ERROR   | [x] No space after opening parenthesis is prohibited
+ 136 | ERROR   | [x] No space before closing parenthesis is prohibited
+ 136 | ERROR   | [x] Expected 1 space after closing parenthesis; found 0
+ 136 | ERROR   | [x] Space between opening control structure and T_COLON is
+     |         |     required
+ 138 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 138 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 139 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 139 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 139 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 139 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 140 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 140 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 141 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 141 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 141 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 141 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 142 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 142 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+--------------------------------------------------------------------------------
+PHPCBF CAN FIX THE 94 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+--------------------------------------------------------------------------------
+
+
+FILE: .../Baudouin/Documents/Projets/404-alert/includes/class-user-agent-parser.php
+--------------------------------------------------------------------------------
+FOUND 153 ERRORS AFFECTING 79 LINES
+--------------------------------------------------------------------------------
+   1 | ERROR | [ ] Class file names should be based on the class name with
+     |       |     "class-" prepended. Expected
+     |       |     class-alert404-useragent-parser.php, but found
+     |       |     class-user-agent-parser.php.
+   5 | ERROR | [ ] Missing @package tag in file comment
+   7 | ERROR | [x] Expected 1 spaces after opening parenthesis; 0 found
+   7 | ERROR | [x] Expected 1 spaces before closing parenthesis; 0 found
+   9 | ERROR | [ ] Missing doc comment for class Alert404_UserAgent_Parser
+  13 | ERROR | [ ] Parameter comment must end with a full stop
+  16 | ERROR | [x] Expected 1 spaces after opening parenthesis; 0 found
+  16 | ERROR | [x] Expected 1 spaces before closing parenthesis; 0 found
+  17 | ERROR | [x] Short array syntax is not allowed
+  18 | ERROR | [x] Expected 1 spaces after opening parenthesis; 0 found
+  18 | ERROR | [x] Expected 1 spaces before closing parenthesis; 0 found
+  19 | ERROR | [x] Expected 1 spaces after opening parenthesis; 0 found
+  19 | ERROR | [x] Expected 1 spaces before closing parenthesis; 0 found
+  20 | ERROR | [x] Expected 1 spaces after opening parenthesis; 0 found
+  20 | ERROR | [x] Expected 1 spaces before closing parenthesis; 0 found
+  27 | ERROR | [ ] Parameter comment must end with a full stop
+  30 | ERROR | [x] Expected 1 spaces after opening parenthesis; 0 found
+  30 | ERROR | [x] Expected 1 spaces before closing parenthesis; 0 found
+  34 | ERROR | [ ] Inline comments must end in full-stops, exclamation marks,
+     |       |     or question marks
+  35 | ERROR | [x] No space after opening parenthesis is prohibited
+  35 | ERROR | [x] Expected 1 spaces after opening parenthesis; 0 found
+  35 | ERROR | [x] Expected 1 spaces before closing parenthesis; 0 found
+  35 | ERROR | [x] No space before closing parenthesis is prohibited
+  38 | ERROR | [ ] Expected 1 space after closing brace; newline found
+  39 | ERROR | [ ] Inline comments must end in full-stops, exclamation marks,
+     |       |     or question marks
+  40 | ERROR | [x] No space after opening parenthesis is prohibited
+  40 | ERROR | [x] Expected 1 spaces after opening parenthesis; 0 found
+  40 | ERROR | [x] Expected 1 spaces before closing parenthesis; 0 found
+  40 | ERROR | [x] No space before closing parenthesis is prohibited
+  43 | ERROR | [ ] Expected 1 space after closing brace; newline found
+  44 | ERROR | [ ] Inline comments must end in full-stops, exclamation marks,
+     |       |     or question marks
+  45 | ERROR | [x] No space after opening parenthesis is prohibited
+  45 | ERROR | [x] Expected 1 spaces after opening parenthesis; 0 found
+  45 | ERROR | [x] Expected 1 spaces before closing parenthesis; 0 found
+  45 | ERROR | [x] Expected 1 spaces after opening parenthesis; 0 found
+  45 | ERROR | [x] Expected 1 spaces before closing parenthesis; 0 found
+  45 | ERROR | [x] No space before closing parenthesis is prohibited
+  48 | ERROR | [ ] Expected 1 space after closing brace; newline found
+  49 | ERROR | [ ] Inline comments must end in full-stops, exclamation marks,
+     |       |     or question marks
+  50 | ERROR | [x] No space after opening parenthesis is prohibited
+  50 | ERROR | [x] Expected 1 spaces after opening parenthesis; 0 found
+  50 | ERROR | [x] Expected 1 spaces before closing parenthesis; 0 found
+  50 | ERROR | [x] No space before closing parenthesis is prohibited
+  53 | ERROR | [ ] Expected 1 space after closing brace; newline found
+  54 | ERROR | [ ] Inline comments must end in full-stops, exclamation marks,
+     |       |     or question marks
+  55 | ERROR | [x] No space after opening parenthesis is prohibited
+  55 | ERROR | [x] Expected 1 spaces after opening parenthesis; 0 found
+  55 | ERROR | [x] Expected 1 spaces before closing parenthesis; 0 found
+  55 | ERROR | [x] No space before closing parenthesis is prohibited
+  58 | ERROR | [ ] Expected 1 space after closing brace; newline found
+  59 | ERROR | [ ] Inline comments must end in full-stops, exclamation marks,
+     |       |     or question marks
+  60 | ERROR | [x] No space after opening parenthesis is prohibited
+  60 | ERROR | [x] Expected 1 spaces after opening parenthesis; 0 found
+  60 | ERROR | [x] Expected 1 spaces before closing parenthesis; 0 found
+  60 | ERROR | [x] No space before closing parenthesis is prohibited
+  63 | ERROR | [ ] Expected 1 space after closing brace; newline found
+  64 | ERROR | [ ] Inline comments must end in full-stops, exclamation marks,
+     |       |     or question marks
+  65 | ERROR | [x] No space after opening parenthesis is prohibited
+  65 | ERROR | [x] Expected 1 spaces after opening parenthesis; 0 found
+  65 | ERROR | [x] Expected 1 spaces before closing parenthesis; 0 found
+  65 | ERROR | [x] No space before closing parenthesis is prohibited
+  68 | ERROR | [ ] Expected 1 space after closing brace; newline found
+  69 | ERROR | [ ] Inline comments must end in full-stops, exclamation marks,
+     |       |     or question marks
+  70 | ERROR | [x] No space after opening parenthesis is prohibited
+  70 | ERROR | [x] Expected 1 spaces after opening parenthesis; 0 found
+  70 | ERROR | [x] Expected 1 spaces before closing parenthesis; 0 found
+  70 | ERROR | [x] No space before closing parenthesis is prohibited
+  74 | ERROR | [x] Short array syntax is not allowed
+  83 | ERROR | [ ] Parameter comment must end with a full stop
+  86 | ERROR | [x] Expected 1 spaces after opening parenthesis; 0 found
+  86 | ERROR | [x] Expected 1 spaces before closing parenthesis; 0 found
+  90 | ERROR | [ ] Inline comments must end in full-stops, exclamation marks,
+     |       |     or question marks
+  91 | ERROR | [x] No space after opening parenthesis is prohibited
+  91 | ERROR | [x] Expected 1 spaces after opening parenthesis; 0 found
+  91 | ERROR | [x] Expected 1 spaces before closing parenthesis; 0 found
+  91 | ERROR | [x] No space before closing parenthesis is prohibited
+  92 | ERROR | [x] Expected 1 spaces after opening parenthesis; 0 found
+  92 | ERROR | [x] Expected 1 spaces before closing parenthesis; 0 found
+  94 | ERROR | [ ] Expected 1 space after closing brace; newline found
+  95 | ERROR | [ ] Inline comments must end in full-stops, exclamation marks,
+     |       |     or question marks
+  96 | ERROR | [x] No space after opening parenthesis is prohibited
+  96 | ERROR | [x] Expected 1 spaces after opening parenthesis; 0 found
+  96 | ERROR | [x] Expected 1 spaces before closing parenthesis; 0 found
+  96 | ERROR | [x] No space before closing parenthesis is prohibited
+  98 | ERROR | [x] Expected 1 spaces after opening parenthesis; 0 found
+  98 | ERROR | [x] Expected 1 spaces before closing parenthesis; 0 found
+  99 | ERROR | [ ] Expected 1 space after closing brace; newline found
+ 100 | ERROR | [ ] Inline comments must end in full-stops, exclamation marks,
+     |       |     or question marks
+ 101 | ERROR | [x] No space after opening parenthesis is prohibited
+ 101 | ERROR | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 101 | ERROR | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 101 | ERROR | [x] No space before closing parenthesis is prohibited
+ 103 | ERROR | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 103 | ERROR | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 104 | ERROR | [ ] Expected 1 space after closing brace; newline found
+ 105 | ERROR | [ ] Inline comments must end in full-stops, exclamation marks,
+     |       |     or question marks
+ 106 | ERROR | [x] No space after opening parenthesis is prohibited
+ 106 | ERROR | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 106 | ERROR | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 106 | ERROR | [x] No space before closing parenthesis is prohibited
+ 109 | ERROR | [ ] Expected 1 space after closing brace; newline found
+ 110 | ERROR | [ ] Inline comments must end in full-stops, exclamation marks,
+     |       |     or question marks
+ 111 | ERROR | [x] No space after opening parenthesis is prohibited
+ 111 | ERROR | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 111 | ERROR | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 111 | ERROR | [x] No space before closing parenthesis is prohibited
+ 113 | ERROR | [ ] Expected 1 space after closing brace; newline found
+ 114 | ERROR | [ ] Inline comments must end in full-stops, exclamation marks,
+     |       |     or question marks
+ 115 | ERROR | [x] No space after opening parenthesis is prohibited
+ 115 | ERROR | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 115 | ERROR | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 115 | ERROR | [x] No space before closing parenthesis is prohibited
+ 119 | ERROR | [x] Short array syntax is not allowed
+ 128 | ERROR | [ ] Parameter comment must end with a full stop
+ 131 | ERROR | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 131 | ERROR | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 132 | ERROR | [ ] Inline comments must end in full-stops, exclamation marks,
+     |       |     or question marks
+ 133 | ERROR | [x] No space after opening parenthesis is prohibited
+ 133 | ERROR | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 133 | ERROR | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 133 | ERROR | [x] No space before closing parenthesis is prohibited
+ 137 | ERROR | [ ] Inline comments must end in full-stops, exclamation marks,
+     |       |     or question marks
+ 138 | ERROR | [x] No space after opening parenthesis is prohibited
+ 138 | ERROR | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 138 | ERROR | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 138 | ERROR | [x] No space before closing parenthesis is prohibited
+ 148 | ERROR | [ ] Parameter comment must end with a full stop
+ 151 | ERROR | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 151 | ERROR | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 152 | ERROR | [x] Short array syntax is not allowed
+ 162 | ERROR | [x] No space after opening parenthesis is prohibited
+ 162 | ERROR | [x] No space before closing parenthesis is prohibited
+ 163 | ERROR | [x] No space after opening parenthesis is prohibited
+ 163 | ERROR | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 163 | ERROR | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 163 | ERROR | [x] No space before closing parenthesis is prohibited
+ 174 | ERROR | [ ] Parameter comment must end with a full stop
+ 177 | ERROR | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 177 | ERROR | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 183 | ERROR | [x] No space after opening parenthesis is prohibited
+ 183 | ERROR | [ ] Use Yoda Condition checks, you must.
+ 183 | ERROR | [x] No space before closing parenthesis is prohibited
+ 188 | ERROR | [x] No space after opening parenthesis is prohibited
+ 188 | ERROR | [ ] Use Yoda Condition checks, you must.
+ 188 | ERROR | [x] No space before closing parenthesis is prohibited
+ 203 | ERROR | [ ] Parameter comment must end with a full stop
+ 206 | ERROR | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 206 | ERROR | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 207 | ERROR | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 207 | ERROR | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 209 | ERROR | [x] Short array syntax is not allowed
+ 215 | ERROR | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 215 | ERROR | [x] Expected 1 spaces before closing parenthesis; 0 found
+--------------------------------------------------------------------------------
+PHPCBF CAN FIX THE 113 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+--------------------------------------------------------------------------------
+
+
+FILE: /home/Baudouin/Documents/Projets/404-alert/includes/class-request-info.php
+--------------------------------------------------------------------------------
+FOUND 158 ERRORS AND 7 WARNINGS AFFECTING 60 LINES
+--------------------------------------------------------------------------------
+   1 | ERROR   | [ ] Class file names should be based on the class name with
+     |         |     "class-" prepended. Expected
+     |         |     class-alert404-request-info.php, but found
+     |         |     class-request-info.php.
+   4 | ERROR   | [ ] Missing @package tag in file comment
+   6 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+   6 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+   8 | ERROR   | [ ] Missing doc comment for class Alert404_Request_Info
+  12 | WARNING | [x] Equals sign not aligned with surrounding assignments;
+     |         |     expected 5 spaces but found 6 spaces
+  13 | WARNING | [x] Equals sign not aligned with surrounding assignments;
+     |         |     expected 1 space but found 2 spaces
+  14 | WARNING | [x] Equals sign not aligned with surrounding assignments;
+     |         |     expected 5 spaces but found 6 spaces
+  23 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  23 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  23 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  23 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  24 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  24 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  24 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  24 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  26 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  26 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  26 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  26 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  28 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+  29 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  29 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  30 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  30 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  32 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+  34 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  34 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  36 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+  37 | WARNING | [x] Equals sign not aligned with surrounding assignments;
+     |         |     expected 6 spaces but found 1 space
+  40 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  40 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  40 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  40 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  42 | ERROR   | [x] Short array syntax is not allowed
+  45 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  45 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  49 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  49 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  50 | ERROR   | [x] Short array syntax is not allowed
+  54 | ERROR   | [x] Short array syntax is not allowed
+  60 | ERROR   | [x] Short array syntax is not allowed
+  61 | WARNING | [x] Array double arrow not aligned correctly; expected 2
+     |         |     space(s) between "'logged_in'" and double arrow, but found
+     |         |     1.
+  62 | WARNING | [x] Array double arrow not aligned correctly; expected 4
+     |         |     space(s) between "'user_id'" and double arrow, but found
+     |         |     3.
+  63 | WARNING | [x] Array double arrow not aligned correctly; expected 2
+     |         |     space(s) between "'user_name'" and double arrow, but found
+     |         |     1.
+  66 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  66 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  74 | ERROR   | [ ] Parameter comment must end with a full stop
+  75 | ERROR   | [x] Expected 4 spaces after parameter type; 1 found
+  75 | ERROR   | [ ] Parameter comment must end with a full stop
+  78 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  78 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  79 | ERROR   | [x] No space after opening parenthesis is prohibited
+  79 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  79 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  79 | ERROR   | [x] No space before closing parenthesis is prohibited
+  80 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  80 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  93 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+  94 | ERROR   | [x] No space after opening parenthesis is prohibited
+  94 | ERROR   | [x] Expected 1 space before "!"; 0 found
+  94 | ERROR   | [x] Expected 1 space after "!"; 0 found
+  94 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  94 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  94 | ERROR   | [x] No space before closing parenthesis is prohibited
+  95 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  95 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  95 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  95 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  96 | ERROR   | [x] No space after opening parenthesis is prohibited
+  96 | ERROR   | [x] Expected 1 space before "!"; 0 found
+  96 | ERROR   | [x] Expected 1 space after "!"; 0 found
+  96 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  96 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  96 | ERROR   | [x] No space before closing parenthesis is prohibited
+  97 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  97 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  97 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  97 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  98 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+  99 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  99 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 100 | ERROR   | [x] No space after opening parenthesis is prohibited
+ 100 | ERROR   | [x] Expected 1 space before "!"; 0 found
+ 100 | ERROR   | [x] Expected 1 space after "!"; 0 found
+ 100 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 100 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 100 | ERROR   | [x] No space before closing parenthesis is prohibited
+ 101 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 101 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 101 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 101 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 102 | ERROR   | [x] No space after opening parenthesis is prohibited
+ 102 | ERROR   | [x] Expected 1 space before "!"; 0 found
+ 102 | ERROR   | [x] Expected 1 space after "!"; 0 found
+ 102 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 102 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 102 | ERROR   | [x] No space before closing parenthesis is prohibited
+ 103 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 103 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 103 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 103 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 104 | ERROR   | [x] No space after opening parenthesis is prohibited
+ 104 | ERROR   | [x] Expected 1 space before "!"; 0 found
+ 104 | ERROR   | [x] Expected 1 space after "!"; 0 found
+ 104 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 104 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 104 | ERROR   | [x] No space before closing parenthesis is prohibited
+ 105 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 105 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 105 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 105 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 106 | ERROR   | [x] No space after opening parenthesis is prohibited
+ 106 | ERROR   | [x] Expected 1 space before "!"; 0 found
+ 106 | ERROR   | [x] Expected 1 space after "!"; 0 found
+ 106 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 106 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 106 | ERROR   | [x] No space before closing parenthesis is prohibited
+ 107 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 107 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 107 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 107 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 110 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 110 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 112 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+ 113 | ERROR   | [x] No space after opening parenthesis is prohibited
+ 113 | ERROR   | [x] Expected 1 space before "!"; 0 found
+ 113 | ERROR   | [x] Expected 1 space after "!"; 0 found
+ 113 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 113 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 113 | ERROR   | [x] No space before closing parenthesis is prohibited
+ 126 | ERROR   | [x] Expected 1 space after open parenthesis; 0 found
+ 126 | ERROR   | [x] Expected 1 space before "!"; 0 found
+ 126 | ERROR   | [x] Expected 1 space after "!"; 0 found
+ 126 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 126 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 126 | ERROR   | [ ] Use Yoda Condition checks, you must.
+ 126 | ERROR   | [ ] Mixing different binary boolean operators within an
+     |         |     expression without using parentheses to clarify precedence
+     |         |     is not allowed.
+ 126 | ERROR   | [ ] Detected usage of a possibly undefined superglobal array
+     |         |     index: $_SERVER['SERVER_PORT']. Check that the array index
+     |         |     exists before using it.
+ 126 | ERROR   | [ ] Use Yoda Condition checks, you must.
+ 126 | ERROR   | [x] Expected 1 space before close parenthesis; 0 found
+ 127 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 127 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 127 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 127 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 128 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 128 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 128 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 128 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 132 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 132 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 132 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 132 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 138 | ERROR   | [ ] Parameter comment must end with a full stop
+ 141 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 141 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 142 | ERROR   | [x] No space after opening parenthesis is prohibited
+ 142 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 142 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 142 | ERROR   | [x] No space before closing parenthesis is prohibited
+ 146 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+ 147 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 147 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 147 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 147 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+--------------------------------------------------------------------------------
+PHPCBF CAN FIX THE 148 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+--------------------------------------------------------------------------------
+
+
+FILE: /home/Baudouin/Documents/Projets/404-alert/includes/class-smtp-handler.php
+--------------------------------------------------------------------------------
+FOUND 89 ERRORS AND 8 WARNINGS AFFECTING 52 LINES
+--------------------------------------------------------------------------------
+   1 | ERROR   | [ ] Class file names should be based on the class name with
+     |         |     "class-" prepended. Expected
+     |         |     class-alert404-smtp-handler.php, but found
+     |         |     class-smtp-handler.php.
+   5 | ERROR   | [ ] Missing @package tag in file comment
+   7 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+   7 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+   9 | ERROR   | [ ] Missing doc comment for class Alert404_SMTP_Handler
+  13 | ERROR   | [ ] Parameter comment must end with a full stop
+  16 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  16 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  17 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+  20 | ERROR   | [x] No space after opening parenthesis is prohibited
+  20 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  20 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  20 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  20 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  20 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  20 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  20 | ERROR   | [x] No space before closing parenthesis is prohibited
+  28 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+  32 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  32 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  35 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+  37 | ERROR   | [ ] Object property "$Host" is not in valid snake_case format,
+     |         |     try "$host"
+  38 | ERROR   | [ ] Object property "$Port" is not in valid snake_case format,
+     |         |     try "$port"
+  38 | ERROR   | [x] Expected 1 space after cast statement; 0 found
+  39 | ERROR   | [ ] Object property "$SMTPAuth" is not in valid snake_case
+     |         |     format, try "$s_m_t_p_auth"
+  40 | ERROR   | [ ] Object property "$Username" is not in valid snake_case
+     |         |     format, try "$username"
+  41 | ERROR   | [ ] Object property "$Password" is not in valid snake_case
+     |         |     format, try "$password"
+  42 | ERROR   | [ ] Object property "$SMTPSecure" is not in valid snake_case
+     |         |     format, try "$s_m_t_p_secure"
+  43 | ERROR   | [ ] Object property "$Timeout" is not in valid snake_case
+     |         |     format, try "$timeout"
+  45 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+  46 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  46 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  47 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  47 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  48 | ERROR   | [ ] Object property "$Subject" is not in valid snake_case
+     |         |     format, try "$subject"
+  49 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  49 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  50 | ERROR   | [ ] Object property "$Body" is not in valid snake_case format,
+     |         |     try "$body"
+  52 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+  53 | ERROR   | [x] No space after opening parenthesis is prohibited
+  53 | ERROR   | [x] Expected 1 space before "!"; 0 found
+  53 | ERROR   | [x] Expected 1 space after "!"; 0 found
+  53 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  53 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  53 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  53 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  53 | ERROR   | [x] No space before closing parenthesis is prohibited
+  54 | ERROR   | [x] No space after opening parenthesis is prohibited
+  54 | ERROR   | [x] No space before closing parenthesis is prohibited
+  55 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  55 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  59 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+  63 | ERROR   | [x] No space after opening parenthesis is prohibited
+  63 | ERROR   | [x] No space before closing parenthesis is prohibited
+  78 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  78 | ERROR   | [x] Short array syntax is not allowed
+  78 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  80 | ERROR   | [x] Short array syntax is not allowed
+  81 | WARNING | [x] Array double arrow not aligned correctly; expected 7
+     |         |     space(s) between "'host'" and double arrow, but found 9.
+  82 | WARNING | [x] Array double arrow not aligned correctly; expected 7
+     |         |     space(s) between "'port'" and double arrow, but found 9.
+  83 | WARNING | [x] Array double arrow not aligned correctly; expected 3
+     |         |     space(s) between "'username'" and double arrow, but found
+     |         |     5.
+  84 | WARNING | [x] Array double arrow not aligned correctly; expected 3
+     |         |     space(s) between "'password'" and double arrow, but found
+     |         |     5.
+  84 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  84 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  84 | WARNING | [ ] base64_decode() can be used to obfuscate code which is
+     |         |     strongly discouraged. Please verify that the function is
+     |         |     used for benign reasons.
+  84 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  84 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  85 | WARNING | [x] Array double arrow not aligned correctly; expected 1
+     |         |     space(s) between "'encryption'" and double arrow, but
+     |         |     found 3.
+  86 | WARNING | [x] Array double arrow not aligned correctly; expected 1
+     |         |     space(s) between "'from_email'" and double arrow, but
+     |         |     found 3.
+  86 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  86 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  87 | WARNING | [x] Array double arrow not aligned correctly; expected 2
+     |         |     space(s) between "'from_name'" and double arrow, but found
+     |         |     4.
+  87 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  87 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  99 | ERROR   | [x] No space after opening parenthesis is prohibited
+  99 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  99 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  99 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  99 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  99 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  99 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  99 | ERROR   | [x] No space before closing parenthesis is prohibited
+ 100 | ERROR   | [x] Short array syntax is not allowed
+ 109 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 109 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 113 | ERROR   | [ ] Object property "$Host" is not in valid snake_case format,
+     |         |     try "$host"
+ 114 | ERROR   | [ ] Object property "$Port" is not in valid snake_case format,
+     |         |     try "$port"
+ 114 | ERROR   | [x] Expected 1 space after cast statement; 0 found
+ 115 | ERROR   | [ ] Object property "$SMTPAuth" is not in valid snake_case
+     |         |     format, try "$s_m_t_p_auth"
+ 116 | ERROR   | [ ] Object property "$Username" is not in valid snake_case
+     |         |     format, try "$username"
+ 117 | ERROR   | [ ] Object property "$Password" is not in valid snake_case
+     |         |     format, try "$password"
+ 118 | ERROR   | [ ] Object property "$SMTPSecure" is not in valid snake_case
+     |         |     format, try "$s_m_t_p_secure"
+ 120 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+ 124 | ERROR   | [x] Short array syntax is not allowed
+ 128 | ERROR   | [x] No space after opening parenthesis is prohibited
+ 128 | ERROR   | [x] No space before closing parenthesis is prohibited
+ 129 | ERROR   | [x] Short array syntax is not allowed
+--------------------------------------------------------------------------------
+PHPCBF CAN FIX THE 70 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+--------------------------------------------------------------------------------
+
+
+FILE: /home/Baudouin/Documents/Projets/404-alert/includes/class-settings.php
+--------------------------------------------------------------------------------
+FOUND 292 ERRORS AND 21 WARNINGS AFFECTING 101 LINES
+--------------------------------------------------------------------------------
+   1 | ERROR   | [ ] Class file names should be based on the class name with
+     |         |     "class-" prepended. Expected class-alert404-settings.php,
+     |         |     but found class-settings.php.
+   4 | ERROR   | [ ] Missing @package tag in file comment
+   6 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+   6 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+   8 | ERROR   | [ ] Missing doc comment for class Alert404_Settings
+  16 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  16 | ERROR   | [x] Expected 1 space after the array opener in a single line
+     |         |     array. Found: no spaces
+  16 | ERROR   | [x] Short array syntax is not allowed
+  16 | ERROR   | [x] Expected 1 space before the array closer in a single line
+     |         |     array. Found: no spaces
+  16 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  17 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  17 | ERROR   | [x] Expected 1 space after the array opener in a single line
+     |         |     array. Found: no spaces
+  17 | ERROR   | [x] Short array syntax is not allowed
+  17 | ERROR   | [x] Expected 1 space before the array closer in a single line
+     |         |     array. Found: no spaces
+  17 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  18 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  18 | ERROR   | [x] Expected 1 space after the array opener in a single line
+     |         |     array. Found: no spaces
+  18 | ERROR   | [x] Short array syntax is not allowed
+  18 | ERROR   | [x] Expected 1 space before the array closer in a single line
+     |         |     array. Found: no spaces
+  18 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  27 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  27 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  29 | ERROR   | [x] No space after opening parenthesis is prohibited
+  29 | ERROR   | [x] Expected 1 space before "!"; 0 found
+  29 | ERROR   | [x] Expected 1 space after "!"; 0 found
+  29 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  29 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  29 | ERROR   | [x] No space before closing parenthesis is prohibited
+  30 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  30 | ERROR   | [x] Expected 1 space after the array opener in a single line
+     |         |     array. Found: no spaces
+  30 | ERROR   | [x] Short array syntax is not allowed
+  30 | ERROR   | [x] Expected 1 space before the array closer in a single line
+     |         |     array. Found: no spaces
+  30 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  34 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  34 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  49 | ERROR   | [x] Expected 1 space after the array opener in a single line
+     |         |     array. Found: no spaces
+  49 | ERROR   | [x] Short array syntax is not allowed
+  49 | ERROR   | [x] Expected 1 space before the array closer in a single line
+     |         |     array. Found: no spaces
+  60 | ERROR   | [x] Opening parenthesis of a multi-line function call must be
+     |         |     the last content on the line
+  60 | ERROR   | [x] Only one argument is allowed per line in a multi-line
+     |         |     function call
+  60 | ERROR   | [x] Only one argument is allowed per line in a multi-line
+     |         |     function call
+  60 | ERROR   | [x] Short array syntax is not allowed
+  62 | ERROR   | [x] Expected 1 space after the array opener in a single line
+     |         |     array. Found: no spaces
+  62 | ERROR   | [x] Short array syntax is not allowed
+  62 | ERROR   | [x] Expected 1 space before the array closer in a single line
+     |         |     array. Found: no spaces
+  64 | ERROR   | [x] Closing parenthesis of a multi-line function call must be
+     |         |     on a line by itself
+  66 | ERROR   | [x] Opening parenthesis of a multi-line function call must be
+     |         |     the last content on the line
+  66 | ERROR   | [x] Only one argument is allowed per line in a multi-line
+     |         |     function call
+  66 | ERROR   | [x] Only one argument is allowed per line in a multi-line
+     |         |     function call
+  66 | ERROR   | [x] Short array syntax is not allowed
+  68 | ERROR   | [x] Expected 1 space after the array opener in a single line
+     |         |     array. Found: no spaces
+  68 | ERROR   | [x] Short array syntax is not allowed
+  68 | ERROR   | [x] Expected 1 space before the array closer in a single line
+     |         |     array. Found: no spaces
+  70 | ERROR   | [x] Closing parenthesis of a multi-line function call must be
+     |         |     on a line by itself
+  75 | ERROR   | [x] Expected 1 space after the array opener in a single line
+     |         |     array. Found: no spaces
+  75 | ERROR   | [x] Short array syntax is not allowed
+  75 | ERROR   | [x] Expected 1 space before the array closer in a single line
+     |         |     array. Found: no spaces
+  82 | ERROR   | [x] Expected 1 space after the array opener in a single line
+     |         |     array. Found: no spaces
+  82 | ERROR   | [x] Short array syntax is not allowed
+  82 | ERROR   | [x] Expected 1 space before the array closer in a single line
+     |         |     array. Found: no spaces
+  90 | ERROR   | [x] Expected 1 space after the array opener in a single line
+     |         |     array. Found: no spaces
+  90 | ERROR   | [x] Short array syntax is not allowed
+  90 | ERROR   | [x] Expected 1 space before the array closer in a single line
+     |         |     array. Found: no spaces
+  98 | ERROR   | [x] Expected 1 space after the array opener in a single line
+     |         |     array. Found: no spaces
+  98 | ERROR   | [x] Short array syntax is not allowed
+  98 | ERROR   | [x] Expected 1 space before the array closer in a single line
+     |         |     array. Found: no spaces
+ 106 | ERROR   | [x] Expected 1 space after the array opener in a single line
+     |         |     array. Found: no spaces
+ 106 | ERROR   | [x] Short array syntax is not allowed
+ 106 | ERROR   | [x] Expected 1 space before the array closer in a single line
+     |         |     array. Found: no spaces
+ 114 | ERROR   | [x] Expected 1 space after the array opener in a single line
+     |         |     array. Found: no spaces
+ 114 | ERROR   | [x] Short array syntax is not allowed
+ 114 | ERROR   | [x] Expected 1 space before the array closer in a single line
+     |         |     array. Found: no spaces
+ 119 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+ 123 | ERROR   | [x] Expected 1 space after the array opener in a single line
+     |         |     array. Found: no spaces
+ 123 | ERROR   | [x] Short array syntax is not allowed
+ 123 | ERROR   | [x] Expected 1 space before the array closer in a single line
+     |         |     array. Found: no spaces
+ 130 | ERROR   | [x] Expected 1 space after the array opener in a single line
+     |         |     array. Found: no spaces
+ 130 | ERROR   | [x] Short array syntax is not allowed
+ 130 | ERROR   | [x] Expected 1 space before the array closer in a single line
+     |         |     array. Found: no spaces
+ 138 | ERROR   | [x] Expected 1 space after the array opener in a single line
+     |         |     array. Found: no spaces
+ 138 | ERROR   | [x] Short array syntax is not allowed
+ 138 | ERROR   | [x] Expected 1 space before the array closer in a single line
+     |         |     array. Found: no spaces
+ 146 | ERROR   | [x] Expected 1 space after the array opener in a single line
+     |         |     array. Found: no spaces
+ 146 | ERROR   | [x] Short array syntax is not allowed
+ 146 | ERROR   | [x] Expected 1 space before the array closer in a single line
+     |         |     array. Found: no spaces
+ 154 | ERROR   | [x] Expected 1 space after the array opener in a single line
+     |         |     array. Found: no spaces
+ 154 | ERROR   | [x] Short array syntax is not allowed
+ 154 | ERROR   | [x] Expected 1 space before the array closer in a single line
+     |         |     array. Found: no spaces
+ 162 | ERROR   | [x] Expected 1 space after the array opener in a single line
+     |         |     array. Found: no spaces
+ 162 | ERROR   | [x] Short array syntax is not allowed
+ 162 | ERROR   | [x] Expected 1 space before the array closer in a single line
+     |         |     array. Found: no spaces
+ 170 | ERROR   | [x] Expected 1 space after the array opener in a single line
+     |         |     array. Found: no spaces
+ 170 | ERROR   | [x] Short array syntax is not allowed
+ 170 | ERROR   | [x] Expected 1 space before the array closer in a single line
+     |         |     array. Found: no spaces
+ 178 | ERROR   | [x] Expected 1 space after the array opener in a single line
+     |         |     array. Found: no spaces
+ 178 | ERROR   | [x] Short array syntax is not allowed
+ 178 | ERROR   | [x] Expected 1 space before the array closer in a single line
+     |         |     array. Found: no spaces
+ 186 | ERROR   | [x] Expected 1 space after the array opener in a single line
+     |         |     array. Found: no spaces
+ 186 | ERROR   | [x] Short array syntax is not allowed
+ 186 | ERROR   | [x] Expected 1 space before the array closer in a single line
+     |         |     array. Found: no spaces
+ 301 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 301 | ERROR   | [x] Short array syntax is not allowed
+ 301 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 302 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 302 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 305 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 305 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 316 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 316 | ERROR   | [x] Short array syntax is not allowed
+ 316 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 320 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 320 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 331 | WARNING | [x] Equals sign not aligned with surrounding assignments;
+     |         |     expected 2 spaces but found 1 space
+ 331 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 331 | ERROR   | [x] Short array syntax is not allowed
+ 331 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 335 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 335 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 345 | WARNING | [x] Equals sign not aligned with surrounding assignments;
+     |         |     expected 7 spaces but found 1 space
+ 345 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 345 | ERROR   | [x] Short array syntax is not allowed
+ 345 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 346 | ERROR   | [x] Expected 1 space after "!"; 0 found
+ 346 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 346 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 349 | WARNING | [x] Found precision alignment of 3 spaces.
+ 349 | ERROR   | [x] Tabs must be used to indent lines; spaces are not allowed
+ 350 | WARNING | [x] Found precision alignment of 3 spaces.
+ 350 | ERROR   | [x] Tabs must be used to indent lines; spaces are not allowed
+ 351 | WARNING | [x] Found precision alignment of 3 spaces.
+ 351 | ERROR   | [x] Tabs must be used to indent lines; spaces are not allowed
+ 351 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 351 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 365 | WARNING | [x] Equals sign not aligned with surrounding assignments;
+     |         |     expected 6 spaces but found 1 space
+ 365 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 365 | ERROR   | [x] Short array syntax is not allowed
+ 365 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 366 | ERROR   | [x] Expected 1 space after "!"; 0 found
+ 366 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 366 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 369 | WARNING | [x] Found precision alignment of 3 spaces.
+ 369 | ERROR   | [x] Tabs must be used to indent lines; spaces are not allowed
+ 370 | WARNING | [x] Found precision alignment of 3 spaces.
+ 370 | ERROR   | [x] Tabs must be used to indent lines; spaces are not allowed
+ 371 | WARNING | [x] Found precision alignment of 3 spaces.
+ 371 | ERROR   | [x] Tabs must be used to indent lines; spaces are not allowed
+ 372 | WARNING | [x] Found precision alignment of 3 spaces.
+ 372 | ERROR   | [x] Tabs must be used to indent lines; spaces are not allowed
+ 372 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 372 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 386 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 386 | ERROR   | [x] Short array syntax is not allowed
+ 386 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 390 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 390 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 400 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 400 | ERROR   | [x] Short array syntax is not allowed
+ 400 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 404 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 404 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 414 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 414 | ERROR   | [x] Short array syntax is not allowed
+ 414 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 418 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 418 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 428 | WARNING | [x] Equals sign not aligned with surrounding assignments;
+     |         |     expected 2 spaces but found 1 space
+ 428 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 428 | ERROR   | [x] Short array syntax is not allowed
+ 428 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 429 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 429 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 429 | WARNING | [ ] base64_decode() can be used to obfuscate code which is
+     |         |     strongly discouraged. Please verify that the function is
+     |         |     used for benign reasons.
+ 429 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 429 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 432 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 432 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 442 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 442 | ERROR   | [x] Short array syntax is not allowed
+ 442 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 446 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 446 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 447 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 447 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 448 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 448 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 459 | WARNING | [x] Equals sign not aligned with surrounding assignments;
+     |         |     expected 4 spaces but found 5 spaces
+ 459 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 459 | ERROR   | [x] Short array syntax is not allowed
+ 459 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 460 | WARNING | [x] Equals sign not aligned with surrounding assignments;
+     |         |     expected 1 space but found 2 spaces
+ 460 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 460 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 463 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 463 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 473 | WARNING | [x] Equals sign not aligned with surrounding assignments;
+     |         |     expected 3 spaces but found 4 spaces
+ 473 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 473 | ERROR   | [x] Short array syntax is not allowed
+ 473 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 474 | WARNING | [x] Equals sign not aligned with surrounding assignments;
+     |         |     expected 1 space but found 2 spaces
+ 474 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 474 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 477 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 477 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 478 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 478 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 478 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 478 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 506 | ERROR   | [ ] All output should be run through an escaping function (see
+     |         |     the Security sections in the WordPress Developer
+     |         |     Handbooks), found 'wp_create_nonce'.
+ 506 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 506 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 532 | ERROR   | [ ] Parameter comment must end with a full stop
+ 535 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 535 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 536 | ERROR   | [x] Short array syntax is not allowed
+ 537 | WARNING | [x] Array double arrow not aligned correctly; expected 9
+     |         |     space(s) between "'email'" and double arrow, but found 8.
+ 537 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 537 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 537 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 537 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 537 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 537 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 538 | WARNING | [x] Array double arrow not aligned correctly; expected 3
+     |         |     space(s) between "'daily_limit'" and double arrow, but
+     |         |     found 2.
+ 538 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 538 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 538 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 538 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 538 | ERROR   | [x] Expected 1 space after cast statement; 0 found
+ 538 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 538 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 539 | WARNING | [x] Array double arrow not aligned correctly; expected 3
+     |         |     space(s) between "'ip_cooldown'" and double arrow, but
+     |         |     found 2.
+ 539 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 539 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 539 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 539 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 539 | ERROR   | [x] Expected 1 space after cast statement; 0 found
+ 539 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 539 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 540 | ERROR   | [x] Expected 1 space after "!"; 0 found
+ 540 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 540 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 541 | ERROR   | [x] Expected 1 space after "!"; 0 found
+ 541 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 541 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 548 | ERROR   | [ ] Parameter comment must end with a full stop
+ 551 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 551 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 552 | ERROR   | [x] Short array syntax is not allowed
+ 553 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 553 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 553 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 553 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 554 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 554 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 554 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 554 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 554 | ERROR   | [x] Expected 1 space after cast statement; 0 found
+ 554 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 554 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 555 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 555 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 555 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 555 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 556 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 556 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 556 | WARNING | [ ] base64_encode() can be used to obfuscate code which is
+     |         |     strongly discouraged. Please verify that the function is
+     |         |     used for benign reasons.
+ 556 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 556 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 557 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 557 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 557 | WARNING | [ ] Not using strict comparison for in_array; supply true for
+     |         |     $strict argument.
+ 557 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 557 | ERROR   | [x] Expected 1 space after the array opener in a single line
+     |         |     array. Found: no spaces
+ 557 | ERROR   | [x] Short array syntax is not allowed
+ 557 | ERROR   | [x] Expected 1 space before the array closer in a single line
+     |         |     array. Found: no spaces
+ 557 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 558 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 558 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 558 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 558 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 558 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 558 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 559 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 559 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 559 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 559 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 559 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 559 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 570 | ERROR   | [x] No space after opening parenthesis is prohibited
+ 570 | ERROR   | [x] Expected 1 space before "!"; 0 found
+ 570 | ERROR   | [x] Expected 1 space after "!"; 0 found
+ 570 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 570 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 570 | ERROR   | [x] No space before closing parenthesis is prohibited
+ 571 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 571 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 574 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+ 575 | ERROR   | [x] No space after opening parenthesis is prohibited
+ 575 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 575 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 576 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 576 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 576 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 576 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 576 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 576 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 578 | ERROR   | [x] No space before closing parenthesis is prohibited
+ 586 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+ 587 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 587 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 588 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 588 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 589 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 589 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+--------------------------------------------------------------------------------
+PHPCBF CAN FIX THE 301 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+--------------------------------------------------------------------------------
+
+
+FILE: /home/Baudouin/Documents/Projets/404-alert/includes/class-mailer.php
+--------------------------------------------------------------------------------
+FOUND 142 ERRORS AND 10 WARNINGS AFFECTING 64 LINES
+--------------------------------------------------------------------------------
+   1 | ERROR   | [ ] Class file names should be based on the class name with
+     |         |     "class-" prepended. Expected class-alert404-mailer.php,
+     |         |     but found class-mailer.php.
+   4 | ERROR   | [ ] Missing @package tag in file comment
+   6 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+   6 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+   8 | ERROR   | [ ] Missing doc comment for class Alert404_Mailer
+  13 | ERROR   | [ ] Parameter comment must end with a full stop
+  16 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  16 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  17 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  17 | ERROR   | [x] Short array syntax is not allowed
+  17 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  18 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  18 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  20 | ERROR   | [x] No space after opening parenthesis is prohibited
+  20 | ERROR   | [x] Expected 1 space before "!"; 0 found
+  20 | ERROR   | [x] Expected 1 space after "!"; 0 found
+  20 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  20 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  20 | ERROR   | [x] No space before closing parenthesis is prohibited
+  21 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  21 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  25 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  25 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  25 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  25 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  26 | ERROR   | [x] No space after opening parenthesis is prohibited
+  26 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  26 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  26 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  26 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  26 | ERROR   | [x] No space before closing parenthesis is prohibited
+  29 | ERROR   | [x] Expected 1 space after the array opener in a single line
+     |         |     array. Found: no spaces
+  29 | ERROR   | [x] Short array syntax is not allowed
+  29 | ERROR   | [x] Expected 1 space before the array closer in a single line
+     |         |     array. Found: no spaces
+  31 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+  32 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  32 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  33 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  33 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  34 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  34 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  36 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+  37 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  37 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  39 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+  40 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  40 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  43 | ERROR   | [x] Expected 1 space after "!"; 0 found
+  43 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  43 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  43 | ERROR   | [x] Expected 1 space after "!"; 0 found
+  43 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  43 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  43 | ERROR   | [x] Expected 1 space after "!"; 0 found
+  43 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  43 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  46 | ERROR   | [x] No space after opening parenthesis is prohibited
+  46 | ERROR   | [x] No space before closing parenthesis is prohibited
+  47 | ERROR   | [x] Opening parenthesis of a multi-line function call must be
+     |         |     the last content on the line
+  47 | ERROR   | [x] Short array syntax is not allowed
+  52 | ERROR   | [x] Closing parenthesis of a multi-line function call must be
+     |         |     on a line by itself
+  54 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  54 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  56 | ERROR   | [x] No space after opening parenthesis is prohibited
+  56 | ERROR   | [x] No space before closing parenthesis is prohibited
+  57 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  57 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  58 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  58 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  62 | ERROR   | [x] No space after opening parenthesis is prohibited
+  62 | ERROR   | [x] No space before closing parenthesis is prohibited
+  63 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  63 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  64 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  64 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  66 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+  67 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  67 | ERROR   | [x] Short array syntax is not allowed
+  67 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  68 | ERROR   | [x] No space after opening parenthesis is prohibited
+  68 | ERROR   | [x] Expected 1 space before "!"; 0 found
+  68 | ERROR   | [x] Expected 1 space after "!"; 0 found
+  68 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  68 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  68 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  68 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  68 | ERROR   | [x] No space before closing parenthesis is prohibited
+  69 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  69 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  72 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  72 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  73 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  73 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  80 | ERROR   | [ ] Parameter comment must end with a full stop
+  83 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  83 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  84 | WARNING | [x] Equals sign not aligned with surrounding assignments;
+     |         |     expected 11 spaces but found 12 spaces
+  84 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  84 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  85 | WARNING | [x] Equals sign not aligned with surrounding assignments;
+     |         |     expected 6 spaces but found 7 spaces
+  85 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  85 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  86 | WARNING | [x] Equals sign not aligned with surrounding assignments;
+     |         |     expected 12 spaces but found 13 spaces
+  86 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  86 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  87 | WARNING | [x] Equals sign not aligned with surrounding assignments;
+     |         |     expected 8 spaces but found 9 spaces
+  87 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  87 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  88 | WARNING | [x] Equals sign not aligned with surrounding assignments;
+     |         |     expected 5 spaces but found 6 spaces
+  88 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  88 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  89 | WARNING | [x] Equals sign not aligned with surrounding assignments;
+     |         |     expected 6 spaces but found 7 spaces
+  89 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  89 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  90 | WARNING | [x] Equals sign not aligned with surrounding assignments;
+     |         |     expected 1 space but found 2 spaces
+  90 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  90 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  91 | WARNING | [x] Equals sign not aligned with surrounding assignments;
+     |         |     expected 3 spaces but found 4 spaces
+  91 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  91 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  93 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+  94 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  94 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  95 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  95 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  96 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  96 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  97 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  97 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  99 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+ 100 | WARNING | [x] Equals sign not aligned with surrounding assignments;
+     |         |     expected 6 spaces but found 1 space
+ 100 | ERROR   | [x] Short array syntax is not allowed
+ 105 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+ 106 | ERROR   | [x] Whitespace found at end of line
+ 107 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 107 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 107 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 107 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 107 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 107 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 110 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+ 112 | WARNING | [ ] json_encode() is discouraged. Use wp_json_encode()
+     |         |     instead.
+ 117 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 117 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 119 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+ 120 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 120 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 120 | ERROR   | [x] Expected 1 space after open parenthesis; 0 found
+ 120 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 120 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 120 | ERROR   | [x] Expected 1 space before close parenthesis; 0 found
+ 332 | ERROR   | [x] The closing brace for the class must go on the next line
+     |         |     after the body
+--------------------------------------------------------------------------------
+PHPCBF CAN FIX THE 137 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+--------------------------------------------------------------------------------
+
+
+FILE: /home/Baudouin/Documents/Projets/404-alert/includes/class-detector.php
+--------------------------------------------------------------------------------
+FOUND 80 ERRORS AND 2 WARNINGS AFFECTING 37 LINES
+--------------------------------------------------------------------------------
+   1 | ERROR   | [ ] Class file names should be based on the class name with
+     |         |     "class-" prepended. Expected class-alert404-detector.php,
+     |         |     but found class-detector.php.
+   4 | ERROR   | [ ] Missing @package tag in file comment
+   6 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+   6 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+   8 | ERROR   | [ ] Missing doc comment for class Alert404_Detector
+  16 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  16 | ERROR   | [x] Expected 1 space after the array opener in a single line
+     |         |     array. Found: no spaces
+  16 | ERROR   | [x] Short array syntax is not allowed
+  16 | ERROR   | [x] Expected 1 space before the array closer in a single line
+     |         |     array. Found: no spaces
+  16 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  26 | ERROR   | [x] No space after opening parenthesis is prohibited
+  26 | ERROR   | [x] Expected 1 space before "!"; 0 found
+  26 | ERROR   | [x] Expected 1 space after "!"; 0 found
+  26 | ERROR   | [x] No space before closing parenthesis is prohibited
+  32 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+  33 | ERROR   | [x] No space after opening parenthesis is prohibited
+  33 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  33 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  33 | ERROR   | [x] Expected 1 space after "!"; 0 found
+  33 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  33 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  33 | ERROR   | [x] No space before closing parenthesis is prohibited
+  34 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  34 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  38 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+  39 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  39 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  41 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+  42 | ERROR   | [x] No space after opening parenthesis is prohibited
+  42 | ERROR   | [x] Expected 1 space before "!"; 0 found
+  42 | ERROR   | [x] Expected 1 space after "!"; 0 found
+  42 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  42 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  42 | ERROR   | [x] No space before closing parenthesis is prohibited
+  43 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+  47 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+  48 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  48 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  58 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+  59 | ERROR   | [ ] $_SERVER['HTTP_X_FORWARDED_FOR'] not unslashed before
+     |         |     sanitization. Use wp_unslash() or similar
+  59 | ERROR   | [ ] Detected usage of a non-sanitized input variable:
+     |         |     $_SERVER['HTTP_X_FORWARDED_FOR']
+  59 | ERROR   | [ ] $_SERVER['REMOTE_ADDR'] not unslashed before sanitization.
+     |         |     Use wp_unslash() or similar
+  59 | ERROR   | [ ] Detected usage of a non-sanitized input variable:
+     |         |     $_SERVER['REMOTE_ADDR']
+  61 | ERROR   | [x] No space after opening parenthesis is prohibited
+  61 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  61 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  61 | ERROR   | [x] No space before closing parenthesis is prohibited
+  65 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+  66 | ERROR   | [x] No space after opening parenthesis is prohibited
+  66 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  66 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  66 | ERROR   | [x] No space before closing parenthesis is prohibited
+  67 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  67 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  69 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+  70 | ERROR   | [x] No space after opening parenthesis is prohibited
+  70 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  70 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  70 | ERROR   | [x] No space before closing parenthesis is prohibited
+  75 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+  83 | ERROR   | [ ] Parameter comment must end with a full stop
+  86 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  86 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  91 | ERROR   | [x] No space after opening parenthesis is prohibited
+  91 | ERROR   | [x] No space before closing parenthesis is prohibited
+  92 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  92 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  93 | ERROR   | [x] Short array syntax is not allowed
+  94 | WARNING | [x] Array double arrow not aligned correctly; expected 4
+     |         |     space(s) between "'ip'" and double arrow, but found 3.
+  95 | WARNING | [x] Array double arrow not aligned correctly; expected 3
+     |         |     space(s) between "'url'" and double arrow, but found 2.
+  95 | ERROR   | [ ] $_SERVER['REQUEST_URI'] not unslashed before sanitization.
+     |         |     Use wp_unslash() or similar
+  95 | ERROR   | [ ] Detected usage of a non-sanitized input variable:
+     |         |     $_SERVER['REQUEST_URI']
+ 107 | ERROR   | [ ] Parameter comment must end with a full stop
+ 108 | ERROR   | [x] Expected 9 spaces after parameter type; 1 found
+ 108 | ERROR   | [ ] Parameter comment must end with a full stop
+ 111 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 111 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 112 | ERROR   | [x] No space after opening parenthesis is prohibited
+ 112 | ERROR   | [ ] Use Yoda Condition checks, you must.
+ 112 | ERROR   | [x] No space before closing parenthesis is prohibited
+ 115 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 115 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+--------------------------------------------------------------------------------
+PHPCBF CAN FIX THE 60 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+--------------------------------------------------------------------------------
+
+
+FILE: /home/Baudouin/Documents/Projets/404-alert/404-alert.php
+------------------------------------------------------------------------
+FOUND 7 ERRORS AFFECTING 3 LINES
+------------------------------------------------------------------------
+  8 | ERROR | [ ] Missing @package tag in file comment
+ 10 | ERROR | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 10 | ERROR | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 12 | ERROR | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 12 | ERROR | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 12 | ERROR | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 12 | ERROR | [x] Expected 1 spaces before closing parenthesis; 0 found
+------------------------------------------------------------------------
+PHPCBF CAN FIX THE 6 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+------------------------------------------------------------------------
+
+
+FILE: /home/Baudouin/Documents/Projets/404-alert/includes/class-logger.php
+--------------------------------------------------------------------------------
+FOUND 100 ERRORS AND 5 WARNINGS AFFECTING 51 LINES
+--------------------------------------------------------------------------------
+   1 | ERROR   | [ ] Class file names should be based on the class name with
+     |         |     "class-" prepended. Expected class-alert404-logger.php,
+     |         |     but found class-logger.php.
+   5 | ERROR   | [ ] Missing @package tag in file comment
+   7 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+   7 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+   9 | ERROR   | [ ] Missing doc comment for class Alert404_Logger
+  13 | ERROR   | [ ] Parameter comment must end with a full stop
+  14 | ERROR   | [ ] Parameter comment must end with a full stop
+  15 | ERROR   | [x] Expected 2 spaces after parameter type; 1 found
+  15 | ERROR   | [ ] Parameter comment must end with a full stop
+  18 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  18 | ERROR   | [x] Short array syntax is not allowed
+  18 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  19 | ERROR   | [x] Opening parenthesis of a multi-line function call must be
+     |         |     the last content on the line
+  19 | ERROR   | [x] Only one argument is allowed per line in a multi-line
+     |         |     function call
+  19 | ERROR   | [x] Short array syntax is not allowed
+  23 | ERROR   | [x] Closing parenthesis of a multi-line function call must be
+     |         |     on a line by itself
+  29 | ERROR   | [ ] Parameter comment must end with a full stop
+  30 | ERROR   | [x] Expected 4 spaces after parameter type; 1 found
+  30 | ERROR   | [ ] Parameter comment must end with a full stop
+  33 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  33 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  34 | ERROR   | [x] Opening parenthesis of a multi-line function call must be
+     |         |     the last content on the line
+  34 | ERROR   | [x] Only one argument is allowed per line in a multi-line
+     |         |     function call
+  34 | ERROR   | [x] Short array syntax is not allowed
+  37 | ERROR   | [x] Closing parenthesis of a multi-line function call must be
+     |         |     on a line by itself
+  43 | ERROR   | [ ] Parameter comment must end with a full stop
+  46 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  46 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  47 | ERROR   | [x] Opening parenthesis of a multi-line function call must be
+     |         |     the last content on the line
+  47 | ERROR   | [x] Only one argument is allowed per line in a multi-line
+     |         |     function call
+  47 | ERROR   | [x] Short array syntax is not allowed
+  49 | ERROR   | [x] Closing parenthesis of a multi-line function call must be
+     |         |     on a line by itself
+  55 | ERROR   | [ ] Parameter comment must end with a full stop
+  56 | ERROR   | [ ] Parameter comment must end with a full stop
+  59 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  59 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  60 | ERROR   | [x] Opening parenthesis of a multi-line function call must be
+     |         |     the last content on the line
+  60 | ERROR   | [x] Only one argument is allowed per line in a multi-line
+     |         |     function call
+  60 | ERROR   | [x] Short array syntax is not allowed
+  63 | ERROR   | [x] Closing parenthesis of a multi-line function call must be
+     |         |     on a line by itself
+  69 | ERROR   | [ ] Parameter comment must end with a full stop
+  70 | ERROR   | [ ] Parameter comment must end with a full stop
+  73 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  73 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  74 | ERROR   | [x] Opening parenthesis of a multi-line function call must be
+     |         |     the last content on the line
+  74 | ERROR   | [x] Only one argument is allowed per line in a multi-line
+     |         |     function call
+  74 | ERROR   | [x] Short array syntax is not allowed
+  77 | ERROR   | [x] Closing parenthesis of a multi-line function call must be
+     |         |     on a line by itself
+  83 | ERROR   | [ ] Parameter comment must end with a full stop
+  86 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  86 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  87 | ERROR   | [x] Opening parenthesis of a multi-line function call must be
+     |         |     the last content on the line
+  87 | ERROR   | [x] Only one argument is allowed per line in a multi-line
+     |         |     function call
+  87 | ERROR   | [x] Short array syntax is not allowed
+  89 | ERROR   | [x] Closing parenthesis of a multi-line function call must be
+     |         |     on a line by itself
+  95 | ERROR   | [ ] Parameter comment must end with a full stop
+  96 | ERROR   | [x] Expected 2 spaces after parameter type; 1 found
+  96 | ERROR   | [ ] Parameter comment must end with a full stop
+  99 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  99 | ERROR   | [x] Short array syntax is not allowed
+  99 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 100 | ERROR   | [x] Opening parenthesis of a multi-line function call must be
+     |         |     the last content on the line
+ 100 | ERROR   | [x] Only one argument is allowed per line in a multi-line
+     |         |     function call
+ 100 | ERROR   | [x] Short array syntax is not allowed
+ 103 | ERROR   | [x] Closing parenthesis of a multi-line function call must be
+     |         |     on a line by itself
+ 110 | ERROR   | [ ] Parameter comment must end with a full stop
+ 111 | ERROR   | [x] Expected 2 spaces after parameter type; 1 found
+ 111 | ERROR   | [ ] Parameter comment must end with a full stop
+ 114 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 114 | ERROR   | [x] Short array syntax is not allowed
+ 114 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 115 | WARNING | [x] Equals sign not aligned with surrounding assignments;
+     |         |     expected 7 spaces but found 1 space
+ 115 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 115 | ERROR   | [x] Short array syntax is not allowed
+ 115 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 116 | ERROR   | [x] Expected 1 space after "!"; 0 found
+ 116 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 116 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 117 | ERROR   | [x] Whitespace found at end of line
+ 118 | ERROR   | [x] No space after opening parenthesis is prohibited
+ 118 | ERROR   | [x] Expected 1 space before "!"; 0 found
+ 118 | ERROR   | [x] Expected 1 space after "!"; 0 found
+ 118 | ERROR   | [x] Expected 1 space after open parenthesis; 0 found
+ 118 | ERROR   | [x] Expected 1 space before "!"; 0 found
+ 118 | ERROR   | [x] Expected 1 space after "!"; 0 found
+ 118 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 118 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 118 | ERROR   | [x] Expected 1 space after "!"; 0 found
+ 118 | ERROR   | [x] Expected 1 space before close parenthesis; 0 found
+ 118 | ERROR   | [x] No space before closing parenthesis is prohibited
+ 122 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+ 123 | WARNING | [x] Equals sign not aligned with surrounding assignments;
+     |         |     expected 4 spaces but found 1 space
+ 123 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 123 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 124 | ERROR   | [x] Expected 1 space after "!"; 0 found
+ 124 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 124 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 124 | WARNING | [ ] json_encode() is discouraged. Use wp_json_encode()
+     |         |     instead.
+ 124 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 124 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 125 | WARNING | [x] Equals sign not aligned with surrounding assignments;
+     |         |     expected 6 spaces but found 1 space
+ 132 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+ 133 | WARNING | [ ] error_log() found. Debug code should not normally be used
+     |         |     in production.
+ 133 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 133 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+--------------------------------------------------------------------------------
+PHPCBF CAN FIX THE 83 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+--------------------------------------------------------------------------------
+
+
+FILE: /home/Baudouin/Documents/Projets/404-alert/includes/class-rate-limiter.php
+--------------------------------------------------------------------------------
+FOUND 122 ERRORS AND 8 WARNINGS AFFECTING 59 LINES
+--------------------------------------------------------------------------------
+   1 | ERROR   | [ ] Class file names should be based on the class name with
+     |         |     "class-" prepended. Expected
+     |         |     class-alert404-ratelimiter.php, but found
+     |         |     class-rate-limiter.php.
+   4 | ERROR   | [ ] Missing @package tag in file comment
+   6 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+   6 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+   8 | ERROR   | [ ] Missing doc comment for class Alert404_RateLimiter
+  15 | ERROR   | [ ] Parameter comment must end with a full stop
+  18 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  18 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  19 | WARNING | [x] Equals sign not aligned with surrounding assignments;
+     |         |     expected 5 spaces but found 1 space
+  19 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  19 | ERROR   | [x] Short array syntax is not allowed
+  19 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  20 | WARNING | [x] Equals sign not aligned with surrounding assignments;
+     |         |     expected 4 spaces but found 1 space
+  23 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+  24 | ERROR   | [x] No space after opening parenthesis is prohibited
+  24 | ERROR   | [x] Expected 1 space before "!"; 0 found
+  24 | ERROR   | [x] Expected 1 space after "!"; 0 found
+  24 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  24 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  24 | ERROR   | [x] No space before closing parenthesis is prohibited
+  28 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+  29 | ERROR   | [x] No space after opening parenthesis is prohibited
+  29 | ERROR   | [x] Expected 1 space before "!"; 0 found
+  29 | ERROR   | [x] Expected 1 space after "!"; 0 found
+  29 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  29 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  29 | ERROR   | [x] No space before closing parenthesis is prohibited
+  40 | ERROR   | [ ] Parameter comment must end with a full stop
+  41 | ERROR   | [x] Expected 4 spaces after parameter type; 1 found
+  41 | ERROR   | [ ] Parameter comment must end with a full stop
+  44 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  44 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  45 | WARNING | [x] Equals sign not aligned with surrounding assignments;
+     |         |     expected 6 spaces but found 1 space
+  45 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  45 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  48 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+  49 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  49 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  50 | ERROR   | [x] No space after opening parenthesis is prohibited
+  50 | ERROR   | [x] Expected 1 space before "!"; 0 found
+  50 | ERROR   | [x] Expected 1 space after "!"; 0 found
+  50 | ERROR   | [x] No space before closing parenthesis is prohibited
+  51 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+  56 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  56 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  58 | ERROR   | [x] No space after opening parenthesis is prohibited
+  58 | ERROR   | [ ] Use Yoda Condition checks, you must.
+  58 | ERROR   | [x] Expected 1 space after open parenthesis; 0 found
+  58 | ERROR   | [x] Expected 1 space after cast statement; 0 found
+  58 | ERROR   | [x] Expected 1 space before close parenthesis; 0 found
+  58 | ERROR   | [x] No space before closing parenthesis is prohibited
+  59 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  59 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  60 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+  63 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  63 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  66 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  66 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  73 | ERROR   | [ ] Parameter comment must end with a full stop
+  76 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  76 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  77 | WARNING | [x] Equals sign not aligned with surrounding assignments;
+     |         |     expected 2 spaces but found 1 space
+  77 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  77 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  80 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+  81 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  81 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  82 | ERROR   | [x] No space after opening parenthesis is prohibited
+  82 | ERROR   | [x] Expected 1 space before "!"; 0 found
+  82 | ERROR   | [x] Expected 1 space after "!"; 0 found
+  82 | ERROR   | [x] No space before closing parenthesis is prohibited
+  83 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+  88 | ERROR   | [x] Expected 1 space after cast statement; 0 found
+  88 | ERROR   | [x] Expected 1 space after open parenthesis; 0 found
+  88 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  88 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  88 | ERROR   | [ ] Using short ternaries is not allowed as they are rarely
+     |         |     used correctly
+  88 | ERROR   | [x] Expected 1 space before close parenthesis; 0 found
+  90 | ERROR   | [x] No space after opening parenthesis is prohibited
+  90 | ERROR   | [x] No space before closing parenthesis is prohibited
+  91 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  91 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  92 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+  95 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+  96 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  96 | WARNING | [ ] Calling current_time() with a $type of "timestamp" or "U"
+     |         |     is strongly discouraged as it will not return a Unix (UTC)
+     |         |     timestamp. Please consider using a non-timestamp format or
+     |         |     otherwise refactoring this code.
+  96 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  96 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  96 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  97 | WARNING | [x] Found precision alignment of 1 spaces.
+  97 | WARNING | [ ] Calling current_time() with a $type of "timestamp" or "U"
+     |         |     is strongly discouraged as it will not return a Unix (UTC)
+     |         |     timestamp. Please consider using a non-timestamp format or
+     |         |     otherwise refactoring this code.
+  97 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  97 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  98 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  98 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  98 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  98 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 101 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 101 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 109 | ERROR   | [ ] Parameter comment must end with a full stop
+ 110 | ERROR   | [x] Expected 4 spaces after parameter type; 1 found
+ 110 | ERROR   | [ ] Parameter comment must end with a full stop
+ 113 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 113 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 116 | ERROR   | [x] No space after opening parenthesis is prohibited
+ 116 | ERROR   | [x] No space before closing parenthesis is prohibited
+ 117 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 117 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 118 | WARNING | [x] Equals sign not aligned with surrounding assignments;
+     |         |     expected 7 spaces but found 1 space
+ 118 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 118 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 120 | ERROR   | [x] No space after opening parenthesis is prohibited
+ 120 | ERROR   | [ ] Use Yoda Condition checks, you must.
+ 120 | ERROR   | [x] No space before closing parenthesis is prohibited
+ 121 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+ 122 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 122 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 124 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+ 125 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 125 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 126 | ERROR   | [x] No space after opening parenthesis is prohibited
+ 126 | ERROR   | [x] No space before closing parenthesis is prohibited
+ 131 | ERROR   | [ ] Inline comments must end in full-stops, exclamation marks,
+     |         |     or question marks
+ 132 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 132 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 141 | ERROR   | [ ] Parameter comment must end with a full stop
+ 144 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 144 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 145 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 145 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+--------------------------------------------------------------------------------
+PHPCBF CAN FIX THE 103 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+--------------------------------------------------------------------------------
+
+
+FILE: /home/Baudouin/Documents/Projets/404-alert/includes/class-storage.php
+--------------------------------------------------------------------------------
+FOUND 136 ERRORS AND 11 WARNINGS AFFECTING 59 LINES
+--------------------------------------------------------------------------------
+   1 | ERROR   | [ ] Class file names should be based on the class name with
+     |         |     "class-" prepended. Expected class-alert404-storage.php,
+     |         |     but found class-storage.php.
+   4 | ERROR   | [ ] Missing @package tag in file comment
+   6 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+   6 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+   8 | ERROR   | [ ] Missing doc comment for class Alert404_Storage
+   9 | WARNING | [x] Equals sign not aligned with surrounding assignments;
+     |         |     expected 2 spaces but found 1 space
+  12 | ERROR   | [ ] Missing doc comment for function init()
+  13 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  13 | ERROR   | [x] Expected 1 space after the array opener in a single line
+     |         |     array. Found: no spaces
+  13 | ERROR   | [x] Short array syntax is not allowed
+  13 | ERROR   | [x] Expected 1 space before the array closer in a single line
+     |         |     array. Found: no spaces
+  13 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  16 | ERROR   | [ ] Missing doc comment for function record_404()
+  16 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  16 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  17 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  17 | ERROR   | [x] Short array syntax is not allowed
+  17 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  19 | ERROR   | [x] No space after opening parenthesis is prohibited
+  19 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  19 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  19 | ERROR   | [x] No space before closing parenthesis is prohibited
+  23 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  23 | ERROR   | [x] Short array syntax is not allowed
+  23 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  25 | ERROR   | [x] Short array syntax is not allowed
+  26 | WARNING | [x] Array double arrow not aligned correctly; expected 18
+     |         |     space(s) between "'id'" and double arrow, but found 9.
+  26 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  26 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  27 | WARNING | [x] Array double arrow not aligned correctly; expected 17
+     |         |     space(s) between "'url'" and double arrow, but found 8.
+  28 | WARNING | [x] Array double arrow not aligned correctly; expected 18
+     |         |     space(s) between "'ip'" and double arrow, but found 9.
+  29 | WARNING | [x] Array double arrow not aligned correctly; expected 12
+     |         |     space(s) between "'referrer'" and double arrow, but found
+     |         |     3.
+  30 | WARNING | [x] Array double arrow not aligned correctly; expected 10
+     |         |     space(s) between "'user_agent'" and double arrow, but
+     |         |     found 1.
+  31 | WARNING | [x] Array double arrow not aligned correctly; expected 11
+     |         |     space(s) between "'timestamp'" and double arrow, but found
+     |         |     2.
+  31 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  31 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  35 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  35 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  37 | ERROR   | [x] No space after opening parenthesis is prohibited
+  37 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  37 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  37 | ERROR   | [x] No space before closing parenthesis is prohibited
+  38 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  38 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  41 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  41 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  44 | ERROR   | [ ] Missing doc comment for function get_stats()
+  44 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  44 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  45 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  45 | ERROR   | [x] Short array syntax is not allowed
+  45 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  46 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  46 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  49 | ERROR   | [ ] Missing doc comment for function get_stats_by_date()
+  49 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  49 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  50 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  50 | ERROR   | [x] Short array syntax is not allowed
+  50 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  51 | ERROR   | [x] Opening parenthesis of a multi-line function call must be
+     |         |     the last content on the line
+  51 | ERROR   | [x] Only one argument is allowed per line in a multi-line
+     |         |     function call
+  51 | ERROR   | [x] Expected 1 space after FUNCTION keyword; 0 found
+  51 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  51 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  51 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  51 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  52 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  52 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  53 | ERROR   | [x] Closing parenthesis of a multi-line function call must be
+     |         |     on a line by itself
+  56 | ERROR   | [ ] Missing doc comment for function get_total_count()
+  57 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  57 | ERROR   | [x] Short array syntax is not allowed
+  57 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  58 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  58 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  61 | ERROR   | [ ] Missing doc comment for function get_unique_urls_count()
+  62 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  62 | ERROR   | [x] Short array syntax is not allowed
+  62 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  63 | WARNING | [x] Equals sign not aligned with surrounding assignments;
+     |         |     expected 2 spaces but found 1 space
+  63 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  63 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  64 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  64 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  64 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  64 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  67 | ERROR   | [ ] Missing doc comment for function get_top_urls()
+  67 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  67 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  68 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  68 | ERROR   | [x] Short array syntax is not allowed
+  68 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  69 | WARNING | [x] Equals sign not aligned with surrounding assignments;
+     |         |     expected 2 spaces but found 1 space
+  69 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  69 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  69 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  69 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  70 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  70 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  71 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  71 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  74 | ERROR   | [ ] Missing doc comment for function get_top_ips()
+  74 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  74 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  75 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  75 | ERROR   | [x] Short array syntax is not allowed
+  75 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  76 | WARNING | [x] Equals sign not aligned with surrounding assignments;
+     |         |     expected 3 spaces but found 1 space
+  76 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  76 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  76 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  76 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  77 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  77 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  78 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  78 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  81 | ERROR   | [ ] Missing doc comment for function clear_stats()
+  82 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  82 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  85 | ERROR   | [ ] Missing doc comment for function export_csv()
+  86 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  86 | ERROR   | [x] Short array syntax is not allowed
+  86 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  88 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  88 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  89 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  89 | ERROR   | [ ] date() is affected by runtime timezone changes which can
+     |         |     cause date/time to be incorrectly displayed. Use gmdate()
+     |         |     instead.
+  89 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  89 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  89 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  91 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  91 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  93 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+  93 | ERROR   | [x] Expected 1 space after the array opener in a single line
+     |         |     array. Found: no spaces
+  93 | ERROR   | [x] Short array syntax is not allowed
+  93 | ERROR   | [x] Expected 1 space before the array closer in a single line
+     |         |     array. Found: no spaces
+  93 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+  95 | ERROR   | [x] No space after opening parenthesis is prohibited
+  95 | ERROR   | [x] No space before closing parenthesis is prohibited
+  96 | ERROR   | [x] Opening parenthesis of a multi-line function call must be
+     |         |     the last content on the line
+  96 | ERROR   | [x] Only one argument is allowed per line in a multi-line
+     |         |     function call
+  96 | ERROR   | [x] Short array syntax is not allowed
+ 103 | ERROR   | [x] Closing parenthesis of a multi-line function call must be
+     |         |     on a line by itself
+ 106 | WARNING | [ ] File operations should use WP_Filesystem methods instead
+     |         |     of direct PHP filesystem calls. Found: fclose().
+ 106 | ERROR   | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 106 | ERROR   | [x] Expected 1 spaces before closing parenthesis; 0 found
+--------------------------------------------------------------------------------
+PHPCBF CAN FIX THE 132 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+--------------------------------------------------------------------------------
+
+
+FILE: /home/Baudouin/Documents/Projets/404-alert/includes/class-404-template.php
+--------------------------------------------------------------------------------
+FOUND 21 ERRORS AFFECTING 10 LINES
+--------------------------------------------------------------------------------
+  1 | ERROR | [ ] Class file names should be based on the class name with
+    |       |     "class-" prepended. Expected class-alert404-template.php, but
+    |       |     found class-404-template.php.
+  4 | ERROR | [ ] Missing @package tag in file comment
+  6 | ERROR | [x] Expected 1 spaces after opening parenthesis; 0 found
+  6 | ERROR | [x] Expected 1 spaces before closing parenthesis; 0 found
+  8 | ERROR | [ ] Missing doc comment for class Alert404_Template
+ 16 | ERROR | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 16 | ERROR | [x] Expected 1 space after the array opener in a single line
+    |       |     array. Found: no spaces
+ 16 | ERROR | [x] Short array syntax is not allowed
+ 16 | ERROR | [x] Expected 1 space before the array closer in a single line
+    |       |     array. Found: no spaces
+ 16 | ERROR | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 23 | ERROR | [ ] Parameter comment must end with a full stop
+ 26 | ERROR | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 26 | ERROR | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 27 | ERROR | [x] No space after opening parenthesis is prohibited
+ 27 | ERROR | [x] No space before closing parenthesis is prohibited
+ 29 | ERROR | [x] No space after opening parenthesis is prohibited
+ 29 | ERROR | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 29 | ERROR | [x] Expected 1 spaces before closing parenthesis; 0 found
+ 29 | ERROR | [x] No space before closing parenthesis is prohibited
+ 42 | ERROR | [x] Expected 1 spaces after opening parenthesis; 0 found
+ 42 | ERROR | [x] Expected 1 spaces before closing parenthesis; 0 found
+--------------------------------------------------------------------------------
+PHPCBF CAN FIX THE 17 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+--------------------------------------------------------------------------------
+
+Time: 689ms; Memory: 10MB
+
+Script phpcs --standard=phpcs.xml includes/ 404-alert.php handling the lint event returned with error code 2

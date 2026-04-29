@@ -1,0 +1,442 @@
+> phpcs --standard=phpcs.xml includes/ 404-alert.php
+EEEE 4 / 4 (100%)
+
+
+
+FILE: /home/Baudouin/Documents/Projets/404-alert/includes/class-dashboard.php
+--------------------------------------------------------------------------------
+FOUND 13 ERRORS AFFECTING 12 LINES
+--------------------------------------------------------------------------------
+   1 | ERROR | Class file names should be based on the class name with "class-"
+     |       | prepended. Expected class-alert404-dashboard.php, but found
+     |       | class-dashboard.php.
+   4 | ERROR | Missing @package tag in file comment
+   8 | ERROR | Missing doc comment for class Alert404_Dashboard
+   9 | ERROR | Missing doc comment for function init()
+  17 | ERROR | Missing doc comment for function add_menu()
+  28 | ERROR | Missing doc comment for function render_page()
+  33 | ERROR | $_GET['action'] not unslashed before sanitization. Use
+     |       | wp_unslash() or similar
+  33 | ERROR | Detected usage of a non-sanitized input variable:
+     |       | $_GET['action']
+  35 | ERROR | Use Yoda Condition checks, you must.
+  39 | ERROR | Use Yoda Condition checks, you must.
+  54 | ERROR | Use Yoda Condition checks, you must.
+ 121 | ERROR | All output should be run through an escaping function (see the
+     |       | Security sections in the WordPress Developer Handbooks), found
+     |       | 'wp_nonce_url'.
+ 122 | ERROR | All output should be run through an escaping function (see the
+     |       | Security sections in the WordPress Developer Handbooks), found
+     |       | 'wp_nonce_url'.
+--------------------------------------------------------------------------------
+
+
+FILE: .../Baudouin/Documents/Projets/404-alert/includes/class-user-agent-parser.php
+--------------------------------------------------------------------------------
+FOUND 40 ERRORS AFFECTING 40 LINES
+--------------------------------------------------------------------------------
+   1 | ERROR | Class file names should be based on the class name with "class-"
+     |       | prepended. Expected class-alert404-useragent-parser.php, but
+     |       | found class-user-agent-parser.php.
+   5 | ERROR | Missing @package tag in file comment
+   9 | ERROR | Missing doc comment for class Alert404_UserAgent_Parser
+  13 | ERROR | Parameter comment must end with a full stop
+  27 | ERROR | Parameter comment must end with a full stop
+  34 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+  38 | ERROR | Expected 1 space after closing brace; newline found
+  39 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+  43 | ERROR | Expected 1 space after closing brace; newline found
+  44 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+  48 | ERROR | Expected 1 space after closing brace; newline found
+  49 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+  53 | ERROR | Expected 1 space after closing brace; newline found
+  54 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+  58 | ERROR | Expected 1 space after closing brace; newline found
+  59 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+  63 | ERROR | Expected 1 space after closing brace; newline found
+  64 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+  68 | ERROR | Expected 1 space after closing brace; newline found
+  69 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+  83 | ERROR | Parameter comment must end with a full stop
+  90 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+  94 | ERROR | Expected 1 space after closing brace; newline found
+  95 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+  99 | ERROR | Expected 1 space after closing brace; newline found
+ 100 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+ 104 | ERROR | Expected 1 space after closing brace; newline found
+ 105 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+ 109 | ERROR | Expected 1 space after closing brace; newline found
+ 110 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+ 113 | ERROR | Expected 1 space after closing brace; newline found
+ 114 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+ 128 | ERROR | Parameter comment must end with a full stop
+ 132 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+ 137 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+ 148 | ERROR | Parameter comment must end with a full stop
+ 174 | ERROR | Parameter comment must end with a full stop
+ 183 | ERROR | Use Yoda Condition checks, you must.
+ 188 | ERROR | Use Yoda Condition checks, you must.
+ 203 | ERROR | Parameter comment must end with a full stop
+--------------------------------------------------------------------------------
+
+
+FILE: /home/Baudouin/Documents/Projets/404-alert/includes/class-request-info.php
+--------------------------------------------------------------------------------
+FOUND 17 ERRORS AFFECTING 14 LINES
+--------------------------------------------------------------------------------
+   1 | ERROR | Class file names should be based on the class name with "class-"
+     |       | prepended. Expected class-alert404-request-info.php, but found
+     |       | class-request-info.php.
+   4 | ERROR | Missing @package tag in file comment
+   8 | ERROR | Missing doc comment for class Alert404_Request_Info
+  28 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+  32 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+  36 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+  74 | ERROR | Parameter comment must end with a full stop
+  75 | ERROR | Parameter comment must end with a full stop
+  93 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+  98 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+ 112 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+ 126 | ERROR | Use Yoda Condition checks, you must.
+ 126 | ERROR | Mixing different binary boolean operators within an expression
+     |       | without using parentheses to clarify precedence is not allowed.
+ 126 | ERROR | Detected usage of a possibly undefined superglobal array index:
+     |       | $_SERVER['SERVER_PORT']. Check that the array index exists
+     |       | before using it.
+ 126 | ERROR | Use Yoda Condition checks, you must.
+ 138 | ERROR | Parameter comment must end with a full stop
+ 146 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+--------------------------------------------------------------------------------
+
+
+FILE: /home/Baudouin/Documents/Projets/404-alert/includes/class-detector.php
+--------------------------------------------------------------------------------
+FOUND 22 ERRORS AFFECTING 18 LINES
+--------------------------------------------------------------------------------
+   1 | ERROR | Class file names should be based on the class name with "class-"
+     |       | prepended. Expected class-alert404-detector.php, but found
+     |       | class-detector.php.
+   4 | ERROR | Missing @package tag in file comment
+   8 | ERROR | Missing doc comment for class Alert404_Detector
+  32 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+  38 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+  41 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+  43 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+  47 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+  58 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+  59 | ERROR | $_SERVER['HTTP_X_FORWARDED_FOR'] not unslashed before
+     |       | sanitization. Use wp_unslash() or similar
+  59 | ERROR | Detected usage of a non-sanitized input variable:
+     |       | $_SERVER['HTTP_X_FORWARDED_FOR']
+  59 | ERROR | $_SERVER['REMOTE_ADDR'] not unslashed before sanitization. Use
+     |       | wp_unslash() or similar
+  59 | ERROR | Detected usage of a non-sanitized input variable:
+     |       | $_SERVER['REMOTE_ADDR']
+  65 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+  69 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+  75 | ERROR | Inline comments must end in full-stops, exclamation marks, or
+     |       | question marks
+  83 | ERROR | Parameter comment must end with a full stop
+  95 | ERROR | $_SERVER['REQUEST_URI'] not unslashed before sanitization. Use
+     |       | wp_unslash() or similar
+  95 | ERROR | Detected usage of a non-sanitized input variable:
+     |       | $_SERVER['REQUEST_URI']
+ 107 | ERROR | Parameter comment must end with a full stop
+ 108 | ERROR | Parameter comment must end with a full stop
+ 112 | ERROR | Use Yoda Condition checks, you must.
+--------------------------------------------------------------------------------
+
+
+FILE: /home/Baudouin/Documents/Projets/404-alert/includes/class-settings.php
+--------------------------------------------------------------------------------
+FOUND 9 ERRORS AND 3 WARNINGS AFFECTING 12 LINES
+--------------------------------------------------------------------------------
+   1 | ERROR   | Class file names should be based on the class name with
+     |         | "class-" prepended. Expected class-alert404-settings.php, but
+     |         | found class-settings.php.
+   4 | ERROR   | Missing @package tag in file comment
+   8 | ERROR   | Missing doc comment for class Alert404_Settings
+ 127 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 437 | WARNING | base64_decode() can be used to obfuscate code which is
+     |         | strongly discouraged. Please verify that the function is used
+     |         | for benign reasons.
+ 514 | ERROR   | All output should be run through an escaping function (see the
+     |         | Security sections in the WordPress Developer Handbooks), found
+     |         | 'wp_create_nonce'.
+ 540 | ERROR   | Parameter comment must end with a full stop
+ 556 | ERROR   | Parameter comment must end with a full stop
+ 564 | WARNING | base64_encode() can be used to obfuscate code which is
+     |         | strongly discouraged. Please verify that the function is used
+     |         | for benign reasons.
+ 565 | WARNING | Not using strict comparison for in_array; supply true for
+     |         | $strict argument.
+ 582 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 594 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+--------------------------------------------------------------------------------
+
+
+FILE: /home/Baudouin/Documents/Projets/404-alert/includes/class-smtp-handler.php
+--------------------------------------------------------------------------------
+FOUND 26 ERRORS AND 1 WARNING AFFECTING 27 LINES
+--------------------------------------------------------------------------------
+   1 | ERROR   | Class file names should be based on the class name with
+     |         | "class-" prepended. Expected class-alert404-smtp-handler.php,
+     |         | but found class-smtp-handler.php.
+   5 | ERROR   | Missing @package tag in file comment
+   9 | ERROR   | Missing doc comment for class Alert404_SMTP_Handler
+  13 | ERROR   | Parameter comment must end with a full stop
+  17 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+  28 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+  35 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+  37 | ERROR   | Object property "$Host" is not in valid snake_case format, try
+     |         | "$host"
+  38 | ERROR   | Object property "$Port" is not in valid snake_case format, try
+     |         | "$port"
+  39 | ERROR   | Object property "$SMTPAuth" is not in valid snake_case format,
+     |         | try "$s_m_t_p_auth"
+  40 | ERROR   | Object property "$Username" is not in valid snake_case format,
+     |         | try "$username"
+  41 | ERROR   | Object property "$Password" is not in valid snake_case format,
+     |         | try "$password"
+  42 | ERROR   | Object property "$SMTPSecure" is not in valid snake_case
+     |         | format, try "$s_m_t_p_secure"
+  43 | ERROR   | Object property "$Timeout" is not in valid snake_case format,
+     |         | try "$timeout"
+  45 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+  48 | ERROR   | Object property "$Subject" is not in valid snake_case format,
+     |         | try "$subject"
+  50 | ERROR   | Object property "$Body" is not in valid snake_case format, try
+     |         | "$body"
+  52 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+  59 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+  84 | WARNING | base64_decode() can be used to obfuscate code which is
+     |         | strongly discouraged. Please verify that the function is used
+     |         | for benign reasons.
+ 113 | ERROR   | Object property "$Host" is not in valid snake_case format, try
+     |         | "$host"
+ 114 | ERROR   | Object property "$Port" is not in valid snake_case format, try
+     |         | "$port"
+ 115 | ERROR   | Object property "$SMTPAuth" is not in valid snake_case format,
+     |         | try "$s_m_t_p_auth"
+ 116 | ERROR   | Object property "$Username" is not in valid snake_case format,
+     |         | try "$username"
+ 117 | ERROR   | Object property "$Password" is not in valid snake_case format,
+     |         | try "$password"
+ 118 | ERROR   | Object property "$SMTPSecure" is not in valid snake_case
+     |         | format, try "$s_m_t_p_secure"
+ 120 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+--------------------------------------------------------------------------------
+
+
+FILE: /home/Baudouin/Documents/Projets/404-alert/includes/class-mailer.php
+--------------------------------------------------------------------------------
+FOUND 14 ERRORS AND 1 WARNING AFFECTING 15 LINES
+--------------------------------------------------------------------------------
+   1 | ERROR   | Class file names should be based on the class name with
+     |         | "class-" prepended. Expected class-alert404-mailer.php, but
+     |         | found class-mailer.php.
+   4 | ERROR   | Missing @package tag in file comment
+   8 | ERROR   | Missing doc comment for class Alert404_Mailer
+  13 | ERROR   | Parameter comment must end with a full stop
+  31 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+  36 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+  39 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+  68 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+  82 | ERROR   | Parameter comment must end with a full stop
+  95 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 101 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 107 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 112 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 114 | WARNING | json_encode() is discouraged. Use wp_json_encode() instead.
+ 121 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+--------------------------------------------------------------------------------
+
+
+FILE: /home/Baudouin/Documents/Projets/404-alert/404-alert.php
+----------------------------------------------------------------------
+FOUND 1 ERROR AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 8 | ERROR | Missing @package tag in file comment
+----------------------------------------------------------------------
+
+
+FILE: /home/Baudouin/Documents/Projets/404-alert/includes/class-logger.php
+--------------------------------------------------------------------------------
+FOUND 20 ERRORS AND 2 WARNINGS AFFECTING 22 LINES
+--------------------------------------------------------------------------------
+   1 | ERROR   | Class file names should be based on the class name with
+     |         | "class-" prepended. Expected class-alert404-logger.php, but
+     |         | found class-logger.php.
+   5 | ERROR   | Missing @package tag in file comment
+   9 | ERROR   | Missing doc comment for class Alert404_Logger
+  13 | ERROR   | Parameter comment must end with a full stop
+  14 | ERROR   | Parameter comment must end with a full stop
+  15 | ERROR   | Parameter comment must end with a full stop
+  32 | ERROR   | Parameter comment must end with a full stop
+  33 | ERROR   | Parameter comment must end with a full stop
+  49 | ERROR   | Parameter comment must end with a full stop
+  64 | ERROR   | Parameter comment must end with a full stop
+  65 | ERROR   | Parameter comment must end with a full stop
+  81 | ERROR   | Parameter comment must end with a full stop
+  82 | ERROR   | Parameter comment must end with a full stop
+  98 | ERROR   | Parameter comment must end with a full stop
+ 113 | ERROR   | Parameter comment must end with a full stop
+ 114 | ERROR   | Parameter comment must end with a full stop
+ 131 | ERROR   | Parameter comment must end with a full stop
+ 132 | ERROR   | Parameter comment must end with a full stop
+ 143 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 145 | WARNING | json_encode() is discouraged. Use wp_json_encode() instead.
+ 153 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 154 | WARNING | error_log() found. Debug code should not normally be used in
+     |         | production.
+--------------------------------------------------------------------------------
+
+
+FILE: /home/Baudouin/Documents/Projets/404-alert/includes/class-storage.php
+--------------------------------------------------------------------------------
+FOUND 14 ERRORS AND 1 WARNING AFFECTING 15 LINES
+--------------------------------------------------------------------------------
+   1 | ERROR   | Class file names should be based on the class name with
+     |         | "class-" prepended. Expected class-alert404-storage.php, but
+     |         | found class-storage.php.
+   4 | ERROR   | Missing @package tag in file comment
+   8 | ERROR   | Missing doc comment for class Alert404_Storage
+  12 | ERROR   | Missing doc comment for function init()
+  16 | ERROR   | Missing doc comment for function record_404()
+  44 | ERROR   | Missing doc comment for function get_stats()
+  49 | ERROR   | Missing doc comment for function get_stats_by_date()
+  59 | ERROR   | Missing doc comment for function get_total_count()
+  64 | ERROR   | Missing doc comment for function get_unique_urls_count()
+  70 | ERROR   | Missing doc comment for function get_top_urls()
+  77 | ERROR   | Missing doc comment for function get_top_ips()
+  84 | ERROR   | Missing doc comment for function clear_stats()
+  88 | ERROR   | Missing doc comment for function export_csv()
+  92 | ERROR   | date() is affected by runtime timezone changes which can cause
+     |         | date/time to be incorrectly displayed. Use gmdate() instead.
+ 112 | WARNING | File operations should use WP_Filesystem methods instead of
+     |         | direct PHP filesystem calls. Found: fclose().
+--------------------------------------------------------------------------------
+
+
+FILE: /home/Baudouin/Documents/Projets/404-alert/includes/class-rate-limiter.php
+--------------------------------------------------------------------------------
+FOUND 25 ERRORS AND 2 WARNINGS AFFECTING 27 LINES
+--------------------------------------------------------------------------------
+   1 | ERROR   | Class file names should be based on the class name with
+     |         | "class-" prepended. Expected class-alert404-ratelimiter.php,
+     |         | but found class-rate-limiter.php.
+   4 | ERROR   | Missing @package tag in file comment
+   8 | ERROR   | Missing doc comment for class Alert404_RateLimiter
+  15 | ERROR   | Parameter comment must end with a full stop
+  23 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+  28 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+  40 | ERROR   | Parameter comment must end with a full stop
+  41 | ERROR   | Parameter comment must end with a full stop
+  48 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+  51 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+  58 | ERROR   | Use Yoda Condition checks, you must.
+  60 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+  73 | ERROR   | Parameter comment must end with a full stop
+  80 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+  83 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+  88 | ERROR   | Using short ternaries is not allowed as they are rarely used
+     |         | correctly
+  92 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+  95 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+  96 | WARNING | Calling current_time() with a $type of "timestamp" or "U" is
+     |         | strongly discouraged as it will not return a Unix (UTC)
+     |         | timestamp. Please consider using a non-timestamp format or
+     |         | otherwise refactoring this code.
+  97 | WARNING | Calling current_time() with a $type of "timestamp" or "U" is
+     |         | strongly discouraged as it will not return a Unix (UTC)
+     |         | timestamp. Please consider using a non-timestamp format or
+     |         | otherwise refactoring this code.
+ 109 | ERROR   | Parameter comment must end with a full stop
+ 110 | ERROR   | Parameter comment must end with a full stop
+ 120 | ERROR   | Use Yoda Condition checks, you must.
+ 121 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 124 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 131 | ERROR   | Inline comments must end in full-stops, exclamation marks, or
+     |         | question marks
+ 141 | ERROR   | Parameter comment must end with a full stop
+--------------------------------------------------------------------------------
+
+
+FILE: /home/Baudouin/Documents/Projets/404-alert/includes/class-404-template.php
+--------------------------------------------------------------------------------
+FOUND 4 ERRORS AFFECTING 4 LINES
+--------------------------------------------------------------------------------
+  1 | ERROR | Class file names should be based on the class name with "class-"
+    |       | prepended. Expected class-alert404-template.php, but found
+    |       | class-404-template.php.
+  4 | ERROR | Missing @package tag in file comment
+  8 | ERROR | Missing doc comment for class Alert404_Template
+ 23 | ERROR | Parameter comment must end with a full stop
+--------------------------------------------------------------------------------
+
+Time: 786ms; Memory: 10MB
+
+Script phpcs --standard=phpcs.xml includes/ 404-alert.php handling the lint event returned with error code 1

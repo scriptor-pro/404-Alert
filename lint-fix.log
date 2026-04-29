@@ -1,0 +1,29 @@
+> phpcbf --standard=phpcs.xml includes/ 404-alert.php
+FFFF 4 / 4 (100%)
+
+
+
+PHPCBF RESULT SUMMARY
+--------------------------------------------------------------------------------
+FILE                                                            FIXED  REMAINING
+--------------------------------------------------------------------------------
+...ents/Projets/404-alert/includes/class-user-agent-parser.php  113    40
+...in/Documents/Projets/404-alert/includes/class-dashboard.php  94     13
+...Documents/Projets/404-alert/includes/class-request-info.php  148    17
+...uin/Documents/Projets/404-alert/includes/class-detector.php  60     22
+...Documents/Projets/404-alert/includes/class-smtp-handler.php  70     27
+/home/Baudouin/Documents/Projets/404-alert/404-alert.php        6      1
+...uin/Documents/Projets/404-alert/includes/class-settings.php  301    12
+...douin/Documents/Projets/404-alert/includes/class-mailer.php  137    15
+...ouin/Documents/Projets/404-alert/includes/class-storage.php  132    15
+...Documents/Projets/404-alert/includes/class-rate-limiter.php  103    27
+...douin/Documents/Projets/404-alert/includes/class-logger.php  83     22
+...Documents/Projets/404-alert/includes/class-404-template.php  17     4
+--------------------------------------------------------------------------------
+A TOTAL OF 1264 ERRORS WERE FIXED IN 12 FILES
+--------------------------------------------------------------------------------
+
+Time: 4.55 secs; Memory: 10MB
+
+
+Script phpcbf --standard=phpcs.xml includes/ 404-alert.php handling the lint-fix event returned with error code 1
