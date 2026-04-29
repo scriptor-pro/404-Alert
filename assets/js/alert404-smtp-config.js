@@ -103,6 +103,14 @@ jQuery(document).ready(function($) {
   // État initial : si un preset est déjà sélectionné, l'activer
   if (presetSelect.val()) {
     activateLeft(presetSelect.val());
+  } else {
+    // Si pas de preset, vérifier s'il y a des données de configuration personnalisée
+    // et activer le mode custom si nécessaire
+    const hasCustomConfig = $('#404-right-host').val().trim() !== '' ||
+                           $('#404-right-username').val().trim() !== '';
+    if (hasCustomConfig) {
+      activateRight();
+    }
   }
 
   // Vérifier la visibilité initiale du bouton test
