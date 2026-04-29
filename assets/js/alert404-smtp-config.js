@@ -113,6 +113,52 @@ jQuery(document).ready(function($) {
     }
   }
 
+  // Mettre à jour le résumé lors de n'importe quel changement
+  function updateConfigSummary() {
+    const isLeftActive = colLeft.hasClass('active');
+
+    let host, port, encryption, username;
+    if (isLeftActive) {
+      host = $('#404-left-host').val() || '—';
+      port = $('#404-left-port').val() || '—';
+      encryption = $('#404-left-encryption').val() || '—';
+      username = $('#404-left-username').val() || '—';
+    } else {
+      host = $('#404-right-host').val() || '—';
+      let portVal = $('#404-right-port').val();
+      if (portVal === '0') {
+        portVal = $('#404-right-port-custom').val() || '—';
+      }
+      port = portVal || '—';
+      encryption = $('#404-right-encryption').val() || '—';
+      username = $('#404-right-username').val() || '—';
+    }
+
+    const fromEmail = $('#404-from-email').val() || '—';
+    const fromName = $('#404-from-name').val() || '—';
+
+    // Mettre à jour le résumé
+    $('#summary-host').text(host);
+    $('#summary-port').text(port);
+    $('#summary-encryption').text(encryption);
+    $('#summary-username').text(username);
+    $('#summary-from-email').text(fromEmail);
+    $('#summary-from-name').text(fromName);
+
+    // Afficher le résumé si au moins un paramètre est rempli
+    const hasData = host !== '—' || port !== '—' || username !== '—' || fromEmail !== '—';
+    $('#404-alert-config-summary').toggle(hasData);
+  }
+
+  // Surveiller tous les champs SMTP pour mettre à jour le résumé
+  $('#404-left-host, #404-left-port, #404-left-encryption, #404-left-username, ' +
+    '#404-right-host, #404-right-port, #404-right-port-custom, #404-right-encryption, ' +
+    '#404-right-username, #404-from-email, #404-from-name')
+    .on('input change', function() {
+      updateConfigSummary();
+    });
+
   // Vérifier la visibilité initiale du bouton test
   updateTestButtonVisibility();
+  updateConfigSummary();
 });

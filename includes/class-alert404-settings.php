@@ -899,8 +899,51 @@ class Alert404_Settings {
 				// Ajoute automatiquement le nonce et l'action via settings_fields().
 				settings_fields( '404_alert' );
 				do_settings_sections( '404_alert' );
-				submit_button( 'Save Settings' );
 				?>
+				<!-- Aperçu des paramètres SMTP -->
+				<div id="404-alert-config-summary" style="margin-top: 30px; padding: 20px; background: #f9f9f9; border: 1px solid #ddd; border-radius: 4px; display: none;">
+					<h3 style="margin-top: 0; color: #333;">📋 Résumé de la configuration qui sera sauvegardée</h3>
+					<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+						<div>
+							<h4 style="color: #666; margin: 0 0 12px 0; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em;">Configuration SMTP</h4>
+							<table style="width: 100%; font-size: 13px; border-collapse: collapse;">
+								<tr style="border-bottom: 1px solid #ddd;">
+									<td style="padding: 8px 0; font-weight: 600; width: 40%; color: #333;">Serveur</td>
+									<td style="padding: 8px 0; color: #666;"><code id="summary-host">—</code></td>
+								</tr>
+								<tr style="border-bottom: 1px solid #ddd;">
+									<td style="padding: 8px 0; font-weight: 600; color: #333;">Port</td>
+									<td style="padding: 8px 0; color: #666;"><code id="summary-port">—</code></td>
+								</tr>
+								<tr style="border-bottom: 1px solid #ddd;">
+									<td style="padding: 8px 0; font-weight: 600; color: #333;">Chiffrement</td>
+									<td style="padding: 8px 0; color: #666;"><code id="summary-encryption">—</code></td>
+								</tr>
+								<tr>
+									<td style="padding: 8px 0; font-weight: 600; color: #333;">Identifiant</td>
+									<td style="padding: 8px 0; color: #666;"><code id="summary-username">—</code></td>
+								</tr>
+							</table>
+						</div>
+						<div>
+							<h4 style="color: #666; margin: 0 0 12px 0; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em;">Expéditeur</h4>
+							<table style="width: 100%; font-size: 13px; border-collapse: collapse;">
+								<tr style="border-bottom: 1px solid #ddd;">
+									<td style="padding: 8px 0; font-weight: 600; width: 40%; color: #333;">Adresse</td>
+									<td style="padding: 8px 0; color: #666;"><code id="summary-from-email">—</code></td>
+								</tr>
+								<tr>
+									<td style="padding: 8px 0; font-weight: 600; color: #333;">Nom</td>
+									<td style="padding: 8px 0; color: #666;"><code id="summary-from-name">—</code></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<p style="margin: 15px 0 0 0; padding-top: 15px; border-top: 1px solid #ddd; font-size: 12px; color: #999;">
+						✓ Mise à jour en temps réel lors de la saisie
+					</p>
+				</div>
+				<?php submit_button( 'Save Settings' ); ?>
 			</form>
 		</div>
 		<?php
