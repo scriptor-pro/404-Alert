@@ -947,6 +947,32 @@ class Alert404_Settings {
 				<?php submit_button( 'Save Settings' ); ?>
 			</form>
 		</div>
+		<script>
+		jQuery(document).ready(function($) {
+			const form = $('form[action="options.php"]');
+
+			form.on('submit', function(e) {
+				const presetId = $('#404-preset-id').val();
+				const presetUsername = $('#404-preset-username').val();
+				const presetPassword = $('#404-preset-password').val();
+
+				const customHost = $('#404-custom-host').val();
+				const customPort = $('#404-custom-port').val();
+				const customEncryption = $('#404-custom-encryption').val();
+				const customUsername = $('#404-custom-username').val();
+				const customPassword = $('#404-custom-password').val();
+
+				const presetValid = presetId && presetUsername && presetPassword;
+				const customValid = customHost && customPort && customEncryption && customUsername && customPassword;
+
+				if (!presetValid && !customValid) {
+					e.preventDefault();
+					alert('Veuillez compléter soit un fournisseur connu (email + mot de passe), soit une configuration personnalisée (tous les champs).');
+					return false;
+				}
+			});
+		});
+		</script>
 		<?php
 	}
 
