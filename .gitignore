@@ -1,45 +1,48 @@
-# IDE & Éditeurs
-.vscode/
-.idea/
-*.swp
-*.swo
-*.sublime-workspace
-*.sublime-project
-.DS_Store
+# PHP
+*.php.swp
+*.php~
+.phpcs.cache
+
+# Node (if used)
+node_modules/
+npm-debug.log
+yarn-error.log
 
 # Composer
 /vendor/
 composer.lock
 
-# Testing
-.phpunit.result.cache
-coverage/
-.phpcs-cache
-
-# WordPress Local
-wordpress-local/
-wp-config-local.php
-wp-config.php
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
 .env.local
-.env
+
+# Build artifacts & deliverables
+*.zip
+404-alert-plugin.zip
+404-alert-v*.zip
+
+# Prototypes & Brouillons de design
+*-proto*.html
+*-mockup*.html
+banner-concept-*.html
+*-banner*.svg
+banner.svg
+banner.png
+
+# Test & Debug files
+test-*.php
+debug-*.php
+wp-tests-config.php
 
 # OS
 Thumbs.db
-.directory
+.DS_Store
 
-# Logs
-debug.log
-error.log
-*.log
-
-# Git Worktrees
-.worktrees/
-
-# Development & Documentation
-.claude/
-.github/
-.claudeignore
-.editorconfig
-.codex
-*.md
-*.sh
+# WordPress local environment
+/wordpress-local/
+/wp-local/
