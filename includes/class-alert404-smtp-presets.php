@@ -34,14 +34,6 @@ class Alert404_SMTP_Presets {
 				'info'       => '<strong>💡 Conseil :</strong> Utilisez votre adresse Outlook/Hotmail complète comme identifiant. <a href="https://account.microsoft.com/account/security" target="_blank">Activez l\'authentification à deux facteurs</a> et générez un mot de passe d\'application.',
 				'limit'      => '10000 emails/jour',
 			),
-			'aws_ses'   => array(
-				'name'       => '☁️ AWS SES',
-				'host'       => 'email-smtp.{region}.amazonaws.com',
-				'port'       => 587,
-				'encryption' => 'tls',
-				'info'       => '<strong>💡 Conseil :</strong> Remplacez {region} par votre région AWS (ex: us-east-1, eu-west-1). Récupérez vos identifiants SMTP depuis la console AWS SES.',
-				'limit'      => 'Selon votre quota (production: illimité)',
-			),
 			'yahoo'     => array(
 				'name'       => '💌 Yahoo Mail',
 				'host'       => 'smtp.mail.yahoo.com',
