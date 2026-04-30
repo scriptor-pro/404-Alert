@@ -18,143 +18,175 @@ class Alert404_SMTP_Presets {
 	 */
 	public static function get_presets(): array {
 		return array(
-			'gmail'     => array(
-				'name'       => '📧 Gmail',
-				'host'       => 'smtp.gmail.com',
-				'port'       => 587,
-				'encryption' => 'tls',
-				'info'       => '<strong>💡 Conseil :</strong> Utilisez un <a href="https://myaccount.google.com/apppasswords" target="_blank">mot de passe d\'application</a> (pas votre mot de passe Google).',
-				'limit'      => '500 emails/jour',
+			'_group_personal' => array(
+				'name'  => '👤 Fournisseurs de messagerie personnelle',
+				'type'  => 'group',
+				'items' => array(
+					'gmail'     => array(
+						'name'       => '📧 Gmail',
+						'host'       => 'smtp.gmail.com',
+						'port'       => 587,
+						'encryption' => 'tls',
+						'info'       => '<strong>💡 Conseil :</strong> Utilisez un <a href="https://myaccount.google.com/apppasswords" target="_blank">mot de passe d\'application</a> (pas votre mot de passe Google).',
+						'limit'      => '500 emails/jour',
+					),
+					'outlook'   => array(
+						'name'       => '💼 Outlook.com / Hotmail',
+						'host'       => 'smtp-mail.outlook.com',
+						'port'       => 587,
+						'encryption' => 'tls',
+						'info'       => '<strong>💡 Conseil :</strong> Utilisez votre adresse Outlook/Hotmail complète comme identifiant. <a href="https://account.microsoft.com/account/security" target="_blank">Activez l\'authentification à deux facteurs</a> et générez un mot de passe d\'application.',
+						'limit'      => '10000 emails/jour',
+					),
+					'yahoo'     => array(
+						'name'       => '💌 Yahoo Mail',
+						'host'       => 'smtp.mail.yahoo.com',
+						'port'       => 587,
+						'encryption' => 'tls',
+						'info'       => '<strong>💡 Conseil :</strong> Générez un <a href="https://login.yahoo.com/account/security" target="_blank">mot de passe d\'application</a> depuis vos paramètres de sécurité Yahoo.',
+						'limit'      => '450 emails/jour',
+					),
+					'yandex'    => array(
+						'name'       => '🚀 Yandex Mail',
+						'host'       => 'smtp.yandex.com',
+						'port'       => 465,
+						'encryption' => 'ssl',
+						'info'       => '<strong>💡 Conseil :</strong> Utilisez votre adresse Yandex complète comme identifiant. Générez un <a href="https://passport.yandex.com/security" target="_blank">mot de passe d\'application</a> pour l\'accès SMTP.',
+						'limit'      => '500 emails/jour',
+					),
+					'zoho'      => array(
+						'name'       => '🌐 Zoho Mail',
+						'host'       => 'smtp.zoho.com',
+						'port'       => 587,
+						'encryption' => 'tls',
+						'info'       => '<strong>💡 Conseil :</strong> Utilisez votre adresse Zoho complète comme identifiant. Générez un <a href="https://mail.zoho.com/mail" target="_blank">mot de passe d\'application</a> depuis vos paramètres de sécurité.',
+						'limit'      => '500 emails/jour (free)',
+					),
+					'icloud'    => array(
+						'name'       => '🍎 iCloud Mail',
+						'host'       => 'smtp.mail.me.com',
+						'port'       => 587,
+						'encryption' => 'tls',
+						'info'       => '<strong>💡 Conseil :</strong> Utilisez votre adresse iCloud (@icloud.com) comme identifiant. Générez un <a href="https://appleid.apple.com" target="_blank">mot de passe d\'application spécifique</a> pour Apple ID.',
+						'limit'      => '500 emails/jour',
+					),
+					'infomaniak' => array(
+						'name'       => '🇨🇭 Infomaniak',
+						'host'       => 'smtp.infomaniak.com',
+						'port'       => 587,
+						'encryption' => 'tls',
+						'info'       => '<strong>💡 Conseil :</strong> Utilisez votre adresse email Infomaniak complète comme identifiant. Générez un <a href="https://manager.infomaniak.com" target="_blank">mot de passe d\'application</a> depuis votre compte Infomaniak.',
+						'limit'      => 'Illimité',
+					),
+					'gmx'       => array(
+						'name'       => '📧 GMX',
+						'host'       => 'smtp.gmx.com',
+						'port'       => 587,
+						'encryption' => 'tls',
+						'info'       => '<strong>💡 Conseil :</strong> Utilisez votre adresse email GMX complète comme identifiant. Vous pouvez utiliser votre mot de passe GMX ou générer un <a href="https://myaccount.gmx.com" target="_blank">mot de passe d\'application</a>.',
+						'limit'      => '500 emails/jour',
+					),
+					'tutanota'  => array(
+						'name'       => '🔐 Tutanota',
+						'host'       => 'smtp.tutanota.com',
+						'port'       => 587,
+						'encryption' => 'tls',
+						'info'       => '<strong>💡 Conseil :</strong> Utilisez votre adresse email Tutanota complète comme identifiant. Vous devez générer un <a href="https://app.tutanota.com" target="_blank">mot de passe d\'application</a> dans vos paramètres de sécurité.',
+						'limit'      => '1000 emails/jour',
+					),
+					'posteo'    => array(
+						'name'       => '✉️ Posteo',
+						'host'       => 'smtp.posteo.de',
+						'port'       => 587,
+						'encryption' => 'tls',
+						'info'       => '<strong>💡 Conseil :</strong> Utilisez votre adresse email Posteo complète comme identifiant et votre mot de passe Posteo. Service allemand respectueux de la vie privée.',
+						'limit'      => 'Illimité',
+					),
+					'inbox_eu'  => array(
+						'name'       => '🇪🇺 Inbox.eu',
+						'host'       => 'mail.inbox.eu',
+						'port'       => 587,
+						'encryption' => 'tls',
+						'info'       => '<strong>💡 Conseil :</strong> Utilisez votre adresse email Inbox.eu complète comme identifiant et votre mot de passe Inbox.eu. Service européen de messagerie sécurisée.',
+						'limit'      => 'Illimité',
+					),
+				),
 			),
-			'outlook'   => array(
-				'name'       => '💼 Outlook.com / Hotmail',
-				'host'       => 'smtp-mail.outlook.com',
-				'port'       => 587,
-				'encryption' => 'tls',
-				'info'       => '<strong>💡 Conseil :</strong> Utilisez votre adresse Outlook/Hotmail complète comme identifiant. <a href="https://account.microsoft.com/account/security" target="_blank">Activez l\'authentification à deux facteurs</a> et générez un mot de passe d\'application.',
-				'limit'      => '10000 emails/jour',
-			),
-			'yahoo'     => array(
-				'name'       => '💌 Yahoo Mail',
-				'host'       => 'smtp.mail.yahoo.com',
-				'port'       => 587,
-				'encryption' => 'tls',
-				'info'       => '<strong>💡 Conseil :</strong> Générez un <a href="https://login.yahoo.com/account/security" target="_blank">mot de passe d\'application</a> depuis vos paramètres de sécurité Yahoo.',
-				'limit'      => '450 emails/jour',
-			),
-			'yandex'    => array(
-				'name'       => '🚀 Yandex Mail',
-				'host'       => 'smtp.yandex.com',
-				'port'       => 465,
-				'encryption' => 'ssl',
-				'info'       => '<strong>💡 Conseil :</strong> Utilisez votre adresse Yandex complète comme identifiant. Générez un <a href="https://passport.yandex.com/security" target="_blank">mot de passe d\'application</a> pour l\'accès SMTP.',
-				'limit'      => '500 emails/jour',
-			),
-			'postmark'  => array(
-				'name'       => '📨 Postmark',
-				'host'       => 'smtp.postmarkapp.com',
-				'port'       => 587,
-				'encryption' => 'tls',
-				'info'       => '<strong>💡 Conseil :</strong> Utilisez "POSTMARK_API_TOKEN" comme identifiant (exactement). Utilisez votre token API Postmark comme mot de passe.',
-				'limit'      => '10000 emails/mois (free)',
-			),
-			'zoho'      => array(
-				'name'       => '🌐 Zoho Mail',
-				'host'       => 'smtp.zoho.com',
-				'port'       => 587,
-				'encryption' => 'tls',
-				'info'       => '<strong>💡 Conseil :</strong> Utilisez votre adresse Zoho complète comme identifiant. Générez un <a href="https://mail.zoho.com/mail" target="_blank">mot de passe d\'application</a> depuis vos paramètres de sécurité.',
-				'limit'      => '500 emails/jour (free)',
-			),
-			'icloud'    => array(
-				'name'       => '🍎 iCloud Mail',
-				'host'       => 'smtp.mail.me.com',
-				'port'       => 587,
-				'encryption' => 'tls',
-				'info'       => '<strong>💡 Conseil :</strong> Utilisez votre adresse iCloud (@icloud.com) comme identifiant. Générez un <a href="https://appleid.apple.com" target="_blank">mot de passe d\'application spécifique</a> pour Apple ID.',
-				'limit'      => '500 emails/jour',
-			),
-			'resend'    => array(
-				'name'       => '⚡ Resend',
-				'host'       => 'smtp.resend.com',
-				'port'       => 587,
-				'encryption' => 'tls',
-				'info'       => '<strong>💡 Conseil :</strong> Utilisez "default" ou votre email comme identifiant. Utilisez votre clé API Resend comme mot de passe.',
-				'limit'      => '100 emails/jour (free)',
-			),
-			'brevo'     => array(
-				'name'       => '📬 Brevo',
-				'host'       => 'smtp-relay.brevo.com',
-				'port'       => 587,
-				'encryption' => 'tls',
-				'info'       => '<strong>💡 Conseil :</strong> Utilisez votre clé API Brevo comme mot de passe.',
-				'limit'      => '300 emails/jour',
-			),
-			'mailtrap'  => array(
-				'name'       => '📮 Mailtrap',
-				'host'       => 'sandbox.smtp.mailtrap.io',
-				'port'       => 587,
-				'encryption' => 'tls',
-				'info'       => '<strong>💡 Conseil :</strong> Service de test. Récupérez vos identifiants depuis votre tableau de bord Mailtrap.',
-				'limit'      => '100 emails (test)',
-			),
-			'sendgrid'  => array(
-				'name'       => '✉️ SendGrid',
-				'host'       => 'smtp.sendgrid.net',
-				'port'       => 587,
-				'encryption' => 'tls',
-				'info'       => '<strong>💡 Conseil :</strong> Utilisez "apikey" comme identifiant et votre clé API SendGrid comme mot de passe.',
-				'limit'      => '100 emails/jour (plan free)',
-			),
-			'infomaniak' => array(
-				'name'       => '🇨🇭 Infomaniak',
-				'host'       => 'smtp.infomaniak.com',
-				'port'       => 587,
-				'encryption' => 'tls',
-				'info'       => '<strong>💡 Conseil :</strong> Utilisez votre adresse email Infomaniak complète comme identifiant. Générez un <a href="https://manager.infomaniak.com" target="_blank">mot de passe d\'application</a> depuis votre compte Infomaniak.',
-				'limit'      => 'Illimité',
-			),
-			'gmx'       => array(
-				'name'       => '📧 GMX',
-				'host'       => 'smtp.gmx.com',
-				'port'       => 587,
-				'encryption' => 'tls',
-				'info'       => '<strong>💡 Conseil :</strong> Utilisez votre adresse email GMX complète comme identifiant. Vous pouvez utiliser votre mot de passe GMX ou générer un <a href="https://myaccount.gmx.com" target="_blank">mot de passe d\'application</a>.',
-				'limit'      => '500 emails/jour',
-			),
-			'tutanota'  => array(
-				'name'       => '🔐 Tutanota',
-				'host'       => 'smtp.tutanota.com',
-				'port'       => 587,
-				'encryption' => 'tls',
-				'info'       => '<strong>💡 Conseil :</strong> Utilisez votre adresse email Tutanota complète comme identifiant. Vous devez générer un <a href="https://app.tutanota.com" target="_blank">mot de passe d\'application</a> dans vos paramètres de sécurité.',
-				'limit'      => '1000 emails/jour',
-			),
-			'posteo'    => array(
-				'name'       => '✉️ Posteo',
-				'host'       => 'smtp.posteo.de',
-				'port'       => 587,
-				'encryption' => 'tls',
-				'info'       => '<strong>💡 Conseil :</strong> Utilisez votre adresse email Posteo complète comme identifiant et votre mot de passe Posteo. Service allemand respectueux de la vie privée.',
-				'limit'      => 'Illimité',
-			),
-			'inbox_eu'  => array(
-				'name'       => '🇪🇺 Inbox.eu',
-				'host'       => 'mail.inbox.eu',
-				'port'       => 587,
-				'encryption' => 'tls',
-				'info'       => '<strong>💡 Conseil :</strong> Utilisez votre adresse email Inbox.eu complète comme identifiant et votre mot de passe Inbox.eu. Service européen de messagerie sécurisée.',
-				'limit'      => 'Illimité',
-			),
-			'mailgun'   => array(
-				'name'       => '🔔 Mailgun',
-				'host'       => 'smtp.mailgun.org',
-				'port'       => 587,
-				'encryption' => 'tls',
-				'info'       => '<strong>💡 Conseil :</strong> Utilisez votre email SMTP et votre mot de passe SMTP depuis le tableau de bord Mailgun.',
-				'limit'      => '5000 emails/mois',
+			'_group_transactional' => array(
+				'name'  => '🚀 Solutions d\'envoi transactionnel',
+				'type'  => 'group',
+				'items' => array(
+					'postmark'  => array(
+						'name'       => '📨 Postmark',
+						'host'       => 'smtp.postmarkapp.com',
+						'port'       => 587,
+						'encryption' => 'tls',
+						'info'       => '<strong>💡 Conseil :</strong> Utilisez "POSTMARK_API_TOKEN" comme identifiant (exactement). Utilisez votre token API Postmark comme mot de passe.',
+						'limit'      => '10000 emails/mois (free)',
+					),
+					'resend'    => array(
+						'name'       => '⚡ Resend',
+						'host'       => 'smtp.resend.com',
+						'port'       => 587,
+						'encryption' => 'tls',
+						'info'       => '<strong>💡 Conseil :</strong> Utilisez "default" ou votre email comme identifiant. Utilisez votre clé API Resend comme mot de passe.',
+						'limit'      => '100 emails/jour (free)',
+					),
+					'brevo'     => array(
+						'name'       => '📬 Brevo',
+						'host'       => 'smtp-relay.brevo.com',
+						'port'       => 587,
+						'encryption' => 'tls',
+						'info'       => '<strong>💡 Conseil :</strong> Utilisez votre clé API Brevo comme mot de passe.',
+						'limit'      => '300 emails/jour',
+					),
+					'sendgrid'  => array(
+						'name'       => '✉️ SendGrid',
+						'host'       => 'smtp.sendgrid.net',
+						'port'       => 587,
+						'encryption' => 'tls',
+						'info'       => '<strong>💡 Conseil :</strong> Utilisez "apikey" comme identifiant et votre clé API SendGrid comme mot de passe.',
+						'limit'      => '100 emails/jour (plan free)',
+					),
+					'mailgun'   => array(
+						'name'       => '🔔 Mailgun',
+						'host'       => 'smtp.mailgun.org',
+						'port'       => 587,
+						'encryption' => 'tls',
+						'info'       => '<strong>💡 Conseil :</strong> Utilisez votre email SMTP et votre mot de passe SMTP depuis le tableau de bord Mailgun.',
+						'limit'      => '5000 emails/mois',
+					),
+					'mailtrap'  => array(
+						'name'       => '📮 Mailtrap',
+						'host'       => 'sandbox.smtp.mailtrap.io',
+						'port'       => 587,
+						'encryption' => 'tls',
+						'info'       => '<strong>💡 Conseil :</strong> Service de test. Récupérez vos identifiants depuis votre tableau de bord Mailtrap.',
+						'limit'      => '100 emails (test)',
+					),
+				),
 			),
 		);
+	}
+
+	/**
+	 * Get all presets flattened (without groups)
+	 *
+	 * @return array[]
+	 */
+	public static function get_presets_flat(): array {
+		$all_presets = self::get_presets();
+		$flat = array();
+
+		foreach ( $all_presets as $key => $value ) {
+			if ( isset( $value['type'] ) && 'group' === $value['type'] && isset( $value['items'] ) ) {
+				$flat = array_merge( $flat, $value['items'] );
+			} else {
+				$flat[ $key ] = $value;
+			}
+		}
+
+		return $flat;
 	}
 
 	/**
@@ -164,7 +196,7 @@ class Alert404_SMTP_Presets {
 	 * @return array|null
 	 */
 	public static function get_preset( string $key ): ?array {
-		$presets = self::get_presets();
+		$presets = self::get_presets_flat();
 		return $presets[ $key ] ?? null;
 	}
 
