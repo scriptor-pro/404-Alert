@@ -11,6 +11,8 @@ use function get_users;
 use function wp_mail;
 use function apply_filters;
 use function do_action;
+use function get_bloginfo;
+use function get_the_author_meta;
 
 defined( 'ABSPATH' ) || exit;
 

@@ -11,6 +11,8 @@ use function get_option;
 use function update_option;
 use function wp_next_scheduled;
 use function wp_schedule_event;
+use function wp_clear_scheduled_hook;
+use function define;
 
 defined( 'ABSPATH' ) || exit;
 

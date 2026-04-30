@@ -13,6 +13,10 @@ use function current_user_can;
 use function wp_enqueue_style;
 use function plugin_dir_url;
 use function esc_html;
+use function esc_url;
+use function admin_url;
+use function gmdate;
+use function wp_die;
 
 defined( 'ABSPATH' ) || exit;
 

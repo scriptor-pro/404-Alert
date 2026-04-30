@@ -9,6 +9,7 @@ namespace Alert404;
 
 use function is_404;
 use function add_action;
+use function get_option;
 
 defined( 'ABSPATH' ) || exit;
 

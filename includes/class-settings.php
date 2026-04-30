@@ -8,9 +8,7 @@
 namespace Alert404;
 
 use function add_menu_page;
-use function add_submenu_page;
 use function add_action;
-use function add_option;
 use function get_option;
 use function update_option;
 use function current_user_can;
@@ -20,7 +18,15 @@ use function wp_enqueue_style;
 use function wp_enqueue_script;
 use function plugin_dir_url;
 use function sanitize_text_field;
-use function isset;
+use function register_setting;
+use function admin_url;
+use function esc_url;
+use function esc_attr;
+use function checked;
+use function submit_button;
+use function wp_safe_remote_post;
+use function apply_filters;
+use function wp_redirect;
 
 defined( 'ABSPATH' ) || exit;
 
