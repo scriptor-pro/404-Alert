@@ -1,43 +1,43 @@
 === 404 Alert ===
 Contributors: baudouin
-Tags: 404, error, email, notification, alert
-Requires at least: 5.0
+Tags: 404, error, email, notification, alert, monitoring
+Requires at least: 6.4
 Tested up to: 6.9
 Requires PHP: 8.1
-Stable tag: 1.2.8
+Stable tag: 2.0.0
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Send email notifications when visitors encounter 404 errors, with advanced rate limiting and SMTP support.
+Intelligent 404 error alerts with smart rate limiting and daily digest for WordPress administrators.
 
 == Description ==
 
-404 Alert monitors 404 page not found errors on your WordPress site and sends email notifications to administrators.
+404 Alert monitors 404 page not found errors on your WordPress site and sends intelligent email notifications to all administrator users.
 
 **Key Features:**
 
-- **Instant Notifications**: Get email alerts for every 404 error
-- **Smart Rate Limiting**: Prevent notification spam with atomic Redis-backed rate limiting
-- **SMTP Support**: Configure custom email servers (Gmail, Outlook, SendGrid, AWS SES, Brevo, etc.)
-- **Email Fallback**: Automatic fallback to WordPress wp_mail() if SMTP unavailable
-- **Admin Dashboard**: View statistics about 404 errors, top referrers, and visitor information
-- **Password Protection**: SMTP passwords encrypted with AES-256-CBC
-- **Production Logging**: Track SMTP connections, authentication failures, and configuration changes
-- **100% Tested**: 110+ unit tests, 12 E2E scenarios, 85-90% code coverage
+- **Smart Alert Logic**: First 404 occurrence triggers immediate alert, excess errors collected in daily digest
+- **24-Hour URL Cooldown**: Never spam admins with duplicate errors for the same URL
+- **Configurable Daily Limit**: Set maximum number of immediate alerts per day (default: 20)
+- **Daily Digest**: Excess 404s sent once per day at configured time (8 AM default)
+- **Top URLs & IPs**: Dashboard displays most-hit URLs and attacking IPs
+- **CSV Export**: Download all 404 logs for analysis
+- **Admin Email Sync**: Automatically sends alerts to all WordPress administrators
+- **Lightweight**: Zero external dependencies, clean PSR-4 code, 23 KB plugin
+
+**Perfect For:**
+
+- Monitoring broken links and missing pages
+- Detecting SEO issues and site migrations
+- Identifying attack patterns (brute force attempts)
+- Large sites with high 404 volume (avoids email overload)
 
 **Performance:**
 
-- Rate limiting: 10-15x faster with Redis support
-- SMTP email delivery: <100ms
-- Dashboard rendering: <500ms for 1000 events
-- Optional Redis support for atomic operations
-- Graceful fallback to WordPress transients
-
-**Security:**
-
-- Atomic operations prevent race conditions
-- SMTP password encryption (AES-256-CBC)
-- Input validation and XSS protection
+- Transient-based rate limiting (no external services needed)
+- Database auto-rotation keeps only 5000 recent records
+- Minimal overhead on template_redirect hook
+- Works out-of-the-box with wp_mail()
 - Audit logging for all configuration changes
 - No sensitive data in logs
 
