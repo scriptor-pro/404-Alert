@@ -130,6 +130,22 @@ class Alert404_SMTP_Presets {
 				'info'       => '<strong>💡 Conseil :</strong> Utilisez votre adresse email Tutanota complète comme identifiant. Vous devez générer un <a href="https://app.tutanota.com" target="_blank">mot de passe d\'application</a> dans vos paramètres de sécurité.',
 				'limit'      => '1000 emails/jour',
 			),
+			'posteo'    => array(
+				'name'       => '✉️ Posteo',
+				'host'       => 'smtp.posteo.de',
+				'port'       => 587,
+				'encryption' => 'tls',
+				'info'       => '<strong>💡 Conseil :</strong> Utilisez votre adresse email Posteo complète comme identifiant et votre mot de passe Posteo. Service allemand respectueux de la vie privée.',
+				'limit'      => 'Illimité',
+			),
+			'inbox_eu'  => array(
+				'name'       => '🇪🇺 Inbox.eu',
+				'host'       => 'mail.inbox.eu',
+				'port'       => 587,
+				'encryption' => 'tls',
+				'info'       => '<strong>💡 Conseil :</strong> Utilisez votre adresse email Inbox.eu complète comme identifiant et votre mot de passe Inbox.eu. Service européen de messagerie sécurisée.',
+				'limit'      => 'Illimité',
+			),
 			'mailgun'   => array(
 				'name'       => '🔔 Mailgun',
 				'host'       => 'smtp.mailgun.org',
