@@ -1,6 +1,6 @@
 === 404 Alert ===
 Contributors: baudouin
-Tags: 404, error, email, notification, alert, monitoring
+Tags: 404, error, email, notification, alert
 Requires at least: 6.4
 Tested up to: 6.9
 Requires PHP: 8.1
@@ -14,195 +14,152 @@ Intelligent 404 error alerts with smart rate limiting and daily digest for WordP
 
 404 Alert monitors 404 page not found errors on your WordPress site and sends intelligent email notifications to all administrator users.
 
-**Key Features:**
+= Features =
 
-- **Smart Alert Logic**: First 404 occurrence triggers immediate alert, excess errors collected in daily digest
-- **24-Hour URL Cooldown**: Never spam admins with duplicate errors for the same URL
-- **Configurable Daily Limit**: Set maximum number of immediate alerts per day (default: 20)
-- **Daily Digest**: Excess 404s sent once per day at configured time (8 AM default)
-- **Top URLs & IPs**: Dashboard displays most-hit URLs and attacking IPs
-- **CSV Export**: Download all 404 logs for analysis
-- **Admin Email Sync**: Automatically sends alerts to all WordPress administrators
-- **Lightweight**: Zero external dependencies, clean PSR-4 code, 23 KB plugin
+* **Smart Alert Logic** - First 404 occurrence triggers immediate alert, excess errors collected in daily digest
+* **24-Hour URL Cooldown** - Never spam admins with duplicate errors for the same URL
+* **Configurable Daily Limit** - Set maximum number of immediate alerts per day (default: 20)
+* **Daily Digest** - Excess 404s sent once per day at configured time (8 AM default)
+* **Top URLs & IPs** - Dashboard displays most-hit URLs and attacking IPs
+* **CSV Export** - Download all 404 logs for analysis
+* **Admin Email Sync** - Automatically sends alerts to all WordPress administrators
+* **Lightweight** - Zero external dependencies, clean code, 27 KB plugin
 
-**Perfect For:**
+= Perfect For =
 
-- Monitoring broken links and missing pages
-- Detecting SEO issues and site migrations
-- Identifying attack patterns (brute force attempts)
-- Large sites with high 404 volume (avoids email overload)
+* Monitoring broken links and missing pages
+* Detecting SEO issues and site migrations
+* Identifying attack patterns (brute force attempts)
+* Large sites with high 404 volume (avoids email overload)
 
-**Performance:**
+= How It Works =
 
-- Transient-based rate limiting (no external services needed)
-- Database auto-rotation keeps only 5000 recent records
-- Minimal overhead on template_redirect hook
-- Works out-of-the-box with wp_mail()
-- Audit logging for all configuration changes
-- No sensitive data in logs
+1. **Activation** - Plugin creates database table, initializes settings, schedules daily cron
+2. **Detection** - Monitors 404 errors on template_redirect hook
+3. **Smart Limiting** - First alert is immediate, same URL within 24h goes to digest
+4. **Daily Digest** - Excess 404s collected and sent once daily at configured time
+5. **Dashboard** - View top URLs, IPs, and export logs as CSV
+
+= Performance =
+
+* Transient-based rate limiting (no external services needed)
+* Database auto-rotation keeps only 5000 recent records
+* Minimal overhead on template_redirect hook
+* Works out-of-the-box with WordPress wp_mail()
+
+= Settings =
+
+Configure in WordPress admin under **404 Alert** menu:
+
+* **Daily Alert Limit** - Maximum immediate alerts per day (1-1000)
+* **Enable Digest** - Toggle daily digest email on/off
+* **Digest Time** - UTC time to send daily digest
+
+= Email & Integration =
+
+* Sends to all users with **administrator** role
+* Uses WordPress standard wp_mail() function
+* Compatible with WP Mail SMTP, Postman SMTP, FluentSMTP, etc.
+* No SMTP configuration needed in this plugin
 
 == Installation ==
 
-1. Upload the plugin files to `/wp-content/plugins/404-alert/`
-2. Activate the plugin through the 'Plugins' screen in WordPress
-3. Go to Settings → 404 Alert to configure
-4. (Optional) Install Redis for better performance
-5. Test by visiting a non-existent page
+1. Upload `404-alert` folder to `/wp-content/plugins/`
+2. Activate the plugin through the WordPress Plugins menu
+3. Go to **404 Alert** menu to configure settings
+4. View statistics in **404 Alert > Statistics** submenu
 
-== Configuration ==
+== Screenshots ==
 
-### Basic Setup (Required)
-
-1. Go to WordPress Admin → Settings → 404 Alert
-2. Enter your email address where 404 notifications should be sent
-3. Adjust rate limiting settings:
-   - Daily Limit: Maximum emails per day (1-10000, default: 500)
-   - IP Cooldown: Seconds between emails from same IP (60-3600, default: 300)
-
-### SMTP Setup (Optional but Recommended)
-
-For more reliable email delivery:
-
-1. Go to Settings → 404 Alert → SMTP Settings
-2. Select your email provider (Gmail, Outlook, SendGrid, etc.)
-3. Enter your credentials
-4. Click "Test Connection" to verify
-5. Save settings
-
-**Gmail Example:**
-- Host: smtp.gmail.com
-- Port: 587
-- Encryption: TLS
-- Username: your-email@gmail.com
-- Password: Your app password (from Google Account settings)
-
-### Redis Setup (Optional)
-
-For 10-15x faster rate limiting:
-
-**Ubuntu/Debian:**
-```
-sudo apt-get install redis-server
-sudo systemctl start redis-server
-```
-
-**macOS:**
-```
-brew install redis
-brew services start redis
-```
-
-Or use managed Redis from Heroku, AWS, Google Cloud, DigitalOcean, or Upstash.
-
-Configure in wp-config.php:
-```php
-define( 'ALERT404_REDIS_HOST', 'localhost' );
-define( 'ALERT404_REDIS_PORT', 6379 );
-```
+1. Admin settings page with rate limiting configuration
+2. Statistics dashboard showing top 404 URLs and IPs
+3. Email alert example sent to administrators
 
 == Frequently Asked Questions ==
 
-= Why am I not receiving emails? =
+= Will this spam my email inbox? =
 
-1. Check if email is configured in plugin settings
-2. If SMTP enabled, verify host, port, username, password
-3. Check wp-content/debug.log for errors
-4. Verify you haven't exceeded the daily limit
-5. Check if rate limiting is blocking from your IP
+No. The plugin uses intelligent rate limiting:
+* Each unique 404 URL triggers one immediate alert
+* The same URL within 24 hours goes to the daily digest instead
+* Set the daily limit to control max immediate alerts (default: 20)
+* Excess 404s are collected and sent once daily
 
-= What information is sent in each email? =
+= Which email addresses receive alerts? =
 
-Each 404 notification includes:
-- Requested URL
-- Visitor's IP address
-- User-Agent (browser info)
-- HTTP Referrer
-- Timestamp
-- Whether visitor was logged in
+All users with the **administrator** role. The plugin fetches admin emails dynamically—no configuration needed.
 
-= Can I use this without Redis? =
+= Can I change the email subject or body? =
 
-Yes! The plugin works with WordPress transients as fallback. Redis is optional but recommended for production sites with high traffic.
+Yes, use the following filters in your theme's functions.php:
 
-= Is SMTP required? =
+```php
+add_filter( '404_alert_email_subject', function( $subject ) {
+    return '[MyBrand] ' . $subject;
+} );
 
-No. The plugin uses WordPress wp_mail() by default. SMTP is optional but more reliable.
+add_filter( '404_alert_email_body', function( $body ) {
+    // Modify HTML body
+    return $body;
+} );
 
-= How do I clear 404 history? =
+add_filter( '404_alert_recipients', function( $emails ) {
+    // Add or remove email addresses
+    $emails[] = 'myemail@example.com';
+    return $emails;
+} );
+```
 
-Go to Settings → 404 Alert → Dashboard, click "Clear All Statistics" button.
+= Does this require external services? =
 
-= Can I customize the 404 template? =
+No. Everything runs on your server. Uses standard WordPress:
+* wp_mail() for emails (configure via wp-config.php or external plugin)
+* Transients for rate limiting (no Redis needed)
+* Database for logging (auto-rotates at 5000 records)
 
-Yes. Create a file at `404.php` in your theme's root directory. The plugin will use it instead of its default template.
+= What's the performance impact? =
 
-= What about privacy and GDPR? =
+Minimal:
+* 404 detection runs on template_redirect hook
+* Database record: ~1ms
+* Rate limit check: <1ms via transients
+* No external API calls
 
-404 events are stored locally in your WordPress database. No data is sent to external services (unless using managed Redis/SMTP). Enable logging to track all activities. You can clear all statistics at any time.
+= Can I export the 404 logs? =
 
-== Support ==
+Yes. Go to **404 Alert > Statistics** and click **Export to CSV**.
 
-For support, documentation, and advanced configuration:
-- See README.md for complete documentation
-- Check CHANGELOG.md for version history and updates
-- Review configuration examples in settings page
+= How far back are logs kept? =
+
+By default, 5000 most recent 404 records. Configure `log_retention` in options.
+
+= What if I need custom SMTP configuration? =
+
+Install a dedicated SMTP plugin like **WP Mail SMTP** or **FluentSMTP**. 404 Alert uses WordPress wp_mail(), which respects those configurations.
+
+== Upgrade Notice ==
+
+= 2.0.0 =
+Complete rewrite with smart alert logic and daily digest. Breaking changes: table renamed, SMTP configuration removed (delegate to external plugins). See REWRITE_SUMMARY.md in plugin folder for migration details.
 
 == Changelog ==
 
-= 1.2.8 (April 28, 2026) =
-* Fixed: Statistics table creation verification on every request
-* Fixed: Database insertion error handling and logging
-* Improved: Robust statistics storage with automatic table recreation
-* Improved: Better error diagnostics with log_stats_error() method
-* Security: Prevent silent failures in statistics recording
+= 2.0.0 =
+* Complete ground-up rewrite
+* New: Smart alert logic (24h URL cooldown + daily plafond)
+* New: Daily digest for excess 404s
+* New: CSV export in dashboard
+* Removed: SMTP configuration (delegate to WP Mail SMTP, etc.)
+* Removed: Redis support (transients sufficient)
+* Removed: Deprecated classes and complexity
+* Simplified: 9 lean classes instead of 18
+* Database: Single clean table with auto-rotation
+* Admin interface: Settings + Statistics pages
 
-= 1.2.0 (April 11, 2026) =
-* Fixed: Database security - Added proper prepared statements documentation
-* Fixed: Heredoc syntax replaced with sprintf() for WordPress.org compatibility
-* Fixed: Direct file access protection with wp_unslash() and esc_html()
-* Fixed: File operations documentation with phpcs:ignore comments
-* Improved: REQUEST_URI validation with proper escaping
-* Improved: Code formatting compliance with PHPCS 100%
-* Improved: PHPStan static analysis validation
-* Security: Input validation enhanced with wp_unslash()
-* Security: XSS prevention with esc_html() escaping
-* Tested: Full compatibility with WordPress 6.9
-* License: Changed from ISC to GPL v2 or later for WordPress.org compliance
+== Support ==
 
-= 1.1.0 (April 9, 2026) =
-* Added: Redis support for atomic rate limiting
-* Added: SMTP configuration with AES-256-CBC encryption
-* Added: Production logging system (7 strategic logs)
-* Added: 110+ unit tests with 85-90% code coverage
-* Added: 12 E2E integration scenarios
-* Improved: Rate limiting performance (10-15x faster)
-* Improved: Email delivery with SMTP support
-* Improved: PHPStan 2.x static analysis (0 errors)
-* Improved: 100% WordPress coding standards compliance
-* Fixed: Race conditions in rate limiting
-* Fixed: PHPCS violations in code
-* Security: Atomic operations prevent race conditions
-* Security: SMTP password encryption
-* Security: Passwords never logged
-* Performance: 20MB memory optimized
+For issues, feature requests, or questions:
+* Check WordPress.org plugin support forum
+* Or visit https://github.com/baudouin-dev/404-alert/issues
 
-= 0.1.0 (March 15, 2026) =
-* Initial release
-* Basic 404 detection
-* Email notifications
-* Rate limiting with WordPress transients
-* Admin dashboard
-* Basic logging
-
-== License ==
-
-This plugin is licensed under the GPL v2 or later. See LICENSE.md for details.
-
-== Credits ==
-
-Developed with attention to:
-- Atomic operations for concurrent systems
-- WordPress coding standards
-- Production debugging requirements
-- Comprehensive test coverage
-- Security best practices
+Enjoy! 🚀

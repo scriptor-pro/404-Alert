@@ -52,25 +52,27 @@ class Dashboard {
 			wp_die( 'Unauthorized' );
 		}
 
+		check_admin_referer( '404_alert_export_nonce', 'nonce' );
+
 		header( 'Content-Type: text/csv' );
 		header( 'Content-Disposition: attachment; filename="404-errors-' . gmdate( 'Y-m-d' ) . '.csv"' );
 
 		global $wpdb;
 		$table   = $wpdb->prefix . '404_alert_log';
-		$results = $wpdb->get_results( "SELECT url, ip, referrer, user_agent, alerted, created_at FROM $table ORDER BY created_at DESC", ARRAY_A );
+		$results = $wpdb->get_results( $wpdb->prepare( "SELECT url, ip, referrer, user_agent, alerted, created_at FROM {$table} ORDER BY created_at DESC" ), ARRAY_A );
 
 		if ( empty( $results ) ) {
 			exit;
 		}
 
-		$output = fopen( 'php://output', 'w' );
-		fputcsv( $output, array_keys( $results[0] ) );
-
-		foreach ( $results as $row ) {
-			fputcsv( $output, $row );
+		$fp = fopen( 'php://output', 'w' );
+		if ( $fp ) {
+			fputcsv( $fp, array_keys( $results[0] ) );
+			foreach ( $results as $row ) {
+				fputcsv( $fp, $row );
+			}
+			fclose( $fp );
 		}
-
-		fclose( $output );
 		exit;
 	}
 
@@ -96,7 +98,7 @@ class Dashboard {
 					<strong>Total 404 Errors Logged:</strong> <?php echo esc_html( $total_count ); ?>
 				</p>
 				<p>
-					<a href="<?php echo esc_url( admin_url( 'admin.php?page=404-alert-dashboard&action=404_alert_export_csv' ) ); ?>" class="button">
+					<a href="<?php echo esc_url( wp_nonce_url( admin_url( 'admin.php?page=404-alert-dashboard&action=404_alert_export_csv' ), '404_alert_export_nonce', 'nonce' ) ); ?>" class="button">
 						📥 Export to CSV
 					</a>
 				</p>

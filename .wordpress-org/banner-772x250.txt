@@ -1,0 +1,3 @@
+# WordPress.org assets placeholder
+# Banner: 772x250px (use existing banner.png if available)
+# Icon: 256x256px (use existing icon.png if available)

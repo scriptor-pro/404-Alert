@@ -57,7 +57,28 @@ class Settings {
 	 * Register settings
 	 */
 	public function register_settings(): void {
-		register_setting( '404-alert-group', '404_alert_options' );
+		register_setting(
+			'404-alert-group',
+			'404_alert_options',
+			[
+				'sanitize_callback' => [ $this, 'sanitize_options' ],
+			]
+		);
+	}
+
+	/**
+	 * Sanitize settings before saving
+	 */
+	public function sanitize_options( $options ): array {
+		if ( ! is_array( $options ) ) {
+			return [];
+		}
+
+		return [
+			'daily_limit'    => max( 1, min( 1000, (int) ( $options['daily_limit'] ?? 20 ) ) ),
+			'digest_enabled' => isset( $options['digest_enabled'] ) ? 1 : 0,
+			'digest_time'    => sanitize_text_field( $options['digest_time'] ?? '08:00' ),
+		];
 	}
 
 	/**
@@ -95,22 +116,14 @@ class Settings {
 		check_admin_referer( '404-alert-nonce' );
 
 		$options = [
-			'daily_limit'    => max( 1, min( 1000, (int) ( $_POST['daily_limit'] ?? 20 ) ) ),
+			'daily_limit'    => max( 1, min( 1000, (int) ( wp_unslash( $_POST['daily_limit'] ?? 20 ) ) ) ),
 			'digest_enabled' => isset( $_POST['digest_enabled'] ) ? 1 : 0,
-			'digest_time'    => sanitize_text_field( $_POST['digest_time'] ?? '08:00' ),
+			'digest_time'    => sanitize_text_field( wp_unslash( $_POST['digest_time'] ?? '08:00' ) ),
 		];
 
 		update_option( '404_alert_options', $options );
 
-		wp_safe_remote_post( admin_url( 'admin-ajax.php' ), [
-			'blocking' => false,
-			'sslverify' => apply_filters( 'https_local_ssl_verify', false ),
-			'args' => [
-				'action' => '404_alert_reschedule_cron',
-			],
-		] );
-
-		wp_redirect( admin_url( 'admin.php?page=404-alert-settings&updated=1' ) );
+		wp_safe_redirect( admin_url( 'admin.php?page=404-alert-settings&updated=1' ) );
 		exit;
 	}
 

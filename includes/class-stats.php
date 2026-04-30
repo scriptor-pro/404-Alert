@@ -24,11 +24,11 @@ class Stats {
 		// Rotate: keep only latest N records
 		$options     = get_option( '404_alert_options', [] );
 		$retention   = (int) ( $options['log_retention'] ?? 5000 );
-		$total_count = (int) $wpdb->get_var( "SELECT COUNT(*) FROM $table" );
+		$total_count = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$table}" ) );
 
 		if ( $total_count >= $retention ) {
 			$excess = $total_count - $retention + 1;
-			$wpdb->query( $wpdb->prepare( "DELETE FROM $table ORDER BY created_at ASC LIMIT %d", $excess ) );
+			$wpdb->query( $wpdb->prepare( "DELETE FROM {$table} ORDER BY created_at ASC LIMIT %d", $excess ) );
 		}
 
 		// Insert
@@ -52,10 +52,10 @@ class Stats {
 	public static function get_top_urls( int $limit = 10 ): array {
 		global $wpdb;
 
-		$table  = $wpdb->prefix . '404_alert_log';
+		$table   = $wpdb->prefix . '404_alert_log';
 		$results = $wpdb->get_results(
 			$wpdb->prepare(
-				"SELECT url, COUNT(*) as count FROM $table GROUP BY url ORDER BY count DESC LIMIT %d",
+				"SELECT url, COUNT(*) as count FROM {$table} GROUP BY url ORDER BY count DESC LIMIT %d",
 				$limit
 			)
 		);
@@ -72,7 +72,7 @@ class Stats {
 		$table   = $wpdb->prefix . '404_alert_log';
 		$results = $wpdb->get_results(
 			$wpdb->prepare(
-				"SELECT ip, COUNT(*) as count FROM $table WHERE ip != '' GROUP BY ip ORDER BY count DESC LIMIT %d",
+				"SELECT ip, COUNT(*) as count FROM {$table} WHERE ip != '' GROUP BY ip ORDER BY count DESC LIMIT %d",
 				$limit
 			)
 		);
@@ -87,7 +87,7 @@ class Stats {
 		global $wpdb;
 
 		$table = $wpdb->prefix . '404_alert_log';
-		return (int) $wpdb->get_var( "SELECT COUNT(*) FROM $table" );
+		return (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$table}" ) );
 	}
 
 	/**
@@ -97,21 +97,27 @@ class Stats {
 		global $wpdb;
 
 		$table   = $wpdb->prefix . '404_alert_log';
-		$results = $wpdb->get_results( "SELECT url, ip, referrer, user_agent, alerted, created_at FROM $table ORDER BY created_at DESC", ARRAY_A );
+		$results = $wpdb->get_results( $wpdb->prepare( "SELECT url, ip, referrer, user_agent, alerted, created_at FROM {$table} ORDER BY created_at DESC" ), ARRAY_A );
 
 		if ( empty( $results ) ) {
 			return '';
 		}
 
-		$output = fopen( 'php://output', 'w' );
-		fputcsv( $output, array_keys( $results[0] ) );
-
-		foreach ( $results as $row ) {
-			fputcsv( $output, $row );
+		$fp = fopen( 'php://memory', 'r+' );
+		if ( ! $fp ) {
+			return '';
 		}
 
-		fclose( $output );
+		fputcsv( $fp, array_keys( $results[0] ) );
 
-		return '';
+		foreach ( $results as $row ) {
+			fputcsv( $fp, $row );
+		}
+
+		rewind( $fp );
+		$csv = stream_get_contents( $fp );
+		fclose( $fp );
+
+		return $csv;
 	}
 }
