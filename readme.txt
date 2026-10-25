@@ -4,7 +4,7 @@ Tags: 404, error, email, notification, alert
 Requires at least: 6.4
 Tested up to: 6.9
 Requires PHP: 8.1
-Stable tag: 2.0.0
+Stable tag: 2.3.0
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,7 +12,7 @@ Intelligent 404 error alerts with smart rate limiting and daily digest for WordP
 
 == Description ==
 
-404 Alert monitors 404 page not found errors on your WordPress site and sends intelligent email notifications to all administrator users.
+404 Alert monitors 404 page not found errors on your WordPress site and sends intelligent email notifications to a configurable recipient, with administrator fallback.
 
 = Features =
 
@@ -22,7 +22,7 @@ Intelligent 404 error alerts with smart rate limiting and daily digest for WordP
 * **Daily Digest** - Excess 404s sent once per day at configured time (8 AM default)
 * **Top URLs & IPs** - Dashboard displays most-hit URLs and attacking IPs
 * **CSV Export** - Download all 404 logs for analysis
-* **Admin Email Sync** - Automatically sends alerts to all WordPress administrators
+* **Recipient Override** - Send alerts to a specific email address or fall back to all administrators
 * **Lightweight** - Zero external dependencies, clean code, 27 KB plugin
 
 = Perfect For =
@@ -54,13 +54,14 @@ Configure in WordPress admin under **404 Alert** menu:
 * **Daily Alert Limit** - Maximum immediate alerts per day (1-1000)
 * **Enable Digest** - Toggle daily digest email on/off
 * **Digest Time** - UTC time to send daily digest
+* **SMTP Configuration** - Built-in SMTP delivery for servers without `sendmail`
 
 = Email & Integration =
 
-* Sends to all users with **administrator** role
-* Uses WordPress standard wp_mail() function
+* Sends to a custom recipient email if set, otherwise to all users with **administrator** role
+* Uses WordPress standard wp_mail() function or the built-in SMTP settings
+* Built-in SMTP support for direct delivery when the server has no sendmail
 * Compatible with WP Mail SMTP, Postman SMTP, FluentSMTP, etc.
-* No SMTP configuration needed in this plugin
 
 == Installation ==
 
@@ -87,7 +88,7 @@ No. The plugin uses intelligent rate limiting:
 
 = Which email addresses receive alerts? =
 
-All users with the **administrator** role. The plugin fetches admin emails dynamically—no configuration needed.
+If you set an alert recipient email in the plugin settings, alerts go there. Otherwise, the plugin fetches all administrator emails dynamically, with `admin_email` as a fallback.
 
 = Can I change the email subject or body? =
 
@@ -135,21 +136,35 @@ By default, 5000 most recent 404 records. Configure `log_retention` in options.
 
 = What if I need custom SMTP configuration? =
 
-Install a dedicated SMTP plugin like **WP Mail SMTP** or **FluentSMTP**. 404 Alert uses WordPress wp_mail(), which respects those configurations.
+Use the built-in SMTP settings in the 404 Alert admin page, or install a dedicated SMTP plugin like **WP Mail SMTP** or **FluentSMTP**.
 
 == Upgrade Notice ==
 
-= 2.0.0 =
-Complete rewrite with smart alert logic and daily digest. Breaking changes: table renamed, SMTP configuration removed (delegate to external plugins). See REWRITE_SUMMARY.md in plugin folder for migration details.
+= 2.3.0 =
+Added a configurable alert recipient email while keeping administrator fallback.
+
+= 2.2.0 =
+Refined the mail stack into a lighter internal architecture with settings, secrets, transport, service, and health checking layers.
+
+= 2.1.0 =
+Added built-in SMTP delivery settings while keeping the smart alert logic and daily digest. The plugin now supports either WordPress mail or direct SMTP.
 
 == Changelog ==
 
-= 2.0.0 =
+= 2.3.0 =
+* New: Configurable alert recipient email with administrator fallback
+
+= 2.2.0 =
+* New: Lightweight internal mail architecture with health diagnostics
+* New: SMTP transport, recipient resolver, message factory, and mail logging layers
+* Improvement: SMTP test button now reports clearer configuration issues
+
+= 2.1.0 =
 * Complete ground-up rewrite
 * New: Smart alert logic (24h URL cooldown + daily plafond)
 * New: Daily digest for excess 404s
 * New: CSV export in dashboard
-* Removed: SMTP configuration (delegate to WP Mail SMTP, etc.)
+* New: Built-in SMTP configuration and direct delivery
 * Removed: Redis support (transients sufficient)
 * Removed: Deprecated classes and complexity
 * Simplified: 9 lean classes instead of 18

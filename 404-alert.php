@@ -3,7 +3,7 @@
  * Plugin Name: 404 Alert
  * Plugin URI: https://github.com/baudouin-dev/404-alert
  * Description: Intelligent 404 error alerts with daily digest for WordPress admins
- * Version: 2.0.0
+ * Version: 2.3.0
  * Author: Baudouin
  * Author URI: https://etik.com
  * License: GPLv2 or later
@@ -18,10 +18,10 @@
 
 defined( 'ABSPATH' ) || exit;
 
-const ALERT404_VERSION = '2.0.0';
+const ALERT404_VERSION = '2.3.0';
 const ALERT404_FILE = __FILE__;
 const ALERT404_DIR = __DIR__;
-const ALERT404_URL = plugin_dir_url( __FILE__ );
+define( 'ALERT404_URL', plugin_dir_url( __FILE__ ) );
 
 /**
  * Simple PSR-4 autoloader
@@ -31,11 +31,33 @@ spl_autoload_register( function ( $class ) {
 		return;
 	}
 
-	$file = ALERT404_DIR . '/includes/class-' . str_replace(
-		[ 'Alert404\\', '\\' ],
-		[ '', '-' ],
-		strtolower( $class )
-	) . '.php';
+	$short_class = substr( $class, strlen( 'Alert404\\' ) );
+	$map = [
+		'Activator'              => 'class-activator.php',
+		'Dashboard'              => 'class-dashboard.php',
+		'Detector'               => 'class-detector.php',
+		'Digest'                 => 'class-digest.php',
+		'MailHealthChecker'      => 'class-mail-health-checker.php',
+		'MailLogger'             => 'class-mail-logger.php',
+		'MailMessageFactory'     => 'class-mail-message-factory.php',
+		'MailService'            => 'class-mail-service.php',
+		'MailSettingsRepository' => 'class-mail-settings-repository.php',
+		'Mailer'                 => 'class-mailer.php',
+		'RecipientResolver'      => 'class-recipient-resolver.php',
+		'SecretStore'            => 'class-secret-store.php',
+		'SmtpTransport'          => 'class-smtp-transport.php',
+		'SMTP'                   => 'class-smtp.php',
+		'RateLimiter'            => 'class-rate-limiter.php',
+		'RequestInfo'            => 'class-request-info.php',
+		'Settings'               => 'class-settings.php',
+		'Stats'                  => 'class-stats.php',
+	];
+
+	if ( ! isset( $map[ $short_class ] ) ) {
+		return;
+	}
+
+	$file = ALERT404_DIR . '/includes/' . $map[ $short_class ];
 
 	if ( file_exists( $file ) ) {
 		require_once $file;

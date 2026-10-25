@@ -57,22 +57,13 @@ class Dashboard {
 		header( 'Content-Type: text/csv' );
 		header( 'Content-Disposition: attachment; filename="404-errors-' . gmdate( 'Y-m-d' ) . '.csv"' );
 
-		global $wpdb;
-		$table   = $wpdb->prefix . '404_alert_log';
-		$results = $wpdb->get_results( $wpdb->prepare( "SELECT url, ip, referrer, user_agent, alerted, created_at FROM {$table} ORDER BY created_at DESC" ), ARRAY_A );
-
-		if ( empty( $results ) ) {
+		$csv = Stats::export_csv();
+		if ( '' === $csv ) {
 			exit;
 		}
 
-		$fp = fopen( 'php://output', 'w' );
-		if ( $fp ) {
-			fputcsv( $fp, array_keys( $results[0] ) );
-			foreach ( $results as $row ) {
-				fputcsv( $fp, $row );
-			}
-			fclose( $fp );
-		}
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Raw CSV download must be emitted without escaping.
+		echo $csv;
 		exit;
 	}
 

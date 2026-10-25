@@ -24,7 +24,7 @@ class Stats {
 		// Rotate: keep only latest N records
 		$options     = get_option( '404_alert_options', [] );
 		$retention   = (int) ( $options['log_retention'] ?? 5000 );
-		$total_count = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$table}" ) );
+		$total_count = (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$table}" );
 
 		if ( $total_count >= $retention ) {
 			$excess = $total_count - $retention + 1;
@@ -87,7 +87,7 @@ class Stats {
 		global $wpdb;
 
 		$table = $wpdb->prefix . '404_alert_log';
-		return (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$table}" ) );
+		return (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$table}" );
 	}
 
 	/**
@@ -97,27 +97,36 @@ class Stats {
 		global $wpdb;
 
 		$table   = $wpdb->prefix . '404_alert_log';
-		$results = $wpdb->get_results( $wpdb->prepare( "SELECT url, ip, referrer, user_agent, alerted, created_at FROM {$table} ORDER BY created_at DESC" ), ARRAY_A );
+		$results = $wpdb->get_results( "SELECT url, ip, referrer, user_agent, alerted, created_at FROM {$table} ORDER BY created_at DESC", ARRAY_A );
 
 		if ( empty( $results ) ) {
 			return '';
 		}
 
-		$fp = fopen( 'php://memory', 'r+' );
-		if ( ! $fp ) {
-			return '';
-		}
-
-		fputcsv( $fp, array_keys( $results[0] ) );
-
+		$csv   = self::build_csv_row( array_keys( $results[0] ) );
 		foreach ( $results as $row ) {
-			fputcsv( $fp, $row );
+			$csv .= self::build_csv_row( $row );
 		}
-
-		rewind( $fp );
-		$csv = stream_get_contents( $fp );
-		fclose( $fp );
 
 		return $csv;
+	}
+
+	/**
+	 * Build a CSV row.
+	 *
+	 * @param array<int|string, mixed> $fields Fields to encode.
+	 */
+	private static function build_csv_row( array $fields ): string {
+		$escaped = array_map(
+			static function ( $field ): string {
+				$value = (string) $field;
+				$value = str_replace( '"', '""', $value );
+
+				return '"' . $value . '"';
+			},
+			$fields
+		);
+
+		return implode( ',', $escaped ) . "\n";
 	}
 }

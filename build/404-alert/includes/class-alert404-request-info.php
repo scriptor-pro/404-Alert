@@ -35,7 +35,7 @@ class Alert404_Request_Info {
 		$referrer   = self::truncate( $referrer, self::MAX_REFERER_LENGTH );
 
 		// Parse the User-Agent.
-		require_once ALERT404_DIR . 'includes/class-user-agent-parser.php';
+		require_once ALERT404_DIR . 'includes/class-alert404-user-agent-parser.php';
 		$user_info = Alert404_UserAgent_Parser::get_structured_info( $user_agent );
 
 		// WordPress information.
